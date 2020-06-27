@@ -1,0 +1,10 @@
+.technologies figure{
+	background-color: white;
+	border-radius: 25px;
+	display: inline-block;
+	height: 650px;
+	margin-left: 420px;
+	top: -30px;
+	width: 1000px;
+
+}
