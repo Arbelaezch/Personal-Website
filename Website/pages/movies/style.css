@@ -1,8 +1,13 @@
+body {
+	background-color: rgb(201, 203, 204);
+}
+
 #page {
 	width: 65%;
-	height: 2000px;
+	height: 1000px;
 	border: 1px solid red;
 	margin: 50px 100px 0 20%;
+	background-color: white;
 
 }
 
@@ -71,6 +76,30 @@
 	padding: 0 50px;
 	
 }
+
+.side {
+	display: inline-block;
+
+	width: 250px;
+	text-align: center;
+	vertical-align: top;
+
+}
+
+
+
+#sideHeader {
+	display: flex;
+	flex-direction: column;
+	padding: 10px 0;
+
+}
+
+#sideHeader a {
+
+	
+}
+
 
 
 
