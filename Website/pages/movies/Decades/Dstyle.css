@@ -4,13 +4,46 @@ body {
 
 #page {
 	width: 65%;
-	min-height: 1000px;
-	max-height: fit-content;
+	
+	height: fit-content;
 	border: 3px solid grey;
 	margin: 50px 100px 0 20%;
 	background-color: white;
 
 }
+
+
+#grid {
+    height: fit-content;
+
+}
+
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px 100px;
+    grid-template-rows: 200px;
+    grid-gap: 30px;
+    background-color: #fff;
+    color: #444;
+    margin: 20px 10px;
+    height: fit-content;
+    
+    
+  }
+
+.wrapper img {
+    height: 130px;
+    width: 100px;
+    border: 1px solid black;
+    
+}
+
+
+
+
+
+
 
 
 
@@ -41,7 +74,7 @@ body {
 
 #description {
     text-align: left;
-    text-indent: .5in;
+    text-indent: .25in;
 	padding: 0 50px;
 }
 
@@ -79,7 +112,8 @@ body {
 #content {
 	border: 3px solid grey;
 	width: 70%;
-	height: 1000px;
+    height: fit-content;
+    
 }
 
 #review {
@@ -106,6 +140,58 @@ body {
 	padding: 10px 0;
 
 }
+
+
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+  }
+  
+  /* Create four equal columns that sits next to each other */
+  .column {
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+  }
+  
+  .column img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+  }
+  
+  /* Responsive layout - makes a two column-layout instead of four columns */
+  @media screen and (max-width: 800px) {
+    .column {
+      flex: 50%;
+      max-width: 50%;
+    }
+  }
+  
+  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .column {
+      flex: 100%;
+      max-width: 100%;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
