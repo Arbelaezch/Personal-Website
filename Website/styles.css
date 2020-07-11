@@ -6,16 +6,12 @@ body {
 
 footer {
 	position: absolute;
-	left: 0;
   	bottom: 0;
-  	width: 100%;
 	/*background-color: rgb(238, 238, 238); LIGHT MODE */
 	background-color: rgb(4, 7, 8);
   	color: #5F6368;
 	text-align: center;
-	padding-left: 30px;
-	padding-right: 30px;
-	width: fit-content;
+	width: 100%;
 }
 
  
@@ -85,7 +81,7 @@ button {
 
 
 /* The navigation bar */
-nav {
+.navbar {
 	overflow: hidden;
 	background-color: rgb(28, 32, 36);
 	/*background-color: #333; LIGHT MODE */
@@ -96,7 +92,7 @@ nav {
  }
  
  /* Links inside the navbar */
- nav a {
+.navbar a {
 	float: left;
 	display: block;
 	color: #f2f2f2;
@@ -106,16 +102,12 @@ nav {
  }
  
  /* Change background on mouse-over */
- nav a:hover {
+.navbar a:hover {
 	background: #ddd;
 	color: black;
  }
  
- /* Main content */
- .main {
-	margin-top: 50px; /* Add a top margin to avoid content overlay */
-	
- }
+
 
 
 
