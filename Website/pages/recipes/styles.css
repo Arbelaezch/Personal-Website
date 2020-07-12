@@ -31,7 +31,7 @@ h1 {
   
 /* CLASSES ------------------------------------------------------------------*/
 
-.center {
+article {
 	position: relative;
 	top: 50px;
 	text-align: center;
@@ -39,6 +39,27 @@ h1 {
 	margin: auto;
 	background-color: #fec356;
 	margin-bottom: 70px;
+}
+
+figure {
+	padding: 20px;
+}
+
+figure img {
+	height: 200px;
+}
+
+.favs a:link, .favs a:visited {
+	color: black;
+	text-decoration: none;
+}
+
+.favs a:active {
+	color: red;
+}
+
+.favs a:hover {
+	text-decoration: underline;
 }
 
 .favs{
@@ -49,12 +70,10 @@ h1 {
 	row-gap: 90px;
 	padding-bottom: 100px;
 	
-	
-	
 }
 
-.footer {
-	
+
+footer {
 	left: 0;
   	bottom: 0;
   	width: 100%;
@@ -94,7 +113,7 @@ h1 {
 /* NAV BAR------------------------------------------------------------------*/
 
 /* The navigation bar */
-.navbar {
+nav {
 	overflow: hidden;
 	background-color: rgb(28, 32, 36);
 	/*background-color: #333; LIGHT MODE */
@@ -105,7 +124,7 @@ h1 {
  }
  
  /* Links inside the navbar */
- .navbar a {
+nav a {
 	float: left;
 	display: block;
 	color: #f2f2f2;
@@ -115,7 +134,7 @@ h1 {
  }
  
  /* Change background on mouse-over */
- .navbar a:hover {
+nav a:hover {
 	background: #ddd;
 	color: black;
  }
