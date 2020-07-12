@@ -52,6 +52,9 @@ body {
 	color: yellow;
 }
 
+.item a:hover {
+	text-decoration: underline;
+}
 
 
 

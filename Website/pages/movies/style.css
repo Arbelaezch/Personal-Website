@@ -99,16 +99,19 @@ body {
 
 
 .list a:link, a:visited{
-	text-decoration: none;
+	text-decoration-color: white;
 	color: blue;
 	
 }
 
 .list a:active {
 	color: yellow;
+	text-decoration: blue;
 }
 
-
+li:hover {
+	text-decoration: underline;
+}
 
 
 
