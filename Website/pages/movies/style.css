@@ -101,7 +101,15 @@ body {
 
 
 
+.list a:link, a:visited{
+	text-decoration: none;
+	color: blue;
+	
+}
 
+.list a:active {
+	color: red;
+}
 
 
 

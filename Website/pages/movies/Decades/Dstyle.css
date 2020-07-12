@@ -40,7 +40,17 @@ body {
 }
 
 
+.item a:link, a:visited {
+	text-decoration: none;
+	color: blue;
+	text-align: center;
+	
+}
 
+
+.item a:active {
+	color: red;
+}
 
 
 
