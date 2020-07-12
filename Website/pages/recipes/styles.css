@@ -1,11 +1,28 @@
+article {
+	position: relative;
+	top: 50px;
+	text-align: center;
+	width: 80%;
+	margin: auto;
+	background-color: #fec356;
+	margin-bottom: 70px;
+}
+
 body {
 	font-family: Arial, Helvetica, sans-serif;
 	background-color: rgb(0, 1, 2);
 }
 
-footer {
-	background-color: rgb(4, 7, 8);
+/*
+figure {
+	padding: 20px;
 }
+
+figure img {
+	height: 200px;
+}
+*/
+
 
  
 h2 {
@@ -27,40 +44,24 @@ h1 {
 	font-weight: bold;
 }
 
+
+footer {
+	left: 0;
+  	bottom: 0;
+  	width: 100%;
+	/*background-color: rgb(238, 238, 238); LIGHT MODE */
+	background-color: rgb(4, 7, 8);
+  	color: #5F6368;
+	text-align: left;
+	padding-left: 30px;
+	padding-right: 30px;
+	margin-top: 50px;
+
+}
+
  
   
 /* CLASSES ------------------------------------------------------------------*/
-
-article {
-	position: relative;
-	top: 50px;
-	text-align: center;
-	width: 80%;
-	margin: auto;
-	background-color: #fec356;
-	margin-bottom: 70px;
-}
-
-figure {
-	padding: 20px;
-}
-
-figure img {
-	height: 200px;
-}
-
-.favs a:link, .favs a:visited {
-	color: black;
-	text-decoration: none;
-}
-
-.favs a:active {
-	color: red;
-}
-
-.favs a:hover {
-	text-decoration: underline;
-}
 
 .favs{
 	display: grid; 
@@ -72,20 +73,20 @@ figure img {
 	
 }
 
-
-footer {
-	left: 0;
-  	bottom: 0;
-  	width: 100%;
-	/*background-color: rgb(238, 238, 238); LIGHT MODE */
-	background-color: rgb(0, 0, 0);
-  	color: #5F6368;
-	text-align: left;
-	padding-left: 30px;
-	padding-right: 30px;
-	margin-top: 50px;
-
+.column a:link, .column a:visited {
+	color: black;
+	text-decoration: none;
 }
+
+.column a:active {
+	color: red;
+}
+
+.column a:hover {
+	text-decoration: underline;
+}
+
+
 
 .s1 {
 	background-color: rgb(194, 194, 194);
@@ -100,8 +101,42 @@ footer {
 
 
 
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 0 4px;
+  }
+  
+/* Create four equal columns that sits next to each other */
+.column {
+	flex: 25%;
+	max-width: 100%;
+	padding: 0 4px;
+}
 
+.column img {
+	margin-top: 20px;
+	margin-bottom: 8px;
+	vertical-align: middle;
+	width: 100%;
+	border: 1px solid black;
+}
 
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+	.column {
+	flex: 50%;
+	max-width: 50%;
+	}
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+	.column {
+	flex: 100%;
+	max-width: 100%;
+	}
+}
 
 
 

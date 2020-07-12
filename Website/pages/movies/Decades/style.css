@@ -16,6 +16,7 @@ body {
 	border: 3px solid grey;
 	margin: 55px auto 20px auto;
 	background-color: white;
+	height: fit-content;
 
 
 }
@@ -55,6 +56,7 @@ body {
 	float: left;
 	margin-left: 30px;
 	
+	
 
 	
 
@@ -89,13 +91,16 @@ body {
 #content {
 	border: 3px solid grey;
 	width: 70%;
-	height: 1000px;
+	min-height: 1000px;
+	height: fit-content;
+	padding-bottom: 20px;
 }
 
 #review {
 	text-indent: .5in;
 	padding: 0 50px;
 	text-align: left;
+	height: fit-content;
 	
 }
 
@@ -117,6 +122,18 @@ body {
 
 }
 
+
+.single {
+	font-size: xx-large;
+	margin-bottom: 10px;
+	
+	
+}
+
+.double {
+	font-size: large;
+	margin-top: -8px;
+}
 
 
 
