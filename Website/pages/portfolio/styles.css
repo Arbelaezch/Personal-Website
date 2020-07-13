@@ -1,21 +1,52 @@
 
+article {
+	width: 1000px;
+	margin: 60px auto;
+}
+
+
 body {
 	background: rgb(255, 255, 255);
 	border-color: aliceblue;
 	font-family: Arial, Helvetica, sans-serif;
+	
 }
 
-button {
-  background: gray;
-  border: none;
-  color: aliceblue;
+.links-box {
+	margin: 0 auto 0 auto;
+	width: fit-content;
+	padding-bottom: 2rem;
+	border-bottom: 1px solid rgb(141, 141, 141);
+
+}
+
+.copyright {
+	margin: 2rem auto 0 auto;
+	width: 66%;
+	text-align: left;
+}
+
+.button {
+  border: 1px solid black;
+  border-radius: 25%;
+  
+}
+
+#button2 {
+	width: 5rem;
+	
 }
 
 footer {
-	background: black;
-	color: antiquewhite;
-	padding: 10px 20px;
+	background: #333;
+	color: white;
+	font-size: 1rem;
+	padding: 2rem 0;
+	margin: 0 auto;
+
 }
+
+
  
 h1 {
 	background: white;
