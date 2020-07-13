@@ -60,6 +60,11 @@ button {
 
 }
 
+.logo {
+	width: 700px;
+	
+}
+
 
 .logo > button{
 	position: absolute;
@@ -67,7 +72,11 @@ button {
 
 }
 
+.buttons {
+	display: inline-block;
+}
 
+/*
 .button1 {
 	position: relative;
 	margin-right: 5px;
@@ -80,8 +89,9 @@ button {
 }
 
 
+
 /* The navigation bar */
-.navbar {
+nav {
 	overflow: hidden;
 	background-color: rgb(28, 32, 36);
 	/*background-color: #333; LIGHT MODE */
@@ -92,7 +102,7 @@ button {
  }
  
  /* Links inside the navbar */
-.navbar a {
+nav a {
 	float: left;
 	display: block;
 	color: #f2f2f2;
@@ -102,7 +112,7 @@ button {
  }
  
  /* Change background on mouse-over */
-.navbar a:hover {
+nav a:hover {
 	background: #ddd;
 	color: black;
  }
