@@ -24,12 +24,9 @@ header img {
 	height: 100%;
 	object-fit: cover;
 	overflow: hidden;
-	
-	
 }
 
 .title {
-	
 	padding: 20px 0;
 	width: 100%;
 	margin: -5px auto 0 auto;
