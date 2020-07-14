@@ -10,7 +10,7 @@ footer {
 #page {
 	width: 75%;
 	min-width: 600px;
-	min-height: 1000px;
+	height: fit-content;
 	max-height: fit-content;
 	border: 3px solid grey;
 	margin: 50px auto 0 auto;
@@ -67,13 +67,14 @@ footer {
 }
 
 .mid {
-	border: 1px solid rgb(161, 161, 161);
+	
 }
 
 #content {
 	border: 3px solid grey;
 	width: 70%;
-	height: 1000px;
+	max-height: 1000px;
+
 }
 
 #review {
@@ -94,7 +95,8 @@ footer {
 }
 
 #sidebar {
-	
+	border-left: 2px solid grey;
+	padding: 0 0 0 6px;
 	
 }
 
