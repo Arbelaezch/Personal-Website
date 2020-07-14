@@ -11,25 +11,27 @@ footer {
   	color: #5F6368;
 	text-align: center;
 	width: 98%;
+	
 }
 
 
 .center {
 	position: relative;
-	margin: auto;
-	/*top: 250px;*/
-	margin-top: 12.5%;
+	margin: 12.5% auto;
 	top: 60px;
 	text-align: center;
 	width: 98%;
+	display: block;
+	padding: 5em 0;
 
 }
 
 .logo {
-	width: 60%;
+	width: 50%;
 	height: 100%;
 	object-fit: cover;
 	overflow: hidden;
+	
 	
 }
 
@@ -81,10 +83,11 @@ nav {
 	overflow: hidden;
 	background-color: rgb(28, 32, 36);
 	/*background-color: #333; LIGHT MODE */
-	position: fixed; /* Set the navbar to fixed position */
+	position: absolute; /* Set the navbar to fixed position */
 	top: 0; /* Position the navbar at the top of the page */
 	width: 98%; /* Full width */
 	z-index: 100;
+	display: block;
  }
  
  /* Links inside the navbar */
