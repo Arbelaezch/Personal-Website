@@ -75,23 +75,53 @@ header img {
 	display: flex;
 	display: grid;
 	justify-content: center;
+	width: 100%;
+	height: fit-content;
+	margin: 0 auto;
+	text-align: center;
 	
 }
 
-.technologies figure{
+.figure-container {
 	width: fit-content;
 	margin: 0 auto;
 	
 
 }
 
-.technologies figure img {
-	position: relative;
-	height: 10rem;
-	padding: 1rem 3rem;
+.figure-container img {
+	width: 100%;
+	height: 100%;
+	max-width: 7rem;
+	max-height: 20rem;
+	object-fit: cover;
+	overflow: hidden;
+	margin: 1rem 2rem;
+
+
 	
 }
 
+#java {
+	max-height: 10rem;
+	max-width: 5rem;
+}
+
+#sql {
+	max-width: 17rem;
+	max-height: 20rem;
+	
+	
+}
+
+#python {
+	max-width: 17rem;
+	max-height: 20rem;
+}
+
+/*position: relative;
+	height: 10rem;
+	padding: 1rem 3rem;*/
 
 
 
