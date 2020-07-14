@@ -8,46 +8,11 @@ footer {
 	position: absolute;
   	bottom: 0;
 	/*background-color: rgb(238, 238, 238); LIGHT MODE */
-	background-color: rgb(4, 7, 8);
   	color: #5F6368;
 	text-align: center;
-	width: 100%;
+	width: 98%;
 }
 
- 
- h2 {
-	color: rgb(0, 0, 0);
-	opacity: .75;
-	text-align: center;
-	font-size: xx-large;
-	
-}
-
-
-.button {
-	
-	/* LIGHT MODE
-	background-color: #f2f2f2;
-	background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
-   border: 1px solid #f2f2f2;
-   border-radius: 4px;
-	color: #5F6368;
-	*/
-
-
-	background-color: rgb(3, 6, 7);
-	background-image: -webkit-linear-gradient(top, rgb(2, 4, 6), rgb(3, 6, 7));
-	border-top-color: rgb(36, 36, 36);
-	border-right-color: rgb(36, 36, 36);
-	border-bottom-color: rgb(36, 36, 36);
-	border-left-color: rgb(36, 36, 36);
-	color: rgb(212, 207, 196);
-
-	border: 1px solid #f2f2f2;
-   	border-radius: 4px;
-	font-size: small;
-	padding: 15px;
-}
 
 .center {
 	position: relative;
@@ -56,37 +21,58 @@ footer {
 	margin-top: 12.5%;
 	top: 60px;
 	text-align: center;
-	width: fit-content;
+	width: 98%;
 
 }
 
 .logo {
-	width: 700px;
+	width: 60%;
+	height: 100%;
+	object-fit: cover;
+	overflow: hidden;
 	
 }
 
 
-.logo > button{
-	position: absolute;
-	cursor: pointer;
-
-}
-
 .buttons {
 	display: inline-block;
+	margin-top: 1rem;
+	
 }
 
-/*
-.button1 {
-	position: relative;
-	margin-right: 5px;
+.buttons a:hover {
+	text-decoration: underline;
+	background-color: #f2f2f2;
+	background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
+   border: 1px solid #f2f2f2;
+   border-radius: 4px;
+	color: black;
+}
+
+
+
+.button {
+	margin: 1rem;
+	text-decoration: none;
+	background-color: rgb(3, 6, 7);
+	background-image: -webkit-linear-gradient(top, rgb(2, 4, 6), rgb(3, 6, 7));
+	border-top-color: rgb(36, 36, 36);
+	border-right-color: rgb(36, 36, 36);
+	border-bottom-color: rgb(36, 36, 36);
+	border-left-color: rgb(36, 36, 36);
+	color: rgb(212, 207, 196);
+	border: 1px solid #f2f2f2;
+   border-radius: 4px;
+	font-size: small;
+	padding: 15px;
 
 }
 
-.button2 {
-	position: relative;
 
-}
+
+
+
+
 
 
 
@@ -97,7 +83,7 @@ nav {
 	/*background-color: #333; LIGHT MODE */
 	position: fixed; /* Set the navbar to fixed position */
 	top: 0; /* Position the navbar at the top of the page */
-	width: 100%; /* Full width */
+	width: 98%; /* Full width */
 	z-index: 100;
  }
  
