@@ -20,6 +20,14 @@ body {
 
 }
 
+.context a {
+	text-decoration: none;
+}
+
+.context a:hover {
+	text-decoration: underline;
+}
+
 
 #grid {
     height: fit-content;
