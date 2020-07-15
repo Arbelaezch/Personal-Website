@@ -35,28 +35,9 @@ header img {
 	
 }
 
-/* 
-header {
-	background-image: url(images/image.JPG);
-	background-repeat: no-repeat;
-	height: auto;
-	width: 100%;
-	background-size: 100%;
-	text-align: center;
-	margin-top: 4rem;
- 
-}
-
-header img {
-	height: auto;
-}
-
-*/
-
-
 
 .about {
-	background-color: rgb(238, 238, 238);
+	background-color: khaki;
 	display: flex;
 	flex-direction: column;
 	width: fit-content;
@@ -76,6 +57,8 @@ header img {
 	height: fit-content;
 	margin: 0 auto;
 	text-align: center;
+	background-color: lightskyblue;
+	
 	
 }
 
@@ -116,15 +99,20 @@ header img {
 	max-height: 20rem;
 }
 
-/*position: relative;
-	height: 10rem;
-	padding: 1rem 3rem;*/
-
-
 
 .education {
-	background-color: rgb(82, 82, 82);
+	background-color: gold;
+	text-align: center;
+	height: fit-content;
+	margin: 0 auto;
+	padding-bottom: 3rem;
+	border: 1px solid gold;
 
+}
+
+.education h2 {
+	padding: 3rem 0;
+	
 }
 
 
