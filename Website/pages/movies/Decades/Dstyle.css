@@ -20,14 +20,6 @@ body {
 
 }
 
-.context a {
-	text-decoration: none;
-}
-
-.context a:hover {
-	text-decoration: underline;
-}
-
 
 #grid {
     height: fit-content;
@@ -56,19 +48,19 @@ body {
 }
 
 
-.item a:link, a:visited {
+a:link, a:visited {
 	text-decoration: none;
-	color: blue;
+	color: mediumblue;
 	text-align: center;
 	
 }
 
 
-.item a:active {
-	color: yellow;
+a:active {
+	color: sandybrown;
 }
 
-.item a:hover {
+a:hover {
 	text-decoration: underline;
 }
 
