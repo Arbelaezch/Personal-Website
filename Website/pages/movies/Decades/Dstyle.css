@@ -3,30 +3,105 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-.footer {
-	width: 60rem;
+article {
+	margin: 60px auto;
+	height: fit-content;
+}
+
+.center {
+	display: flex;
+	justify-content: center;
+	justify-self: center;
+	flex-wrap: wrap;
+}
+
+
+.content {
+	height: fit-content;
+	border: 3px solid grey;
+	min-width: 450px;
+	width: 60%;
+	background-color: white;
+    
+}
+
+
+header {
+	height: fit-content;
+	width: 100%;
+	background-color: #333;
+	color: #fff;
+	text-align: center;
+}
+
+.title {
 	margin: 0 auto;
-		
+	padding: 1rem;
+
+}
+
+
+.mid {
+	border: 1px solid rgb(161, 161, 161);
+	height: fit-content;
+	margin-bottom: 15px;
 	
 }
 
+#description {
+    text-align: left;
+    text-indent: .25in;
+	padding: 30px 50px;
+}
+
+
+footer {
+	width: 60rem;
+	margin: 0 auto;
+		
+}
+
+
+/*
 #page {
 	width: 1000px;
-	
+	display: flex;
 	height: fit-content;
 	border: 3px solid grey;
 	margin: 50px auto 0 auto;
 	background-color: white;
 
 }
+*/
 
 
 #grid {
-    height: fit-content;
+	height: fit-content;
+	width: 100%;
 
 }
 
+.wrapper {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	flex-wrap: wrap;
+}
 
+.item {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 5px;
+	padding: 8px;
+	
+	width: 130px;
+	height: 200px;
+}
+
+
+
+/* WRAPPER BACKUP
 .wrapper {
     display: grid;
     grid-template-columns: 100px 100px 100px 100px 100px;
@@ -35,10 +110,13 @@ body {
     background-color: #fff;
     color: #444;
     margin: 20px 20px 60px 40px;
-    height: fit-content;
+	height: fit-content;
+	width: 90%;
+	border: 1px solid blue;
     
     
   }
+  */
 
 .wrapper img {
     height: 130px;
@@ -48,7 +126,7 @@ body {
 }
 
 
-a:link, a:visited {
+.content a:link, .content a:visited {
 	text-decoration: none;
 	color: mediumblue;
 	text-align: center;
@@ -56,11 +134,11 @@ a:link, a:visited {
 }
 
 
-a:active {
+.content a:active {
 	color: sandybrown;
 }
 
-a:hover {
+.content a:hover {
 	text-decoration: underline;
 }
 
@@ -70,137 +148,30 @@ a:hover {
 
 
 
-#picture {
-	width: 300px;
-	height: 400px;
-}
-
-#picture img{
-	width: 300px;
-	height: 400px;
-
-}
-
-.title {
-	display: inline-block;
-	
-}
-
-#title {
-
-    text-align: center;
-	
-
-}
-
-#description {
-    text-align: left;
-    text-indent: .25in;
-	padding: 0 50px;
-}
 
 
-
-
-.info {
-	display: inline-block;
-	
-
-}
-
-#synopsis {
-	width: 300px;
-	height: 400px;
-	margin-left: 2%;
-	text-align: center;
-	
-}
-
-
-
-
-
-.top {
-	
-	background-color: #333;
-	color: #fff;
-}
-
-.mid {
-	border: 1px solid rgb(161, 161, 161);
-}
-
-#content {
+#sidebar {
+	width: fit-content;
+	padding: 0 2rem;
+	background-color: white;
 	border: 3px solid grey;
-	width: 70%;
-    height: fit-content;
-    
 }
-
-#review {
-	text-indent: .5in;
-	padding: 0 50px;
-	text-align: left;
-	
-}
-
-.side {
-	display: inline-block;
-
-	width: 250px;
-	text-align: center;
-	vertical-align: top;
-
-}
-
 
 
 #sideHeader {
 	display: flex;
 	flex-direction: column;
 	padding: 10px 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 
 }
 
+#sideHeader a img {
+	width: 100%;
 
-
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 4px;
-  }
-  
-  /* Create four equal columns that sits next to each other */
-  .column {
-    flex: 25%;
-    max-width: 25%;
-    padding: 0 4px;
-  }
-  
-  .column img {
-    margin-top: 8px;
-    vertical-align: middle;
-    width: 100%;
-  }
-  
-  /* Responsive layout - makes a two column-layout instead of four columns */
-  @media screen and (max-width: 800px) {
-    .column {
-      flex: 50%;
-      max-width: 50%;
-    }
-  }
-  
-  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-  @media screen and (max-width: 600px) {
-    .column {
-      flex: 100%;
-      max-width: 100%;
-    }
-  }
-
-
-
+}
 
 
 
@@ -218,14 +189,14 @@ a:hover {
 
 
 /* The navigation bar */
-.navbar {
+nav {
 	overflow: auto;
 	background-color: rgb(28, 32, 36);
 	/*background-color: #333; LIGHT MODE */
 	position: fixed; /* Set the navbar to fixed position */
 	top: 0; /* Position the navbar at the top of the page */
 	width: 100%; /* Full width */
-	/*max-height: 3.5rem;*/
+	max-height: 3.5rem;
 	z-index: 100;
 	margin:0px auto;
     left:0px;
@@ -233,7 +204,7 @@ a:hover {
  }
  
  /* Links inside the navbar */
-.navbar a {
+nav a {
 	float: left;
 	display: block;
 	color: #f2f2f2;
@@ -243,7 +214,7 @@ a:hover {
  }
  
  /* Change background on mouse-over */
-.navbar a:hover {
+nav a:hover {
 	background: #ddd;
 	color: black;
  }
