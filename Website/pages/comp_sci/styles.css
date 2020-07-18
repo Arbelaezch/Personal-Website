@@ -43,6 +43,9 @@ nav {
 	top: 0; /* Position the navbar at the top of the page */
 	width: 100%; /* Full width */
 	z-index: 100;
+	margin:0px auto;
+    left:0px;
+    right:0px;
  }
  
  /* Links inside the navbar */

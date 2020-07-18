@@ -3,105 +3,75 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-footer {
-	text-align: center;
-}
-
-#page {
-	width: 75%;
-	min-width: 600px;
+article {
 	height: fit-content;
-	max-height: fit-content;
-	border: 3px solid grey;
-	margin: 50px auto 0 auto;
-	background-color: white;
-
+	margin: 60px auto;
 
 }
 
-
-
-
-
-
-.title {
-	display: inline-block;
-	
-}
-
-#title {
-	margin: 0 40% 0 -5%;
-	
-
-}
-
-
-
-
-.list {
-	display: inline-block;
-	
-
-}
-
-#synopsis {
-	width: 300px;
-	height: 400px;
-	margin-left: 2%;
-	text-align: center;
-	
-}
-
-#movie {
-	text-align: left;
-}
-
-
-
-
-
-.top {
-	
-	background-color: #333;
-	color: #fff;
-}
-
-.mid {
-	
+.center {
+	display: flex;
+	justify-content: center;
+	justify-self: center;
+	flex-wrap: wrap;
 }
 
 #content {
+	height: fit-content;
 	border: 3px solid grey;
-	width: 70%;
-	max-height: 1000px;
+	min-width: 450px;
+	width: 60%;
+	background-color: white;
 
 }
 
-#review {
-	text-indent: .5in;
-	padding: 0 50px;
-	text-align: left;
-	
-}
-
-
-
-.side {
-	display: inline-block;
-
-	
+header {
+	height: fit-content;
+	width: 100%;
+	background-color: #333;
+	color: #fff;
 	text-align: center;
-	vertical-align: top;
-	
+}
+
+.title {
+	margin: 0 auto;
+	padding: 1rem;
 
 }
+
+.mid {
+	height: fit-content;
+}
+
+.list {
+	text-align: left;
+	margin: 1.5rem auto;
+	width: fit-content;
+}
+
+.list a:link, .list a:visited{
+	text-decoration: none;
+	color: mediumblue;
+	
+}
+
+.list a:active {
+	color: sandybrown;
+	text-decoration: mediumblue;
+}
+
+.list a:hover {
+	text-decoration: underline;
+	text-decoration-color: mediumblue;
+}
+
 
 #sidebar {
-	border-left: 2px solid grey;
-	padding: 0 0 0 6px;
-	
+	width: fit-content;
+	padding: 0 2rem;
+	background-color: white;
+	border: 3px solid grey;
 }
-
 
 
 #sideHeader {
@@ -120,21 +90,8 @@ footer {
 }
 
 
-
-
-.list a:link, a:visited{
-	text-decoration-color: white;
-	color: blue;
-	
-}
-
-.list a:active {
-	color: yellow;
-	text-decoration: blue;
-}
-
-li:hover {
-	text-decoration: underline;
+footer {
+	text-align: center;
 }
 
 
@@ -145,7 +102,7 @@ li:hover {
 
 
 
-.navbar {
+nav {
 	overflow: auto;
 	background-color: rgb(28, 32, 36);
 	/*background-color: #333; LIGHT MODE */
@@ -154,10 +111,13 @@ li:hover {
 	width: 100%; /* Full width */
 	max-height: 3.5rem;
 	z-index: 100;
+	margin:0px auto;
+    left:0px;
+    right:0px;
  }
  
  /* Links inside the navbar */
-.navbar a {
+nav a {
 	float: left;
 	display: block;
 	color: #f2f2f2;
@@ -167,7 +127,7 @@ li:hover {
  }
  
  /* Change background on mouse-over */
-.navbar a:hover {
+nav a:hover {
 	background: #ddd;
 	color: black;
  }
@@ -176,73 +136,88 @@ li:hover {
  
 
 
+/*
+.page {
+	width: 75%;
+	min-width: 600px;
+	min-height: fit-content;
+	height: fit-content;
+	max-height: fit-content;
+	border: 3px solid grey;
+	margin: 50px auto 0 auto;
+	background-color: white;
 
-
-
-
-
-
-
-
-
-
-
-
-
-/* OLD LAYOUT
-h1 {
-	background: white;
-	border-radius: 25px;
-	color: rgb(0, 183, 255);
-	padding: 20px;
-	text-align: center;
-	font-size: xx-large;
-	font-weight: bold;
-	margin-top: -20px;
-
-}
-
- 
- h2 {
-	color: rgb(0, 0, 0);
-	opacity: .75;
-	text-align: center;
-	font-size: xx-large;
 	
+<div class="page">
+    <!-- MAIN CONTENT-->
+    <div id="content" class="side">
+      <header>
+        <h1 class="title"> My Top 250 Movies</h1>
+      </header>
+      <section class="mid">
+        <div class="list">
+          <ol>
+            <a href="./Decades/2000s/movies/up.html">
+              <li>Up (2009)</li>
+            </a>
+            <a href="./Decades/1930s/movies/smithWashington.html">
+              <li>Mr. Smith Goes to Washington (1939)</li>
+            </a>
+            <a href="./Decades/1900s/movies/sherlock.html">
+              <li>Sherlock Jr. (1924)</li>
+            </a>
+            <a href="./Decades/1930s/movies/cityLights.html">
+              <li>City Lights (1931)</li>
+            </a>
+            <a href="./Decades/1930s/movies/kingKong.html">
+              <li>King Kong (1933)</li>
+            </a>
+            <a href="./Decades/1930s/movies/dirtyFaces.html">
+              <li>Angels With Dirty Faces (1938)</li>
+            </a>
+            <a href="./Decades/1930s/movies/modernTimes.html">
+              <li>Modern Times (1936)</li>
+            </a>
+            <a href="./Decades/1900s/movies/sunrise.html">
+              <li>Sunrise: A Song of Two Humans (1927)</li>
+            </a>
+            <a href="./Decades/1930s/movies/happenedOneNight.html">
+              <li>It Happened One Night (1934)</li>
+            </a>
+            <a href="./Decades/1900s/movies/goldRush.html"> 
+              <li>The Gold Rush (1925)</li>
+            </a>
+            <a href="./Decades/1900s/movies/steamboatWillie.html">
+              <li>Steamboat Willie (1928)</li>
+            </a>
+            <a href="./Decades/1930s/movies/westernFront.html">
+              <li>All Quiet on the Western Front (1930)</li>
+            </a>
+            <a href="./Decades/1930s/movies/snowWhite.html">
+              <li>Snow White (1937)</li>
+            </a>
+            <a href="./Decades/1930s/movies/deeds.html">
+              <li>Mr. Deeds Goes to Town (1936)</li>
+            </a>
+          </ol>  
+        </div>
+      </section>
+    </div>
 }
-  
-  header {
-	background-color: black;
-	background-image: url(images/ATAT.jpeg);
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: 100%;
-	height: 800px;
-	padding:20px;
-	text-align: center;
- 
- }
 
- header a {
-	color: rgb(0, 0, 0);
-	font-weight: bold;
-	margin-top: -200px;
-	text-decoration: none;
-	text-transform: uppercase;
 
-}
 
-li {
-	display: inline;
-	margin-right: 50px;
-}
- 
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
+
 */
+
+
+
+
+
+
+
+
+
 
 
 

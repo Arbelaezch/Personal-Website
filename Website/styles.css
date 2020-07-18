@@ -87,14 +87,16 @@ footer {
 
 /* The navigation bar */
 nav {
-	overflow: hidden;
+	overflow: auto;
 	background-color: rgb(28, 32, 36);
 	/*background-color: #333; LIGHT MODE */
-	position: absolute; /* Set the navbar to fixed position */
+	position: fixed; /* Set the navbar to fixed position */
 	top: 0; /* Position the navbar at the top of the page */
-	width: 98%; /* Full width */
+	width: 100%; /* Full width */
 	z-index: 100;
-	display: block;
+	margin:0px auto;
+    left:0px;
+    right:0px;
  }
  
  /* Links inside the navbar */
