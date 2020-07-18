@@ -3,27 +3,92 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-.footer {
-	width: 60rem;
-	margin: 0 auto;
+#page {
+	
+	height: fit-content;
+	display: flex;
+	justify-content: center;
+	justify-self: center;
+	flex-wrap: wrap;
+	margin: 60px auto;
+
+}
+
+#content {
+	border: 3px solid grey;
+	width: 60%;
+	min-width: 450px;
+	height: fit-content;
+	min-height: 1000px;
+	padding-bottom: 20px;
+	background-color: white;
+}
+
+.top {
+	height: fit-content;
+	background-color: #333;
+	color: #fff;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	
+}
+
+.title {
+	align-items: center;
+	
+}
+
+
+/*
+.title {
+	display: inline-block;
+	
 	
 }
 
 
 
-#page {
-	width: 1000px;
-	min-height: 1000px;
-	max-height: fit-content;
-	border: 3px solid grey;
-	margin: 55px auto 20px auto;
-	background-color: white;
-	height: fit-content;
-
+#title {
+	margin: auto;
+	float: left;
+	margin-left: 30px;
 
 }
 
+*/
 
+.single {
+	font-size: xx-large;
+	margin-bottom: 10px;
+	margin-left: 30px;
+	
+	
+	
+}
+
+.double {
+	font-size: large;
+	margin-top: -8px;
+	margin-left: 20px;
+}
+
+
+
+
+
+
+
+.mid {
+	height: fit-content;
+	min-height: 430px;
+	border: 1px solid rgb(161, 161, 161);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	
+	
+}
 
 
 
@@ -42,29 +107,6 @@ body {
 
 }
 
-.title {
-	display: inline-block;
-	
-}
-
-.top {
-	height: 80px;
-	background-color: #333;
-	color: #fff;
-}
-
-#title {
-	margin: auto;
-	float: left;
-	margin-left: 30px;
-	
-	
-
-	
-
-}
-
-
 
 .info {
 	display: inline-block;
@@ -81,20 +123,7 @@ body {
 }
 
 
-.mid {
-	height: 430px;
-	border: 1px solid rgb(161, 161, 161);
-}
 
-
-
-#content {
-	border: 3px solid grey;
-	width: 70%;
-	min-height: 1000px;
-	height: fit-content;
-	padding-bottom: 20px;
-}
 
 #review {
 	text-indent: .5in;
@@ -104,6 +133,7 @@ body {
 	
 }
 
+/*
 .side {
 	display: inline-block;
 
@@ -112,27 +142,48 @@ body {
 	vertical-align: top;
 
 }
+#sideHeader {
+	display: flex;
+	flex-direction: column;
+	padding: 10px 0;
+	border: 1px solid red;
 
+}
+
+
+*/
+
+#sidebar {
+	width: fit-content;
+	padding: 0 2rem;
+	background-color: white;
+	border: 3px solid grey;
+}
 
 
 #sideHeader {
 	display: flex;
 	flex-direction: column;
 	padding: 10px 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+
+}
+
+#sideHeader a img {
+	width: 100%;
 
 }
 
 
-.single {
-	font-size: xx-large;
-	margin-bottom: 10px;
-	
-	
-}
 
-.double {
-	font-size: large;
-	margin-top: -8px;
+
+
+
+.footer {
+	text-align: center;
+	
 }
 
 
@@ -145,7 +196,7 @@ body {
 	position: fixed; /* Set the navbar to fixed position */
 	top: 0; /* Position the navbar at the top of the page */
 	width: 100%; /* Full width */
-	/*max-height: 3.5rem;*/
+	max-height: 3.5rem;
 	z-index: 100;
 	margin:0px auto;
     left:0px;
