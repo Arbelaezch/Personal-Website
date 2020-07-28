@@ -130,6 +130,34 @@ header img {
 }
 
 
+.projects {
+	width: 100%;
+	margin: 0 auto;
+	background-color: #f16059;;
+	text-align: center;
+	padding: 1rem 0;
+}
+
+.projects-container {
+	width: fit-content;
+	margin: 0 55% 0 25%;
+	
+	padding: 1rem;
+
+
+}
+
+.projects-container a:link, .projects-container a:visited {
+	color: mediumblue;
+	text-decoration: none;
+
+}
+
+.projects-container a:hover, .projects-container a:active{
+	text-decoration: underline;
+	color: sandybrown;
+}
+
 
 
 footer {

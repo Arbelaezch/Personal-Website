@@ -6,6 +6,7 @@ article {
 	margin: auto;
 	background-color: #fec356;
 	margin-bottom: 70px;
+	height: fit-content;
 }
 
 body {
@@ -51,28 +52,8 @@ footer {
   
 /* CLASSES ------------------------------------------------------------------*/
 
-.favs{
-	display: grid; 
-	grid-template-columns: repeat(3,1fr);
-	grid-column: auto;
-	grid-auto-rows: 200px 200px;
-	row-gap: 90px;
-	padding-bottom: 100px;
-	
-}
 
-.column a:link, .column a:visited {
-	color: black;
-	text-decoration: none;
-}
 
-.column a:active {
-	color: red;
-}
-
-.column a:hover {
-	text-decoration: underline;
-}
 
 
 
@@ -83,48 +64,60 @@ footer {
 	margin: auto;
 	color: #ddd;
 	top: -27px;
+	border: 1px solid red;
+	height: fit-content;
 	
 }
 
 
-.row {
-	display: flex;
-	flex-wrap: wrap;
-	padding: 0 4px;
-  }
-  
-/* Create four equal columns that sits next to each other */
-.column {
-	flex: 25%;
-	max-width: 100%;
-	padding: 0 4px;
-}
 
-.column img {
-	margin-top: 20px;
-	margin-bottom: 8px;
-	vertical-align: middle;
+
+
+
+#grid {
+	height: fit-content;
 	width: 100%;
+
+}
+
+.wrapper {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	flex-wrap: wrap;
+}
+
+.item {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 5px;
+	padding: 8px;
+	
+	width: 130px;
+	height: 200px;
+}
+
+.wrapper img {
+
+	width: 300px;
 	border: 1px solid black;
-}
-
-/* Responsive layout - makes a two column-layout instead of four columns */
-@media screen and (max-width: 800px) {
-	.column {
-	flex: 50%;
-	max-width: 50%;
-	}
-}
-
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-	.column {
-	flex: 100%;
-	max-width: 100%;
-	}
+	
 }
 
 
+.item a:link, .item a:visited {
+	color: mediumblue;
+	text-decoration: none;
+}
+
+.item a:active {
+	color: sandybrown;
+}
+
+.item a:hover {
+	text-decoration: underline;
+}
 
 
 
