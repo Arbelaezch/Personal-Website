@@ -20,5 +20,5 @@ CSS3:
 
 JS:
 -Basic syntax (functions, conditionals, variables, etc)
--
+-Integrating JS with HTML elements.
 

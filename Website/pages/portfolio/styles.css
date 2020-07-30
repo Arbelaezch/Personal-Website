@@ -7,6 +7,7 @@ body {
 
 article {
 	width: 75%;
+	min-width: 450px;
 	margin: 60px auto;
 	background-color: white;
 	height: fit-content;
@@ -138,24 +139,38 @@ header img {
 	padding: 1rem 0;
 }
 
-.projects-container {
-	width: fit-content;
-	margin: 0 55% 0 25%;
-	
+
+.major-projects-container {
+	width: 80%;
+	margin: 0 auto;
 	padding: 1rem;
+	font-weight: bold;
+	font-size: medium;
+
+	border: 1px solid white;
 
 
 }
 
-.projects-container a:link, .projects-container a:visited {
-	color: mediumblue;
+.minor-projects-container {
+	width: fit-content;
+	margin: 0 55% 0 25%;
+	padding: 1rem;
+
+	
+
+
+}
+
+.projects a:link, .projects a:visited {
+	color: black;
 	text-decoration: none;
 
 }
 
-.projects-container a:hover, .projects-container a:active{
+.projects a:hover, .projects a:active{
 	text-decoration: underline;
-	color: sandybrown;
+	color: mediumblue;
 }
 
 
