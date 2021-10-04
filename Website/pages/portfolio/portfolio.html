@@ -23,6 +23,14 @@
 		<div class="hero-text">
 		<h1>Christian Arbelaez</h1>
 		<p>Programmer. Student. Avid Alliteration Activist.</p>
+		<!-- Add icon library -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+		<!-- Auto width -->
+		<a href="./ChristianArbelaezResume.pdf" download>
+			<button class="btn"><i class="fa fa-download"></i> Download Résumé</button>
+		</a>
+		
 		</div>
 	</div>
 
@@ -47,18 +55,13 @@
 			<br><br>
 			This website is still a work in progress so please don't judge too harshly :)
 		  </p>
-		  <p>Goals:
+		  <p>TODO:
 			<ul>
-			  <li>Re-write About Me</li>
-			  <li>Add Contact me with forms</li>
-			  <li>Add JS integration</li>
-			  <li>Connect an SQL server</li>
-			  <li>Gotta fix up Portfolio. Doesnt look very good. Maybe with JS?</li>
-			  <li>A search function for Movies and Food</li>
-			  <li></li>
-			  <li></li>
-			  <li></li>
-			  <li></li>
+				<li>Re-write About Me</li>
+				<li>Fix Contact me form</li>
+				<li>Fix responsiveness on mobile</li>
+			  	<li>Fix Projects orientation</li>
+			  	<li></li>
 	
 	
 	
@@ -126,7 +129,7 @@
 					<img src="./images/TeamIlluminator.png" alt="Team Illuminator" class="image">
 					<div class="middle">
 						<div class="text">
-							<h1>Team Illuminator</h1><br> A book sharing app that allows for users to lend and borrow books with other users. Developed Fall 2020 in a team for a Software Engineering course. It is written in Java for Android devices.
+							<h1>Team Illuminator</h1><br> A web based educational tool designed to improve overall team productivity through personalized insights. Developed Winter 2020 in a team for a Software Engineering course. It is written in Java for Android devices.
 						</div>
 					</div>
 				</a>
@@ -173,23 +176,34 @@
 		  </ul>
   
 		</div>
-  
 	  </section>
-	  <section class="contact">
-		<form class="form-container">
-				  <h2>CONTACT ME</h2>
+
+
+
+
+	  <section class="container">
+			<form action="./emailFormProcessor.php" method="POST" enctype=text/plain”>
+				<h2 style="text-align: center;">CONTACT ME</h2>
+
+				<label for="name">Full Name</label>
+				<input type="text" id="name" name="name" placeholder="Your name.."><br>
 			
-				  <form action="/contact.html" method="POST">
-			 <input type="text" name="username" value="Full Name" class="forms">
-			 <input type="text" name="email" value="Email" class="forms">
-			 <textarea id="comments" name="comments" rows="5" cols="30" class="forms">Comments
-			 </textarea>
-			 <br>
-			 <input type="submit" value="Send"  id="submit">
-		  </form>
+				<label for="email">Email</label>
+				<input type="text" id="email" name="email" placeholder="Your email..">
+
+				<label for="subject">Message</label>
+    			<textarea id="subject" name="subject" placeholder="Write something.." style="height:10rem"></textarea>
+				
+				<input type="submit" value="Send Email" id="submit">
   
+			
 		</form>
+		</div>
 	  </section>
+
+
+
+
 
 	<footer>
 		<div class="links-box">
@@ -202,12 +216,12 @@
 		</div>
 		<div class="copyright">
 		Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. 
-		You are allowed to use this webpage for both personal or commercial use.
+		Feel free to use this webpage for both personal or commercial use.
 		</div>
 	</footer>
 
 
-	</art
+	
 
 </body>
 </html>
