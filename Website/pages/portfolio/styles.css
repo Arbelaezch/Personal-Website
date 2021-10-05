@@ -390,13 +390,14 @@ input[type=text], select, textarea {
   }
   
   /* Add a background color and some padding around the form */
-  .container {
+  #container {
 	border-radius: 5px;
 	background-color: slateblue;
 	padding: 20px;
 	color: snow;
 	padding: 2rem 18rem;
   }
+
 
 
 

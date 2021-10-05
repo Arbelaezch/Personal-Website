@@ -2,7 +2,7 @@
 
 <?php // Code from: https://stackoverflow.com/questions/8239782/how-to-create-an-email-form-that-can-send-email-using-html
     $errors = '';
-    $myemail = 'yourname@website.com';//<-----Put Your email address here.
+    $myemail = 'arbelaezch@gmail.com';
     if(empty($_POST['name'])  ||
        empty($_POST['email']) ||
        empty($_POST['message']))
