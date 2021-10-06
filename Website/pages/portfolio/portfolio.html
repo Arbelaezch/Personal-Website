@@ -96,14 +96,14 @@
 	
 		  </p>
 		</div>
-	  </section>
+	</section>
 	
 
 
 
 
 
-	  <section class="technologies">
+	<section class="technologies">
 		<h2>TECHNOLOGIES I'm Familiar With</h2>
 		<div class="tech-container">
 			<img src="images/c.png" alt="C/C++">
@@ -117,7 +117,7 @@
 			<img src="images/p2.png" alt="python" id="python">
 			<img src="images/js.png" alt="javascript" id="javascript">
 		</div>
-	  </section>
+	</section>
 
 
 
@@ -129,7 +129,7 @@
 
 
 
-	  <section class="education">
+	<section class="education">
 		<div>
 		  <h2>EDUCATION I've Completed</h2>
 		</div>  
@@ -141,14 +141,14 @@
 			Bachelor of Science in Computer Science with a Business Minor.<br>
 		  </p>
 		</div>
-	  </section>
+	</section>
 
 
 
 
 
 
-	  <section class="projects">
+	<section class="projects">
 		<h2>PROJECTS I've Worked On</h2>
 		<div class="major-projects-container">
 			<div class="prj-container">
@@ -203,55 +203,39 @@
 		  </ul>
   
 		</div>
-	  </section>
+	</section>
 
 
 
 
 
 	  
-
-	  <section id="container">
-			<form id="contact-form">
-				<h2 style="text-align: center;">CONTACT ME</h2>
-
-				<input type="hidden" name="contact_number">
-
-				<label for="user_name">Full Name</label>
-				<input type="text" id="name" name="user_name" placeholder="Your name.."><br>
-			
-				<label for="user_email">Email</label>
-				<input type="text" id="email" name="user_email" placeholder="Your email..">
-
-				<label for="message">Message</label>
-    			<textarea name="message" placeholder="Write something.." style="height:10rem"></textarea>
-				
-				<input type="submit" value="Send Email" id="submit">
-		</form>
-		</div>
-
-		<div>
-			<form id="fcf-form-id" class="fcf-form-class" method="post" action="contact-form-process.php">
-				<label for="Name" class="fcf-label">Your name</label>
-				<div class="fcf-input-group">
-					<input type="text" id="Name" name="Name" class="fcf-form-control" required>
-				</div>
+<!-- Contact me form code from: https://paperform.co/blog/html-contact-form/-->
+	<section id="container">
+		<form id="fcf-form-id" class="fcf-form-class" method="post" action="contact-form-process.php">
+		
+			<h2 style="text-align: center;">CONTACT ME</h2>
+			<label for="Name" class="fcf-label">Your name</label>
+			<div class="fcf-input-group">
+				<input type="text" id="Name" name="Name" class="fcf-form-control" required>
+			</div>
 			<div class="fcf-form-group">
 				<label for="Email" class="fcf-label">Your email address</label>
 				<div class="fcf-input-group">
 					<input type="email" id="Email" name="Email" class="fcf-form-control" required>
 				</div>
-			<div class="fcf-form-group">
-				<label for="Message" class="fcf-label">Your message</label>
-				<div class="fcf-input-group">
-					<textarea id="Message" name="Message" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
+				<div class="fcf-form-group">
+					<label for="Message" class="fcf-label">Your message</label>
+					<div class="fcf-input-group">
+						<textarea id="Message" name="Message" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
+					</div>
+				</div>
+				<div class="fcf-form-group">
+					<button type="submit" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Send</button>
 				</div>
 			</div>
-			<div class="fcf-form-group">
-				<button type="submit" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Send</button>
-			</div>
-		</div>
-	  </section>
+		</form>
+	</section>
 
 
 

@@ -360,7 +360,7 @@ header img {
 
 */
 
-#submit {
+#fcf-button {
 	width: 10%;
 	border: 1px solid white;
 	color: gray;
@@ -370,15 +370,29 @@ header img {
 	width: 20%;
 	background-color: white;
 	
+	
 }
 
-#submit:hover {
+
+
+#fcf-button:hover {
 	border: 2px solid black;
 	color: black;
 }
 
 /* Style inputs with type="text", select elements and textareas */
 input[type=text], select, textarea {
+	width: 100%; /* Full width */
+	padding: 12px; /* Some padding */ 
+	border: 1px solid #ccc; /* Gray border */
+	border-radius: 4px; /* Rounded borders */
+	box-sizing: border-box; /* Make sure that padding and width stays in place */
+	margin-top: 6px; /* Add a top margin */
+	margin-bottom: 16px; /* Bottom margin */
+	resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+  }
+
+  #Email {
 	width: 100%; /* Full width */
 	padding: 12px; /* Some padding */ 
 	border: 1px solid #ccc; /* Gray border */
@@ -396,6 +410,7 @@ input[type=text], select, textarea {
 	padding: 20px;
 	color: snow;
 	padding: 2rem 18rem;
+
   }
 
 
