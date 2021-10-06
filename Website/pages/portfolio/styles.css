@@ -314,70 +314,48 @@ header img {
 }
 
 
-.contact {
-	display: flex;
-	min-height: 500px;
-	width: 100%;
+
+
+/* Add a background color and some padding around the form */
+#container {
+	border-radius: 5px;
 	background-color: slateblue;
-	align-items: center;
-	justify-content: center;
-	
+	color: snow;
+	width: 100%;
+	border: 1px solid slateblue;
 	
 }
 
-.form-container {
-	display: flexbox;
-	padding: 2rem 0;
-	border: 2px solid white;
+.fcf-input-group {
 	width: 75%;
-	min-height: 300px;
 	margin: auto;
-	align-items: center;
-	text-align: center;
-	color: white;
-	
-	
-}
-
-/*
-.forms {
-	font-size: medium;
-	color: gray;
-	min-height: 2rem;
-	margin: .25rem 0;
-	width: 75%;
-	min-width: 300px;
 
 }
 
-#comments {
-	width: 75%;
-	min-width: 300px;
-	color: gray;
-	font-size: large;
-
-}
-
-*/
-
+/* Submit button */
 #fcf-button {
-	width: 10%;
-	border: 1px solid white;
+	border: 1px solid black;
 	color: gray;
 	font-size: large;
 	border-radius: 25px;
 	height: 3.5rem;
-	width: 20%;
+	width: 100%;
 	background-color: white;
 	
-	
+		
 }
 
-
+#submit-container {
+	width: 15%;
+	min-width: 8rem;
+	margin: auto;
+	padding-bottom: 2rem;
+}
 
 #fcf-button:hover {
-	border: 2px solid black;
-	color: black;
+	border: 2px solid rgb(31, 30, 30);
+	color: rgb(153, 145, 145);
+	background-color: rgb(233, 229, 229);
 }
 
 /* Style inputs with type="text", select elements and textareas */
@@ -390,9 +368,14 @@ input[type=text], select, textarea {
 	margin-top: 6px; /* Add a top margin */
 	margin-bottom: 16px; /* Bottom margin */
 	resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
-  }
+}
 
-  #Email {
+label {
+	margin-left: 12.5%;
+
+}
+
+#Email {
 	width: 100%; /* Full width */
 	padding: 12px; /* Some padding */ 
 	border: 1px solid #ccc; /* Gray border */
@@ -401,17 +384,9 @@ input[type=text], select, textarea {
 	margin-top: 6px; /* Add a top margin */
 	margin-bottom: 16px; /* Bottom margin */
 	resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
-  }
+}
   
-  /* Add a background color and some padding around the form */
-  #container {
-	border-radius: 5px;
-	background-color: slateblue;
-	padding: 20px;
-	color: snow;
-	padding: 2rem 18rem;
 
-  }
 
 
 
@@ -449,8 +424,8 @@ footer {
 }
 
 .copyright {
-	margin: 2rem auto 0 auto;
-	width: 66%;
+	margin: 2rem auto;
+	width: fit-content;
 	text-align: left;
 }
 

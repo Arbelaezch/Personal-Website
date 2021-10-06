@@ -6,32 +6,8 @@
   <title>Portfolio</title>
   <link rel="stylesheet" href="styles.css">
   <form id="fcf-form-id" class="fcf-form-class" method="post" action="contact-form-process.php"></form>
-  <!--<script src="portfolio.js" defer></script>-->
-  <!-- EMAILJS ATTEMPT
-	  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-	  <script type="text/javascript">
-		  (function() {
-			  // https://dashboard.emailjs.com/admin/integration
-			  emailjs.init('user_2nvJ4WPXCr4t5kRb5uxvG');
-		  })();
-	  </script>
-	  <script type="text/javascript">
-		  window.onload = function() {
-			  document.getElementById('contact').getElementById('contact-form').addEventListener('submit', function(event) {
-				  event.preventDefault();
-				  // generate a five digit number for the contact_number variable
-				  this.contact_number.value = Math.random() * 100000 | 0;
-				  // these IDs from the previous steps
-				  
-				  emailjs.sendForm('service_zwljkr8', 'contact_form', this)
-					  .then(function() {
-						  console.log('SUCCESS!');
-					  }, function(error) {
-						  console.log('FAILED...', error);
-					  });
-			  });
-		  }
-	  </script>-->
+  <script src="portfolio.js" defer></script>
+
   
 </head>
 
@@ -85,10 +61,10 @@
 		  <p>TODO:
 			<ul>
 				<li>Re-write About Me</li>
-				<li>Fix Contact me form</li>
 				<li>Fix responsiveness on mobile</li>
 			  	<li>Fix Projects orientation</li>
-			  	<li></li>
+			  	<li>change hero image</li>
+				<li></li>
 	
 	
 	
@@ -214,7 +190,7 @@
 	<section id="container">
 		<form id="fcf-form-id" class="fcf-form-class" method="post" action="contact-form-process.php">
 		
-			<h2 style="text-align: center;">CONTACT ME</h2>
+			<h2 style="text-align: center; padding: 2rem 0 1rem 0;">CONTACT ME</h2>
 			<label for="Name" class="fcf-label">Your name</label>
 			<div class="fcf-input-group">
 				<input type="text" id="Name" name="Name" class="fcf-form-control" required>
@@ -227,10 +203,10 @@
 				<div class="fcf-form-group">
 					<label for="Message" class="fcf-label">Your message</label>
 					<div class="fcf-input-group">
-						<textarea id="Message" name="Message" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
+						<textarea id="Message" name="Message" class="fcf-form-control" required style="height: 10rem;"></textarea>
 					</div>
 				</div>
-				<div class="fcf-form-group">
+				<div class="fcf-form-group" id="submit-container">
 					<button type="submit" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Send</button>
 				</div>
 			</div>
@@ -243,12 +219,12 @@
 
 	<footer>
 		<div class="links-box">
-		<a href="https://github.com/Arbelaezch">
-			<img src="./images/github.png" class="socials" alt="github">
-		</a>
-		<a href="https://www.facebook.com/christian.arbelaez.9">
-			<img src="./images/facebook.png" class="socials" alt="facebook">
-		</a>
+			<a href="https://github.com/Arbelaezch">
+				<img src="./images/github.png" class="socials" alt="github">
+			</a>
+			<a href="https://www.facebook.com/christian.arbelaez.9">
+				<img src="./images/facebook.png" class="socials" alt="facebook">
+			</a>
 		</div>
 		<div class="copyright">
 		Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. 
