@@ -132,9 +132,9 @@ header img {
 	color: whitesmoke;
 	display: flex;
 	flex-direction: column;
-	width: fit-content;
+	width: 100%;
 	margin: auto;
-	padding: 2rem 18rem;
+	
 
 
 }
@@ -144,12 +144,13 @@ header img {
 }
 
 .about-content {
-	width: 100%;
-	margin: 0 auto;
+	width: 75%;
+	margin: auto;
+	
 }
 
 .about-content p {
-	text-indent: 1in;
+	text-indent: 2rem;
 }
 
 
