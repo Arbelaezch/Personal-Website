@@ -307,7 +307,7 @@ header img {
 
 .minor-projects-container {
 	width: fit-content;
-	margin: 0 55% 0 25%;
+	margin: 2rem auto 0 auto;
 	padding: 1rem;
 
 }
@@ -320,7 +320,7 @@ header img {
 
 .projects a:hover, .projects a:active{
 	text-decoration: underline;
-	color: mediumblue;
+	color: grey;
 }
 
 
