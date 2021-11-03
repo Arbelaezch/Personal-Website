@@ -14,7 +14,6 @@
 <body>
   <header id="header">
     <?php echo require_once("nav.php"); ?>
-    
   </header>
 
   
@@ -32,7 +31,6 @@
   
   <script src="./app.js"></script>
 
-  
   <footer>
     <p>
       Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.

@@ -1,0 +1,4 @@
+# enable basic rewriting
+RewriteEngine on
+
+AddType application/x-httpd-php .htm .html
