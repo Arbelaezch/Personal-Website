@@ -46,7 +46,7 @@ h2 {
 	background-image: url("./images/duo.jpg");
 	*/
 
-	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./images/duo.jpg");
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./images/hero-pic.jpg");
 	
 	
 	/* Set a specific height */
@@ -134,6 +134,7 @@ header img {
 	flex-direction: column;
 	width: 100%;
 	margin: auto;
+	padding: 1rem 0 1rem 0;
 	
 
 
@@ -240,9 +241,9 @@ header img {
 }
 
 .major-projects-container {
-	width: 80%;
+	width: 60%;
 	margin: 0 auto;
-	padding: 1rem;
+	
 	font-weight: bold;
 	font-size: medium;
 	display: flex;
@@ -254,34 +255,37 @@ header img {
 .prj-container {
 	position: relative;
 	width: fit-content;
-	height: 520px;
 	border: 2px solid whitesmoke;
-	padding: .5rem;
 	background-color: rgba(0, 0, 0, 0.5);
+	margin: auto;
+	
   }
   
 .image {
 	opacity: 1;
 	display: block;
-	width: fit-content;
-	height: 100%;
+	width: 80%;
+	height: fit-content;
 	transition: .5s ease;
 	backface-visibility: hidden;
 	margin: auto;
+	max-height: 50rem;
 }
+
+
   
 .middle {
 	transition: .5s ease;
 	opacity: 0;
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%)
+	top: 20%;
+	
+	
+	
 }
   
 .prj-container:hover .image {
-	opacity: 0.3;
+	opacity: 0.2;
 }
   
 .prj-container:hover .middle {
@@ -292,13 +296,18 @@ header img {
 	width: 80%;
 	color: white;
 	font-size: 16px;
-	border: 2px solid red;
+	border: 2px solid white;
+	padding: 0 1rem 2rem 1rem;
+	position: relative;
+	margin: auto;
+	
+	
 }
 
 
 .minor-projects-container {
 	width: fit-content;
-	margin: 0 55% 0 25%;
+	margin: 2rem auto 0 auto;
 	padding: 1rem;
 
 }
@@ -311,7 +320,7 @@ header img {
 
 .projects a:hover, .projects a:active{
 	text-decoration: underline;
-	color: mediumblue;
+	color: grey;
 }
 
 
@@ -404,6 +413,14 @@ footer {
 	padding: 2rem 0 4rem 0;
 	margin: 0 auto;
 
+}
+
+footer a {
+	color: white;
+}
+
+footer a:hover {
+	color: grey;
 }
 
 .socials {
