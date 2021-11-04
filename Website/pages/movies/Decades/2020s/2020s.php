@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>1990s</title>
+  <title>2020s</title>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../Dstyle.css">
@@ -9,14 +9,7 @@
 
 
 <body>
-  <nav>
-    <a href="../../../../index.php">Home</a>
-    <a href="../../../recipes/recipes.php">Food</a>
-    <a href="../../250.php">Movies</a>
-    <a href= "../../../comp_sci/cs.php">Computer Science</a>
-    <a href= "../../../portfolio/portfolio.php">Portfolio</a>
-    <a href= "../../index.php">Contact Me</a>
-  </nav>
+  <?php echo require_once("../../../../nav.php"); ?>
 
 
   <article class="center">
@@ -41,53 +34,73 @@
             Fun Fact: 
 
             <br><br>
-            Favorites of the Decade:  
+            Favorites of the Decade: <a href="./movies/nomadland.php">Nomadland (2020)</a>, <a href="./movies/minari.php">Minari (2020)</a>
           </p>
         </div>
         <div id="grid">
             <div class="wrapper">
                 <div class="item">
-                    <a href="./movies/chaplin.php">
-                        <img src="./images/chaplin.jpg"></img>
-                        <p>Chaplin (1990)</p>
+                    <a href="./movies/tenet.php">
+                      <img src="./images/tenet.jpg"></img>
+                      <p>Tenet (2020)</p>
                     </a>
                 </div>
                 <div class="item">
-                  <a href="./movies/terminator2.php">
-                      <img src="./images/terminator2.jpg"></img>
-                      <p>Terminator 2: Judgment Day (1991)</p>
+                  <a href="./movies/chicago7.php">
+                      <img src="./images/chicago7.jpeg"></img>
+                      <p>The Trial of the Chicago 7 (2020)</p>
                   </a>
                 </div>
                 <div class="item">
-                  <a href="./movies/quizShow.php">
-                      <img src="./images/quizShow.jpeg"></img>
-                      <p>Quiz Show (1994)</p>
+                  <a href="./movies/minari.php">
+                      <img src="./images/minari.jpg"></img>
+                      <p>Minari (2020)</p>
                   </a>
                 </div>
                 <div class="item">
-                  <a href="./movies/matilda.php">
-                      <img src="./images/matilda.jpg"></img>
-                      <p>Matilda (1996)</p>
+                  <a href="./movies/nomadland.php">
+                      <img src="./images/nomadland.jpeg"></img>
+                      <p>Nomadland (2020)</p>
                   </a>
                 </div>
                 <div class="item">
-                  <a href="./movies/matrix.php">
-                      <img src="./images/matrix.jpg"></img>
-                      <p>The Matrix (1999)</p>
+                  <a href="./movies/anotherRound.php">
+                      <img src="./images/anotherRound.jpg"></img>
+                      <p>Another Round (2020)</p>
                   </a>
                 </div>
                 <div class="item">
-                  <a href="./movies/eyesWideShut.php">
-                      <img src="./images/eyesShut.jpg"></img>
-                      <p>Eyes Wide Shut (1999)</p>
+                  <a href="./movies/father.php">
+                      <img src="./images/father.jpg"></img>
+                      <p>The Father (2020)</p>
                   </a>
                 </div>
                 <div class="item">
-                  <a href="./movies/officeSpace.php">
-                      <img src="./images/officeSpace.jpg"></img>
-                      <p>Office Space (1999)</p>
+                  <a href="./movies/soul.php">
+                      <img src="./images/soul.jpg"></img>
+                      <p>Soul (2020)</p>
                   </a>
-                </div> 
+                </div>
+                <div class="item">
+                  <a href="./movies/cherry.php">
+                      <img src="./images/cherry.jpg"></img>
+                      <p>Cherry (2021)</p>
+                  </a>
+                </div>
+                <div class="item">
+                  <a href="./movies/GodVKong.php">
+                      <img src="./images/godVKong.jpg"></img>
+                      <p>Godzilla vs. Kong (2021)</p>
+                  </a>
+                </div>
+                <div class="item">
+                  <a href="./movies/timeToDie.php">
+                      <img src="./images/noTimeToDie.jpg"></img>
+                      <p>No Time to Die (2021)</p>
+                  </a>
+                </div>
+
+                
             </div>  
         </div>
     </div>

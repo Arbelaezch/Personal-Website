@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>2000s</title>
+  <title>1970s</title>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../Dstyle.css">
@@ -9,27 +9,21 @@
 
 
 <body>
-  <nav>
-    <a href="../../../../index.php">Home</a>
-    <a href="../../../recipes/recipes.php">Food</a>
-    <a href="../../250.php">Movies</a>
-    <a href= "../../../comp_sci/cs.php">Computer Science</a>
-    <a href= "../../../portfolio/portfolio.php">Portfolio</a>
-    <a href= "../../index.php">Contact Me</a>
-  </nav>
+  <?php echo require_once("../../../../nav.php"); ?>
 
 
   <article class="center">
     <!-- MAIN CONTENT-->
     <div class="content">
         <header>
-            <h1 class="title">Contemporary Cinema (1995 - Today)</h1>
+            <h1 class="title">New Hollywood: The Film School Generation (1970-1985)</h1>
         </header>
         <div id="description" class="mid">
           <p> 
 				<img src="../../images/construction.jpg"/>
 				<br>
-		
+        
+          
           
             
         
@@ -46,36 +40,13 @@
         </div>
         <div id="grid">
             <div class="wrapper">
-              <div class="item">
-                <a href="./movies/royalTens.php">
-                    <img src="./images/royalTens.jpg"></img>
-                    <p>The Royal Tenenbaums (2001)</p>
-                </a>
-              </div>
-              <div class="item">
-                <a href="./movies/translation.php">
-                    <img src="./images/translation.jpg"></img>
-                    <p>Lost in Translation (2003)</p>
-                </a>
-              </div>
-              <div class="item">
-                  <a href="./movies/NoCountry.php">
-                      <img src="./images/noCountry.jpg"></img>
-                      <p>No Country for Old Men (2007)</p>
-                  </a>
-              </div>
-              <div class="item">
-                <a href="./movies/ironMan.php">
-                    <img src="./images/ironMan.jpg"></img>
-                    <p>Iron man (2008)</p>
-                </a>
-              </div>
-              <div class="item">
-                <a href="./movies/humanCentipede.php">
-                    <img src="./images/centipede.jpeg"></img>
-                    <p>The Human Centipede (2009)</p>
-                </a>
-              </div>   
+                <div class="item">
+                    <a href="./movies/tora.php">
+                        <img src="./images/tora.jpg"></img>
+                        <p>Tora! Tora! Tora! (1970)</p>
+                    </a>
+                </div>
+                
             </div>  
         </div>
     </div>

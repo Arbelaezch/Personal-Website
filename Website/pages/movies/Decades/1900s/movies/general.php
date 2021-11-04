@@ -8,18 +8,13 @@
 </head>
 
 
-<div class="navbar">
-  <a href="../../../../../index.php">Home</a>
-  <a href="../../../../recipes/recipes.php">Food</a>
-  <a href="../../../250.php">Movies</a>
-  <a href= "../../../../comp_sci/cs.php">Computer Science</a>
-  <a href= "../../../../portfolio/portfolio.php">Portfolio</a>
-  <a href= "../../index.php">Contact Me</a>
-</div>
+
 
 
 
 <body>
+  <?php echo require_once("../../../../../nav.php"); ?>
+
   <div id="page">
 
     <!-- MAIN CONTENT-->
@@ -27,28 +22,26 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>Metropolis (1927)</h1>
+            <h1>The General (1927)</h1>
           </div>
           
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/metropolis.jpeg" >
+            <img src="../images/the general.jpg" >
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
-                In a futuristic city sharply divided between the working class and the city planners, 
-                the son of the city's mastermind falls in love with a working class prophet who predicts the 
-                coming of a savior to mediate their differences.<br><br>
+                When Union spies steal an engineer's beloved locomotive, he pursues it single-handedly and 
+                straight through enemy lines.<br><br>
+                Directors: Clyde Bruckman, Buster Keaton<br><br>
+                Writers: Buster Keaton, Clyde Bruckman<br><br>
+                Stars: Buster Keaton, Marion Mack, Glen Cavender<br><br>
 
-                Director: Fritz Lang<br><br>
-                Writers: Thea von Harbou<br><br>
-                Stars: Brigitte Helm, Alfred Abel, Gustav Fröhlich<br><br>
-               
             
-                Country of Origin: Germany<br><br>
+                Country of Origin: America<br><br>
                 
-                Studio: UFA<br><br><br><br><br><br>
+                Studio: United Artists<br><br><br><br><br><br><br><br>
             </p>
                 
 
@@ -57,25 +50,20 @@
       </div>
   
       <div id="review">
-          <p> "The mediator between the head and the hands must be the heart."<br><br>
-              
-            One of the early epic science fiction pictures to wow audiences with it's pioneering special effects. 
-              Techniques such as using miniature models of the city, using a camera on a swing, a giant robot costume worn by
-              an actor, and finally the Shufftan Process, which uses mirrors to create the illusion that actors
-               are occupying miniature sets. However, even with these novel effects for the time and its enormous budget, Metropolis
-               was still released to mixed reception from critics and audiences. People heralded it as beautiful and visually powerful
-                but lacking in story, with some going as far as to call the story trite and silly. Of course nowadays people 
-                claim it is one of the best science fiction pictures of the age, and for good reason.<br><br>
-
-               The film was born from its director, Fritz Lang seeing the skyscrapers in New York City. Writer Thea von Harbou 
-               also took inspiration for the plot from World War 1, as well as the culture of the Weimar Republic in Germany. With Metropolis 
-               Harbou and Lang attempted to explore themes of industrialization and mass production and their effects on society as well as 
-               how they impacted the war. <br><br>
-
-               Personally, I found Metropolis to be far too long. At first I could appreciate the special effects, as well as the scale 
-               of the project. But a two and a half hour runtime is just far too long to be propped up by effects. While it was an epic at one time, 
-               its long since become obsolete in effects and message, with industrialization taking a back seat to Artificial Intelligence in our 
-               "new age."
+          <p> Made at the end of the silent era, Buster Keaton's magnum opus picture was a critical and 
+              box office failure that lost Keaton his independence as a filmmaker. The General substitutes 
+              some of the comedy from Sherlock Jr. for a much stronger dramatic narrative. This was to the dismay of the
+               audience which was expecting to leave the theatre in stitches. <br><br>
+            
+            
+              I too personally think it loses something in the trade off. The General is massive and 
+                tense and shocking at times, but Sherlock was just clean and tight. I think The General can't stand on the drama 
+                as successfully as Sherlock can stand on the comedy. Not to say that Keaton didn't make a highly engaging 
+                drama that I think outshines almost anything else in the 20s. Its just comparing the succinct, rapid fire
+                comedy of Sherlock Jr. to the far grander, slower comedy-narrative duo of The General, I'm gonna pick Sherlock 
+                nine times outta ten. Either way I still really enjoyed it and still admire and respect Keaton's dedication to the gag. 
+                Charlie Chaplin eat your heart out.
+        
 
 
  

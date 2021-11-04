@@ -9,14 +9,7 @@
 
 
 <body>
-    <nav>
-        <a href="../../../../index.php">Home</a>
-        <a href="../../../recipes/recipes.php">Food</a>
-        <a href="../../250.php">Movies</a>
-        <a href= "../../../comp_sci/cs.php">Computer Science</a>
-        <a href= "../../../portfolio/portfolio.php">Portfolio</a>
-      <a href= "../../index.php">Contact Me</a>
-    </nav>
+    <?php echo require_once("../../../../nav.php"); ?>
 
 
     <article class="center">

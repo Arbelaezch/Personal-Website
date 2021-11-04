@@ -8,18 +8,9 @@
 </head>
 
 
-<div class="navbar">
-  <a href="../../../../../index.php">Home</a>
-  <a href="../../../../recipes/recipes.php">Food</a>
-  <a href="../../../250.php">Movies</a>
-  <a href= "../../../../comp_sci/cs.php">Computer Science</a>
-  <a href= "../../../../portfolio/portfolio.php">Portfolio</a>
-  <a href= "../../index.php">Contact Me</a>
-</div>
-
-
-
 <body>
+
+  <?php echo require_once("../../../../../nav.php"); ?>
   <div id="page">
 
     <!-- MAIN CONTENT-->
@@ -27,62 +18,46 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>The Gold Rush (1925)</h1>
+            <h1>A Trip to the Moon (1902)</h1>
           </div>
           
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/gold rush.jpeg">
+            <img src="../images/a trip to the moon.jpeg">
           </div>
           <div id="synopsis" class="info">
-            <p class="synopsis"> 
-                A prospector goes to the Klondike in search of gold and finds it and more.<br><br>
-                Director: Charles Chaplin<br><br>
-                Writer: Charles Chaplin<br><br>
-                Stars: Charles Chaplin, Mack Swain, Tom Murray<br><br>
-            
-                Country of Origin: America<br><br>
-                
-                Studio: United Artists<br><br><br><br><br><br><br><br>
-            </p>
-                
-
+            <p class="synopsis"> <br><br>A group of astronomers go on an expedition to the Moon.</p>
+            <p id="info">Director: Georges Méliès</p>
+            <p id="info">Actors: Georges Méliès, Victor André, Bleuette Bernon</p>
+            <p id="info">Country of Origin: France<br><br><br><br><br><br><br><br><br><br></p>
+  
           </div>
         </div>
       </div>
   
       <div id="review">
-          <p> The fifth-highest-grossing silent film in cinema history and one of the high points of silent star, 
-              Charlie Chaplin's career. I watched the 1942 version recut by Chaplin with his own narration and sharper editing
-              and I gotta say, this is a pretty magnificent way to watch a silent film. With audio lol. 
-              
-              It is a really fun and heartfelt flick that is original (obviously) and fast paced. 
-              It was really swell. Kind of like a quick treat of a film. You feel good after watching it. 
-              Also some really nifty special effects like the house moving. Not as "spectacular" as Buster Keaton, 
-              in my humble opinion, but of its own style that is still quite enjoyable.
-        
-               <br><br>
-              
-              
-        
-        
-              
+          <p> 
+            The year is 1902 and audiences have grown from the "shock and awe" of seeing moving pictures of every-day life events, such as a train moving or a horse galloping. People wanted more. They wanted to be engaged by pictures now that their shock value had begun to wear off. Enter Georges Méliès, magician turned filmmaker who brought a narrative flair to films that transformed people from their regular lives and took them on a trip to the moon. 
+            
+            <br><br>
+              With film, "Méliès had found a way to perform actual magic with editing, to fool an audience and pull off illusions he'd never been able to do on stage."<sup>1</sup> 
+            <br><br>
 
+            Méliès pioneered several in-camera tricks, such as Double Exposure<sup>2</sup>, to trick audiences into believing the impossible, and once again shocking them. But he didn't stop there as, unlike other films of the time, Méliès brought in his extensive sets and props from his time as a stage magician to build upon his narratives until they gripped audiences and made them believe the story they were watching.
+            
 
-              
-        
-        
+            <br><br>
 
-        
-              
-
-              
-
+              Enter, <em>A Trip to the Moon</em>, as the first Science Fiction film ever made. A Trip to the Moon utilizes simple in-place shots with no close ups, such as had been done in George Albert Smith's short film, Grandma's Reading Glass from 1900. Yet despite the relatively basic cinematography, A Trip to the Moon was a massive international success and is considered a classic due to it being Méliès' biggest production to date. It was an unheard of for the time fifteen minutes long, and brought together all of the special effects tricks he had learned, as well as being his most ambitious story yet with beautiful sets and costumes to match. Audiences were hooked by his exciting space adventure as they had never seen a narrative picture like it before. With this single film Méliès' reinvented film production and narratives and inspired other filmmakers to follow in his artistic footsteps.
               
             <br><br>
 
             
+            
+            1: <em>https://www.youtube.com/watch?v=L8is28gAOTc&t=331s</em><br>
+            2: Double Exposure: A trick where you shoot footage twice over the same piece of film to make it look like two separate events are occurring at the same time.
+
             
           </p>
           
@@ -132,8 +107,6 @@
         </a>
       </div>
     </div>
-
-
   </div>
 
 
@@ -157,3 +130,4 @@
 
 </body>
 </html>
+

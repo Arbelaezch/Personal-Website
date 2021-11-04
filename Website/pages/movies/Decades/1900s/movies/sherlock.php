@@ -8,14 +8,8 @@
 </head>
 
 
-<div class="navbar">
-  <a href="../../../../../index.php">Home</a>
-  <a href="../../../../recipes/recipes.php">Food</a>
-  <a href="../../../250.php">Movies</a>
-  <a href= "../../../../comp_sci/cs.php">Computer Science</a>
-  <a href= "../../../../portfolio/portfolio.php">Portfolio</a>
-  <a href= "../../index.php">Contact Me</a>
-</div>
+
+<?php echo require_once("../../../../../nav.php"); ?>
 
 
 
@@ -27,25 +21,25 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>Steamboat Willie (1928)</h1>
+            <h1>Sherlock Jr. (1924)</h1>
           </div>
           
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/steamboat willie.jpeg" >
+            <img src="../images/sherlock jr.jpeg">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
-                <br><br>Mickey Mouse, piloting a steamboat, delights his passenger, Minnie, by making musical 
-                instruments out of the menagerie on deck.<br><br>
-                Directors: Ub Iwerks, Walt Disney<br><br>
-                Star: Walt Disney<br><br>
-            
+                <br><br>A film projectionist longs to be a detective, and puts his meagre skills to work when 
+                he is framed by a rival for stealing his girlfriend's father's pocketwatch.<br><br>
+                Director: Buster Keaton<br><br>
+                Writers: Jean C. Havez, Joseph A. Mitchell<br><br>
+                Stars: Buster Keaton, Kathryn McGuire, Joe Keaton<br><br>
+                
                 Country of Origin: America<br><br>
                 
-                Studio: Walt Disney Studios<br><br><br><br><br><br><br><br><br><br>
-            </p>
+                Studio: Metro Pictures (Forerunner of MGM)<br><br><br><br><br></p>
                 
 
           </div>
@@ -53,30 +47,21 @@
       </div>
   
       <div id="review">
-          <p> One of the first cartoon with fully ynchronized sound. Steamboat Willie became the most popular cartoon of its day
-              not just from the introduction of the charasmatic and hilarious Mickey Mouse, but from the fully realized
-              sound effects and sountrack to accompany the cartoon. This success stems from the fact that Walt Disney believed 
-              sound was the future of cartoons and film alike. Thanks to Steamboat Willie, Walt Disney and Mickey Mouse 
-              became household names that have remained at the heart of American cinema for nearly a hundred years.
-              
-               <br><br>
+          <p> An incredibly fun, accessible adventure that still holds audience engagement to this day! 
+              Cinematography wise there are dream sequences, cutting between different scenes that take place 
+              at the same time, moving shots, and a theatre scene that needs to be seen to be believed.
+              I am super impressed. But this film goes beyond simple camera work, it instead rests on its 
+              incredibly funny gags and stoic lead, Keaton. Near singlehandedly, Keaton brings you into 
+              a story that actually grips and makes you feel for its participants. 
+              <br><br>
 
-               Aside from all that, its just a really fun cartoon.
+              Nearly all of the story is told through physical acting / visuals so there is not much reading involved. 
+              Your time as a viewer is not wasted, but instead rewarded through clever visual cues that keep your eyes glued
+              and your attention piqued. And not to mention the bike scene at the end oh my god! 
+              I cannot believe some of the stunts. Truly impressive.<br><br>
 
-        
-        
-        
-
-
- 
-        
-               <br><br>
-              
-              
-        
-        
-              
-
+              The most heartbreaking thing about this entire picture is that it was not initially received well and was
+               considered a box office failure. The only question I have is, HOW???
 
               
         

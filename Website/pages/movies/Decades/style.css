@@ -189,7 +189,7 @@ body {
 
 
 /* The navigation bar */
-.navbar {
+nav {
 	overflow: auto;
 	background-color: rgb(28, 32, 36);
 	/*background-color: #333; LIGHT MODE */
@@ -204,7 +204,7 @@ body {
  }
  
  /* Links inside the navbar */
-.navbar a {
+nav a {
 	float: left;
 	display: block;
 	color: #f2f2f2;
@@ -214,7 +214,7 @@ body {
  }
  
  /* Change background on mouse-over */
-.navbar a:hover {
+nav a:hover {
 	background: #ddd;
 	color: black;
  }

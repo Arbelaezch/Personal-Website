@@ -8,19 +8,9 @@
 </head>
 
 
-
-<div class="navbar">
-  <a href="../../../../../index.php">Home</a>
-  <a href="../../../../recipes/recipes.php">Food</a>
-  <a href="../../../250.php">Movies</a>
-  <a href= "../../../../comp_sci/cs.php">Computer Science</a>
-  <a href= "../../../../portfolio/portfolio.php">Portfolio</a>
-  <a href= "../../index.php">Contact Me</a>
-</div>
-
-
-
 <body>
+  <?php echo require_once("../../../../../nav.php"); ?>
+
   <div id="page">
 
     <!-- MAIN CONTENT-->
@@ -28,67 +18,67 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>Sherlock Jr. (1924)</h1>
+            <h1> Un Chien Andalou (1929)</h1>
           </div>
-          
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/sherlock jr.jpeg">
+            <img src="../../1900s/images/andalou.jpeg" >
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
-                <br><br>A film projectionist longs to be a detective, and puts his meagre skills to work when 
-                he is framed by a rival for stealing his girlfriend's father's pocketwatch.<br><br>
-                Director: Buster Keaton<br><br>
-                Writers: Jean C. Havez, Joseph A. Mitchell<br><br>
-                Stars: Buster Keaton, Kathryn McGuire, Joe Keaton<br><br>
+                <br>
+                Luis Buñuel and Salvador Dalí present 21 minutes of bizarre, surreal imagery.<br><br>
+                Director: Luis Buñuel<br><br>
+                Writers: Salvador Dalí, Luis Buñuel<br><br>
+                Stars: Pierre Batcheff, Simone Mareuil, Luis Buñuel <br><br>
                 
-                Country of Origin: America<br><br>
+            
+                Country: France<br><br>
                 
-                Studio: Metro Pictures (Forerunner of MGM)<br><br><br><br><br></p>
-                
-
+                Studio: Les Grands Films Classiques
+            </p>
           </div>
         </div>
       </div>
   
       <div id="review">
-          <p> An incredibly fun, accessible adventure that still holds audience engagement to this day! 
-              Cinematography wise there are dream sequences, cutting between different scenes that take place 
-              at the same time, moving shots, and a theatre scene that needs to be seen to be believed.
-              I am super impressed. But this film goes beyond simple camera work, it instead rests on its 
-              incredibly funny gags and stoic lead, Keaton. Near singlehandedly, Keaton brings you into 
-              a story that actually grips and makes you feel for its participants. 
-              <br><br>
+          <p style="text-align: center; text-indent: -.5in;">
+            "the Andalusian dog howls-someone has died!”
+          </p>
+          <p> 
 
-              Nearly all of the story is told through physical acting / visuals so there is not much reading involved. 
-              Your time as a viewer is not wasted, but instead rewarded through clever visual cues that keep your eyes glued
-              and your attention piqued. And not to mention the bike scene at the end oh my god! 
-              I cannot believe some of the stunts. Truly impressive.<br><br>
+            What in the ever loving hell is this. I've seen some weird shit before but this is some weird shit. 
+            The most concrete impression I get from this is of a surreal expressionist painting. 
+            I get the sense you are not supposed to "understand" this film so much as you are supposed to experience it.
 
-              The most heartbreaking thing about this entire picture is that it was not initially received well and was
-               considered a box office failure. The only question I have is, HOW???
+            
+
 
               
-        
-        
+             <br><br>
 
-        
-              
+             The french are weird, man.
 
-              
+            
 
-              
+
             <br><br>
 
+            Not so fun-fact: David Bowie showed the entire film to concert goers during his 1976 tour.
             
+
+
+
+              
+
+             
+         
+
+        
             
-          </p>
-          
+          </p>  
       </div>
-
-
     </div>
     
     <!-- SIDEBAR -->
@@ -132,28 +122,14 @@
         </a>
       </div>
     </div>
-
-
   </div>
 
 
-  
-  
-
-	
-	
-	
-	
   <div class="footer" >
 	  <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
 	</div>
   
 	
-  
-  
-  
-  
-
 
 </body>
 </html>

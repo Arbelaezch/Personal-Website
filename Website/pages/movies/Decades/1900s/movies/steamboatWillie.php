@@ -8,20 +8,11 @@
 </head>
 
 
-
+<?php echo require_once("../../../../../nav.php"); ?>
 
 
 
 <body>
-  <div class="navbar">
-    <a href="../../../../../index.php">Home</a>
-    <a href="../../../../recipes/recipes.php">Food</a>
-    <a href="../../../250.php">Movies</a>
-    <a href= "../../../../comp_sci/cs.php">Computer Science</a>
-    <a href= "../../../../portfolio/portfolio.php">Portfolio</a>
-    <a href= "../../index.php">Contact Me</a>
-  </div>
-
   <div id="page">
 
     <!-- MAIN CONTENT-->
@@ -29,26 +20,24 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>The General (1927)</h1>
+            <h1>Steamboat Willie (1928)</h1>
           </div>
           
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/the general.jpg" >
+            <img src="../images/steamboat willie.jpeg" >
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
-                When Union spies steal an engineer's beloved locomotive, he pursues it single-handedly and 
-                straight through enemy lines.<br><br>
-                Directors: Clyde Bruckman, Buster Keaton<br><br>
-                Writers: Buster Keaton, Clyde Bruckman<br><br>
-                Stars: Buster Keaton, Marion Mack, Glen Cavender<br><br>
-
+                <br><br>Mickey Mouse, piloting a steamboat, delights his passenger, Minnie, by making musical 
+                instruments out of the menagerie on deck.<br><br>
+                Directors: Ub Iwerks, Walt Disney<br><br>
+                Star: Walt Disney<br><br>
             
                 Country of Origin: America<br><br>
                 
-                Studio: United Artists<br><br><br><br><br><br><br><br>
+                Studio: Walt Disney Studios<br><br><br><br><br><br><br><br><br><br>
             </p>
                 
 
@@ -57,19 +46,18 @@
       </div>
   
       <div id="review">
-          <p> Made at the end of the silent era, Buster Keaton's magnum opus picture was a critical and 
-              box office failure that lost Keaton his independence as a filmmaker. The General substitutes 
-              some of the comedy from Sherlock Jr. for a much stronger dramatic narrative. This was to the dismay of the
-               audience which was expecting to leave the theatre in stitches. <br><br>
-            
-            
-              I too personally think it loses something in the trade off. The General is massive and 
-                tense and shocking at times, but Sherlock was just clean and tight. I think The General can't stand on the drama 
-                as successfully as Sherlock can stand on the comedy. Not to say that Keaton didn't make a highly engaging 
-                drama that I think outshines almost anything else in the 20s. Its just comparing the succinct, rapid fire
-                comedy of Sherlock Jr. to the far grander, slower comedy-narrative duo of The General, I'm gonna pick Sherlock 
-                nine times outta ten. Either way I still really enjoyed it and still admire and respect Keaton's dedication to the gag. 
-                Charlie Chaplin eat your heart out.
+          <p> One of the first cartoon with fully ynchronized sound. Steamboat Willie became the most popular cartoon of its day
+              not just from the introduction of the charasmatic and hilarious Mickey Mouse, but from the fully realized
+              sound effects and sountrack to accompany the cartoon. This success stems from the fact that Walt Disney believed 
+              sound was the future of cartoons and film alike. Thanks to Steamboat Willie, Walt Disney and Mickey Mouse 
+              became household names that have remained at the heart of American cinema for nearly a hundred years.
+              
+               <br><br>
+
+               Aside from all that, its just a really fun cartoon.
+
+        
+        
         
 
 
@@ -145,7 +133,6 @@
         </a>
       </div>
     </div>
-
 
 
   </div>

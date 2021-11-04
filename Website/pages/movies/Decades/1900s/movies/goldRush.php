@@ -8,16 +8,11 @@
 </head>
 
 
-<body>
-  <div class="navbar">
-    <a href="../../../../../index.php">Home</a>
-    <a href="../../../../recipes/recipes.php">Food</a>
-    <a href="../../../250.php">Movies</a>
-    <a href= "../../../../comp_sci/cs.php">Computer Science</a>
-    <a href= "../../../../portfolio/portfolio.php">Portfolio</a>
-    <a href= "../../index.php">Contact Me</a>
-  </div>
+<?php echo require_once("../../../../../nav.php"); ?>
 
+
+
+<body>
   <div id="page">
 
     <!-- MAIN CONTENT-->
@@ -25,67 +20,68 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1> Un Chien Andalou (1929)</h1>
+            <h1>The Gold Rush (1925)</h1>
           </div>
+          
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../../1900s/images/andalou.jpeg" >
+            <img src="../images/gold rush.jpeg">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
-                <br>
-                Luis Buñuel and Salvador Dalí present 21 minutes of bizarre, surreal imagery.<br><br>
-                Director: Luis Buñuel<br><br>
-                Writers: Salvador Dalí, Luis Buñuel<br><br>
-                Stars: Pierre Batcheff, Simone Mareuil, Luis Buñuel <br><br>
-                
+                A prospector goes to the Klondike in search of gold and finds it and more.<br><br>
+                Director: Charles Chaplin<br><br>
+                Writer: Charles Chaplin<br><br>
+                Stars: Charles Chaplin, Mack Swain, Tom Murray<br><br>
             
-                Country: France<br><br>
+                Country of Origin: America<br><br>
                 
-                Studio: Les Grands Films Classiques
+                Studio: United Artists<br><br><br><br><br><br><br><br>
             </p>
+                
+
           </div>
         </div>
       </div>
   
       <div id="review">
-          <p style="text-align: center; text-indent: -.5in;">
-            "the Andalusian dog howls-someone has died!”
-          </p>
-          <p> 
-
-            What in the ever loving hell is this. I've seen some weird shit before but this is some weird shit. 
-            The most concrete impression I get from this is of a surreal expressionist painting. 
-            I get the sense you are not supposed to "understand" this film so much as you are supposed to experience it.
-
-            
+          <p> The fifth-highest-grossing silent film in cinema history and one of the high points of silent star, 
+              Charlie Chaplin's career. I watched the 1942 version recut by Chaplin with his own narration and sharper editing
+              and I gotta say, this is a pretty magnificent way to watch a silent film. With audio lol. 
+              
+              It is a really fun and heartfelt flick that is original (obviously) and fast paced. 
+              It was really swell. Kind of like a quick treat of a film. You feel good after watching it. 
+              Also some really nifty special effects like the house moving. Not as "spectacular" as Buster Keaton, 
+              in my humble opinion, but of its own style that is still quite enjoyable.
+        
+               <br><br>
+              
+              
+        
+        
+              
 
 
               
-             <br><br>
-
-             The french are weird, man.
-
-            
-
-
-            <br><br>
-
-            Not so fun-fact: David Bowie showed the entire film to concert goers during his 1976 tour.
-            
-
-
-
-              
-
-             
-         
+        
+        
 
         
+              
+
+              
+
+              
+            <br><br>
+
             
-          </p>  
+            
+          </p>
+          
       </div>
+
+
     </div>
     
     <!-- SIDEBAR -->
@@ -129,14 +125,28 @@
         </a>
       </div>
     </div>
+
+
   </div>
 
 
+  
+  
+
+	
+	
+	
+	
   <div class="footer" >
 	  <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
 	</div>
   
 	
+  
+  
+  
+  
+
 
 </body>
 </html>

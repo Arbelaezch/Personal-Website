@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>1950s</title>
+  <title>2000s</title>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../Dstyle.css">
@@ -9,48 +9,29 @@
 
 
 <body>
-  <nav>
-    <a href="../../../../index.php">Home</a>
-    <a href="../../../recipes/recipes.php">Food</a>
-    <a href="../../250.php">Movies</a>
-    <a href= "../../../comp_sci/cs.php">Computer Science</a>
-    <a href= "../../../portfolio/portfolio.php">Portfolio</a>
-    <a href= "../../index.php">Contact Me</a>
-  </nav>
+  <?php echo require_once("../../../../nav.php"); ?>
 
 
   <article class="center">
     <!-- MAIN CONTENT-->
     <div class="content">
         <header>
-            <h1 class="title">The Rise of Japanese Cinema (1950s)</h1>
+            <h1 class="title">Contemporary Cinema (1995 - Today)</h1>
         </header>
         <div id="description" class="mid">
           <p> 
-            <br>
-
-            While many American classics were produced during this decade, World cinema as a whole, and particularly Japanese cinema, was going gangbusters. This is no more apparent than the rise of legendary Japanese filmmakers Akira Kurosawa (Seven Samurai) and Yasujiro Ozu (Tokyo Story) who became international superstars.
-
-            <br><br>
-
-            Post-World War Two Japan was scarred both physically and psychologically by the devestation left in the wake of the Atomic bombs dropped on Hiroshima and Nagasaki. The effects of this devestation can be glimpsed in their film's of the decade. Godzilla (1954) was a metaphor for nuclear holocaust. Kurosawa's breakout film, Rashomon, emphasized that there are always conflicting sides to any story. Ozu's Tokyo Story (1953) touched on the break up and Westernization of the traditional Japanese family after World War II.
-
-            <br><br>
+				<img src="../../images/construction.jpg"/>
+				<br>
+		
           
-            Back in America, cinemas had entered into a war with the increasingly popular Television. To combat this threat, theatres promoted Cinemascope and other ultra-widescreen technologies to draw butts out of homes and put them in auditoriums. Massive scale movie epics like The Ten Commandments (1956) and Ben-Hur (1959) benefited greatly from these campaigns.
-
+            
+        
             <br><br>
-
-            The most popular American genre at this time was Sci-fi, on account of the newly introduced Atomic Bomb. Popcorn flicks like The Day the Earth Stood Still (1951) and The Thing from Another World (1951) were the best that American sci-fi had to offer during this period.
-
-            <br><br>
-
-            Also during the decade, Alfred Hitchcock was at the height of his powers with Rear Window, Vertigo, and North by Northwest. John Ford and John Wayne revitalized the Western genre in 1956 with The Searchers. And Bengali Indian director Satyajit Ray released his critically acclaimed Apu Trilogy (1955–1959).
 
             
             <br><br>
 
-            Fun Fact: The special effects skills Japanese filmmakers learned shooting war propaganda films during WWII were paramount in producing action films like Godzilla.
+            Fun Fact: 
 
             <br><br>
             Favorites of the Decade:  
@@ -58,13 +39,36 @@
         </div>
         <div id="grid">
             <div class="wrapper">
-                <div class="item">
-                    <a href="./movies/philadelphia.php">
-                        <img src="./images/philadelphia.jpg"></img>
-                        <p>The Philadelphia Story (1940)</p>
-                    </a>
-                </div>
-                
+              <div class="item">
+                <a href="./movies/royalTens.php">
+                    <img src="./images/royalTens.jpg"></img>
+                    <p>The Royal Tenenbaums (2001)</p>
+                </a>
+              </div>
+              <div class="item">
+                <a href="./movies/translation.php">
+                    <img src="./images/translation.jpg"></img>
+                    <p>Lost in Translation (2003)</p>
+                </a>
+              </div>
+              <div class="item">
+                  <a href="./movies/NoCountry.php">
+                      <img src="./images/noCountry.jpg"></img>
+                      <p>No Country for Old Men (2007)</p>
+                  </a>
+              </div>
+              <div class="item">
+                <a href="./movies/ironMan.php">
+                    <img src="./images/ironMan.jpg"></img>
+                    <p>Iron man (2008)</p>
+                </a>
+              </div>
+              <div class="item">
+                <a href="./movies/humanCentipede.php">
+                    <img src="./images/centipede.jpeg"></img>
+                    <p>The Human Centipede (2009)</p>
+                </a>
+              </div>   
             </div>  
         </div>
     </div>
