@@ -18,28 +18,28 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>Lost in Translation (2003)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">7</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/translation.jpg" alt="Lost in Translation">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+					A faded movie star and a neglected young woman form an unlikely bond after crossing paths in Tokyo.<br><br>
+          Director: Sofia Coppola<br><br>
+          Writer: Sofia Coppola<br><br>
+          Stars: Bill Murray, Scarlett Johansson, Giovanni Ribisi<br><br>
 									
-					Country: America<br><br>
+					Country of Origin: America<br><br>
 					
-					Studio: Miramax Films
+					Studio: Focus Features
             </p>
           </div>
         </div>
@@ -53,8 +53,23 @@
 
           <p>
 			 
-				Review goes here.
+            Lost in Translation is a sweet story of finding human connection amidst an alien and complicated world. It is Sophia Coppola's second picture and yet shows a remarkable adeptness at telling emotionally complex stories. The film was a massive critical and commercial success, winning the Academy Award for Best Original Screenplay and also grossing over $100 million on a $4 million budget. 
             
+            
+            <br><br>
+
+            Translation isn't just a simple romance, but instead shows the development of a loving connection between two people that have been displaced from both their physical homes as well as their perceived identities. Coppola uses a very gentle, deft hand at developing the relationship between these two protagonists in a way that could easily be miss-construed, but that I think comes accross quite clearly. Honestly, I don't think there is a real romance that develops between the two protagonists. This is why they never address their feelings for each other, because even they don't know how they feel about each other. They just don't want to ruin the connection they share. Each character is desperately lost in both this foreign country, but also in their own lives. They don't particularly like where they have ended up, and just want to enjoy the time they have with someone. Its a feeling of conflicting loneliness that I'm sure everyone has experienced at one time or another and I find it beautiful how Coppola develops these two wandering souls to come together and support each other in such a fragile state.
+            
+            <br><br>
+
+
+            I think the film is phenomenal, and during times of global quarantine, I feel this is the perfect film for anyone feeling a little lonely to appreciate; my biggest gripes with it are minor. The early 2000s feel wears on me a little and distracts from the overall story being told. I understand the reason for all of its environmental shots of Japan was to make audiences realize that these characters are in a completely different world than what not only they, but the audience are accustomed to. I just couldn't help but cringe a little bit here and there at the "roughness" of the style in which Japan was conveyed and the sense of the early 2000s that pervaided everything. I don't mind an indie feel to films, but this one in particular had a markedly aged tone that I personally found detracted from the underlying emotions trying to by conveyed.
+            
+            <br><br>
+
+            Overall though, I think Lost in Translation is a great melancholy film that is perfect to throw on whenever feeling lonely or neglected or lost in life.
+
+
             <br><br>
 
 

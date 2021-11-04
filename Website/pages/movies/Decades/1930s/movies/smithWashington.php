@@ -9,7 +9,7 @@
 
 
 <body>
-  <?php echo require_once("../../../../../nav.php"); ?>
+<?php echo require_once("../../../../../nav.php"); ?>
 
   <div id="page">
 
@@ -18,28 +18,32 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1> Mr. Smith Goes to Washington (1939)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
-            
+            <h2 class="single">10</h2>
+            <h2 class="double">
+              
+            </h2>
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/smith goes to washington.jpeg" >
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
-					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
-									
-					Country: America<br><br>
-					
-					Studio: Miramax Films
+                <br>
+                A naive man is appointed to fill a vacancy in the United States Senate. His plans promptly collide with 
+                political corruption, but he doesn't back down.<br><br>
+                Director: Frank Capra<br><br>
+                Writers: Sidney Buchman, Lewis R. Foster<br><br>
+                Stars: James Stewart, Jean Arthur, Claude Rains<br><br>
+                
+            
+                Country: America<br><br>
+                
+                Studio: Columbia Pictures
             </p>
           </div>
         </div>
@@ -47,19 +51,55 @@
   
       <div id="review">
           <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
-        
             
           </p>
 
           <p>
-			 
-				Review goes here.
+            Only in an American movie can you have both a montage of all the highlights of America's great accomplishments 
+            and a story about the deep rooted corruption within its highest governmental offices. Mr. Smith Goes to Washington is 
+            the very best that American cinema has to offer. Is it propoganda, or a scathing criticism of American politics? 
+            It was attacked at launch by the Washington press and politicians in the U.S. Congress as anti-American and 
+            pro-Communist for its portrayal of corruption in the American government. Senators attempted to retaliate for the damage 
+            they felt the film had done to the reputation of their institution was by pushing the passage of the Neely Anti-Block Booking Bill, 
+            which eventually led to the breakup of the studio-owned theater chains in the late 1940s.
             
+            
+
+            <br><br>
+            Despite this it was still a massive box office success and launched James Stewart into stardom. Mr. Smith was 
+            nominated for eleven Oscars and won for Best Original Writing. It was initially going to be a sequel to Mr. Deeds, 
+            but Gary Cooper wasn't available so the role switched to Stewart. Many similarities can be noticed between the two, however, 
+            such as the plot revolving around an idealistic, country kid attempting to take down a system greater than himself.
+
+
             <br><br>
 
+            Goddamn if this ain't an amazing film. Stewart is incredible. Both powerful and innocent all at the same time. The image 
+            of a single rogue country boy up against the enture U.S. government is the underdog story of all underdog stories. His charisma 
+            and fervor makes it impossible not to root for him. And on such a grand stage the stakes are dialed to eleven. Essentially, 
+            Capra took everything he learned from Mr. Deeds and made it grander and more intense. Squeezing out every bit of sympathy and 
+            good feeling he could get. If it were any year other than 1939 this would have won best picture.
+            
+            
+              
+            
+
 
 
             
+
+            <br><br>
+
+            
+
+
+            
+
+            
+
+            
+
+        
             
           </p>  
       </div>

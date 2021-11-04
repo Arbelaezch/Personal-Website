@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Movie Blog</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+
+
+<body>
+  <?php echo require_once("../../../../../nav.php"); ?>
+
+  <div id="page">
+
+    <!-- MAIN CONTENT-->
+    <div id="content" class="side">
+      <div class="header">
+        <div class="top">
+          <div id="title" class="title">
+            <h1>Godzilla vs. Kong (2020)</h1>
+          </div>
+          <div id="rating" class="title">
+            <h2 class="single">6</h2>
+            
+          </div>
+        </div>
+        <div class="mid">
+          <div id="picture" class="info">
+            <img src="../images/godVKong.jpg" alt="Godzilla vs. Kong">
+          </div>
+          <div id="synopsis" class="info">
+            <p class="synopsis"> 
+					<br>
+					The epic next chapter in the cinematic Monsterverse pits two of the greatest icons in motion picture history against one another - the fearsome Godzilla and the mighty Kong - with humanity caught in the balance.<br><br>
+          Director: Adam Wingard<br><br>
+          Writers: Terry Rossio, Michael Dougherty<br><br>
+          Stars: Alexander Skarsgård, Millie Bobby Brown, Rebecca Hall<br><br>
+									
+					Country: United States<br><br>
+					
+					Studio: Warner Bros. Pictures
+            </p>
+          </div>
+        </div>
+      </div>
+  
+      <div id="review">
+          <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
+        
+            
+          </p>
+
+          <p>
+			 
+            
+       
+            Never did I think Hollywood and American cinemas would be saved by the likes of Godzilla and King Kong, but with almost $300 million international so far, it's seeming to do just that. Beyond how good the movie is, it is putting theaters and future hollywood blockbusters on its back. I think we should all go around and thank Mr. Kong for not just fighting Godzilla, but also Covid-19 theater closures.
+
+            <br><br>
+
+            Looking back on my previous Monsterverse film reviews I feel I did not adequetely convey why I didn't give them a higher score. Well just to clarify, the number of plot holes in these movies is astounding. Kong: Skull Island, Godzilla: King of the Monsters, and still now in Godzilla vs. Kong there's almost no plotpoint I feel that has strong justification for why it's happening. None of the human characters, and sometimes even the monsters simply act in a way that is beneficial to nothing other than the scriptwriter. This of course undercuts already mostly boring characters and leaves a sense that you just have to wait for the action to get going in order to get any kind of enjoyment out of the film. So while I do and always hope to enjoy cheesy monster flicks, these flicks in general are hurt by a lack of common sense.
+
+            <br><br>
+
+            Other minor issues with this particular iteration are the half baked attempts at integrating music. It seems there was an attempt to add some cool catchy tunes, but these short snippets never managed to last long enough to have any real impact on my mood or to connect me to a situation. Also, I realize that conspiracy theorists have had their day in film before, but with Qanon and the recent extreme polarized opinions of large groups of people I was turned off of these segments. Like the bleach stuff. This was just in poor taste for me. 
+
+            <br><br>
+
+            Initially, I was frustrated with this film for incorporating so many different branching storylines. I was bored and ready to attack the movie for being a mess, but each storyline I felt actually came around and had a reasonable payoff that made sense. It just took a long, convoluted time to get there. I really do wish there weren't so many plotholes and that the events of the first half of the film made more sense because I feel I would have enjoyed the whole thing a lot more. 
+            <br><br>
+            *SPOILERS* To me it feels like the studio knew they wanted Godzilla and Kong to team up and fight Mecha-Godzilla, and they did whatever they had to do to get to that point with no regard for if it made any sense. <br>
+            *SPOILERS OVER*
+            <br><br>
+            This is of course in contrast to Kong: Skull Island which had a relatively straightforward plot of "get off the island." Though that movie had its own fair share of plotholes and nonsense.
+
+            <br><br>
+            
+            The film, in my opinion looked really good again. The cinematography of these movies has always impressed me, and I think this was the best of the bunch so far with much clearer fight sequences than ever before. I also surprisingly liked the kids' characters and Bernie despite his conspiracy theory background. Im not embarrassed to say that group consistently made me chuckle. Overall, I thought the characters were less boring than ever before, despite all of the nonsensical plot points. Which I know is probably not going to be a quote they put on the boxart.  
+
+            <br><br>
+
+            But what really matters is the fights. In my opinion this movie has the best fight sequences of the whole monsterverse so far. Both cinematographically good looking, and also the choreography and locations was really well done. Kong and Godzilla fighting on aircraft carriers was super cool and clever, I thought. 
+
+            <br><br>
+
+            If you like big budget monster movies and wanna check out one of the monsterverse films, this is probably a good bet. This or Kong: Skull Island.
+            
+
+
+
+          </p>  
+      </div>
+    </div>
+    
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="side">
+      <div id="sideHeader">
+        <a href="../../../250.php" id="250" >
+          <img style="width: 250px; height: 200px;" src="../../../images/Nav/top250.jpg">
+        </a>
+        <a href="../../1900s/1900s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1900s.jpg">
+        </a>
+        <a href="../../1930s/1930s.php" class="dec">
+            <img style="width: 250px; height: 65px;" src="../../../images/Nav/1930s.jpg">
+          </a>
+        <a href="../../1940s/1940s.php" class="dec">
+          <img style="width: 250px; height: 55px;" src="../../../images/Nav/1940s.jpg">
+        </a>
+        <a href="../../1950s/1950s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1950s.jpg">
+        </a>
+        <a href="../../1960s/1960s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1960s.jpg">
+        </a>
+        <a href="../../1970s/1970s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1970s.jpg">
+        </a>
+        <a href="../../1980s/1980s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1980s.jpg">
+        </a>
+        <a href="../../1990s/1990s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1990s.jpg">
+        </a>
+        <a href="../../2000s/2000s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/2000s.jpg">
+        </a>
+        <a href="../../2010s/2010s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/2010s.jpg">
+        </a>
+        <a href="../../2020s/2020s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/2020s.jpg">
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="footer">
+	    <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
+    </div>
+  
+	
+
+</body>
+</html>

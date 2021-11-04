@@ -18,28 +18,29 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>Office Space (1999)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">5</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/officeSpace.jpg" alt="Office Space">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+					Three company workers who hate their jobs decide to rebel against their greedy boss.<br><br>
+					Director: Mike Judge<br><br>
+					Writers: Mike Judge<br><br>
+					Stars: Ron Livingston, Jennifer Aniston, David Herman<br><br>
 									
+			
 					Country: America<br><br>
 					
-					Studio: Miramax Films
+					Distributed by: 20th Century Fox
             </p>
           </div>
         </div>
@@ -47,19 +48,32 @@
   
       <div id="review">
           <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
-        
+          
             
           </p>
 
           <p>
 			 
-				Review goes here.
-            
+        
+			Office Space is good fun comedy. I've never seen a Mike Judge work before so his style of comedy was new to me, but because his style involves telling every working person's tale, I was able to enjoy it almost immediately.
+
+
             <br><br>
+			
+			The film is genuinely funny, and there are plenty of moments that I was able to identify as "internet important," such as the destruction of the printer sequence. I laughed at the film quite a bit and even had a bit of new-found love for my own working life. 
+
+			<br><br>
+
+			Other than that the film is pretty flat, with the plot being predicable just about the whole way through. Sure I'm not here to be shocked or surprised or anything, but if I know what is going to happen next, then there is no tension when Ron Livingston believes he is going to go to jail and is saying his goodbyes to his closest friends, completely undercutting the last quarter of the film. 
+
+			<br><br>
+
+			Overall, I enjoyed the film and its comedic take on office life, but as a film it leaves much to be desired. Office Space could probably have been an internet short I would probably appreciate it more.
 
 
+			
 
-            
+ 
             
           </p>  
       </div>

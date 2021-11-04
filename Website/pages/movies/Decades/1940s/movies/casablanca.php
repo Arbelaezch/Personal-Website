@@ -18,7 +18,7 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>Casablanca (1943)</h1>
           </div>
           <div id="rating" class="title">
             <h2 class="single"></h2>
@@ -27,19 +27,19 @@
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/casablanca.jpg" alt="Casablanca">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+					A cynical expatriate American cafe owner struggles to decide whether or not to help his former lover and her fugitive husband escape the Nazis in French Morocco.<br><br>
+					Director: Michael Curtiz<br><br>
+					Writers: Julius J. Epstein, Philip G. Epstein, Howard Koch<br><br>
+					Stars: Humphrey BogartIngrid BergmanPaul Henreid<br><br>
 									
-					Country: America<br><br>
+					Country: United States<br><br>
 					
-					Studio: Miramax Films
+					Studio: Warner Bros.
             </p>
           </div>
         </div>
@@ -52,10 +52,13 @@
           </p>
 
           <p>
-			 
-				Review goes here.
-            
-            <br><br>
+
+				Casablanca is a classic Hollywood romance starring Humphrey Bogart and Ingrid Bergman, based on an unproduced stage play called Everybody Comes to Rick. It won the Academy Awards for Best Picture, Best Director and Best Adapted Screenplay. Nobody on set believed it would be anything special, and even on its release it was met with good, if not great praise. The film's reputation grew with time to where it is now regarded as one of the greatest films ever made.
+
+				<br><br>
+
+				
+
 
 
 

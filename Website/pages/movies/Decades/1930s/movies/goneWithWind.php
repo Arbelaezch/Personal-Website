@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Movie Blog</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+
+
+<body>
+  <?php echo require_once("../../../../../nav.php"); ?>
+
+  <div id="page">
+
+    <!-- MAIN CONTENT-->
+    <div id="content" class="side">
+      <div class="header">
+        <div class="top">
+          <div id="title" class="title">
+            <h1> Gone With the Wind (1939)</h1>
+          </div>
+          <div id="rating" class="title">
+            <h2 class="single"></h2>
+            <h2 class="double">
+              Enjoyment: 5<br>
+              Appreciation: 8
+              
+            </h2>
+          </div>
+        </div>
+        <div class="mid">
+          <div id="picture" class="info">
+            <img src="../images/goneWithWind.jpg" alt="Gone With the Wind">
+          </div>
+          <div id="synopsis" class="info">
+            <p class="synopsis"> 
+                <br>
+                A manipulative woman and a roguish man conduct a turbulent romance during the American Civil War and Reconstruction periods.<br><br>
+                Directors: Victor Fleming<br><br>
+                Writers: Margaret Mitchell, Sidney Howard<br><br>
+                Stars: Clark Gable, Vivien Leigh, Thomas Mitchell<br><br>
+                
+            
+                Country: America<br><br>
+                
+                Studio: Columbia Pictures
+            </p>
+          </div>
+        </div>
+      </div>
+  
+      <div id="review">
+          <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
+            "They were going to lick the Yankees in a month. Poor Gallant Fools."
+          </p>
+
+          <p>
+            
+            Gone With the Wind is a tale about the fall of the "gallant" South. Its a tale of a culture that, even by the time of this film's release, had been long dead.
+            Its a massive, romantic epic that was a technical marvel for the time and has since become one of the most notorious films ever made. Costing $3.85M to make, 
+            Gone with the Wind was the second most expensive film ever made, but more than made up for it by becoming the highest grossing film of all time having 
+            grossed an adjusted $3.4 Billion in today's dollars. It was nominated for eleven Oscars and won five, including Best Picture. Despite its 
+            critical and box office successes however, it is a film marred in controversy as well as retrospective critiques that leave this classic tainted upon modern viewings.  
+            
+            
+            <br><br>
+
+
+            Coming away from this film its hard to miss it's romanticized view of the Old South and its culture of proper Gentlemen and Ladies. While the film seems to lament 
+            this lost culture its also hard to miss the films scathing criticisms of it as well. From the very beginning Southern culture as well as lead Lady Scarlett O'Hara 
+            exhibit a trend of denying the facts. Its fitting that the film itself romanticizes the old south and its past, because everyone in this film romanticizes their lives 
+            into the un-real. Scarlett refuses to listen to reality and hangs on to her selfish ideals of loving Ashley Wilkes by shutting out the real world in a very similar way 
+            that young Souther men ignore the realities that the South would be at a disadvantage should war come. The only person who speaks in agreeance with reality is Clark 
+            Gable's Rhett Butler, who is seen as a false gentleman. This is because he refuses to accept and play by the same cultural rules as everyone else in the South. He chooses 
+            to listen to reality rather than romanticize it. Aside from the grand production, for me this is the great strength of this film. A seeming critique of Southern culture 
+            while parading it around in beautiful clothing.
+            
+            <br><br>
+
+            
+            That being said Gone with the Wind also gets a lot wrong, and most abhorrently is its depiction of African Americans. This film is a form of social propaganda
+            that would have you think slavery was good times enjoyed by all. It paints a picture of black slaves as being stereotypical placeholders that are happy to serve their masters without any thought for their own freedom. The film also makes it look like slavery was easy living where all individuals involved were respected and treated fairly. Upon release, black commentators criticized the film for its depiction of black people and as a glorification 
+            of slavery and today that is more apparent than ever. A view of this film as a fairy tale where the events are shrowded in a layer of Disney perfection is fine so long as viewers 
+            understand that it is a fabricated view of the past. That in reality no culture is and has never been this prim and perfect, and that above all the atrocities committed by this 
+            particular culture are morally reprehensible. 
+            
+            
+            <br><br>
+
+            Besides the race politics, Gone With the Wind is also just not that extrordinary of a film. Its production is rivalled by no other from the time, with its design 
+            and sets and style. It looks physically beautiful, but there is no artistic beauty to be found. The script is a plain and dry. The cinematography bland and safe. 
+            The performances are swell, in particular Vivien Leigh as Scarlett, but pretty sets and good acting are hardly enough to deserve a four hour runtime. No particular 
+            moment of this behemouth offended me, but no moment really wow'ed me either. I suppose if it were broken up into chunks it'd be more stomachable, but even then I 
+            don't really know why you would want to watch it. Overall, its a beautiful tale of a long dead culture, but it is neither accurate nor particularly interesting. 
+
+
+            <br><br>
+
+          
+        
+            
+          </p>  
+      </div>
+    </div>
+    
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="side">
+      <div id="sideHeader">
+        <a href="../../../250.php" id="250" >
+          <img style="width: 250px; height: 200px;" src="../../../images/Nav/top250.jpg">
+        </a>
+        <a href="../../1900s/1900s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1900s.jpg">
+        </a>
+        <a href="../../1930s/1930s.php" class="dec">
+            <img style="width: 250px; height: 65px;" src="../../../images/Nav/1930s.jpg">
+          </a>
+        <a href="../../1940s/1940s.php" class="dec">
+          <img style="width: 250px; height: 55px;" src="../../../images/Nav/1940s.jpg">
+        </a>
+        <a href="../../1950s/1950s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1950s.jpg">
+        </a>
+        <a href="../../1960s/1960s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1960s.jpg">
+        </a>
+        <a href="../../1970s/1970s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1970s.jpg">
+        </a>
+        <a href="../../1980s/1980s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1980s.jpg">
+        </a>
+        <a href="../../1990s/1990s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1990s.jpg">
+        </a>
+        <a href="../../2000s/2000s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/2000s.jpg">
+        </a>
+        <a href="../../2010s/2010s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/2010s.jpg">
+        </a>
+        <a href="../../2020s/2020s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/2020s.jpg">
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="footer">
+	    <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
+    </div>
+  
+	
+
+</body>
+</html>

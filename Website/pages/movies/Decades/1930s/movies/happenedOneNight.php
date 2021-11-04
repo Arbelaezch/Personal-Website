@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="../../style.css">
 </head>
 
+<script src="app.js"></script>
+
 
 <body>
   <?php echo require_once("../../../../../nav.php"); ?>
@@ -18,48 +20,74 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1> It Happened One Night (1934)</h1>
           </div>
           <div id="rating" class="title">
             <h2 class="single"></h2>
-            
+            <h2 class="double">
+              Enjoyment: 8<br>
+              Appreciation: 6
+            </h2>
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/happened one night.jpeg" >
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
-					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
-									
-					Country: America<br><br>
-					
-					Studio: Miramax Films
+                <br>
+                A spoiled heiress running away from her family is helped by a man who is 
+                actually a reporter in need of a story.<br><br>
+                Director: Frank Capra<br><br>
+                Writers: Robert Riskin (screen play), Samuel Hopkins Adams<br><br>
+                Stars: Clark Gable, Claudette Colbert, Walter Connolly<br><br>
+                
+            
+                Country: America<br><br>
+                
+                Studio: Columbia Pictures
             </p>
           </div>
         </div>
       </div>
   
       <div id="review">
-          <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
-        
-            
-          </p>
+          <p> 
 
-          <p>
-			 
-				Review goes here.
             
+
+            This pre-code, Romantic Comedy is every bit as enjoyable as its always been. 
+            The first film to win all five major Academy Awards: Best Picture, Best Director, Best Actor, Best Actress, 
+            and Best Adapted Screenplay. One of Frank Capra's early pictures cements him as a man who 
+            knows how to make a hit. 
+            The chemistry between stars Clark Gable and Claudette Colbert is electric. 
+            Colbert is hilariously bratty and Gable terrifically overconfident to a point where the two make 
+            a duo that has since been replicated a hundred times over. Together they are hilarious and 
+            adorable all at the same time.
+
+
+              
+             <br><br>
+
+            Once filming was completed, star Colbert claimed to a friend "I just finished the worst picture in the world." 
+            Overall the studio had low expectations for the film which is hilarious as it became Columbia's 
+            biggest hit to date.
+
+
             <br><br>
+            This romantic comedy really strikes a chord that few others can. Thanks to its performances it becomes relatable
+             and absured all at the same time. Its funny and enjoyable and timeless like few other films of the 
+             genre can be.
 
 
 
-            
+              
+
+             
+         
+
+        
             
           </p>  
       </div>
@@ -109,9 +137,9 @@
   </div>
 
 
-    <div class="footer">
-	    <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
-    </div>
+  <div class="footer" >
+	  <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
+	</div>
   
 	
 

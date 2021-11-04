@@ -7,9 +7,11 @@
   <link rel="stylesheet" href="../../style.css">
 </head>
 
+<script src="app.js"></script>
+
 
 <body>
-  <?php echo require_once("../../../../../nav.php"); ?>
+<?php echo require_once("../../../../../nav.php"); ?>
 
   <div id="page">
 
@@ -18,48 +20,73 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1> Modern Times (1936)</h1>
           </div>
           <div id="rating" class="title">
             <h2 class="single"></h2>
-            
+            <h2 class="double">
+              Enjoyment: 8<br>
+              Appreciation: 9
+            </h2>
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/modern times.jpeg" >
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
-					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
-									
-					Country: America<br><br>
-					
-					Studio: Miramax Films
+                <br>
+                The Tramp struggles to live in modern industrial society with the help of a young homeless woman.<br><br>
+                Director: Charles Chaplin<br><br>
+                Writer: Charles Chaplin<br><br>
+                Stars: Charles Chaplin, Paulette Goddard, Henry Bergman<br><br>
+                
+            
+                Country: America<br><br>
+                
+                Studio: United Artists
             </p>
           </div>
         </div>
       </div>
   
       <div id="review">
-          <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
+        <p>
+            "A story of industry, of individual enterprise - humanity crusading in the pursuit of happiness."
+        </p>  
         
-            
-          </p>
+        <p> 
+        
+            Modern Times is a commentary on modern industrialization and the struggles of the working class during the Great Depression 
+            as ordinary people attempted to adjust to changing working conditions. Its Chaplin's first "talkie" and 
+            the last time he will ever play his iconic Tramp character. Regarded very highly as both comedically hilarious and 
+            politically incisive, Modern Times was a box office success thought not as much so as City Lights.
 
-          <p>
-			 
-				Review goes here.
-            
+          
+              
+             <br><br>
+
+             I find it to be oddly applicable to today's ever more automated times. I am also struck by how, 
+             during the assembly line sequence, Chaplin can't stop himself from performing his 
+             highly routinized job as I often feel similar after coding for long hours.
+
+
             <br><br>
-
-
-
             
+            Modern Times is, like City Lights, a timeless classic that remains comedic and relevant. 
+            It packs a punch that most films today can only dream of. You would think that the silent treatment 
+            of his style would get old, yet it bears a charm that manages to earn the step backwards. It almost makes you wish 
+            we still had Chaplin with us here today to provide us with his apt, comedic commentary on these 
+            new modern times.
+
+
+              
+
+             
+         
+
+        
             
           </p>  
       </div>
@@ -109,9 +136,9 @@
   </div>
 
 
-    <div class="footer">
-	    <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
-    </div>
+  <div class="footer" >
+	  <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
+	</div>
   
 	
 

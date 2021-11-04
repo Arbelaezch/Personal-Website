@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="../../style.css">
 </head>
 
+<script src="app.js"></script>
+
 
 <body>
   <?php echo require_once("../../../../../nav.php"); ?>
@@ -18,48 +20,67 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1> Frankenstein (1931)</h1>
           </div>
           <div id="rating" class="title">
             <h2 class="single"></h2>
-            
+            <h2 class="double">
+              Enjoyment: 4<br>
+              Appreciation: 6
+            </h2>
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/frankenstein.bTsxMTE4MDA2OTtqOzE4NTM0OzEyMDA7ODAwOzEyMDA" >
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
-					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
-									
-					Country: America<br><br>
-					
-					Studio: Miramax Films
+                <br>
+                An obsessed scientist assembles a living being from parts of exhumed corpses.<br><br>
+                Director: James Whale<br><br>
+                Writers: John L. Balderston, Mary Shelley (novel)<br><br>
+                Stars: Colin Clive, Mae Clarke, Boris Karloff<br><br>
+                
+            
+                Country of Origin: America<br><br>
+                
+                Studio: Universal Pictures
             </p>
           </div>
         </div>
       </div>
   
       <div id="review">
-          <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
-        
-            
-          </p>
+          <p> 
 
-          <p>
-			 
-				Review goes here.
-            
+            "I think it will Thrill you. It may Shock you. It might even <em>Horrify</em> you."
+
             <br><br>
+              Following from the success of Dracula, of the same year, comes Frankenstein;
+               another horror B-movie classic. From the hunchback assistant to an ecstatic 
+               "Its Alive," Frankenstein is responsible for so much that the Horror genre has
+               come to be known for. That being said, 
+               while I found myself enjoying this one more than Dracula, 
+                its only because it was more eccentric. Truthfully, I found myself laughing at the 
+               terribly over the top performances and poor dialogue. I still enjoyed myself watching it,
+               the the atmosphere, the "fear" that is mentioned in the open monologue has all but evaportated.
+              
+             <br><br>
 
 
+             Frankenstein was another big earner for Universal that ended up spawning a couple of 
+             sequels including Bride of Frankenstein and Son of Frankenstein. Something cool is that 
+             the machine that reanimates the monster has a Tesla Coil on it made by Nikola Tesla himself. 
+             Another thing to note is that its the first fourth wall break I've seen since The Great Train 
+             Robbery (1903). 
 
-            
+              <br><br>
+
+             
+         
+
+        
             
           </p>  
       </div>
@@ -109,9 +130,9 @@
   </div>
 
 
-    <div class="footer">
-	    <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
-    </div>
+  <div class="footer" >
+	  <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
+	</div>
   
 	
 

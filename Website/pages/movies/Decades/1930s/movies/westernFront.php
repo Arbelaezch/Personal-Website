@@ -7,9 +7,11 @@
   <link rel="stylesheet" href="../../style.css">
 </head>
 
+<script src="app.js"></script>
+
 
 <body>
-  <?php echo require_once("../../../../../nav.php"); ?>
+<?php echo require_once("../../../../../nav.php"); ?>
 
   <div id="page">
 
@@ -18,48 +20,52 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1 style="font-size: x-large; padding-top: 12px;"> All Quiet on the Western Front (1930)</h1>
           </div>
           <div id="rating" class="title">
             <h2 class="single"></h2>
-            
+            <h2 class="double">
+              Enjoyment: 6<br>
+              Appreciation: 7
+            </h2>
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/western front.jpeg" >
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
-					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
-									
-					Country: America<br><br>
-					
-					Studio: Miramax Films
+              A young soldier faces profound disillusionment in the soul-destroying horror of World War I.<br><br>
+              Director: Lewis Milestone<br><br>
+              Writers: Erich Maria Remarque, Maxwell Anderson<br><br>
+              Stars: Lew Ayres, Louis Wolheim, John Wray<br><br>
+                
+            
+                Country of Origin: America<br><br>
+                
+                Studio: Universal Pictures<br><br><br><br><br><br><br><br>
             </p>
           </div>
         </div>
       </div>
   
       <div id="review">
-          <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
-        
-            
-          </p>
-
-          <p>
-			 
-				Review goes here.
-            
+          <p> One of the early talkie War epics that fully showcases the harrowing struggles of war, and those who fight them.
+            The film follows some of the young men who join the German military at the onset of WW1.
+            Just like the men, the film is full of life until its not. The film was a major success both 
+            critically and at the box office, winning Oscars for Best Picture and Direction. It was also 
+            nominated for cinematography, and it certainly shows, making huge leaps in the scale of on-screen conflicts, 
+            as well as in the action being shown. 
             <br><br>
 
 
-
-            
+            Its easy to see that many war films made today owe much of their structure 
+            and content to this very early example of the genre. Its massive, and I really did enjoy it. 
+            It starts to drag at certain points, but I love the first and the last thirds, and the big 
+            set pieces are really quite incredible. Its also very sad in parts and I wasn't totally expecting that. 
+            Overall the film is a kick to the gut that is still as impactful as its always been. 
+            <br><br>
             
           </p>  
       </div>
@@ -109,9 +115,9 @@
   </div>
 
 
-    <div class="footer">
-	    <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
-    </div>
+  <div class="footer" >
+	  <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
+	</div>
   
 	
 

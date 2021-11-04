@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Movie Blog</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+
+
+<body>
+  <?php echo require_once("../../../../../nav.php"); ?>
+
+  <div id="page">
+
+    <!-- MAIN CONTENT-->
+    <div id="content" class="side">
+      <div class="header">
+        <div class="top">
+          <div id="title" class="title">
+            <h1>The Human Centipede: First Sequence (2009)</h1>
+          </div>
+          <div id="rating" class="title">
+            <h2 class="single">8</h2>
+            
+          </div>
+        </div>
+        <div class="mid">
+          <div id="picture" class="info">
+            <img src="../images/centipede.jpeg" alt="Human Centipede">
+          </div>
+          <div id="synopsis" class="info">
+            <p class="synopsis"> 
+					<br>
+					A mad scientist kidnaps and mutilates a trio of tourists in order to reassemble them into a human centipede, created by stitching their mouths to each others' rectums.<br><br>
+					Director: Tom Six<br><br>
+					Writer: Tom Six<br><br>
+					Stars: Dieter Laser, Ashley C. Williams, Ashlynn Yennie<br><br>
+									
+					Country: Netherlands<br><br>
+					
+					Distributed by: Bounty Films
+            </p>
+          </div>
+        </div>
+      </div>
+  
+      <div id="review">
+		  <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
+			
+			<em>So... fuck.</em>
+        
+          </p>
+
+          <p>
+			 
+			I avoided watching this film when it was first released because the concept was just too repugnant that I didn't even want to attempt it. Ten years later I felt I had mentally prepared enough to finally give it a real go. I'm glad I waited because I feel like it has been so long since it was released I was not influenced by the cultural zeitgeist that this movie carried along with it so long ago. You remember, that public outcry that painted it as a near snuff film or something to be ridiculed. Apparently that image still persists however, as I still have friends that laugh at it and call it ridiculous. For me, I did not find this film funny or ridiculous. I didn't think it was a gory, torture-porn snuff film either. I was instead horrified by it and its very well handled use of suspense and the unseen. 
+		  
+			
+			<br><br>
+
+			I will admit that I started out trying to laugh at The Human Centipede. I called the main female protagonists annoying and poorly written. I poked fun at the weird looking Doctor and his awkward line delivery. But as the film went on the it began to get the better of me. Its slow burn and all too realistic feel sucked me into believing its world and these characters and from there I was at its mercy. I knew it was coming but by the time Dieter Laser was diagraming the procedure he was going to perform on his trapped patients, my hands were firmly lodged between the screen and my eyes. 
+
+			<br><br>
+
+			From there the film continued its slow descent into more and more horrible situations, yet always restricting itself to showing the bare minimum necessary to make you wince. There is a remarkable restraint on when gore is used that I did not expect to find here. Instead, almost all of my horror from this film comes from the suspense associated with what my mind was making up on its own. Despite looking away from the screen, I could still see it all in my head. 
+
+			<br><br>
+
+			I've touched on it a few times, but Dieter Laser really makes this film. Without his sadistically believable look and behaviour this film would not be nearly as effective as it is. He is easily one of my favourite horror villains of all time, bringing a fresh personality to a mad scientist that is hard to do in such a saturated genre.
+
+			<br><br>
+
+			Despite the poor reviews, I firmly believe The Human Centipede is one of the better horror films that I have ever seen. It is a horror that doesn't exist on the screen, but in your mind, and I admire it for that. It's a well made suspenseful horror that, if it weren't for the cultural stigma that surrounds it I assume it would be far more popular than it is today. 
+			
+			<br><br>
+
+
+            
+            
+          </p>  
+      </div>
+    </div>
+    
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="side">
+      <div id="sideHeader">
+        <a href="../../../250.php" id="250" >
+          <img style="width: 250px; height: 200px;" src="../../../images/Nav/top250.jpg">
+        </a>
+        <a href="../../1900s/1900s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1900s.jpg">
+        </a>
+        <a href="../../1930s/1930s.php" class="dec">
+            <img style="width: 250px; height: 65px;" src="../../../images/Nav/1930s.jpg">
+          </a>
+        <a href="../../1940s/1940s.php" class="dec">
+          <img style="width: 250px; height: 55px;" src="../../../images/Nav/1940s.jpg">
+        </a>
+        <a href="../../1950s/1950s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1950s.jpg">
+        </a>
+        <a href="../../1960s/1960s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1960s.jpg">
+        </a>
+        <a href="../../1970s/1970s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1970s.jpg">
+        </a>
+        <a href="../../1980s/1980s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1980s.jpg">
+        </a>
+        <a href="../../1990s/1990s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1990s.jpg">
+        </a>
+        <a href="../../2000s/2000s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/2000s.jpg">
+        </a>
+        <a href="../../2010s/2010s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/2010s.jpg">
+        </a>
+        <a href="../../2020s/2020s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/2020s.jpg">
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="footer">
+	    <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
+    </div>
+  
+	
+
+</body>
+</html>

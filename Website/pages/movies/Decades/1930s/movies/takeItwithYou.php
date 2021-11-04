@@ -7,9 +7,11 @@
   <link rel="stylesheet" href="../../style.css">
 </head>
 
+<script src="app.js"></script>
+
 
 <body>
-  <?php echo require_once("../../../../../nav.php"); ?>
+<?php echo require_once("../../../../../nav.php"); ?>
 
   <div id="page">
 
@@ -18,28 +20,30 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1> You Can't Take it With You (1938)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">2</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/takeItWithYou.jpg" >
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
-					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
-									
-					Country: America<br><br>
-					
-					Studio: Miramax Films
+                <br>
+                A man from a family of rich snobs becomes engaged to a woman from a good-natured but 
+                decidedly eccentric family.<br><br>
+                Director: Frank Capra<br><br>
+                Writers: Robert Riskin, George S. Kaufman<br><br>
+                Stars: Jean Arthur, James Stewart, Lionel Barrymore<br><br>
+                
+            
+                Country: America<br><br>
+                
+                Studio: Columbia Pictures
             </p>
           </div>
         </div>
@@ -47,19 +51,50 @@
   
       <div id="review">
           <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
-        
             
           </p>
 
           <p>
-			 
-				Review goes here.
+              Another Best Picture winner for Capra, and his third Best Director Oscar in five years. 
+              Based off of a Pulitzer Prize winning play, You Can't Take it With You is a wholesome look at 
+              American life for two different kinds of families, the rich and powerful, and those not so. 
+              James Stewart is phenomenal even in this early hit of his, but to be honest I couldn't stand this 
+              picture as a whole. It was just far too innocent and sappy for me. 
+              
             
+
             <br><br>
 
+            The Comedy/Romance doesnt hold as much weight as it maybe used to and now even 
+            the narrative is just too happy go lucky for me. Before I continue I'll disclose that I could only stomach 
+            the first half of the film before I shut it off. Maybe I'm wrong about it and things take a drastic turn 
+            at some point but the way I see it continuing is a tale about how being a rich snob is bad and a happy go 
+            lucky family that pays no taxes and doesn't go to work is good. 
 
+            <br><br>
+
+            Coming off of Mr. Deeds its clear that the two stories have their similarities, but for me a massive 
+            difference is the focus of each film. Deeds focus' on the caring, stoic nature of its charasmatic lead 
+            in Gary Cooper. Cooper nails it and by the end, regardless of how sappy the tale is I wanted him to be 
+            successful. In You Can't Take it With You the focus rests on Jean Arthurs eccentric family, while 
+            the charasmatic male lead takes a back seat. Their eccentricities 
+            would be fine if there weren't so many members of the family. I found myself not caring about any one of them 
+            as they acted almost like children. In a feel good picture about the lives and struggles of the working class, maybe at 
+            least have them work? I identified more with the cruel yet rational rich who at least understood you need 
+            money in order to live. 
+
+            <br><br>
+
+            I think Capra, and this play as a whole, just goes off the deep end in pandering to people in financially 
+            unstable situations. It crosses over into the territory of proclaiming that being happy and foregoing work 
+            and money is the ideal way to live, when in reality no poor person could ever survive this way. 
+
+              
+            <br><br>
 
             
+
+        
             
           </p>  
       </div>

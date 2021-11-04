@@ -18,28 +18,28 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>Sergeant York (1941)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">6</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/york.jpg" alt="Sergeant York">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+					A marksman is drafted in World War I and ends up becoming one of the most celebrated war heroes.<br><br>
+          Director: Howard Hawks<br><br>
+          Writers: Abem Finkel, Harry Chandlee<br><br>
+          Stars: Gary Cooper, Walter Brennan, Joan Leslie<br><br>
 									
 					Country: America<br><br>
 					
-					Studio: Miramax Films
+					Studio: Warner Brothers
             </p>
           </div>
         </div>
@@ -52,10 +52,19 @@
           </p>
 
           <p>
-			 
-				Review goes here.
+       
             
+
+            Sergeant York is a biography on one of the most famous American heros of World War I, Sergeant Alvin York. The film was the highest grossing film of 1941 and won actor Gary Cooper the Academy Award for Best Actor. York was also nominated for ten other Awards and won for Best Editing. Part of the reason for York's incredible commercial success was that it was still playing in theatres during the attack on Pearl Harbor, and so Americans flocked to this patriotic picture.
+
             <br><br>
+
+            I liked Sergeant York. It's a quaint, sentimental picture that aims to celebrate an American war hero and makes no compromises in doing so. The film makes a very large emphasis on the man, Alvin, rather than on his legacy as a war hero; Alvin only joins the army after the halfway point. In doing this, director Howard Hawkes makes a very conscious effort to have audiences relate and empathize with Alvin rather than cheer him on simply for his killing. This is a smart move as Cooper plays York with his classic charisma that leaves you rooting for him all the way. This is why the film can get away with only a single action segment, Cooper is so enjoyable to watch you hardly need anything else to be entertained.
+
+            <br><br>
+
+            The story is sentimentality pumped to the max, sometimes making me believe I was sitting through a Frank Capra picture. It is a fun, enjoyable film that is extremely accessible to audiences (so long as you're American), but there's just not much more to it than that. If I were to ever watch it again I could very well see myself falling asleep because it's just very one dimensional with nothing much more to offer. If you take Gary Cooper's natural charisma out of this film, I gotta say it wouldn't be half of what it is. I enjoyed Sergeant York for what it was, but it really wasn't a hell of a lot.
+
 
 
 

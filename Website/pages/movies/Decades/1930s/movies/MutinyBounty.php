@@ -7,10 +7,11 @@
   <link rel="stylesheet" href="../../style.css">
 </head>
 
+<script src="app.js"></script>
 
 
 <body>
-  <?php echo require_once("../../../../../nav.php"); ?>
+<?php echo require_once("../../../../../nav.php"); ?>
 
   <div id="page">
 
@@ -19,32 +20,32 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1> City Lights (1931) </h1>
+            <h1> Mutiny on the Bounty (1935)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single">10</h2>
+            <h2 class="single">3</h2>
             <h2 class="double">
-            
-            </h2>        
+              
+            </h2>
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/city lights.jpeg" >
+            <img src="../images/mutiny on bounty.jpeg" >
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
                 <br>
-                With the aid of a wealthy erratic tippler, a dewy-eyed tramp who has fallen in love 
-                with a sightless flower girl accumulates money to be able to help her medically.<br><br>
-                Director: Charles Chaplin<br><br>
-                Writer: Charles Chaplin<br><br>
-                Stars: Charles Chaplin, Virginia Cherrill, Florence Lee<br><br>
-                                
-            
-                Country of Origin: America<br><br>
+                A tyrannical ship captain takes his reluctant crew on a two-year voyage that will 
+                change British maritime law forever.<br><br>
+                Director: Frank Lloyd<br><br>
+                Writers: Talbot Jennings, Jules Furthman<br><br>
+                Stars: Charles Laughton, Clark Gable, Franchot Tone<br><br>
                 
-                Studio: United Artists
+            
+                Country: America<br><br>
+                
+                Studio: Metro-Goldwyn-Mayer
             </p>
           </div>
         </div>
@@ -52,40 +53,34 @@
   
       <div id="review">
           <p> 
-              The silent film behind which all other silent films stand. The granddaddy of them all. 
-              In my opinion The greatest silent film of all time. A narrative and comedy masterpiece. 
-              Chaplin takes what he has learned from his craft so far and refines it into a perfect 
-              picture that showcases the best silent films have to offer.
+              Winner of Best Picture and one of MGM's biggest hits of the 30s, <em>Mutiny on the Bounty</em> is a film about the real life events where 
+              a crew of British sailors mutinied against their Captain in the late 1700s. The year after Clark Gable 
+              made it big with <em>It Happened one Night</em>, he stars in yet another critical and box office success. 
+              This time, <em>Mutiny</em> has him flexing his acting chops by squaring off against Charles Laughton 
+              who plays the tyrannical Captain Bligh.
               
              <br><br>
 
-             City Lights was Chaplin's greatest box office and critical success. Despite being released 
-             well into the period where silent films were becoming outdated, Chaplin was still able to 
-             tell a story as engaging and heartfelt as anything else coming out at the time that had sound. 
-             The incredible choreography of the boxing scene, the spectacular nights on the town between Chaplin and 
-             his drunken millionaire buddy, and the relationship with the flower girl are all timeless segments that 
-             could have each been their own individual film they're so good. The romance between Chaplin and 
-             the flower girl is so convincing you'd never have known they hated eachother behind the scene. So much 
-             so that Chaplin fired and re-hired her halfway through shooting.
             
+             And that there is the best part of the film, in my opinion. The conflict between the two 
+             powerhouse performances of Gable and Laughton was tense, and what escalated it for me was  
+             the strict manners of it all. You could tell if they weren't two British officers these men would 
+             wanna tear eachothers heads off. But instead they have to communicate in a "civilized" way. Part of this 
+             tension between the men may have been real too as its reported that Laughton was resentful of 
+             Gable, who seemed to command more attention off screen and was obviously so much more physically 
+             appealing than himself.
+
              <br><br>
 
-             
-             If there is any single silent picture to watch, this would be the one. Or maybe Sherlock Jr. Either way 
-             you can't get any better than this.
-
-
-             <br><br>
-       
+             Besides that I found the film to be formulaic. The trip is really just a string of cruelties interlaced with shots of the 
+             ship travelling on a map. I can understand that this is a movie based on a real event, and so 
+             theres not much more you can do, but a quick Google reveals much of the cruelty inflicted by Bligh was 
+             orchestrated purely for the film. In fact it was such a typical 30s film I was surprised the 
+             Tahitian's didn't also speak English. I think I just wish the film did something creative with itself, 
+             rather than entirely resting on the laurels of its performances and visual cruelties. 
+             Overall, it was an interesting case study of an event I'd never heard of before that I will probably 
+             never return to again.
             
-             
-         
-            
-           
-
-         
-
-             
          
 
         
@@ -141,6 +136,8 @@
   <div class="footer" >
 	  <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
 	</div>
+  
+
   
 	
 

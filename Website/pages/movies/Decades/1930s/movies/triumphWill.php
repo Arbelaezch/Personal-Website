@@ -7,9 +7,11 @@
   <link rel="stylesheet" href="../../style.css">
 </head>
 
+<script src="app.js"></script>
+
 
 <body>
-  <?php echo require_once("../../../../../nav.php"); ?>
+<?php echo require_once("../../../../../nav.php"); ?>
 
   <div id="page">
 
@@ -18,48 +20,61 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>Triumph of the Will (1934)</h1>
           </div>
-          <div id="rating" class="title">
-            <h2 class="single"></h2>
-            
-          </div>
+          
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/triumph of will.jpeg" >
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
-					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
-									
-					Country: America<br><br>
-					
-					Studio: Miramax Films
+                <br>
+                The infamous propaganda film of the 1934 Nazi Party rally in Nuremberg, Germany.<br><br>
+                Director: Leni Riefenstahl<br><br>
+                Writers: Leni Riefenstahl, Walter Ruttmann<br><br>
+                Stars: Adolf Hitler, Hermann Göring, Max Amann<br><br>
+                
+            
+                Country: Germany<br><br>
+                
+                Studio: Universum Film AG (UFA)
             </p>
           </div>
         </div>
       </div>
   
       <div id="review">
-          <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
-        
-            
-          </p>
+          <p> 
 
-          <p>
-			 
-				Review goes here.
             
+
+            The Nazi propaganda film about Hitler reaching 700,000 of his followers in Nuremberg a couple of September 
+            days in 1934. With little dialogue, Hitler's Nazi Germany appeals to Germans through a picture of strength 
+            and unity. In the midst of a disenfranchised Germany, Hiter and Riefenstahl knew what was necessary to 
+            pursuade viewers was an image of a strong, mass movement. Together they could be great again, he promised.
+
+
+              
+             <br><br>
+
+             Its a powerful film, and thats whats so scary.
+
+            
+
+
             <br><br>
-
-
-
             
+
+
+
+              
+
+             
+         
+
+        
             
           </p>  
       </div>
@@ -109,9 +124,9 @@
   </div>
 
 
-    <div class="footer">
-	    <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
-    </div>
+  <div class="footer" >
+	  <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
+	</div>
   
 	
 

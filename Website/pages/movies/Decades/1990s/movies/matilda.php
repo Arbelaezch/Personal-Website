@@ -18,28 +18,29 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>Matilda (1996)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">7</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/matilda.jpg" alt="Matilda">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+					Story of a wonderful little girl, who happens to be a genius, and her wonderful teacher vs. the worst parents ever and the worst school principal imaginable.<br><br>
+					Director: Danny DeVito<br><br>
+					Writers: Roald Dahl, Nicholas Kazan<br><br>
+					Stars: Danny DeVito, Rhea Perlman, Mara Wilson<br><br>
 									
+			
 					Country: America<br><br>
 					
-					Studio: Miramax Films
+					Distributed by: Sony Pictures
             </p>
           </div>
         </div>
@@ -47,19 +48,45 @@
   
       <div id="review">
           <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
-        
+          
             
           </p>
 
           <p>
 			 
-				Review goes here.
-            
-            <br><br>
+        
+			Matilda is the kind of kids movie I wish I would have gotten to see as a child. It's fun and excentric and uses practical sets and props to suck you into its fantastical world. I didn't have much knowledge of this one going in so I was pleasantly surprised by its grounded charm and fantastical quality, much of which I think is courteousy of director Danny DeVito. Much like his other directed feature, War of the Roses, Matilda begins as a grounded tale about a seemingly-regular family taking place in excentric practical locations that progressively becomes more and more wild until it nearly flies off the hinges. 
+
+			<br><br>
+
+			Personally, I love DeVito's style. Its wacky and provides a twist to overrused genres to spice things up and take them farther than they usually go. For example, in this kind of Chris Columbus genre, films usually goes as far as having a talented, overlooked young child that has to beat the odds to prove to the adults that kids really can accomplish things themselves. Matilda treads this same territory, then blows the roof off of it by turning Matilda into a magical, supernatural tale of superpowers, supergenius, and a super villainess.
+
+			<br><br>
+
+			There's a fantastical presence that pervaides the world of the film that seems to make all things possible, whether feats of strenght or intelligence or what not. It provides a highly enjoyable experience that makes it easier for your brain to accept when something unbelievable does happen for the plot. 
+
+			<br><br>
+
+			I wish I could have seen this film as a child because I know I would have been awestruck and believed in the things I was seeing. Then I would have been terrified by the menacing head mistress. Finally, I would have appreciated my family for always caring for me in a way that the monsters in this film never do. 
+
+			<br><br>
+
+			Also Rhea Perlman does a phenomenal job as Mrs. Wormwood.
+
+			<br><br>
+
+			If I have one complaint with Matilda its that the film seems to stop dead in the third act when Matilda and her teacher are trapped in the house. Though I imagine this is the part that would have scared my socks off as a kid. Either way, I would have loved to cut this bit down to get more time with Matilda and her powers or to see her prank her family some more.
+
+			<br><br>
+
+			It's still a fantastic kids movie, however. I really enjoyed its positive, fun nature and had a genuinely good time. I suspect it is better for kids than it is for adults, but the fact adults can still enjoy it gives it some major props, in my books.
+
+			
 
 
+			
 
-            
+ 
             
           </p>  
       </div>

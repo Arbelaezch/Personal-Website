@@ -18,28 +18,28 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>Judas and the Black Messiah (2020)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">8</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/judas-and-the-black-messiah-poster.jpg" alt="Judas and the Black Messiah">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+					Bill O'Neal infiltrates the Black Panther Party per FBI Agent Mitchell and J. Edgar Hoover. As Party Chairman Fred Hampton ascends, falling for a fellow revolutionary en route, a battle wages for O'Neal's soul.<br><br>
+					Director: Shaka King<br><br>
+					Writers: Will Berson, Shaka King<br><br>
+					Stars: Daniel Kaluuya, LaKeith Stanfield, Jesse Plemons<br><br>
 									
-					Country: America<br><br>
+					Country: United States<br><br>
 					
-					Studio: Miramax Films
+					Studio: Warner Bros. Pictures
             </p>
           </div>
         </div>
@@ -53,10 +53,11 @@
 
           <p>
 			 
-				Review goes here.
+				Judas and the Black Messiah does something different. Director Shaka King gives it an almost biblical epic feel. From its score to the performances everything feels enormous in scope. I appreciated this unique style as, for me it elevated the events of the film onto a whole other scale. 
             
             <br><br>
 
+				I guess lets start with the obvious. Daniel Kaluuya, LaKeith Stanfield and just about every performance in here was out of this world, and I wouldn't be surprised to see more than a few winning awards.  
 
 
             

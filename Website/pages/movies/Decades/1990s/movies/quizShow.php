@@ -18,28 +18,29 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>Quiz Show (1994)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">6</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/quizShow.jpeg" alt="Quiz Show">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+					A young lawyer, Richard Goodwin, investigates a potentially fixed game show. Charles Van Doren, a big time show winner, is under Goodwin's investigation.<br><br>
+					Director: Robert Redford<br><br>
+					Writers: Paul Attanasio, Richard N. Goodwin<br><br>
+					Stars: Ralph Fiennes, John Turturro, Rob Morrow<br><br>
 									
+			
 					Country: America<br><br>
 					
-					Studio: Miramax Films
+					Produced by: Robert Redford
             </p>
           </div>
         </div>
@@ -47,19 +48,34 @@
   
       <div id="review">
           <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
-        
+          
             
           </p>
 
           <p>
-			 
-				Review goes here.
-            
-            <br><br>
+
+			This is a good film. It's well made and entertaining throughout, and yet I feel less than sold on it. Quiz Show is both an investigative film as well as a study on greed and show-business. It gives a good amount of time to both ventures, though maybe leans a little more heavily on the show-business side.
+
+      <br><br>
+
+      The film is fun in that it utilizes the high stakes nature of television along with scandal and downfall that keeps the tabloid gossip side of our brain satisfied. It even attempts to argue in favor of Big Television by expressing that, while the producers were lying to their audiences, at the end of the day nobody is really harmed for it. This, for me, elevates Quiz Show to be more than just your average investigative crime film. Director Robert Redford really did a good job with it, along with actors Ralph Fiennes and John Turturro, though Fiennes' accent was a thing that seemed to do whatever it wanted. Also, I couldn't take Rob Morrow seriously because every time he opened his mouth I thought he was doing a James Stewart impersonation. 
+
+      <br><br>
+
+
+      And yet there is something about this film that puts me to sleep. If I had to pick something, I would say that Redford's style is far too slow for this kind of tale. Or maybe that modern day television is a fast paced, unrecognizeable beast from what is depicted here. While Redford accurately captures the state of television in the 1950's, it is just not compelling enough to a modern day audience to keep me engaged. Today television audiences are accustomed to the fact that much of what they are seeing is manufactured for the camera, so a tale like this one makes me wonder: "why do I care about this first instance?" I guess what I'm saying is I need more trash in my television, and Redford provides too high of a standard for it.
+
+      <br><br>
+
+      
+      All in all, I think my lack of genuine thrill and enjoyment in this film is more due to the fact that television today is a hot mess with the sole intention of exciting, with audiences almost expecting things to be entirely fake, and this film is very tame by comparison. It's very well made and it hurts me to give it such a mediocre score, but I just did not find myself particularly engaged by it.
+
+
+      <br><br>
 
 
 
-            
+ 
             
           </p>  
       </div>

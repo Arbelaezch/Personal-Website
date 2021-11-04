@@ -7,9 +7,11 @@
   <link rel="stylesheet" href="../../style.css">
 </head>
 
+<script src="app.js"></script>
+
 
 <body>
-  <?php echo require_once("../../../../../nav.php"); ?>
+<?php echo require_once("../../../../../nav.php"); ?>
 
   <div id="page">
 
@@ -18,48 +20,75 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1 style="font-size: x-large; padding-top: 12px;"> Snow White and the Seven Dwarves (1937)</h1>
           </div>
           <div id="rating" class="title">
             <h2 class="single"></h2>
-            
+            <h2 class="double">
+              Enjoyment: 7<br>
+              Appreciation: 9
+            </h2>
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/snow white.jpeg" >
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
-					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
-									
-					Country: America<br><br>
-					
-					Studio: Miramax Films
+                <br>
+                Exiled into the dangerous forest by her wicked stepmother, a princess is rescued by 
+                seven dwarf miners who make her part of their household.<br><br>
+                Directors: William Cottrell, David Hand<br><br>
+                Writers: Jacob Grimm, Wilhelm Grimm<br><br>
+                Stars: Adriana Caselotti, Harry Stockwell, Lucille La Verne<br><br>
+                
+            
+                Country of Origin: America<br><br>
+                
+                Studio: Walt Disney
             </p>
           </div>
         </div>
       </div>
   
       <div id="review">
-          <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
+          <p> 
+              The classic that began the Disney fairy tales legacy. Walt Disney Company had previously 
+              produced plenty of Mickey Mouse shorts, such as Silly Symphonies but this was a major step up. 
+              Snow White was a massively expensive movie that would have bankrupt Disney if it hadn't been a success. 
+              Luckily for him it was a critical and commercial success. In fact it was so insanely successful 
+              it broke the record for highest grossing sound film of all time, eventually
+              displaced by Gone with the Wind in 1939.
+              
+             <br><br>
+
+             To make Snow White, Disney used a multiplane camera to give the animation a three-dimensional feeling. 
+             It ended up winning an oscar for being a "significant screen innovation" and 
+             inspired the production of The Wizard of Oz.
+            
+             <br><br>
+
+             A simple fairy tale story, but its simplicity adds to its charm and excitement.
+             The animation is still very beautiful and colorful.
+             The 3D makes it feel so real and the humour is still pretty funny actually. 
+             Its a fun, simple tale that easily still holds up.
+
+
+             <br><br>
+       
+            
+             
+         
+            
+           
+
+         
+
+             
+         
+
         
-            
-          </p>
-
-          <p>
-			 
-				Review goes here.
-            
-            <br><br>
-
-
-
-            
             
           </p>  
       </div>
@@ -109,9 +138,9 @@
   </div>
 
 
-    <div class="footer">
-	    <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
-    </div>
+  <div class="footer" >
+	  <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
+	</div>
   
 	
 

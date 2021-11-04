@@ -18,28 +18,28 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>Mrs. Miniver (1942)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">9</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/miniver.jpg" alt="Mrs. Miniver">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+					A British family struggles to survive the first months of World War II.<br><br>
+					Director: William Wyler<br><br>
+					Writers: Arthur Wimperis, George Froeschel, James Hilton<br><br>
+					Stars: Greer Garson, Walter Pidgeon, Teresa Wright<br><br>
 									
-					Country: America<br><br>
+					Country: United States<br><br>
 					
-					Studio: Miramax Films
+					Studio: Metro-Goldwyn-Mayer
             </p>
           </div>
         </div>
@@ -53,9 +53,25 @@
 
           <p>
 			 
-				Review goes here.
+			Mrs. Miniver was filmed and distributed at the height of World War 2. It was a commercial and critical success, winning five academy awards, including best picture. The film was also the hightest grossing film of 1942. Winston Churchill claimed that it did more for the war effort than a flotilla of destroyers. German propagandist Joseph Goebbells wrote that the film's "refined powerful propagandistic tendency has up to now only been dreamed of." 
             
             <br><br>
+
+			This film was a treat, so much so that I don't know where to begin praising it. The story is simple in that it follows a lovely family facing war. It's the family's unwavering fortitude and endearing attitudes, as well as the gradual escalation of the war's effects on their lives that I think provides such a powerful feeling. While the film takes place during World War 2, and is very much meant to cause viewers to empathize with the Allies, the film hardly mentions Germany or any specific politics. I think this makes the antagonist an almost universal force that allows for anyone watching today to feel compelled to support our protagonists.
+
+			<br><br>
+
+			Technically, the movie is flawless. The performances are really the bedrock of the whole thing, with Greer Garson being the absolute strongest. The cinematography is also surprisingly well done with some impressive shot composition that made the film both a pleasure to watch and elevated the storytelling to more than just simple shot-reverse shot.
+
+			<br><br>
+
+			My only crticism is that the film is lighter than I would have thought it should be. The entire film feels like it was made in old Hollywood, rather than in the midst of a war. The film never went as dark as I wanted it to, which makes sense considering it was meant to make people optimistic about the war effort, yet still I feel the film would have been better for it as it felt quite unrealistically clean and safe. 
+			
+			<br><br>
+
+			Regardless, Mrs. Miniver is incredible for what it is and still hits hard today. I highly recommend it to anyone with feelings.
+
+
 
 
 

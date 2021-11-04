@@ -18,28 +18,28 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>Nomadland (2020)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">10</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/nomadland.jpeg" alt="Nomadland">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+					After losing everything in the Great Recession, a woman embarks on a journey through the American West, living as a van-dwelling modern-day nomad.<br><br>
+					Director: Chloé Zhao<br><br>
+					Writers: Jessica Bruder, Chloé Zhao<br><br>
+					Stars: Frances McDormand, David Strathairn, Linda May<br><br>
 									
-					Country: America<br><br>
+					Country: United States<br><br>
 					
-					Studio: Miramax Films
+					Studio: Searchlight Pictures
             </p>
           </div>
         </div>
@@ -47,19 +47,37 @@
   
       <div id="review">
           <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
-        
+				"See you down the road."
             
           </p>
 
           <p>
 			 
-				Review goes here.
+				This was something special. Adapted from the novel of the same name by Jessica Bruder, Nomadland is a stripped down look at life beyond modern day comforts. 
             
             <br><br>
 
 
+				It's simple. Director Chloe Zhao brought a simplicity to this film that perfectly matches its themes on plain living. More than this though, I felt as though the absense of personality and the grand scope of the film allowed for me to fill the screen with my own interpretations and feelings towards the characters and events. Zhao provides no explanatory dialogue, allowing for enough space to let the audience put themselves into the film in a way that shouldn't be possible when following a van dwelling hermit. Something nearly no modern day person has personal experience with.
 
-            
+				<br><br>
+
+				Stripping back uneccessary, flashy edits and styles allowed for the film to be laid bare before the viewer. What this film is is pure heart, and the stripped back style conveys this in its entirety. I was glued to the screen not out of interest or desire to necessarily see what happens next, but because I was struck by the raw humanity that was being displayed. This was made even more powerful due to the real people telling real stories and experiences they had. I dare anyone to watch this film and not feel compassion and empathy for the souls encounered on this journey.
+
+				<br><br>
+
+				Nomadland romanticizes, without sugar coating. I love how this film shows both the beautiful as well as the grotesque and painful parts of nomad life. Sweeping mountain vistas, beautiful wildlife experiences, shitting in a bucket, and abandoning family all share equal space in Nomadland. At no point does this film ever bastardize modern day comforts, nor does it glorify a lifestyle of isolation. Instead it allows for the experiences to speak for themselves, and more importantly encourages audiences to truly follow their own desires. Or at least that was my take away.
+
+				<br><br>
+
+				On the more technical side, McDormand of course does a fantastic job. Entirely embodying the character she plays. The score is also a knockout. Subtle and reflective enough as to not impede the audiences thoughts and connection to what's going on on screen. 
+
+				<br><br>
+
+				I cannot recommend this film enough. I am excited to see what Zhao does next.
+	
+
+
             
           </p>  
       </div>

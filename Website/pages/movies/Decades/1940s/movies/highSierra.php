@@ -18,28 +18,28 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>High Sierra (1940)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">5</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/highSierra.jpeg" alt="High Sierra">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+					After being released from prison, notorious thief Roy Earle is hired by his old boss to help a group of inexperienced criminals plan and carry out the robbery of a California resort.<br><br>
+					Director: Raoul Walsh<br><br>
+					John Huston, W.R. Burnett<br><br>
+					Stars: Ida Lupino, Humphrey Bogart, Alan Curtis<br><br>
 									
-					Country: America<br><br>
+					Country: United States<br><br>
 					
-					Studio: Miramax Films
+					Studio: Warner Bros.
             </p>
           </div>
         </div>
@@ -53,7 +53,31 @@
 
           <p>
 			 
-				Review goes here.
+
+
+				Co-written by legendary filmaker, John Huston, High Sierra is an engaging tale about Humphrey Bogart coaching a bunch of beginner thieves in their first big robbery. High Sierra was a box office success that vaulted Bogart into leading man status, while it also gave Huston the clout to direct his first ever picture, The Maltese Falcon, the same year.
+				
+				<br><br>
+				
+				The story and the writing is solid. There's enough going on character wise that it remains interesting throughout. Bogart is obviously the focus but the supporting cast is surprisingly fleshed out as well. I think my biggest issue here is the direction. Most scenes feel flat with lame shots framing weak performances. Bogart is fine, but I've never particularly enjoyed his one dimensional tough guy routine so what do I know. The weak, overly dramatic performances cheapen High Sierra's attempt at being taken as a serious character drama.
+
+				<br><br>
+
+				Much of the film is shot on location which I think greatly adds to the character drama by grounding it in a vibrant, real world. Should it have been mostly filmed on sound stages, the character relationships wouldn't have felt as personal, but now I'm just describing the pros of filming on location. The final chase of the film is extremely well done on the steep cliffsides and the cinematography does a great job of tracking the entire thing.
+
+				<br><br>
+
+				Overall, the film was a lot more dramatic than I expected, but the character drama was enough to keep me engaged. The direction does nothing special except to ensure nearly the whole thing is filmed on location. I would also like to note High Sierra's stark similarities to 2016's Hell or Highwater, though Hell or Highwater was a much more enjoyable picture. In my opinion, if you're looking for classic Bogart/Huston collaborations, you wouldn't miss much if you skipped it.
+
+				
+
+
+
+				
+
+
+
+
             
             <br><br>
 

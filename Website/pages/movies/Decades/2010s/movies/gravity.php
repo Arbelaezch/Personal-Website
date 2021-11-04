@@ -18,28 +18,29 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>Gravity (2013)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">8</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/gravity.jpg" alt="Gravity">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+					Two astronauts work together to survive after an accident leaves them stranded in space.<br><br>
+					Director: Alfonso Cuarón<br><br>
+					Writers: Alfonso Cuarón, Jonás Cuarón<br><br>
+					Stars: Sandra Bullock, George Clooney, Ed Harris<br><br>
 									
-					Country: America<br><br>
+			
+					Country: United States<br><br>
 					
-					Studio: Miramax Films
+					Studio: Warner Bros. Pictures
             </p>
           </div>
         </div>
@@ -47,19 +48,20 @@
   
       <div id="review">
           <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
-        
-            
+				
           </p>
 
           <p>
-			 
-				Review goes here.
-            
-            <br><br>
-
-
-
-            
+			  
+			
+			Gravity is an Alfonso Cuarón directed, space disaster film starring Sandra Bullock and George Clooney. 
+			
+			
+			<br><br>
+				
+				
+          
+        
             
           </p>  
       </div>

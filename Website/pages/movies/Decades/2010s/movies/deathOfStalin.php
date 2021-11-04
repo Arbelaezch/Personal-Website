@@ -18,28 +18,28 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>The Death of Stalin (2017)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">7</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/deathStalin.jpg" alt="The Death of Stalin">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+					Moscow, 1953. After being in power for nearly thirty years, Soviet dictator Joseph Stalin takes ill and quickly dies. Now the members of the Council of Ministers scramble for power.<br><br>
+					Director: Armando Iannucci<br><br>
+					Writers: Armando Iannucci, David Schneider<br><br>
+					Stars: Steve Buscemi, Simon Russell Beale, Jeffrey Tambor<br><br>
 									
-					Country: America<br><br>
+					Country: United Kingdom<br><br>
 					
-					Studio: Miramax Films
+					Distributed by: Entertainment One Films
             </p>
           </div>
         </div>
@@ -52,10 +52,27 @@
           </p>
 
           <p>
-			 
-				Review goes here.
-            
-            <br><br>
+
+			The Death of Stalin is one of those niche films that you basically only track down to watch if you already have a pretty good idea that you are going to like it. Its uncommon blend of dry, satirical comedy and heavy plitical themes is certainly not for the faint of heart ... or at least the action expecting viewer. Myself being a history loving satire fanboy, I really liked Death of Stalin. 	
+			
+			<br><br>
+
+			It is slow paced, but often times this is intentional to lull the viewer into a false sense of knowing where the absured plot is leading to, only to quickly change direction in an absured way. Here I am specifically thinking about the introductory long winded concert recording that inevitably is made completely mute by a dramatic event occurring.
+
+			<br><br>
+
+			I found myself laughing quite a bit during this film, almost entirely due to the absurdity of what was going on. From licking Stalin's boots to scheming over his funeral, there are many gags that will stick with me long after having finished this film. And Buscemi's performance is absolutely hysterical at just about every point, I personally loved him. Jeffrey Tambor I was disappointed to not see more from, but every time he was on screen I was in giddy anticipation of his next zinger. 
+
+			<br><br>
+
+			Unfortunately, my biggest complaint with this film is not with the film at all, but a fault of my own. I could for the life of me not keep anyone's names straight and had an exhausting time trying to follow who anyone was talking about or what was happening in general. Sadly, this greatly reduced my personal enjoyment of the film, though I understand that this is a shortcoming of myself, rather than the film. I do look forward to a second watchthrough where I can give the film a fairer assessment.
+
+			<br><br>
+
+				
+				
+				
+
 
 
 

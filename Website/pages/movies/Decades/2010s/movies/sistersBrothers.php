@@ -18,28 +18,29 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>The Sisters Brothers (2018)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">6.5</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/sistersBrothers.jpg" alt="The Sisters Brothers">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+					In 1850s Oregon, the infamous duo of assassins, Eli Sisters and Charlie Sisters, chase a gold prospector and his unexpected ally.<br><br>
+					Director: Jacques Audiard<br><br>
+					Writers: Jacques Audiard, Thomas Bidegain<br><br>
+					Stars: John C. Reilly, Joaquin Phoenix, Jake Gyllenhaal, Riz Ahmed<br><br>
 									
+			
 					Country: America<br><br>
 					
-					Studio: Miramax Films
+					Studio: Anapurna Pictures
             </p>
           </div>
         </div>
@@ -53,9 +54,26 @@
 
           <p>
 			 
-				Review goes here.
+
+				The Sisters Brothers is Black Comedy Western starring John C. Reilly, Joaquin Phoenix, and Jake Gyllenhaal. While well received critically, it was a box office bomb losing over $20 million. It's based off the novel of the same name.
+          
             
-            <br><br>
+
+				<br><br>
+				
+
+
+				The film shines in many areas. First and foremost, the reason many people will give it a chance, is the star power. The quartet of Reilly, Phoenix, Gyllenhaal, and Ahmed is just pleasant to watch. They play off of eachother extremely well by each bringing a unique personality and approach to their characters. Technically as well the film is stunning. Its cinematography is pretty yet grounded, the score is subtle yet moving, and the editing doesn't offend me, though I felt as though the ending was a little rushed. 
+
+				<br><br>
+
+				While it's enjoyable to watch, being both funny and emotionally moving, as well as unexpected, I feel as though this is all the film has to offer. I find Sisters Brothers straddling between genres, being both somewhat funny and somewhat dramatic. This double pointed approach keeps it fun and engaging for the most part, however on my second watchthrough I found myself less engaged and could really feel the long stretches between the action. Maybe this is because the film is highly unconventional in its telling of a highly conventional plot, and while these unexpected turns kept me hooked the first time around, I feel it was far less engaging once I already knew what was going to happen in the plot. Watching through a second time really made me realize there is not much more going on under the hood here than what you catch on initial viewing. This may be where the two pointed approach hurts the film. By not picking a specific genre and really hitting it hard, it dances in between, feeling like neither, and hoping to rest on its unexpected twists and turns of the plot as well as its star power.
+
+				<br><br>
+				
+				
+				Of course, having just come off of No Country for Old Men might be the reason I'm being so harsh, but I still think what I've said holds. My high expectations for new entrants into the Western genre I feel are justified. It's one of the oldest, most tired genres and also one of my favorites; if you're gonna release a new Western it better be great. The expectation is just higher. While The Sisters Brothers is a star-studded, fun, technically well made Western, I feel it's a surface level appeal that doesn't have much going on beyond this initial layer and loses much of its enjoyment on repeat viewings.
+
 
 
 

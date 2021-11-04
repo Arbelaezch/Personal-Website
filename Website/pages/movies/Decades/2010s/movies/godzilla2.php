@@ -18,24 +18,24 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>Godzilla: King of the Monsters (2019)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">3</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/godzilla2.jpg" alt="Godzilla King of the Monsters">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+					The crypto-zoological agency Monarch faces off against a battery of god-sized monsters, including the mighty Godzilla, who collides with Mothra, Rodan, and his ultimate nemesis, the three-headed King Ghidorah.<br><br>
+					Director: Michael Dougherty<br><br>
+					Writers: Michael Dougherty, Zach Shields<br><br>
+					Stars: Kyle Chandler, Vera Farmiga, Millie Bobby Brown<br><br>
 									
 					Country: America<br><br>
 					
@@ -53,9 +53,19 @@
 
           <p>
 			 
-				Review goes here.
+				Alright, major ooph on this one. I was so excited for the Monsterverse after Kong: Skull Island, but Godzilla 2 is just brutal. Take out all the style of Kong, turn up the seriousness of the plot and characters and you've got a recipe for a bored ass audience.
             
             <br><br>
+
+				It's really not the worst movie ever though. Similar to Kong, some of the cinematography and shot composition really impressed me. I liked some of the Godzilla lore that was introduced and of course the giant monsters were super cool. I guess you've gotta try humanizing these creatures and teaming them up or whatever, so I guess that was fine, though it still felt a little weird to me.
+
+				<br><br>
+
+				The biggest flaw in my mind is the super serious Kyle Chandler and the rest of the cast. In my opinion, it is a great mistake to have these characters try to be taken seriously. If everyone is taking things so seriously all the time, the massive plot holes and inconsistencies just become ever more apparent, and not to mention it just becomes way more boring to watch the human stuff. Like, when O'Shea Jackson Jr. pops back up after I thought being very clearly killed on screen, I was more upset than laughing because this movie wants to be taken seriously, and then theres this bullshit happening. Finally, I think the monsterst should weigh a shitload more. Like when Godzilla, a creature that is taller than most skyscrapers falls next to a bunch of people and buildings, there should be shockwaves that decimate anything in the vicinity. Introduce a little bit of the weight seen in Pacific Rim to make these monsters truly feel massive.
+
+				<br><br>
+
+				As always, the monster stuff is the king of the show and definitely the only reason you would ever watch this film, in my opinion. Though, the lack of interesting style and weight to the monsters I think greatly diminishes their overall enjoyment. 
 
 
 

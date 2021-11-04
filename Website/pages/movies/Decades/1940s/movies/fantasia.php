@@ -18,28 +18,34 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>Fantasia (1940)</h1>
           </div>
           <div id="rating" class="title">
             <h2 class="single"></h2>
-            
+            <h2 class="double">
+              Enjoyment: <br>
+              Appreciation: 
+              
+            </h2>
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/fantasia.jpg" alt="Fantasia">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
-					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
-									
-					Country: America<br><br>
-					
-					Studio: Miramax Films
+                <br>
+                A collection of animated interpretations of great works of Western classical music.<br><br>
+				Directors: James Algar, Samuel Armstrong<br><br>
+				Writers: Joe Grant, Dick Huemer<br><br>
+				Stars: Leopold Stokowski, Deems Taylor, The Philadelphia Orchestra<br><br>
+                
+				Country: America<br><br>
+				
+				Producer: Walt Disney<br><br>
+                
+                Studio: Walt Disney Productions and RKO Radio Pictures
             </p>
           </div>
         </div>
@@ -47,19 +53,24 @@
   
       <div id="review">
           <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
-        
             
           </p>
 
           <p>
-			 
-				Review goes here.
+
+			
+
+			<br><br>
+			
+
+			-The animation and ideas are beautiful. 
+			-I think it's an enjoyable way to experience music, and a great way of using the power of both Film and Music to enhance the individual experience of both.
+			-While acclaimed by critics, it was initially unable to make a profit due to World War II cutting off distribution to the European market, the film's high production costs, and the expense of leasing theatres and installing the Fantasound equipment for the roadshow presentations. 
             
-            <br><br>
-
-
-
             
+
+          
+        
             
           </p>  
       </div>

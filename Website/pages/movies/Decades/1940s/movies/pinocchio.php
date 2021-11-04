@@ -18,28 +18,30 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>Pinocchio (1940)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">6</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/pinocchio.jpg" alt="Pinocchio">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+					A living puppet, with the help of a cricket as his conscience, must prove himself worthy to become a real boy.<br><br>
+					Directors: Norman Ferguson, T. Hee<br><br>
+					Writers: Carlo Collodi, Ted Sears<br><br>
+					Stars: Dickie Jones, Christian Rub, Mel Blanc<br><br>
 									
+			
 					Country: America<br><br>
 					
-					Studio: Miramax Films
+					Producer: Walt Disney<br><br>
+					Studio: RKO Radio Pictures
             </p>
           </div>
         </div>
@@ -47,18 +49,30 @@
   
       <div id="review">
           <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
-        
-            
+				Fun Fact: In the original novel, Pinocchio is a cold, rude, ungrateful, inhuman creature that often repels sympathy and only learns his lessons by means of brutal torture.<sup>1</sup>
+				
           </p>
 
           <p>
-			 
-				Review goes here.
-            
-            <br><br>
+          
+				
+				<em>Pinocchio</em> is the 1940 Disney animated classic based on the 1883 Italian children's novel, <em>The Adventures of Pinocchio</em> by Carlo Collodi. It was the first animated feature to win an Academy Award; one for Original Score, and another for Original Song (When You Wish Upon a Star). However, it was initially a box office bomb due to not being able to reach European, and Asian markets because of World War 2. <em>Pinocchio</em> was a groundbreaking achievement in the area of effects animation that film historians often consider to be the most technically perfect of all the Disney animated features.<sup>2</sup> 
+				
 
 
 
+				
+  
+				 <br><br>
+
+				It's genuinely still funny and engaging for nearly every second. The story is wholesome and encourages good behaviour, just like most every Disney film. Its cute and fun and it really is addicting to just appreciate the fluid animations. That being said it's still a pretty simple tale that has been outpaced quite a bit by modern fairy tales. <em>Pinocchio</em> is a classic animated feature that deserves its place in the annals of film history, even if it is a bit straightforward for modern audiences.
+
+
+				<br><br>
+
+				 
+					1: "Pinocchio - Disney Movies History". August 4, 2003. Archived from the original on August 4, 2003. Retrieved February 24, 2014.
+					2: Barrier, Michael, 1999, Hollywood Cartoons, Oxford University Press, United Kingdom
             
             
           </p>  

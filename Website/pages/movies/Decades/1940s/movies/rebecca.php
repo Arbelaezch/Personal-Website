@@ -18,28 +18,34 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>Rebecca (1940)</h1>
           </div>
           <div id="rating" class="title">
             <h2 class="single"></h2>
-            
+            <h2 class="double">
+              Enjoyment: 5<br>
+              Appreciation: 8
+
+				</h2>
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/rebecca.jpg" alt="Rebecca">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+					A self-conscious woman juggles adjusting to her new role as an aristocrat's wife and avoiding being intimidated by his first wife's spectral presence.<br><br>
+					Director: Alfred Hitchcock<br><br>
+					Writers: Daphne Du Maurier, Robert E. Sherwood<br><br>
+					Stars: Laurence Olivier, Joan Fontaine, George Sanders<br><br>
 									
+			
 					Country: America<br><br>
 					
-					Studio: Miramax Films
+					Producer: David O. Selznick<br><br>
+					Studio: United Artists
             </p>
           </div>
         </div>
@@ -47,18 +53,29 @@
   
       <div id="review">
           <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
-        
             
           </p>
 
           <p>
-			 
-				Review goes here.
-            
-            <br><br>
+          
+				
+				
 
 
+				<em>Rebecca</em> is legendary director Alfred Hitchcock's first American film after building a respectable portfolio out of British studios. It''s based off of the novel of the same name, and was a major critical success. Nominated for an impressive eleven Academy Awards and winning two: Best Picture for producer David O. Selznick, and Best Cinematography. The film is often praised for its thick, gothic atmosphere, its superb acting, and its wild sharp twists.
+        
+  
+				 <br><br>
 
+				 Let me start out my opinion by acknowledging that I have never been a huge fan of mysteries, so understand this isn't my particular genre. That being said I enjoyed and had fun with Rebecca, but was at no point captivated by it or on the edge of my seat. Laurence Olivier was spectacular to me, playing the quiet, tormented widower. And Joan Fontaine was spectacular as well putting on many different faces over the course of the picture, and making me believe all of them. In addition the production is spectacular with the sets large and lavish, the cinematography gripping, and the music straight up chilling. I also like how this was a whirlwind Romance that doesn't end where Hollywood usually makes it. Instead <em>Rebecca</em> decides to keep playing out the relationship to show an unneasy reality about Hollywood marriage. Its oddly reminiscent of the ending of Philadelphia Story of the same year, only this one taking a far more cynical approach.
+         
+				 <br><br>
+
+					Other than that, it starts out simple enough. It attempts to lul you into a false sense of the usual. A quick witted, high class, not so funny Romance almost in the same vein as a Cary Grant film. The audience can feel something is wrong with the Romance, but can't quite put a finger on it for a while. There's a sense of unease felt from Fontaine always being in the dark and never belonging. It certainly made me anxious, but never tense. The audience, like Fontaine, is pressed into a little box until you both feel smaller and smaller and no longer resemble yourself. And that is it. The twists certainly surprised me and I was engaged in the story, but I never really wanted to see Olivier succeed. In fact there were some moments I was nearly rooting against him. Anyway, this is a technically well made movie that failed to leave a lasting impression, despite its best efforts.
+
+
+				
+				 
             
             
           </p>  

@@ -18,48 +18,60 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>The Accountant (2016)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">6.5</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/accountant.png" alt="The Accountant">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+					As a math savant uncooks the books for a new client, the Treasury Department closes in on his activities, and the body count starts to rise.<br><br>
+					Director: Gavin O'Connor<br><br>
+					Writer: Bill Dubuque<br><br>
+					Stars: Ben Affleck, Anna Kendrick, J.K. Simmons<br><br>
 									
-					Country: America<br><br>
+			
+					Country: United States<br><br>
 					
-					Studio: Miramax Films
+					Studio: Warner Bros Pictures
             </p>
           </div>
         </div>
       </div>
   
       <div id="review">
-          <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
-        
-            
-          </p>
+
 
           <p>
-			 
-				Review goes here.
+				By this point its no surprise that Ben Affleck knows how to make a movie good, but to be the only good part of the entire movie is a very impressive turn around. I personally really enjoy The Accountant and Ben Affleck and his performance is almost singlehandedly responsible. His globetrotting, genius, sniper mob accountant character is catnip for my brain. The fact that Affleck brings such an accurate portrayal to the character's accute autism just goes above and beyond justifying an entire film based around him.
+				
+				<br><br>
+				In addition to Affleck's incredible performance and character, Jon Bernthal also brings an enjoyably eccentric disposition to his assassin character that makes him magnetic to watch as well. The action is John Wick-lite, which works both for and against it. Its fun and quick and packs a punch, yet leaves me wishing the action could have been left to play out without so many cuts. I guess Affleck spent his time nailing the character's personality rather than his fighting style.
+
+				<br><br>
+				Beyond that, the rest of the film can essentially be skipped. JK Simmons is great as always, but I can't help but feel like that entire subplot with him and Cynthia Addai-Robinson was shoe-horned in to pad the runtime. Not to mention it makes absolutely no sense. For example:<br>
+				1) Why does Simmons feel the need to blackmail Robinson when she may have just done it? If Simmons really is a weak puppet cop for Affleck, it's a totally character change to blackmail her in the first place.<br>
+				2) If Simmons knew who Affleck's character was the entire time, then why the hell did he need Robinson. Or at least why didn't he tell her what he knew already.<br>
+				3) Why would he task Robinson with finding Affleck in the first place if he was getting his tips from Affleck. Is it because he wanted to prove she could take over his place of receiving a fucking phone call?? How does he know once he retires they'll even keep calling.
+
+				<br><br>
+				The point I'm trying to make is that all this movie really has is the Accountant being a badass and needed to find a way to fill another thirty minutes. This is totally fine with me because I'll just skip to the good parts, but a great half of a film isn't enough to make the whole thing great.
             
-            <br><br>
+          
 
+				<br><br>
+				
+				
 
-
-            
+          
+        
             
           </p>  
       </div>

@@ -18,28 +18,28 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>Tora! Tora! Tora! (1970)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">8</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/tora.jpg" alt="Tora! Tora! Tora!">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+					In 1941, following months of economic embargo, Japan prepares to open its war against the United States with a preventive attack on the US naval base at Pearl Harbor.<br><br>
+          Directors: Richard Fleischer, Kinji Fukasaku<br><br>
+          Writers: Larry Forrester, Hideo Oguni<br><br>
+          Stars: Martin Balsam, Sô Yamamura, Jason Robards<br><br>
 									
-					Country: America<br><br>
+					Country: Japan and United States<br><br>
 					
-					Studio: Miramax Films
+					Studio: 20th Century Fox
             </p>
           </div>
         </div>
@@ -53,10 +53,18 @@
 
           <p>
 			 
-				Review goes here.
+            Tora! Tora! Tora! is a mostly accurate, historic retelling of the attack on Pearl Harbor and how all the pieces were put in place for such a informational bumble to happen. It was nominated for five Academy Awards and won for Special Effects. While the film eventually became a financial success, it is still considered somewhat critically divisive. While it is frequently praised for its superb practical effects, critics complain that there are no characters to emotionally identify with. 
             
             <br><br>
 
+            While I agree that there is no emotional anchor to this film, I also believe it doesn't need one, nor should it have one. I am a big history nerd and I personally love watching the first half of this film for its slow, almost chess like pace. There is a sense of dread pervaiding the entire first half of this film and following every decision made. Over the course of an hour and a half you watch as every painful decision builds into what audiences know will be a tremendous mistake for the Americans as well as the Japanese. I love watching this methodical chess match being played between the two sides, and appreciate the accuracy and candid nature of each side's perspectives.
+
+            <br><br>
+
+
+            Honestly, I wish there were more films like this that made a real effort to recount the steps that lead to monumental moments in history. There is a weight in each minute detail that is lost once the film has become too "Hollywoodized." Adding a charasmatic protagonist for the audience to root for would have only managed to make this a subpar action film, rather than the war epic that it truly is. I can understand the desire for an emotional anchor in a massive scale war film like this, but I think to expect that from Tora! would be to miss the point. Director Richard Fleischer is not trying to make a Hollywood blockbuster here. He is trying to make an action documentary, and I think he succeeds in every way.
+
+            <br><br>
 
 
             

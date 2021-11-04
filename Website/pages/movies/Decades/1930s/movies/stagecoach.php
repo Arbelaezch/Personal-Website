@@ -9,7 +9,7 @@
 
 
 <body>
-  <?php echo require_once("../../../../../nav.php"); ?>
+<?php echo require_once("../../../../../nav.php"); ?>
 
   <div id="page">
 
@@ -18,28 +18,33 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1> Stagecoach (1939)</h1>
           </div>
           <div id="rating" class="title">
             <h2 class="single"></h2>
-            
+            <h2 class="double">
+              Enjoyment: 7<br>
+              Appreciation: 8
+            </h2>
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/stagecoach.jpg" >
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
-					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
-									
-					Country: America<br><br>
-					
-					Studio: Miramax Films
+                <br>
+                A group of people traveling on a stagecoach find their journey complicated by the threat of 
+                Geronimo and learn something about each other in the process.<br><br>
+                Director: John Ford<br><br>
+                Writers: Ernest Haycox, Dudley Nichols<br><br>
+                Stars: John Wayne, Claire Trevor, Andy Devine<br><br>
+                
+            
+                Country: America<br><br>
+                
+                Studio: United Artists
             </p>
           </div>
         </div>
@@ -47,19 +52,45 @@
   
       <div id="review">
           <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
-        
             
           </p>
 
           <p>
-			 
-				Review goes here.
+
+            Stagecoach is a legendary Western film about nine strangers travelling by stagecoach through Apache infested territory. 
+            Its one of the early hits of legendary director John Ford's career, and was the breakthrough role for John Wayne. Initially 
+            the film was going to be produced by notorious Hollywood producer David O. Selznick, but he wanted Gary Cooper for the lead 
+            over Wayne, and Ford wasn't having it. So instead Ford took his chances elsewhere in order to take a chance on Wayne. This was 
+            also the first of many films Ford would go on to shoot in Monument Valley.
             
+              
+            
+
             <br><br>
 
+            The film achieved immediate critical and trade paper success, winning two Oscars for Best Music and Supporting Actor. 
+            Its a phenomenal piece that tells a tale of regular American archetypes dealing with daily struggles. The human side of the 
+            story grounds it for most the film's runtime, with only two shootouts occurring towards the end. The large carriage action 
+            set piece is phenomenal and a real wonder to behold. Its intense and spectacular and is possibly one of my favorite in a 
+            western. Not just because the effects are well done or the shots dynamic and beautiful, but because of the connections you've 
+            built with these characters and because how much you don't want to see them killed, despite them being hopelessly outgunned.
+
+            <br><br>
+
+            There is of course a darker side to this film that needs to be addressed. The film takes a hard stance 
+            stereotyping and dehumanizing Native Americans. Any non-white people in the film are either ridiculed for being 
+            savages or shot dead. These are of course not surprising politics coming from a John Ford picture, but they are 
+            terribly outdated ways of looking at people and the world and still left a bad taste in my mouth. Despite these 
+            transgressions, <em>Stagecoach</em> is still a masterclass in Western filmmaking.
 
 
             
+
+            
+
+            
+
+        
             
           </p>  
       </div>

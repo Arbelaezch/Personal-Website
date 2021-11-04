@@ -18,28 +18,28 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>Mank (2020)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">8</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/mank.jpg" alt="Mank">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
-									
+					1930's Hollywood is reevaluated through the eyes of scathing social critic and alcoholic screenwriter Herman J. Mankiewicz as he races to finish the screenplay of Citizen Kane.<br><br>
+          Director: David Fincher<br><br>
+          Writer: Jack Fincher<br><br>
+          Stars: Gary Oldman, Amanda Seyfried, Lily Collins<br><br>
+
 					Country: America<br><br>
 					
-					Studio: Miramax Films
+					Produced and Distributed by: Netflix
             </p>
           </div>
         </div>
@@ -52,10 +52,20 @@
           </p>
 
           <p>
-			 
-				Review goes here.
+
+            Mank comes a lightning fast six years after legendary director, David Fincher's last film, Gone Girl. It will likely be nominated for every Academy Award under the sun, but win only a few, as is tradition lately with Hollywood circle-jerk pictures. The screenplay was written by David Fincher's father, Jack Fincher who died in 2003. 
+
+            <br><br>
+
+            Let me start this review with a warning: 90% of people will not enjoy this film. In fact, before you attempt this movie I think you should ask yourself: "how many hours have I studied the lore behind <em>Citizen Kane</em> and 1930s Hollywood?"" Because if the answer is any less than having taken a semester long course on the subject, you're gonna have a bad time. Alternatively, you could read my review of Kane <a href="../../1940s/movies/kane.php">here</a>, which should give you most all the background information you need.
             
             <br><br>
+
+            I personally really enjoyed Mank
+
+
+
+
 
 
 

@@ -7,9 +7,11 @@
   <link rel="stylesheet" href="../../style.css">
 </head>
 
+<script src="app.js"></script>
+
 
 <body>
-  <?php echo require_once("../../../../../nav.php"); ?>
+<?php echo require_once("../../../../../nav.php"); ?>
 
   <div id="page">
 
@@ -18,48 +20,74 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1> A Night at the Opera (1935)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
-            
+            <h2 class="single">3</h2>
+            <h2 class="double">
+              
+            </h2>
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/opera.jpeg" >
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
-					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
-									
-					Country: America<br><br>
-					
-					Studio: Miramax Films
+                <br>
+                A sly business manager and two wacky friends of two opera singers help them achieve success 
+                while humiliating their stuffy and snobbish enemies.<br><br>
+                Directors: Sam Wood, Edmund Goulding<br><br>
+                Writers: George S. Kaufman, Morrie Ryskind<br><br>
+                Stars: Groucho Marx, Chico Marx, Harpo Marx<br><br>
+                
+            
+                Country: America<br><br>
+                
+                Studio: MGM
             </p>
           </div>
         </div>
       </div>
   
       <div id="review">
-          <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
-        
-            
-          </p>
+          <p style="text-align: center; text-indent: -.5in;"> 
+            "Twice the box office with half the laughs"
 
+          </p>
           <p>
-			 
-				Review goes here.
+
+
+            Their first picture at MGM since leaving Paramount, the Marx Brothers are able to refine their comedy 
+            into a much more stomachable piece. Rather than a constant barrage of insanity, the beginning semblance of a 
+            narrative comes to fruition. The Brothers are much more grounded than their previous foray, Duck Soup (1933), 
+            and are easier to engage with this time around. This is echoed by the public, which vaulted A Night at 
+            the Opera to become one of the most commercially successful films of the Marxs' career.
             
+              
+             <br><br>
+
+             Things are still a little too Musical for my taste, but overall I appreciate the change in direction. 
+             Its nice to have an idea of whats going on with these characters rather than piecing together a 
+             bunch of unrelated gags. The film is still funny, but not nearly as much. And yet, I almost miss the 
+             unrelenting Marx style. While A Night at the Opera is probably a more competent film than Duck Soup, 
+             if I had to choose between one or the other, I would choose the breakneck speed of Duck Soup. 
+
+
             <br><br>
 
-
-
+            Opera may be more accessible, but Duck Soup would be more enjoyable.
             
+
+
+
+              
+
+             
+         
+
+        
             
           </p>  
       </div>
@@ -109,9 +137,9 @@
   </div>
 
 
-    <div class="footer">
-	    <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
-    </div>
+  <div class="footer" >
+	  <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
+	</div>
   
 	
 

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Movie Blog</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+
+
+<body>
+  <?php echo require_once("../../../../../nav.php"); ?>
+
+  <div id="page">
+
+    <!-- MAIN CONTENT-->
+    <div id="content" class="side">
+      <div class="header">
+        <div class="top">
+          <div id="title" class="title">
+            <h1>Cherry (2021)</h1>
+          </div>
+          <div id="rating" class="title">
+            <h2 class="single">5</h2>
+            
+          </div>
+        </div>
+        <div class="mid">
+          <div id="picture" class="info">
+            <img src="../images/cherry.jpg" alt="Cherry">
+          </div>
+          <div id="synopsis" class="info">
+            <p class="synopsis"> 
+					<br>
+					Cherry drifts from college dropout to army medic in Iraq - anchored only by his true love, Emily. But after returning from the war with PTSD, his life spirals into drugs and crime as he struggles to find his place in the world.<br><br>
+					Directors: Anthony Russo, Joe Russo<br><br>
+					Writers: Angela Russo-Otstot, Jessica Goldberg<br><br>
+					Stars: Tom Holland, Ciara Bravo, Jack Reynor<br><br>
+									
+					Country: United States<br><br>
+					
+					Studio: Apple TV+
+            </p>
+          </div>
+        </div>
+      </div>
+  
+      <div id="review">
+          <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"> 
+        
+            
+          </p>
+
+          <p>
+			 
+
+
+				Cherry is the first film back for directors Anthony and Joe Russo after breaking box office records with Avengers: Endgame. I feel like the highly experimental, dramatic Cherry is also a perfect contrast to their Marvel films. Starring Avengers alumn, Tom Holland, this could have easily been a pandering mess that hoped to cash in on the team's recent successes. Cherry does not. Instead, it flexes the Russos' more artistic muscles by adapting a semi-autobiographical novel written by Nico Walker into a slow paced, contemplative film about being a young man and ex-soldier in the United States.
+
+				<br><br>
+
+				This is a well made film. The Russos are very talented directors and I think the experimental style they take with Cherry worked well. Minor things like bluring specific parts of the screen, having massive text flash across the screen, and a playful use of color. At some points however, it felt like they were throwing neat things at the screen just for the sake of it, rather than having any actual relevance to the film. But that may have just been me. Overall, I think this is a very tightly made technical film that showcases that even without a massive Marvel budget, the Russo's can take liberties that set their films apart.
+
+				<br><br>
+
+				Holland impressed me more than I thought he would. Both Holland and Ciara were brilliant, which definitely surprised me as I did not think Holland would have it in him. He goes full force and I see him transitioning from big action movie star to long standing Hollywood actor with relative ease. He's always had the charisma to do it, but now he has proven he can perform an emotional depth that could easily land him the Oscar some day. Ciara also does a great job and keeps up with Holland, making the pair interesting to watch.
+
+				<br><br>
+
+				I think where this movie turns me off is in the second half. The first half is an experimental, relavent take on life as a young man in America. Something I can relate to quite strongly. It is quirky and fast and the style and philosophy kept it different enough to keep me engaged. Upon returning from war however, it seems the quirky, philosophical tone switches into a by the numbers drug fuelled crime drama. I can appreciate that the tale of a soldier returning from war, experiencing PTSD and drug addiction is a tale that will be relatable for millions of people. This part of the movie is still very well handled, but I think the relaxing of the unique style and the suddenly generic drug/crime drama began to bore me. In my opinion, the film completely shifts after the first half, and not just in a narrative sense. This is my biggest gripe, because it was in this more formulaic second half that I began checking the time.
+
+				<br><br>
+
+				I don't think this is a bad film, in fact I think it is quite good. I just think that I started out thinking it was great and was left feeling like it was just good. If it's unique style could have persisted thoughout I think I would have been engaged much more towards the end. Anyway, Cherry was not the film I was hoping it would be. I will continue to watch the Russo's and Holland's careers with great interest, though.
+
+				
+
+
+
+            
+            
+          </p>  
+      </div>
+    </div>
+    
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="side">
+      <div id="sideHeader">
+        <a href="../../../250.php" id="250" >
+          <img style="width: 250px; height: 200px;" src="../../../images/Nav/top250.jpg">
+        </a>
+        <a href="../../1900s/1900s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1900s.jpg">
+        </a>
+        <a href="../../1930s/1930s.php" class="dec">
+            <img style="width: 250px; height: 65px;" src="../../../images/Nav/1930s.jpg">
+          </a>
+        <a href="../../1940s/1940s.php" class="dec">
+          <img style="width: 250px; height: 55px;" src="../../../images/Nav/1940s.jpg">
+        </a>
+        <a href="../../1950s/1950s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1950s.jpg">
+        </a>
+        <a href="../../1960s/1960s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1960s.jpg">
+        </a>
+        <a href="../../1970s/1970s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1970s.jpg">
+        </a>
+        <a href="../../1980s/1980s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1980s.jpg">
+        </a>
+        <a href="../../1990s/1990s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/1990s.jpg">
+        </a>
+        <a href="../../2000s/2000s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/2000s.jpg">
+        </a>
+        <a href="../../2010s/2010s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/2010s.jpg">
+        </a>
+        <a href="../../2020s/2020s.php" class="dec">
+          <img style="width: 250px; height: 65px;" src="../../../images/Nav/2020s.jpg">
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="footer">
+	    <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.</p>
+    </div>
+  
+	
+
+</body>
+</html>

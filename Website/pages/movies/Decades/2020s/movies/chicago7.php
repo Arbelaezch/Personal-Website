@@ -18,28 +18,29 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>The Trial of the Chicago 7 (2020)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">6.5</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/chicago7.jpeg" alt="The Trial of the Chicago 7">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
-									
+					The story of 7 people on trial stemming from various charges surrounding the uprising at the 1968 Democratic National Convention in Chicago, Illinois.<br><br>
+					Director: Aaron Sorkin<br><br>
+					Writer: Aaron Sorkin<br><br>
+					Stars: Eddie Redmayne, Alex Sharp, Sacha Baron Cohen<br><br>
+
 					Country: America<br><br>
 					
-					Studio: Miramax Films
+					Produced by: Paramount Pictures<br><br>
+					Distributed by: Netflix
             </p>
           </div>
         </div>
@@ -52,10 +53,31 @@
           </p>
 
           <p>
-			 
-				Review goes here.
-            
-            <br><br>
+
+				
+				The Trial of the Chicago 7 is a light, historically biased movie that gets your blood boiling, in the good kind of way. From legendary screenwriter and second time director, Aaron Sorkin comes a historically relevant movie that addresses the abuses of power by the police during the 1968 Chicago riots. Chicago 7 has been well regarded by critics and audiences alike, holding a 90% on Rotten Tomatoes for both.
+				
+
+				<br><br>
+
+
+				The film is about as by the numbers as it gets, which isn't necessarily a bad thing. One of Aaron Sorkin's superpowers is turning any narrative into something thoroughly engaging to watch, with banter that feels bigger than life in a way that you never want to stop watching. The story had me eating out of its hand with me hating who it wanted me to hate and loving Sacha Baron Cohen for his hilarious portrayal of Abbie Hoffman. Sure the film doesn't take any daring chances, but it doesn't need to. It's entertaining enough all on its own.
+
+				<br><br>
+
+				Unfortunately, the historical bias is too much for me to handle. Typically, I don't really care about historical accuracy in a film. I don't even usually care about bias all that much either. The reason I have my knickers in a twist here is that it covers such a topical issue. Police violence during protests is an enormously hot button issue right now that is highly political and the reason for countless Facebook arguments. Now films are typically exaggerated to get an argument across, but when the stakes are so high for this kind of message, a largly inaccurate retelling that heavily leans on one side of the argument seems in bad taste. Upon researching this film, I found that many of the "bombshell" moments in favor of the protestors, including the "charge the hill" incident and the testimony from Ramsey Clark, were largely fabricated to make the protestors come across as much more sympathetic. Like I said, I usually would not care about this sort of thing, but as this is a highly political issue right now, I feel Chicago 7 feels more like propaganda, rather than a fun time.
+
+				<br><br>
+
+
+				Overall, I enjoyed watching this film, as I do with many of Sorkin's other projects. Its fun and emotionally charged and has you vehemently rooting for the protagonists against their unfair opressors. My biggest gripe is historical accuracy, but that shouldn't stop you from enjoying the film yourself.
+				<br><br>
+
+
+
+
+
+
 
 
 

@@ -18,28 +18,28 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>The Father (2020)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">8</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/father.jpg" alt="The Father">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+					A man refuses all assistance from his daughter as he ages. As he tries to make sense of his changing circumstances, he begins to doubt his loved ones, his own mind and even the fabric of his reality.<br><br>
+					Director: Florian Zeller<br><br>
+					Writers: Christopher Hampton, Florian Zeller<br><br>
+					Stars: Anthony Hopkins, Olivia Colman, Mark Gatiss<br><br>
 									
-					Country: America<br><br>
+					Country: French-British co-production<br><br>
 					
-					Studio: Miramax Films
+					Studio: Lionsgate (United Kingdom) and Sony Pictures Classics (United States)
             </p>
           </div>
         </div>
@@ -53,9 +53,24 @@
 
           <p>
 			 
-				Review goes here.
-            
-            <br><br>
+
+				The Father is a the directorial debut of playwriter Florian Zeller, who also wrote the play this film is based on. It starts Anthony Hopkins as an elderly man with dementia and Olivia Colman as his daughter who struggles to care for him. It has been nominated for six Academy Awards, including Best Picture, Best Actor, and Best Supporting Actress.
+
+				<br><br>
+
+				The film is heartbreaking. Incredibly hard to watch at times, The Father does an incredible job depicting dementia and it's devastating effects not just on the individual, but on their loved ones as well. The film creatively uses the distortion and incontinuity of time to have the audience get a sense of the illness, while having Hopkins' confused, angry monologues put the audience in the place of the concerned loved ones. I personally had a hard time watching at some parts as Hopkins delivers of course a spectacularly real, raw, and uncomfortable performance. 
+
+				<br><br>
+
+				Every year there are films that are specifically "acting vehicles" that are meant to demonstrate an actors merit, rather than deliver on any fuller more entertaining experience. Initially, this was my expectation. This is not the case. The Father is of course a well acted film, but it's writing is incredibly tight and gives so little room for the audience to breathe that it certainly earns your time. Between Hopkins' and Colman's performances, the heartbreaking depiction of dementia and its effects, and the audience trying to piece together what scenes go where in the chronology, this movie had me engaged fully.
+
+				<br><br>
+
+				The film is fantastic in every way. The only reason I can not give it higher is because I never want to watch it ever again. It is powerful and was successful in making me feel for these characters in a way that I would rather not put myself again. This is of course to the films credit, but as for my own personal enjoyment, I would never want to see it again. So for me, this is why I don't think I could rate it higher, personally.
+
+
+
+				
 
 
 

@@ -18,28 +18,28 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1>No Country for Old Men ()</h1>
+            <h1>The Maltese Falcon (1941)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single"></h2>
+            <h2 class="single">8</h2>
             
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/king.jpg" alt="">
+            <img src="../images/falcon.jpg" alt="The Maltese Falcon">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
 					<br>
-					Hal, wayward prince and heir to the English throne, is crowned King Henry V after his tyrannical father dies. Now the young king must navigate palace politics, the war his father left behind, and the emotional strings of his past life.<br><br>
-          Director: David Michôd<br><br>
-          Writers: David Michôd, Joel Edgerton<br><br>
-          Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+					A private detective takes on a case that involves him with three eccentric criminals, a gorgeous liar, and their quest for a priceless statuette.<br><br>
+					Director: John Huston<br><br>
+					Writers: John Huston, Dashiell Hammett<br><br>
+					Stars: Humphrey Bogart, Mary Astor, Gladys George<br><br>
 									
-					Country: America<br><br>
+					Country: United States<br><br>
 					
-					Studio: Miramax Films
+					Studio: Warner Bros.
             </p>
           </div>
         </div>
@@ -53,11 +53,21 @@
 
           <p>
 			 
-				Review goes here.
-            
-            <br><br>
+				The Maltese Falcon is quite possibly The quintessential film noir drama. The directorial debut of legend John Huston, <em>Falcon</em> was nominated for three Academy Awards including Best Picture and Best Adapted Screenplay. It was a major success at box offices and is still considered as one of the greatest films ever made. Falcon, along with <em>Casablanca</em> (1942), launched lead star Humphry Bogart from inconsistent front man, to one of the most popular actors in the world. A sequel was actually planned, but due to the newfound stardome of Huston and Bogart, it had to be scrapped.
 
+				<br><br>
 
+				Falcon is still a joy to watch today. It's suspensful, unpredictable, and creative in telling it's intricate story. It's one of those films that is truly timeless, having the ability to suck modern day audiences in to its mystery and keep them guessing at every turn.
+
+				<br><br>
+
+				The characters are wild, albeit mostly one dimensional. With the exception of maybe a few characters who you never truly know whos side they are on, most of the rest are one dimensional characatures that behave as their archetypes demand. This isn't necessarily a problem, as every character brings a layer of eccentricity and entertainment. Though, because of this it sacrifices the potential for a more nuanced and potentially exploratory film. Of course this is 1941, and the film the literally invented the genre, so you can't really fault it for missing the complexities of human behaviours in this kind of situation.
+
+				<br><br>
+
+				Overall, the film does exactly what it intends. It leads audiences down a wildly fun and mysterious tale. Full of twists, death, and wacky characters, The Maltese Falcon very much deserves to be rememberd as one of the greats today.
+
+    
 
             
             

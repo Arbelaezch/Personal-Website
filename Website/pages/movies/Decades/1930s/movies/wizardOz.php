@@ -7,11 +7,9 @@
   <link rel="stylesheet" href="../../style.css">
 </head>
 
-<script src="app.js"></script>
-
 
 <body>
-  <?php echo require_once("../../../../../nav.php"); ?>
+<?php echo require_once("../../../../../nav.php"); ?>
 
   <div id="page">
 
@@ -20,33 +18,33 @@
       <div class="header">
         <div class="top">
           <div id="title" class="title">
-            <h1> Mr. Deeds Goes to Town (1936)</h1>
+            <h1>The Wizard of Oz (1939)</h1>
           </div>
           <div id="rating" class="title">
-            <h2 class="single">7</h2>
+            <h2 class="single"></h2>
             <h2 class="double">
+              Enjoyment: 6<br>
+              Appreciation: 10
               
             </h2>
           </div>
         </div>
         <div class="mid">
           <div id="picture" class="info">
-            <img src="../images/deeds.png" >
+            <img src="../images/wizard of oz.jpeg" alt="The Wizard of Oz">
           </div>
           <div id="synopsis" class="info">
             <p class="synopsis"> 
                 <br>
-                A simple, small town man inherits a massive fortune, making him the target for 
-                scammers and publicity-seekers. Overwhelmed by the turn his life has taken, and 
-                awoken to another use for his new-found fortune, he makes a momentous decision.<br><br>
-                Director: Frank Capra<br><br>
-                Writers: Robert Riskin, Clarence Budington Kelland<br><br>
-                Stars: Gary Cooper, Jean Arthur, George Bancroft<br><br>
+                Dorothy Gale is swept away from a farm in Kansas to a magical land of Oz in a tornado and embarks on a quest with her new friends to see the Wizard who can help her return home to Kansas and help her friends as well.<br><br>
+                Directors: Victor Fleming<br><br>
+                Writers: Noel Langley, Florence Ryerson<br><br>
+                Stars: Judy Garland, Frank Morgan, Ray Bolger<br><br>
                 
             
                 Country: America<br><br>
                 
-                Studio: Columbia Pictures
+                Studio: Metro-Goldwyn-Mayer
             </p>
           </div>
         </div>
@@ -58,29 +56,27 @@
           </p>
 
           <p>
-
-            Capra's biggest box office hit to date, Mr. Deeds Goes to Town is a feel good romantic comedy 
-            that puts a larger emphasis on the Feel Good than the Romantic Comedy. Star of the show 
-            Gary Cooper is cool as a cucumber as Longfellow Deeds who inherits a light $20M from an unknown relative
-             (almost $400M by today's standards). Personally I loved watching Cooper play the good hearted, soft spoken 
-             Deeds. His down to earth demeanor made those attempting to swindle him all the more horrendous. 
-             Female lead Jean Aurthur is not quite as good, actually annoying me at times, but she actually doesn't 
-             get a lot of screen time so its not a big sin.
-              
             
+            
+            The Wizard of Oz is a fantastical fever dream that deserves its monumental place in our collective cultural conscience. Inspired by the success of Walt Disney's Snow White from 1937, Oz was a critical and box office success upon release. It was nominated for six Academy Awards, including Best Picture, and won Best Original Song for "Over the Rainbow" and Best Original Score. However, the film cost an astronomical $2,777,000 and made only $3,017,000, which with additional marketing meant MGM saw a loss on its initial theatrical run. Oz failed to make a profit for MGM until the 1949 re-release, whereby it began its journey into reaching the hearts of everyone person who found there to be no place like home. According to the Library of Congress, it is the most seen film in movie history.
+			
+			
+			
+			    <br><br>
+
+
+            The film is both beautiful and haunting. The central story of a child lost in a strange world strikes a chord with viewers that will forever be relevant and moving. And not to mention the production side of things which is almost unbelievable the scale of everything. The costumes, sets, colors, and performances are all amped-up to eleven in a way that makes the film a highly artifical fantasty that forces happiness on you. It is not a choice in this movie. Yet because it's all on this same level it manages to feel comforting rather than disturbing. That is at least untill I started reading the behind the scenes stories about the horrors inflicted on the actors participating in the picture. From hotel orgies and asbestos props to horrible flesh searing scars and possible molestation, this film has its lions share of behind the scenes controversy. Reading these stories definitely turned my enjoyment of the film to a more haunting experience. Suddenly all the color and cheeriness turned into an eerie cover up hiding a sinister truth. I wouldn't say this ruined my enjoyment of the film so much as it provided a second layer to it.
+            
+            
+            
+            <br><br>
+		 
+			      Aside from that Judy Garland is exceptional as Dorothy, being exactly what you would want in an innocent, fresh faced girl. I was shocked to see one of my favorite songs, Over the Rainbow came from this fricken movie, and the Witch was surprisingly enjoyable to watch as just a characature of the genre. It's also a perfect film to take this website into the beginning of the end of the American Studios' Golden Age, the 1940s.
+          
 
             <br><br>
 
-            The Comedy and Romance angles fell a little short of great for me, but thats alright because the 
-            emotional feel good narrative, along with Cooper's stoic charm, was more than enough to keep me watching. 
-            While the film's politics play out in a shockingly black and white manner, it still gave me the warm 
-            and fuzzies. To me this film did what it set out to do perfectly well, and I really enjoyed it. 
-            And just like that Capra has another hit under his belt.
-
-            <br><br>
-
-            
-
+          
         
             
           </p>  
