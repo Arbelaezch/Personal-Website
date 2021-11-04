@@ -10,22 +10,17 @@
 
 
 <body>
-  <nav>
-    <a href="../../index.html">Home</a>
-    <a href="../recipes/recipes.html">Food</a>
-    <a href="../movies/250.html">Movies</a>
-    <a href= "./cs.html">Computer Science</a>
-    <a href= "../portfolio/portfolio.html">Portfolio</a>
-    <a href= "../portfolio/portfolio.html#container">Contact Me</a>
-  </nav>
+  
+  <?php echo require_once("../../nav.php"); ?>
+  
   <article>
     <header>
       <div class="title-container">
         <h1>So You Like Computers?</h1>
         <h4>A collection of resources and topics that interested me.</h4>
       </div>
-        
     </header>
+    
     <section class="videos">
       <div class="videos-title-container">
         <h2>Videos</h2>

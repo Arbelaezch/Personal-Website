@@ -12,14 +12,7 @@
 </head>
 
 <body>
-	<nav>
-		<a href="../../index.html">Home</a>
-		<a href="../recipes/recipes.html">Food</a>
-		<a href="../movies/250.html">Movies</a>
-		<a href= "../comp_sci/cs.html">Computer Science</a>
-		<a href= "./portfolio.html">Portfolio</a>
-		<a href= "./portfolio.html#container">Contact Me</a>
-	</nav>
+	<?php echo require_once("../../nav.php"); ?>
 
 	
 	<div class="hero-image">

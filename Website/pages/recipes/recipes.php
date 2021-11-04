@@ -10,14 +10,7 @@
 
 
 <body>
-	<nav>
-		<a href="../../index.html">Home</a>
-		<a href="recipes.html">Food</a>
-		<a href="../movies/250.html">Movies</a>
-		<a href= "../comp_sci/cs.html">Computer Science</a>
-		<a href= "../portfolio/portfolio.html">Portfolio</a>
-		<a href= "../portfolio/portfolio.html#container">Contact Me</a>
-	</nav>
+	<?php echo require_once("../../nav.php"); ?>
 
 
   	<article class="center">

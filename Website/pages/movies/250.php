@@ -8,19 +8,17 @@
 </head>
 
 
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
+
 
 <body>
-  <nav>
-    <a href="../../index.html">Home</a>
-    <a href="../recipes/recipes.html">Food</a>
-    <a href="./250.html">Movies</a>
-    <a href= "../comp_sci/cs.html">Computer Science</a>
-    <a href= "../portfolio/portfolio.html">Portfolio</a>
-    <a href= "../portfolio/portfolio.html#container">Contact Me</a>
-  </nav>
+  <?php echo require_once("../../nav.php"); ?>
   
-  
-    <!-- MAIN CONTENT-->
+  <!-- MAIN CONTENT-->
   <article class="center">
     <div id="content">
       <header>
