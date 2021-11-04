@@ -28,14 +28,14 @@
 			<div id="grid">
 				<div class="wrapper">
 					 <div class="item">
-						  <a href="./item/fried_rice.html">
+						  <a href="./item/fried_rice.php">
 								<img src="./images/fried_rice.jpg">
 								</img>
 								<p>Chicken Fried Rice</p>
 						  </a>
 					 </div>
 					 <div class="item">
-						  <a href="./item/ramen.html" class="grid">
+						  <a href="./item/ramen.php" class="grid">
 								<img src="./images/ramen.jpg">
 									 
 								</img>
@@ -43,7 +43,7 @@
 						  </a>
 					 </div>
 					 <div class="item">
-						  <a href="./item/ribs.html" class="grid">
+						  <a href="./item/ribs.php" class="grid">
 								<img src="./images/ribs.jpg">
 									 
 								</img>
@@ -51,7 +51,7 @@
 						  </a>
 					 </div>
 					 <div class="item">
-						  <a href="./item/quesadilla.html" class="grid">
+						  <a href="./item/quesadilla.php" class="grid">
 								<img src="./images/quesadilla.jpg">
 									 
 								</img>

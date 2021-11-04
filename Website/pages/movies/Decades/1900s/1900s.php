@@ -10,14 +10,7 @@
 
 
 <body>
-    <nav>
-        <a href="../../../../index.html">Home</a>
-        <a href="../../../recipes/recipes.html">Food</a>
-        <a href="../../250.html">Movies</a>
-        <a href= "../../../comp_sci/cs.html">Computer Science</a>
-        <a href= "../../../portfolio/portfolio.html">Portfolio</a>
-      <a href= "../../index.html">Contact Me</a>
-    </nav>
+    <?php echo require_once("nav.php"); ?>
 
 
     <article class="center">
@@ -44,7 +37,7 @@
 
                     Fun Fact: Nickelodeons were theaters that charged a Nickle to get in. They were wildly successful.<br><br>
 
-                    Personal Favorites of the Era: <a href="./movies/sherlock.html">Sherlock Jr.</a> and <a href="./movies/sunrise.html">Sunrise.</a><br><br>
+                    Personal Favorites of the Era: <a href="./movies/sherlock.php">Sherlock Jr.</a> and <a href="./movies/sunrise.php">Sunrise.</a><br><br>
 
                     
                     </p>
@@ -52,14 +45,14 @@
             <div id="grid">
                 <div class="wrapper">
                     <div class="item">
-                        <a href="./movies/tripToMoon.html">
+                        <a href="./movies/tripToMoon.php">
                             <img src="./images/a trip to the moon.jpeg">
                             </img>
                             <p>A Trip to the Moon (1902)</p>
                         </a>
                     </div>
                     <div class="item">
-                        <a href="./movies/greatTrainRobbery.html" class="grid">
+                        <a href="./movies/greatTrainRobbery.php" class="grid">
                             <img src="./images/train robbery.jpeg">
                                 
                             </img>
@@ -67,7 +60,7 @@
                         </a>
                     </div>
                     <div class="item">
-                        <a href="./movies/birthofNation.html" class="grid">
+                        <a href="./movies/birthofNation.php" class="grid">
                             <img src="./images/birth of a nation.jpeg">
                                 
                             </img>
@@ -75,7 +68,7 @@
                         </a>
                     </div>
                     <div class="item">
-                        <a href="./movies/sherlock.html" class="grid">
+                        <a href="./movies/sherlock.php" class="grid">
                             <img src="./images/sherlock jr.jpeg">
                                 
                             </img>
@@ -83,7 +76,7 @@
                         </a>
                     </div>
                     <div class="item">
-                        <a href="./movies/battleshipPotemkin.html" class="grid">
+                        <a href="./movies/battleshipPotemkin.php" class="grid">
                             <img src="./images/battleship potemkin.jpeg">
                                 
                             </img>
@@ -91,7 +84,7 @@
                         </a>
                     </div>
                     <div class="item">
-                        <a href="./movies/goldRush.html" class="grid">
+                        <a href="./movies/goldRush.php" class="grid">
                             <img src="./images/gold rush.jpeg">
                                 
                             </img>
@@ -99,7 +92,7 @@
                         </a>
                     </div>
                     <div class="item">
-                        <a href="./movies/metropolis.html" class="grid">
+                        <a href="./movies/metropolis.php" class="grid">
                             <img src="./images/metropolis.jpeg">
                                 
                             </img>
@@ -107,7 +100,7 @@
                         </a>
                     </div>
                     <div class="item">
-                        <a href="./movies/general.html" class="grid">
+                        <a href="./movies/general.php" class="grid">
                             <img src="./images/the general.jpg">
                                 
                             </img>
@@ -115,7 +108,7 @@
                         </a>
                     </div>
                     <div class="item">
-                        <a href="./movies/sunrise.html" class="grid">
+                        <a href="./movies/sunrise.php" class="grid">
                             <img src="./images/sunrise.jpeg">
                                 
                             </img>
@@ -123,7 +116,7 @@
                         </a>
                     </div>
                     <div class="item">
-                        <a href="./movies/steamboatWillie.html" class="grid">
+                        <a href="./movies/steamboatWillie.php" class="grid">
                             <img src="./images/steamboat willie.jpeg">
                                 
                             </img>
@@ -131,7 +124,7 @@
                         </a>
                     </div>
                     <div class="item">
-                        <a href="./movies/andalou.html" class="grid">
+                        <a href="./movies/andalou.php" class="grid">
                             <img src="../1900s/images/andalou.jpeg">
                                 
                             </img>
@@ -146,40 +139,40 @@
         <!-- SIDEBAR -->
         <div id="sidebar">
             <div id="sideHeader">
-                <a href="../../250.html">
+                <a href="../../250.php">
                     <img style="width: 250px; height: 200px;" src="../../images/Nav/top250.jpg" alt="top 250 movies">
                   </a>
-                  <a href="../1900s/1900s.html">
+                  <a href="../1900s/1900s.php">
                     <img style="width: 250px; height: 65px;" src="../../images/Nav/1900s.jpg" alt="1900s">
                   </a>
-                  <a href="../1930s/1930s.html">
+                  <a href="../1930s/1930s.php">
                     <img style="width: 250px; height: 65px;" src="../../images/Nav/1930s.jpg" alt="1930s">
                   </a>
-                  <a href="../1940s/1940s.html">
+                  <a href="../1940s/1940s.php">
                     <img style="width: 250px; height: 55px;" src="../../images/Nav/1940s.jpg" alt="1940s">
                   </a>
-                  <a href="../1950s/1950s.html">
+                  <a href="../1950s/1950s.php">
                     <img style="width: 250px; height: 65px;" src="../../images/Nav/1950s.jpg" alt="1950s">
                   </a>
-                  <a href="../1960s/1960s.html">
+                  <a href="../1960s/1960s.php">
                     <img style="width: 250px; height: 65px;" src="../../images/Nav/1960s.jpg" alt="1960s">
                   </a>
-                  <a href="../1970s/1970s.html">
+                  <a href="../1970s/1970s.php">
                     <img style="width: 250px; height: 65px;" src="../../images/Nav/1970s.jpg" alt="1970s">
                   </a>
-                  <a href="../1980s/1980s.html">
+                  <a href="../1980s/1980s.php">
                     <img style="width: 250px; height: 65px;" src="../../images/Nav/1980s.jpg" alt="1980s">
                   </a>
-                  <a href="../1990s/1990s.html">
+                  <a href="../1990s/1990s.php">
                     <img style="width: 250px; height: 65px;" src="../../images/Nav/1990s.jpg" alt="1990s">
                   </a>
-                  <a href="../2000s/2000s.html">
+                  <a href="../2000s/2000s.php">
                     <img style="width: 250px; height: 65px;" src="../../images/Nav/2000s.jpg" alt="2000s">
                   </a>
-                  <a href="../2010s/2010s.html">
+                  <a href="../2010s/2010s.php">
                     <img style="width: 250px; height: 65px;" src="../../images/Nav/2010s.jpg" alt="2010s">
                   </a>
-                  <a href="../2020s/2020s.html">
+                  <a href="../2020s/2020s.php">
                     <img style="width: 250px; height: 65px;" src="../../images/Nav/2020s.jpg" alt="2020s">
                   </a>
             </div>
