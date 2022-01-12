@@ -41,24 +41,24 @@
             <h2 class="blog-post-title">Intention.</h2>
             <p class="blog-post-meta">January 12, 2022</p>
 
-			
+<?php
 
-
+$dir = getcwd();
+$files = scandir(getcwd(), SCANDIR_SORT_DESCENDING);
+$newest_file = $files[0];
+echo $newest_file;
+?>
 
           
             <img src="./images/blogtemplate.JPG" id="image">
-
-
+            
+            
             <p>This is the mockup that I created in Adobe XD before I began actually coding. Then, when I began coding I thought: "I wonder how much faster this would go with Bootstrap." Turns out Bootstrap had a template that was basically the exact same UI design.</p>
             
             <p>I'd never used Bootstrap before so this was a good opportunity for me to get acquainted with it. I'm sure I'm the first person to realize that it makes developing projects extremely fast and easy.</p>
             
-            <p> This is also the first project I've used Adobe XD. It wasn't too difficult to pick up, and having a vague picture of the UI that I wanted in my head made it easier to actually implement. Even though I used a Bootstrap template for the HTML, when I was looking for templates I already knew what I was looking for and what basic features I needed to be sure were included.
+            <p> This is also the first project I've used Adobe XD, despite my incredible mockup skills. It wasn't too difficult to pick up, and having a vague picture of the UI that I wanted in my head made it easier to actually implement. Even though I used a Bootstrap template for the HTML, when I was looking for templates I already knew what I was looking for and what basic features I needed to be sure were included.
             </p>
-			
-			<p>The hardest part of this project by far was setting the website's nav bar so that it always refers to the most recent blog post. I ended up using php to find and select the most recently modified file in the blog directory. This took me a long time to implement but was great experience getting to use and learn how to manipulate directories with php.</p>
-
-			<p>My Intention is to develop and deploy a reasonably sized project of my choosing every week of 2022, or at least until I find a job. Setting this page up has been a very good start to this goal as I got to learn more PHP, Adobe XD, and Bootstrap all in one.</p>
             
           </div><!-- /.blog-post -->
 

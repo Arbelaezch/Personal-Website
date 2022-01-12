@@ -17,6 +17,8 @@
   </header>
 
   
+
+  
   
   <div class="center">
     <div class="title-container">
@@ -35,6 +37,7 @@
     <p>
       Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. You are allowed to use this webpage for both personal or commercial use.
     </p>
+    
   </footer>
 
 
