@@ -23,7 +23,7 @@
       <img src="google_logo.png" class="logo" alt="Christian Arbelaez logo">
     </div>
     <div class="buttons">
-      <a href="./pages/portfolio/portfolio.php" class="button">View Online Portfolio</a>
+      <a href="/pages/portfolio/portfolio.php" class="button">View Online Portfolio</a>
       <a href="https://www.youtube.com/watch?v=3H50llsHm3k" class="button">I'm Feeling Lucky?</a>
       <!--<a href="./google_logo.png" download class="button">Get CSV</a> -->
     </div>
