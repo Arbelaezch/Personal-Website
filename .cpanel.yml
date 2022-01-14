@@ -2,6 +2,6 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/arbelae1/public_html/
-    - /bin/cp -R * $DEPLOYPATH
+    - /bin/cp test.html $DEPLOYPATH
 
     #this is a comment
