@@ -37,7 +37,17 @@
 
         <div class="col-sm-8 blog-main">
 
+          <!-- start of blog-post -->
+          <div class="blog-post" id="intention">
+                <h2 class="blog-post-title">Title</h2>
+                <p class="blog-post-meta">Date</p>
+        
+                <p></p>
+            
+            </div><!-- end of blog-post -->
+
           <div class="blog-post">
+            
             <h2 class="blog-post-title">Intention</h2>
             <p class="blog-post-meta">January 12, 2022</p>
 
@@ -99,6 +109,7 @@
             <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
             <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
           </div><!-- /.blog-post -->
+
 
           
 
