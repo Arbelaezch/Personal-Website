@@ -146,8 +146,14 @@
 
 		<div class="minor-projects-container">
 		  <ul>Other Minor Projects:
+		  	<li>
+				<a href="./projects/rps/rps.html">JavaScript Rock, Paper, Scissors</a>
+			</li>
 			<li>
-			  <a href="./projects/clock/clock.html">Basic Clock using JS/HTML integration</a>
+				<a href="./projects/calculator/calculator.html">JavaScript Calculator</a>
+			</li>
+			<li>
+			  <a href="./projects/clock/clock.html">Basic Clock</a>
 			</li>
 			<li>
 			  <a href="https://github.com/Arbelaezch/AHS-SMS-Auto-Responder">AHS SMS Auto Responder</a>
@@ -156,6 +162,8 @@
 			  <a href="https://github.com/Arbelaezch/BouncingTommyLee">Bouncing Tommy Lee Jones Screeensaver</a>
 			</li>
 		  </ul>
+		  
+    
   
 		</div>
 	</section>
@@ -170,12 +178,12 @@
 		<form id="fcf-form-id" class="fcf-form-class" method="post" action="contact-form-process.php">
 		
 			<h2 style="text-align: center; padding: 2rem 0 1rem 0;">CONTACT ME</h2>
-			<label for="Name" class="fcf-label">Your name</label>
+			<label for="Name" class="fcf-label">*Your name</label>
 			<div class="fcf-input-group">
 				<input type="text" id="Name" name="Name" class="fcf-form-control" required>
 			</div>
 			<div class="fcf-form-group">
-				<label for="Email" class="fcf-label">Your email address</label>
+				<label for="Email" class="fcf-label">*Your email address</label>
 				<div class="fcf-input-group">
 					<input type="email" id="Email" name="Email" class="fcf-form-control" required>
 				</div>
