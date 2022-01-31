@@ -146,21 +146,11 @@
 
 		<div class="minor-projects-container">
 		  <ul>Other Minor Projects:
-		  	<li>
-				<a href="./projects/rps/rps.html">JavaScript Rock, Paper, Scissors</a>
-			</li>
-			<li>
-				<a href="./projects/calculator/calculator.html">JavaScript Calculator</a>
-			</li>
-			<li>
-			  <a href="./projects/clock/clock.html">Basic Clock</a>
-			</li>
-			<li>
-			  <a href="https://github.com/Arbelaezch/AHS-SMS-Auto-Responder">AHS SMS Auto Responder</a>
-			</li>
-			<li>
-			  <a href="https://github.com/Arbelaezch/BouncingTommyLee">Bouncing Tommy Lee Jones Screeensaver</a>
-			</li>
+			<li><a href="./projects/calculator/calc.html">JavaScript Calculator</a></li>
+			<li><a href="./projects/rps/rps.html">JavaScript Rock, Paper, Scissors</a></li>
+			<li><a href="./projects/clock/clock.html">Basic Clock</a></li>
+			<li><a href="https://github.com/Arbelaezch/AHS-SMS-Auto-Responder">AHS SMS Auto Responder</a></li>
+			<li><a href="https://github.com/Arbelaezch/BouncingTommyLee">Bouncing Tommy Lee Jones Screeensaver</a></li>
 		  </ul>
 		  
     
