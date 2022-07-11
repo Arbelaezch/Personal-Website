@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the base index.")
+    context = {'latest_question_list': "test"}
+    return render(request, 'polls/index.html', context)
 
