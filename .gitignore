@@ -1,0 +1,15 @@
+env
+conf/*
+logs/
+.vscode
+__pycache__/
+venv
+.DS_Store
+
+# We need the migration folder and init, but skip the rest.
+# They're just messy to debug and can collide a bunch if people are working
+# around the same models.  If we need to migrate data, we'll deal with that
+# using an exclusion in the base list.
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
