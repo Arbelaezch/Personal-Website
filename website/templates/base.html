@@ -22,7 +22,11 @@
 {% block navbar %}
     <nav>
         <ul>
-            <li><a href="{% url 'index' %}">Home</a></li>
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'film' %}">Film</a>
+            <a href="{% url 'index' %}">Food</a>
+            <a href="{% url 'index' %}">Portfolio</a>
+            <a href="{% url 'index' %}">Contact</a>
         </ul>
     </nav>
 {% endblock navbar %}
