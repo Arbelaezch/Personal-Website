@@ -1,7 +1,22 @@
-<h1>{{ question.question_text }}</h1>
-<ul>
-    <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
-{% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }}</li>
-{% endfor %}
-</ul>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+  {{ block.super}}
+  <link rel="stylesheet" type="text/css" href="{% static 'base/css/index.css' %}">
+{% endblock head %}
+
+
+{% block content %}
+
+  <div class="center">
+    <div class="title-container">
+      <img src="{% static 'base/media/google_logo.png' %}" class="logo" alt="Christian Arbelaez logo">
+    </div>
+    <div class="buttons">
+      <a href="./pages/portfolio/portfolio.html" class="button">View Online Portfolio</a>
+      <a href="https://www.youtube.com/watch?v=3H50llsHm3k" class="button">I'm Feeling Lucky?</a>
+    </div>
+  </div>
+
+{% endblock content %}

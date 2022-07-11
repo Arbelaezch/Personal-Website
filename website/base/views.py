@@ -1,8 +1,12 @@
 from django.shortcuts import render
+from datetime import date
 
 
 
 def index(request):
-    context = {'latest_question_list': "test"}
-    return render(request, 'polls/index.html', context)
+    context = {
+        'title': "Welcome!",
+        'year': date.today().year,
+    }
+    return render(request, 'base/index.html', context)
 
