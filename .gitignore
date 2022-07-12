@@ -1,6 +1,7 @@
 # env
 # venv
 conf/*
+!conf/my_secrets.py.example
 logs/
 .vscode
 __pycache__/
