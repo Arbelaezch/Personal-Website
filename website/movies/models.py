@@ -22,7 +22,7 @@ class Film(models.Model):
     year = models.CharField(max_length=4)
     director = models.CharField(max_length=200)
     description = models.TextField()
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='movie-posters/')
     decade_fk = models.ForeignKey('Decade', on_delete=models.PROTECT, to_field='decade')
 
     def __str__(self):

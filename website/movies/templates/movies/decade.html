@@ -16,7 +16,7 @@
         <!-- MAIN CONTENT-->
         <div class="content">
             <header>
-                <h1 class="title">{{ decade.title}}</h1>
+                <h1 class="title">{{ decade.title }}</h1>
             </header>
             <div id="description" class="mid">
                 <div class="horse">
@@ -37,10 +37,9 @@
                 <div class="wrapper">
                     {% for item in movie_list %}
                     <div class="item">
-                        <a href="./movies/tripToMoon.php">
-                            <img src="./images/a trip to the moon.jpeg">
-                            </img>
-                            <p>A Trip to the Moon (1902)</p>
+                        <a href="{% url 'movie' item.pk %}">
+                            <img src="{{ item.image.url }}"></img>
+                            <p>{{ item.title }} ({{item.year}})</p>
                         </a>
                     </div>
 
