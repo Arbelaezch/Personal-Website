@@ -24,6 +24,8 @@ class Film(models.Model):
     rating = models.CharField(max_length=3, default='', null=True, blank=True)
     director = models.CharField(max_length=200)
     description = models.TextField()
+    studio = models.CharField(max_length=200)
+    country = models.CharField(max_length=200)
     image = models.ImageField(upload_to='movie-posters/')
     decade_fk = models.ForeignKey('Decade', on_delete=models.PROTECT, to_field='decade')
 

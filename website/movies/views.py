@@ -14,7 +14,6 @@ def film(request):
     }
     return render(request, 'movies/250.html', context)
 
-
 def decade(request, decade):
     decade_obj = Decade.objects.filter(decade=decade).first()
 
@@ -24,12 +23,16 @@ def decade(request, decade):
     context = {
         'title': f"{decade}s",
         'decade_obj': decade_obj,
-        'movie_list': Film.objects.filter(decade_fk__decade=decade_obj.decade),
+        'movie_list': films,
     }
     return render(request, 'movies/decade.html', context)
 
-def movie(request):
+def movie(request, decade, pk):
+    film = Film.objects.get(pk=pk)
+
     context = {
-        'title': "Film",
+        'title': film.decade_fk,
+        'film': film,
+
     }
     return render(request, 'movies/film.html', context)

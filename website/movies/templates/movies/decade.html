@@ -3,7 +3,7 @@
 
 {% block head %}
 {{ block.super}}
-<link rel="stylesheet" type="text/css" href="{% static 'movies/css/Dstyle.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'movies/css/decade.css' %}">
 {% endblock head %}
 
 {% block favicon %}<link rel="shortcut icon" type="image/png" href="{% static 'movies/media/favicon.ico' %}"/>{% endblock favicon%}
@@ -33,7 +33,7 @@
                 <div class="wrapper">
                     {% for item in movie_list %}
                     <div class="item">
-                        <a href="{% url 'movie' item.pk %}">
+                        <a href="/film/{{decade_obj.decade}}/{{item.pk}}/">
                             <img src="{{ item.image.url }}"></img>
                             <p>{{ item.title }} ({{item.year}})</p>
                         </a>
@@ -44,10 +44,12 @@
                 </div>
             </div>
         </div>
+    {% include 'movie_sidebar.html' %}
+
     </article>
+
     </body>
 
-    {% include 'movie_sidebar.html' %}
 
 {% endblock content %}
 
