@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
 {% block head %}
 {{ block.super}}
 <link rel="stylesheet" type="text/css" href="{% static 'movies/css/film.css' %}">
@@ -25,14 +26,15 @@
                     </div>
                     <div class="mid">
                         <div id="picture" class="info">
-                            <img src="{{ film.img.url }}" alt="">
+                            <!-- <img src="/media/movie-posters/sherlock_jr.jpeg" alt=""> -->
+                            <img src="{{film.img.url}}" alt="">
                         </div>
                         <div id="synopsis" class="info">
                             <p class="synopsis"> 
                                 <p>{{ film.description }}</p>
                                 <p>Director: {{ film.director }}</p>
-                                Writers: David Michôd, Joel Edgerton<br><br>
-                                Stars: Timothy Chalamet, Joel Edgerton, Sean Harris<br><br>
+                                <p>Writer: {{film.writer}} </p>
+                                <p>Cast: {{ film.cast }}</p>
                                                 
                                 <p>Country: {{ film.country }}</p>
                                 
@@ -45,7 +47,7 @@
                 <div id="review">
                     <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"></p>
                     <p>
-                        Review goes here.
+                        {{film.review}}
                     </p>  
                 </div>
             </div>

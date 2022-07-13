@@ -28,6 +28,7 @@ class Film(models.Model):
     cast = models.CharField(max_length=200)
     studio = models.CharField(max_length=200)
     country = models.CharField(max_length=200)
+    review = models.TextField(default='')
     image = models.ImageField(upload_to='movie-posters/')
     decade_fk = models.ForeignKey('Decade', on_delete=models.PROTECT, to_field='decade')
 
@@ -39,7 +40,6 @@ class Decade(models.Model):
     decade = models.CharField(max_length=50, choices=DECADE_LIST, unique=True)
     title = models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField(upload_to='images/', null=True, blank=True)
 
     def __str__(self):
-        return self.title
+        return self.decade
