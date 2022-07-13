@@ -1,19 +1,4 @@
-
-
-
-footer {
-	position: absolute;
-  	bottom: 0;
-	/*background-color: rgb(238, 238, 238); LIGHT MODE */
-  	color: #5F6368;
-	text-align: center;
-	width: 98%;
-	font-size: smaller;
-	
-}
-
-
-/* The navigation bar */
+/* NAVIGATION BAR */
 nav {
 	overflow: auto;
 	background-color: rgb(28, 32, 36);
@@ -42,3 +27,21 @@ nav a:hover {
 	background: #ddd;
 	color: black;
  }
+
+
+ /* FOOTER */
+footer {
+	color: #5F6368;
+	text-align: center;
+	position: relative;
+	bottom: 0;
+}
+ /* footer {
+	position: absolute;
+  	bottom: 0;
+  	color: #5F6368;
+	text-align: center;
+	width: 98%;
+	font-size: smaller;
+	text-align: center;
+} */

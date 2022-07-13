@@ -1,6 +1,7 @@
 from re import T
 from django.db import models
 from django import forms
+# from ckeditor.fields import RichTextField
 
 DECADE_LIST = [
     ('1900', '1900'),

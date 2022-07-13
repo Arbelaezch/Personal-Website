@@ -3,7 +3,7 @@
 
 {% block head %}
 {{ block.super}}
-<link rel="stylesheet" type="text/css" href="{% static 'movies/css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'movies/css/Dstyle.css' %}">
 {% endblock head %}
 
 {% block favicon %}<link rel="shortcut icon" type="image/png" href="{% static 'movies/media/favicon.ico' %}"/>{% endblock favicon%}
@@ -11,24 +11,20 @@
 
 {% block content %}
     <body>
-
     <article class="center">
         <!-- MAIN CONTENT-->
         <div class="content">
             <header>
-                <h1 class="title">{{ decade.title }}</h1>
+                <h1 class="title">{{ decade_obj.title }}</h1>
             </header>
             <div id="description" class="mid">
                 <div class="horse">
-                    <img src="../../images/running horse.gif" alt="running-horse"/>
+                    <img src="{% static 'movies/media/running_horse.gif' %}" alt="running-horse"/>
                 </div>
                 
                 <p> 
                          
                     {{ decade_obj.description }}
-
-                    {% comment %} Personal Favorites of the Era: <a href="./movies/sherlock.php">Sherlock Jr.</a> and <a href="./movies/sunrise.php">Sunrise.</a><br><br> {% endcomment %}
-
                     
                     </p>
             </div>
@@ -48,4 +44,10 @@
                 </div>
             </div>
         </div>
+    </article>
+    </body>
+
+    {% include 'movie_sidebar.html' %}
+
 {% endblock content %}
+

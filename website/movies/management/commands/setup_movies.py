@@ -20,7 +20,6 @@ class Command(BaseCommand):
 
             Personal Favorites of the Era: Sherlock Jr. and Sunrise.
             ''',
-            image='website/movies/static/movies/media/running horse.gif'
         )
 
         Decade.objects.get_or_create(
