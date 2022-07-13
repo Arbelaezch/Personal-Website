@@ -21,6 +21,7 @@ DECADE_LIST = [
 class Film(models.Model):
     title = models.CharField(max_length=200)
     year = models.CharField(max_length=4)
+    rating = models.CharField(max_length=3, default='', null=True, blank=True)
     director = models.CharField(max_length=200)
     description = models.TextField()
     image = models.ImageField(upload_to='movie-posters/')
