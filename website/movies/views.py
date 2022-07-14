@@ -29,6 +29,7 @@ def decade(request, decade):
 
 def movie(request, decade, pk):
     film = Film.objects.get(pk=pk)
+    print(film.image.url)
 
     context = {
         'title': film.decade_fk,
