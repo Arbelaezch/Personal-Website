@@ -10,7 +10,7 @@ from movies.models import Decade, Film
 
 def film(request):
     favorites_list = []
-    csvfile = os.path.join(os.path.dirname(__file__), 'top250.csv')
+    csvfile = os.path.join(os.path.dirname(__file__), 'test.csv')
     with open(csvfile) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = 0
@@ -22,7 +22,7 @@ def film(request):
                 # print(f'\t{row[0]} works in the {row[1]} department, and was born in {row[2]}.')
                 movie = Film.objects.filter(title=row[0]).first()
 
-                favorites_list.append({'title': movie.title, 'year': movie.year, 'decade': movie.decade_fk},)
+                favorites_list.append({'title': movie.title, 'year': movie.year, 'decade': movie.decade_fk, 'pk': movie.pk},)
                 line_count += 1
 
     # csvfile = request.FILES['top250']
