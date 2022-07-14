@@ -1,6 +1,7 @@
 from re import T
 from django.db import models
 from django import forms
+from ckeditor_uploader.fields import RichTextUploadingField
 # from ckeditor.fields import RichTextField
 
 DECADE_LIST = [
@@ -28,7 +29,7 @@ class Film(models.Model):
     cast = models.CharField(max_length=200)
     studio = models.CharField(max_length=200)
     country = models.CharField(max_length=200)
-    review = models.TextField(default='')
+    review = RichTextUploadingField(config_name='portal_config')
     image = models.ImageField(upload_to='movie-posters/')
     decade_fk = models.ForeignKey('Decade', on_delete=models.PROTECT, to_field='decade')
 

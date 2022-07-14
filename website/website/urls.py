@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 from website import settings
 from django.conf.urls.static import static
 
@@ -7,7 +7,11 @@ urlpatterns = [
     path('', include('base.urls')),
     path('admin/', admin.site.urls),
 
+    re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
+
     path('film/', include('movies.urls')),
+
+    
     
 ]
 if settings.DEBUG:
