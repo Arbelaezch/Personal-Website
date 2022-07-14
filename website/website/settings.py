@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third-party Libraries
+    'ckeditor',
 
     # Local Apps
     'base',
@@ -125,7 +126,7 @@ STATIC_DIR = 'static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-# STATIC_ROOT = os.path.join(BASE_DIR, STATIC_DIR)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/root/')
 
 # The URL that will serve the media files.
 MEDIA_URL = '/media/'

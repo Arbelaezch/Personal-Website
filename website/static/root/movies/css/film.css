@@ -1,0 +1,179 @@
+body {
+	background-color: rgb(201, 203, 204);
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#page {
+	
+	height: fit-content;
+	display: flex;
+	justify-content: center;
+	justify-self: center;
+	flex-wrap: wrap;
+	margin: 60px auto;
+
+}
+
+#content {
+	border: 3px solid grey;
+	width: 60%;
+	min-width: 450px;
+	height: fit-content;
+	min-height: 1000px;
+	padding-bottom: 20px;
+	background-color: white;
+}
+
+.top {
+	height: fit-content;
+	background-color: #333;
+	color: #fff;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	
+}
+
+.title {
+	align-items: center;
+	
+}
+
+
+/*
+.title {
+	display: inline-block;
+	
+	
+}
+
+
+
+#title {
+	margin: auto;
+	float: left;
+	margin-left: 30px;
+
+}
+
+*/
+
+.single {
+	font-size: xx-large;
+	margin-bottom: 10px;
+	margin-left: 30px;
+	
+	
+	
+}
+
+.double {
+	font-size: large;
+	margin-top: -8px;
+	margin-left: 20px;
+}
+
+
+
+
+
+
+
+.mid {
+	height: fit-content;
+	min-height: 430px;
+	border: 1px solid rgb(161, 161, 161);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	
+	
+}
+
+
+
+#picture {
+	max-width: 300px;
+	max-height: 400px;
+	width: 100%;
+}
+
+#picture img{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 300px;
+	height: 400px;
+	border: 3px solid black;
+
+}
+
+
+.info {
+	display: inline-block;
+	vertical-align: top;
+
+}
+
+#synopsis {
+	width: 300px;
+	height: 400px;
+	margin-left: 2%;
+	text-align: center;
+	
+}
+
+
+
+
+#review {
+	text-indent: .5in;
+	padding: 0 50px;
+	text-align: left;
+	height: fit-content;
+	
+}
+
+/*
+.side {
+	display: inline-block;
+
+	width: 250px;
+	text-align: center;
+	vertical-align: top;
+
+}
+#sideHeader {
+	display: flex;
+	flex-direction: column;
+	padding: 10px 0;
+	border: 1px solid red;
+
+}
+
+
+*/
+
+#sidebar {
+	width: fit-content;
+	padding: 0 2rem;
+	background-color: white;
+	border: 3px solid grey;
+}
+
+
+#sideHeader {
+	display: flex;
+	flex-direction: column;
+	padding: 10px 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+
+}
+
+#sideHeader a img {
+	width: 100%;
+
+}
+
+
