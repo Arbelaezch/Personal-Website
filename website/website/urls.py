@@ -10,8 +10,7 @@ urlpatterns = [
     re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 
     path('film/', include('movies.urls')),
-
-    
+    path('food/', include('food.urls')),
     
 ]
 if settings.DEBUG:
