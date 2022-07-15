@@ -18,15 +18,14 @@
                 <h1 class="title">{{ decade_obj.title }}</h1>
             </header>
             <div id="description" class="mid">
-                <div class="horse">
-                    <img src="{% static 'movies/media/running_horse.gif' %}" alt="running-horse"/>
-                </div>
-                
+                {% if decade_obj.decade == "1900" %}
+                    <div class="horse">
+                        <img src="{% static 'movies/media/running_horse.gif' %}" alt="running-horse"/>
+                    </div>
+                {% endif %}
                 <p> 
-                         
-                    {{ decade_obj.description }}
-                    
-                    </p>
+                    {{ decade_obj.description }}    
+                </p>
             </div>
 
             <div id="grid">
