@@ -1,4 +1,4 @@
-#!/Users/christian.arbelaez/code/arbelaezch.ca/env/bin/python
+#!/Users/arbelaezch/code/arbelaezch.ca/env/bin/python3.9
 # -*- coding: utf-8 -*-
 import re
 import sys
