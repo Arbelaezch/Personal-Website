@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from datetime import date
 import csv
-import pandas as pd
 import os
 
 from movies.models import Decade, Film
