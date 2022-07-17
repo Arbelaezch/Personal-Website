@@ -4,6 +4,7 @@
 {% block head %}
 {{ block.super}}
 <link rel="stylesheet" type="text/css" href="{% static 'portfolio/css/portfolio.css' %}">
+{% block title %}<title>{{ title }}</title>{% endblock title %}
 {% endblock head %}
 
 {% comment %} TODO: Change favicon. {% endcomment %}
@@ -13,7 +14,6 @@
 
 
 {% block content %}
-
 <body>
 	<div class="hero-image">
 		<div class="hero-text">
@@ -24,7 +24,7 @@
 
 		<!-- Auto width -->
 		<a href="./ChristianArbelaezResume.pdf" download>
-			<button class="btn"><i class="fa fa-download"></i> Download Resume</button>
+			<button class="btn"><i class="fa fa-download"></i>Download Resume</button>
 		</a>
 		
 		</div>
@@ -37,30 +37,17 @@
 		
 		<div class="about-content">
 		  <p> 
-			Howdy hello! My name is Christian and welcome to my website. I am a software developer by trade with a passion for building random little projects that express who I am, such as with this website. On this site you can find a lot about my favourite hobby: films and film study. There are also a few of my favourite cooking recipes, just to make sure I never forget them ;) On this portfolio page you can read about my education and previous larger scale software projects, with a few fun mini projects I felt like including. I have been developing software in a personal and academic setting for over six years and have learned many technologies and skills that continue to aid both my software development as well as my real life. One thing I love about developing software is that because it is an inherently challenging practice, it is a great teacher of resilience, patience, and being in control of your emotions (mostly lol).
-
-			<br><br>
-
-			In addition to software development, I have a strong drive for learning about the inner-workings of businesses and both the hard and soft skills of running one. The current project I am working on is a type of social game app that I am using to hone my software development skills as well as dip my feet into creating and marketing a real business.
-
-			<br><br>
-
-			I have the most experience programming in languages like Python, C/C++/C#, HTML/CSS, Javascript, and SQL, but I have become quite good at learning quickly and adapting to any technology I need to.
-			<br><br>
+				
 		  </p>
 		  
 		</div>
 	</section>
-	
-
-
-
 
 
 	<section class="technologies">
 		<h2>TECHNOLOGIES I'm Familiar With</h2>
 		<div class="tech-container">
-			<img src="images/c.png" alt="C/C++">
+			<img src=""{% static 'portfolio/c.png'%} alt="C/C++">
 			<img src="images/c++.png" alt="C/C++">
 			<img src="images/java.png" alt="java" id="java">
 			<br>
@@ -73,13 +60,6 @@
 			<img src="images/Git-logo.svg.png" alt="Git" id="git">
 		</div>
 	</section>
-
-
-
-
-
-
-
 
 
 
@@ -97,10 +77,6 @@
 		  </p>
 		</div>
 	</section>
-
-
-
-
 
 
 	<section class="projects">
@@ -159,10 +135,6 @@
 	</section>
 
 
-
-
-
-	  
 <!-- Contact me form code from: https://paperform.co/blog/html-contact-form/-->
 	<section id="container">
 		<form id="fcf-form-id" class="fcf-form-class" method="post" action="contact-form-process.php">
