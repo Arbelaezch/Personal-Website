@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'base',
     'movies',
     'food',
+    'portfolio',
 ]
 
 MIDDLEWARE = [
