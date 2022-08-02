@@ -22,11 +22,11 @@
 {% block navbar %}
     <nav>
         <ul>
-            <a href="{% url 'index' %}">Home</a>
+            {% comment %} <a href="{% url 'index' %}">Home</a> {% endcomment %}
             <a href="{% url 'film' %}">Film</a>
             <a href="{% url 'food' %}">Food</a>
             <a href="{% url 'portfolio_base' %}">Portfolio</a>
-            <a href="{% url 'index' %}">Contact</a>
+            {% comment %} <a href="{% url 'index' %}">Contact</a> {% endcomment %}
         </ul>
     </nav>
 {% endblock navbar %}

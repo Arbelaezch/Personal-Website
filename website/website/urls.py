@@ -4,14 +4,14 @@ from website import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', include('base.urls')),
+    path('', include('portfolio.urls')),
     path('admin/', admin.site.urls),
 
     re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 
     path('film/', include('movies.urls')),
     path('food/', include('food.urls')),
-    path('portfolio/', include('portfolio.urls')),
+    # path('portfolio/', include('portfolio.urls')),
 
     
 ]
