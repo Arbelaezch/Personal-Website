@@ -11,6 +11,8 @@ urlpatterns = [
 
     path('film/', include('movies.urls')),
     path('food/', include('food.urls')),
+    path('portfolio/', include('portfolio.urls')),
+
     
 ]
 if settings.DEBUG:

@@ -3,10 +3,10 @@
 
 {% block head %}
 {{ block.super}}
-<link rel="stylesheet" type="text/css" href="{% static 'portfolio/css/portfolio.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'portfolio/css/portfolio_base.css' %}">
 {% endblock head %}
 
-{% block favicon %}<link rel="shortcut icon" type="image/png" href="{% static 'food/favicon/favicon-16x16.png' %}"/>{% endblock favicon%}
+{% block favicon %}<link rel="shortcut icon" type="image/png" href="{% static 'portfolio/favicon/favicon-16x16.png' %}"/>{% endblock favicon%}
 
 
 
@@ -59,17 +59,17 @@
 	<section class="technologies">
 		<h2>TECHNOLOGIES I'm Familiar With</h2>
 		<div class="tech-container">
-			<img src="images/c.png" alt="C/C++">
-			<img src="images/c++.png" alt="C/C++">
-			<img src="images/java.png" alt="java" id="java">
+			<img src="{% static 'portfolio/images/c.png' %}" alt="C/C++">
+			<img src="{% static 'portfolio/images/c++.png' %}" alt="C/C++">
+			<img src="{% static 'portfolio/images/java.png' %}" alt="java" id="java">
 			<br>
-			<img src="images/css.png" alt="css">
-			<img src="images/sql.png" alt="sql" id="sql">
-			<img src="images/html.png" alt="html">
+			<img src="{% static 'portfolio/images/css.png' %}" alt="css">
+			<img src="{% static 'portfolio/images/sql.png' %}" alt="sql" id="sql">
+			<img src="{% static 'portfolio/images/html.png' %}" alt="html">
 			<br>
-			<img src="images/p2.png" alt="python" id="python">
-			<img src="images/js.png" alt="javascript" id="javascript">
-			<img src="images/Git-logo.svg.png" alt="Git" id="git">
+			<img src="{% static 'portfolio/images/p2.png' %}" alt="python" id="python">
+			<img src="{% static 'portfolio/images/js.png' %}" alt="javascript" id="javascript">
+			<img src="{% static 'portfolio/images/Git-logo.svg.png' %}" alt="Git" id="git">
 		</div>
 	</section>
 
@@ -89,7 +89,7 @@
 		</div>  
 		<div>
 		  <a href="https://apps.admissions.ualberta.ca/programs/sc/sc010/cmput31">
-			<img src="images/UofA.png" alt="UofA">
+			<img src="{% static 'portfolio/images/UofA.png' %}" alt="UofA">
 		  </a>
 		  <p>
 			Bachelor of Science in Computer Science with a Business Minor 2016-2021.<br>
@@ -196,16 +196,14 @@
 	<footer>
 		<div class="links-box">
 			<a href="https://github.com/Arbelaezch">
-				<img src="./images/github.png" class="socials" alt="github">
+				<img src="{% static 'portfolio/images/github.png' %}" class="socials" alt="github">
 			</a>
 			<a href="https://www.facebook.com/christian.arbelaez.9">
-				<img src="./images/facebook.png" class="socials" alt="facebook">
+				<img src="{% static 'portfolio/images/facebook.png' %}" class="socials" alt="facebook">
 			</a>
 		</div>
 		<div class="copyright">
-		Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez. 
-		Feel free to use this webpage for both personal or commercial use.
-		<br><br>
+
 		Profile Photo by <a href="https://unsplash.com/@noland9?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Nolan Di Meo</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 		</div>
