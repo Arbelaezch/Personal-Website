@@ -1,7 +1,11 @@
 from django.shortcuts import render
+from datetime import date
+
+
 
 def portfolio(request):
     context = {
+        'year': date.today().year,
     }
     return render(request, 'portfolio/portfolio.html', context)
 
