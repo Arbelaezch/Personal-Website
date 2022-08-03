@@ -17,14 +17,30 @@
 </head>
 <body>
 
-    <div class="hero_pic">
-        <img src="{% static 'portfolio/images/hero_pic.jpeg' %}" alt="Hiking">
-        <div class="hero_text"><h1>Christian Arbelaez</h1></div>
+    <div class="hero-container">
+        <img src="{% static 'portfolio/images/ravine_ps.png' %}" class="hero-pic" alt="Hiking">
+        <div class="hero-text-container">
+            <p class="hero-title">Christian Arbelaez</p>
+            <p class="hero-description">Python Developer</p>
+        </div>
+        
     </div>
 
-    <div>
-        <p>Projects</p>
+    <div class="content-container">
+        <div class="quote-container">
+            <p class="quote-text">"I haven't failed. I've just found 10,000 ways that won't work."</p>
+            <p class="quote-author">- Thomas Edison</p>
+        </div>
+        <div class="projects-container">
+            <p>Projects</p>
+            <p>In addition to Django/Python, I have developed projects using SQL, C/C++ and Java.</p>
+        </div>
     </div>
+
+    <footer>
+        
+    </footer>
+    
     
 </body>
 </html>
