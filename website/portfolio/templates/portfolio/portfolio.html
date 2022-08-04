@@ -24,8 +24,6 @@
 </nav>
 
 <body>
-
-
     <div class="hero-container">
         <img src="{% static 'portfolio/images/ravine_ps.png' %}" class="hero-pic" alt="Hiking">
         <div class="hero-text-container">
@@ -35,16 +33,85 @@
         
     </div>
 
-    <div class="content-container">
-        <div class="quote-container">
-            <p class="quote-text">"I haven't failed. I've just found 10,000 ways that won't work."</p>
-            <p class="quote-author">- Thomas Edison</p>
-        </div>
-        <div class="projects-container">
-            <p>Projects</p>
-            <p>In addition to Django/Python, I have developed projects using SQL, C/C++ and Java.</p>
+    <div class="quote-container">
+        <p class="quote-text">"I haven't failed. I've just found 10,000 ways that won't work."</p>
+        <p class="quote-author">- Thomas Edison</p>
+    </div>
+
+    <div class="projects-container">
+        <div class="projects-text-container">
+            <p class="section-header">Projects</p>
+            <p>Primarily I have worked with Python and Django, but I have also developed projects (like this website) using HTML/CSS, SQL, C/C++ and Java. I have also recently taken an interest in data science and machine learning.</p>
+            <div class="project-items">
+                <div class="item">
+                    <a href="">
+                        <img src="{% static 'portfolio/images/shipwrecked.png' %}" alt="">
+                    </a>
+                    <div class="overlay">My Name is John</div>
+                </div>
+                
+                <div class="item">
+                    <a href="">
+                        <img src="{% static 'portfolio/images/TeamIlluminator.png' %}" alt="">
+                        <div class="overlay">My Name is John</div>
+                    </a>
+                    
+
+                </div>
+                
+                <div class="item">
+                    <a href="">
+                        <img src="{% static 'portfolio/images/EasyRide.png' %}" alt="">
+                        <div class="overlay">My Name is John</div>
+                    </a>
+                    
+                </div>
+                <div class="prj-container">
+                    <a href="https://github.com/UAlberta-CMPUT401/teams-illuminator">
+                        <img src="{% static 'portfolio/images/shipwrecked.png' %}" alt="Team Illuminator" class="image">
+                        <div class="middle">
+                            <div class="text">
+                                <h1>Team Illuminator</h1><br> A web based educational tool designed to improve overall team productivity through personalized insights. Developed Winter 2020 in a team for a Software Engineering course. I was the team lead and so I handled all project management responsibilities in addition to doing programming on both the Frontend and Backend. We used an Agile approach to divide task responsibilities. It is primarily written in Javascript and Python.
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+
+
+
+
+            </div>
         </div>
     </div>
+
+    <div class="about-container">
+        <div class="about-text-container">
+            <p class="section-header">About Me</p>
+            <div class="about-contents">
+                <p>
+                    Hi, my name is Christian Arbelaez and I work as a <b>Python software developer</b>. I hold a Bachelor's degree in Computer Science from the University of Alberta.
+                    <br><br>
+                    Besides data science and software development, I also enjoy classic films, hiking, and ancient history.
+                    <br><br>
+                    In development, as in life, I approach each new challenge as a chance to learn and grow.
+                    I find nothing more satisfying than adding a new skill to my mental tool-box.
+                    <br><br>
+                    I consider this website a hub for both my professional projects and hobbies. Feel free to explore some of the topics I have spent my time learning and you may get to know me even more.
+
+
+
+                
+                </p>
+                <img class='headshot' src="{% static 'portfolio/images/headshot.png' %}">
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="content-container">
+        
+        
+    </div> -->
 
     <footer>
         <div class="links-box">
