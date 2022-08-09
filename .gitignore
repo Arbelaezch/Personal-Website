@@ -6,6 +6,7 @@ logs/
 .vscode
 __pycache__/
 .DS_Store
+# website/media/movie-posters/
 
 # We need the migration folder and init, but skip the rest.
 # They're just messy to debug and can collide a bunch if people are working

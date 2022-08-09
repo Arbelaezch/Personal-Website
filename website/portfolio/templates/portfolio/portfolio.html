@@ -1,185 +1,135 @@
-{% extends 'base.html' %}
 {% load static %}
 
-{% block head %}
-{{ block.super}}
-<link rel="stylesheet" type="text/css" href="{% static 'portfolio/css/portfolio.css' %}">
-{% block title %}<title>{{ title }}</title>{% endblock title %}
-{% endblock head %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Arbelaez's Portfolio</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'portfolio/favicon/favicon-32x32.png' %}"/>
+    <link rel="stylesheet" href="{% static 'portfolio/css/portfolio.css' %}">
 
-{% comment %} TODO: Change favicon. {% endcomment %}
-{% block favicon %}<link rel="shortcut icon" type="image/png" href="{% static 'movies/media/favicon.ico' %}"/>{% endblock favicon%}
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Open+Sans:wght@300&family=Roboto+Slab&display=swap" rel="stylesheet">
+</head>
 
+<nav>
+    <li><a class="left" href="{% url 'portfolio' %}"><img src="{% static 'portfolio/favicon/favicon-32x32.png' %}"></a></li>
+    <li><a href="#news">News</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about">About</a></li>
+</nav>
 
-
-
-{% block content %}
 <body>
-	<div class="hero-image">
-		<div class="hero-text">
-		<h1>Christian Arbelaez</h1>
-		<p>Python programmer. Likes to build things. Have seen every movie ever made.</p>
-		<!-- Add icon library -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <div class="hero-container">
+        <img src="{% static 'portfolio/images/ravine_ps.png' %}" class="hero-pic" alt="Hiking">
+        <div class="hero-text-container">
+            <p class="hero-title">Christian Arbelaez</p>
+            <p class="hero-description">Python Developer</p>
+        </div>
+        
+    </div>
 
-		<!-- Auto width -->
-		<a href="./ChristianArbelaezResume.pdf" download>
-			<button class="btn"><i class="fa fa-download"></i>Download Resume</button>
-		</a>
-		
-		</div>
-	</div>
+    <div class="quote-container">
+        <p class="quote-text">"I haven't failed. I've just found 10,000 ways that won't work."</p>
+        <p class="quote-author">- Thomas Edison</p>
+    </div>
 
-	<section class="about">
-		<div class="about-title">
-		  <h2>ABOUT ME</h2>
-		</div>
-		
-		<div class="about-content">
-			<p>
-				I'm currently a software developer at the University of Alberta's Students' Union.
+    <div class="projects-container">
+        <div class="projects-text-container">
+            <p class="section-header">Projects</p>
+            <p>Primarily I have worked with Python and Django, but I have also developed projects (like this website) using HTML/CSS, SQL, C/C++ and Java. I have also recently taken an interest in data science and machine learning.</p>
+            <div class="project-items">
+                <div class="item">
+                    <a href="">
+                        <img src="{% static 'portfolio/images/shipwrecked.png' %}" alt="">
+                    </a>
+                    <div class="overlay">My Name is John</div>
+                </div>
+                
+                <div class="item">
+                    <a href="">
+                        <img src="{% static 'portfolio/images/TeamIlluminator.png' %}" alt="">
+                        <div class="overlay">My Name is John</div>
+                    </a>
+                    
 
-				
-		  </p>
-		  
-		</div>
-	</section>
-
-
-	<section class="technologies">
-		<h2>TECHNOLOGIES I'm Familiar With</h2>
-		<div class="tech-container">
-			<img src="{% static 'portfolio/images/c.png' %}" alt="C/C++">
-			<img src="{% static 'portfolio/images/c++.png' %}" alt="C/C++">
-			<img src="{% static 'portfolio/images/java.png' %}" alt="java" id="java">
-			<br>
-			<img src="{% static 'portfolio/images/css.png' %}" alt="css">
-			<img src="{% static 'portfolio/images/sql.png' %}" alt="sql" id="sql">
-			<img src="{% static 'portfolio/images/html.png' %}" alt="html">
-			<br>
-			<img src="{% static 'portfolio/images/p2.png' %}" alt="python" id="python">
-			<img src="{% static 'portfolio/images/js.png' %}" alt="javascript" id="javascript">
-			<img src="{% static 'portfolio/images/Git-logo.svg.png' %}" alt="Git" id="git">
-		</div>
-	</section>
-
-
-
-
-	<section class="education">
-		<div>
-		  <h2>EDUCATION I've Completed</h2>
-		</div>  
-		<div>
-		  <a href="https://apps.admissions.ualberta.ca/programs/sc/sc010/cmput31">
-			<img src="{% static 'portfolio/images/UofA.png' %}" alt="UofA">
-		  </a>
-		  <p>
-			Bachelor of Science in Computer Science with a Business Minor 2016-2021.<br>
-		  </p>
-		</div>
-	</section>
-
-
-	<section class="projects">
-		<h2>PROJECTS I've Worked On</h2>
-		<div class="major-projects-container">
-			<div class="prj-container">
-				<a href="https://github.com/UAlberta-CMPUT401/teams-illuminator">
-					<img src="./images/TeamIlluminator.png" alt="Team Illuminator" class="image">
-					<div class="middle">
-						<div class="text">
-							<h1>Team Illuminator</h1><br> A web based educational tool designed to improve overall team productivity through personalized insights. Developed Winter 2020 in a team for a Software Engineering course. I was the team lead and so I handled all project management responsibilities in addition to doing programming on both the Frontend and Backend. We used an Agile approach to divide task responsibilities. It is primarily written in Javascript and Python.
-						</div>
-					</div>
-				</a>
-			</div>
-			
-			<div class="prj-container">
-				<a href="https://github.com/CMPUT301F20T39/Booker">
-					<img src="./images/Booker.png" alt="Booker" class="image" id="booker">
-					<div class="middle">
-						<div class="text">
-							<h1>Booker</h1><br> A book sharing app that allows for users to lend and borrow books with other users. It was developed Fall 2020 in a team for my Software Engineering course. We used an Agile approach to divide responsibilities. It is written in Java for Android devices.
-						</div>
-					</div>
-				</a>
-			</div>
-				
-			<div class="prj-container">
-				<a href="https://supersonic-productions.github.io/">
-					<img src="./images/shipwrecked.png" alt="Shipwrecked" class="image">
-					<div class="middle">
-						<div class="text">
-							<h1>Shipwrecked</h1><br> A video game that I helped build with an inter-disciplinary team in my Fall 2020 Games Development course. I was the team lead which meant that I handled all project management responsibilities along with additional programming and writing tasks. It is written in C# and playable by both MacOS and Windows.
-						</div>
-					</div>
-				</a>
-			</div>
-		
-		
-		</div>
+                </div>
+                
+                <div class="item">
+                    <a href="">
+                        <img src="{% static 'portfolio/images/EasyRide.png' %}" alt="">
+                        <div class="overlay">My Name is John</div>
+                    </a>
+                    
+                </div>
+                <div class="prj-container">
+                    <a href="https://github.com/UAlberta-CMPUT401/teams-illuminator">
+                        <img src="{% static 'portfolio/images/shipwrecked.png' %}" alt="Team Illuminator" class="image">
+                        <div class="middle">
+                            <div class="text">
+                                <h1>Team Illuminator</h1><br> A web based educational tool designed to improve overall team productivity through personalized insights. Developed Winter 2020 in a team for a Software Engineering course. I was the team lead and so I handled all project management responsibilities in addition to doing programming on both the Frontend and Backend. We used an Agile approach to divide task responsibilities. It is primarily written in Javascript and Python.
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
 
 
 
-		<div class="minor-projects-container">
-		  <ul>Other Minor Projects:
-			<li><a href="./projects/calculator/calc.html">JavaScript Calculator</a></li>
-			<li><a href="./projects/rps/rps.html">JavaScript Rock, Paper, Scissors</a></li>
-			<li><a href="./projects/clock/clock.html">Basic Clock</a></li>
-			<li><a href="https://github.com/Arbelaezch/AHS-SMS-Auto-Responder">AHS SMS Auto Responder</a></li>
-			<li><a href="https://github.com/Arbelaezch/BouncingTommyLee">Bouncing Tommy Lee Jones Screeensaver</a></li>
-		  </ul>
-		  
-    
-  
-		</div>
-	</section>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="about-container">
+        <div class="about-text-container">
+            <p class="section-header">About Me</p>
+            <div class="about-contents">
+                <p>
+                    Hi, my name is Christian Arbelaez and I work as a <b>Python software developer</b>. I hold a Bachelor's degree in Computer Science from the University of Alberta.
+                    <br><br>
+                    Besides data science and software development, I also enjoy classic films, hiking, and ancient history.
+                    <br><br>
+                    In development, as in life, I approach each new challenge as a chance to learn and grow.
+                    I find nothing more satisfying than adding a new skill to my mental tool-box.
+                    <br><br>
+                    I consider this website a hub for both my professional projects and hobbies. Feel free to explore some of the topics I have spent my time learning and you may get to know me even more.
 
 
-<!-- Contact me form code from: https://paperform.co/blog/html-contact-form/-->
-	<section id="container">
-		<form id="fcf-form-id" class="fcf-form-class" method="post" action="contact-form-process.php">
-		
-			<h2 style="text-align: center; padding: 2rem 0 1rem 0;">CONTACT ME</h2>
-			<label for="Name" class="fcf-label">*Your name</label>
-			<div class="fcf-input-group">
-				<input type="text" id="Name" name="Name" class="fcf-form-control" required>
-			</div>
-			<div class="fcf-form-group">
-				<label for="Email" class="fcf-label">*Your email address</label>
-				<div class="fcf-input-group">
-					<input type="email" id="Email" name="Email" class="fcf-form-control" required>
-				</div>
-				<div class="fcf-form-group">
-					<label for="Message" class="fcf-label">Your message</label>
-					<div class="fcf-input-group">
-						<textarea id="Message" name="Message" class="fcf-form-control" required style="height: 10rem;"></textarea>
-					</div>
-				</div>
-				<div class="fcf-form-group" id="submit-container">
-					<button type="submit" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Send</button>
-				</div>
-			</div>
-		</form>
-	</section>
-{% endblock content %}
 
+                
+                </p>
+                <img class='headshot' src="{% static 'portfolio/images/headshot.png' %}">
+            </div>
+        </div>
+    </div>
 
-{% block footer %}
-{{ block.super }}
-		<div class="links-box">
+    <!-- <div class="content-container">
+        
+        
+    </div> -->
+
+    <footer>
+        <div class="links-box">
 			<a href="https://github.com/Arbelaezch">
 				<img src="{% static 'portfolio/images/github.png' %}" class="socials" alt="github">
 			</a>
 			<a href="https://www.facebook.com/christian.arbelaez.9">
 				<img src="{% static 'portfolio/images/facebook.png' %}" class="socials" alt="facebook">
 			</a>
+            <a href="https://www.linkedin.com/in/christian-arbelaez2021/">
+				<img src="{% static 'portfolio/images/linkedin-logo.png' %}" class="socials" alt="linkedin">
+			</a>
 		</div>
-		<div class="copyright">
+        <p>Original design and build by Christian Arbelaez for his online portfolio. You are allowed to use this webpage for both personal or commercial use. </p>
+        <p>Copyright © {{year}} Christian Arbelaez</p>
 
-		Profile Photo by <a href="https://unsplash.com/@noland9?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Nolan Di Meo</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-  
-		</div>
-{% endblock footer %}
-
+    </footer>
+    
+    
+</body>
+</html>

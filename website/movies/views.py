@@ -24,13 +24,6 @@ def film(request):
                 favorites_list.append({'title': movie.title, 'year': movie.year, 'decade': movie.decade_fk, 'pk': movie.pk},)
                 line_count += 1
 
-    # csvfile = request.FILES['top250']
-    # data = pd.read_csv(csvfile)
-    #You can create your custom dataframe here before converting it to html in next line
-    # data_html = data.to_html() 
-    # context = {'loaded_data': data_html}
-    # return render(request, "dataflow/table.html", context)
-
     decades = Decade.objects.all()
     context = {
         'title': "Film",
