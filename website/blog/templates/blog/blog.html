@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+{{ block.super}}
+<link rel="stylesheet" type="text/css" href="{% static 'blog/css/blog.css' %}">
+
+{% endblock head %}
+
+{% block favicon %}<link rel="shortcut icon" type="image/png" href="{% static 'movies/media/favicon.ico' %}"/>{% endblock favicon%}
+
+
+
+
+{% block content %}
+{{ block.super}}
+
+<p>This is some content</p>
+
+{% endblock content %}
