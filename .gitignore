@@ -6,6 +6,7 @@ logs/
 .vscode
 __pycache__/
 .DS_Store
+website/node_modules
 # website/media/movie-posters/
 
 # We need the migration folder and init, but skip the rest.
