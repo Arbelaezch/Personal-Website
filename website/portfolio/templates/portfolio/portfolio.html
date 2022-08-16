@@ -18,9 +18,8 @@
 
 <nav>
     <li><a class="left" href="{% url 'portfolio' %}"><img src="{% static 'portfolio/favicon/favicon-32x32.png' %}"></a></li>
-    <li><a href="#news">News</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#about">About</a></li>
+    <li><a href="#footer">Contact</a></li>
+    <li><a href="{% url 'blog' %}">Blog</a></li>
 </nav>
 
 <body>
@@ -113,8 +112,13 @@
         
     </div> -->
 
-    <footer>
+    <footer id="footer">
+        
         <div class="links-box">
+            <div>
+                <h1>Work with Me</h1>
+                <p>arbelaezch@gmail.com</p>
+            </div>
 			<a href="https://github.com/Arbelaezch">
 				<img src="{% static 'portfolio/images/github.png' %}" class="socials" alt="github">
 			</a>

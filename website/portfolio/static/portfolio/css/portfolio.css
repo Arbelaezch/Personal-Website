@@ -112,8 +112,10 @@ body {
 @media screen and (max-width: 600px) {
     nav li.right, 
     nav li {float: none;}
+    .hero-container {padding: calc(8px + 1.5625vw);}
     .projects-container {padding: calc(8px + 1.5625vw);}
     .about-container {padding: calc(8px + 1.5625vw);}
+    #footer {padding: calc(8px + 1.5625vw);}
 
 }
 
@@ -286,7 +288,7 @@ body {
 
 
 
-
+/* ABOUT */
 
 .about-container {
     background-color: #DF7861;
@@ -349,7 +351,7 @@ body {
 
 
 
-
+/* FOOTER */
 footer {
     bottom: 0;
     width: 100%;
@@ -381,6 +383,8 @@ footer {
 
 
 
+
+/* NAVBAR */
 nav {
     font-family: 'Montserrat', sans-serif;
     position: fixed;
@@ -394,11 +398,6 @@ nav {
     overflow: hidden;
     background-color: #76549A;
 
-}
-
-ul.topnav {
-    
-    
 }
   
 nav li {
