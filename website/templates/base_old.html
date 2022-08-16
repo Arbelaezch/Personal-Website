@@ -1,0 +1,47 @@
+{% load static %}
+
+<!-- HEAD -->
+{% block head %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        {% block favicon %}<link rel="shortcut icon" type="image/png" href="{% static 'images/favicon-16x16.png' %}"/>{% endblock favicon%}
+
+        {% block title %}<title>{{ title }}</title>{% endblock title %}
+
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    </head>
+{% endblock head %}
+
+
+<!-- NAVBAR -->
+{% block navbar %}
+    <nav>
+        <ul>
+            {% comment %} <a href="{% url 'index' %}">Home</a> {% endcomment %}
+            <a href="{% url 'film' %}">Film</a>
+            <a href="{% url 'food' %}">Food</a>
+            <a href="{% url 'portfolio_base' %}">Portfolio</a>
+            {% comment %} <a href="{% url 'index' %}">Contact</a> {% endcomment %}
+        </ul>
+    </nav>
+{% endblock navbar %}
+
+
+<!-- CONTENT -->
+{% block content %}
+{% endblock content%}
+
+
+<!-- FOOTER -->
+{% block footer %}
+    <footer>
+        <p>Original design and build by Christian Arbelaez for his online portfolio. You are allowed to use this webpage for both personal or commercial use. </p>
+        <p>Copyright © {{year}} Christian Arbelaez</p>
+    </footer>
+    
+{% endblock %}
