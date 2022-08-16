@@ -322,7 +322,7 @@ body {
     /* border: 1px solid red; */
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
     .about-contents {
       flex-direction: column;
     }
@@ -397,7 +397,18 @@ nav {
     padding: 0;
     overflow: hidden;
     background-color: #76549A;
+}
 
+.center {
+    margin-left: auto;
+}
+
+.right {
+    margin-right: 2rem;
+}
+
+.left {
+    margin-left: 2rem;
 }
   
 nav li {
@@ -413,15 +424,9 @@ nav li a {
 }
   
 nav  li a:hover:not(.active) {
-    /* background-color: #111; */
-    background-color: #94B49F;
+    background-color: #111;
 }
-
-/* ul.topnav li a.active {
-    background-color: #DF7861;
-} */
 
 nav li.left {
     float: left;
 }
-  
