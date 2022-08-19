@@ -113,14 +113,14 @@ body {
     nav li.right, 
     nav li {float: none;}
     .hero-container {padding: calc(8px + 1.5625vw);}
-    .projects-container {padding: calc(8px + 1.5625vw);}
+    .project-section {padding: calc(8px + 1.5625vw);}
     .about-container {padding: calc(8px + 1.5625vw);}
     #footer {padding: calc(8px + 1.5625vw);}
 
 }
 
 @media screen and (min-width: 601px) {
-    .projects-text-container {
+    .project-text-container {
         width: 65%;
     }
     .about-text-container {
@@ -136,28 +136,71 @@ body {
 
 }
 
-.projects-container {
+.project-section {
     position: relative;
     width: 100%;
     margin: 1rem auto 0 auto;
-
     background-color: #94B49F;
     color: #FCF8E8;
-
 }
 
-.projects-text-container {
+.project-text-container {
     position: relative;
-    
-    /* width: 65%; */
     margin: 3rem auto 3rem auto;
     font-size: clamp(1.2rem, 1vw, 1vw);
     font-family: 'Open Sans', sans-serif;
 
-    /* padding: calc(8px + 1.5625vw); */
+    /* border: 1px solid red; */
 
-    /* border: 2px solid red; */
 }
+
+@media (min-width: 801px) {
+    .project-text-container {
+        width: 65%;
+    }
+}
+
+
+.project-item-container {
+    width: 65%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    /* border: 1px solid red; */
+}
+
+.item {
+    margin-bottom: 1rem;
+}
+
+.item img{
+    max-width: 20rem;
+    width: 100%;
+    height: auto;
+}
+
+
+@media (max-width: 700px) {
+    .project-item-container {
+        width: 80%;
+    }
+    .item img {
+        width: 100%;
+    }
+}
+
+
+
+
+
+
+
+/* 
+
+
 
 .project-items {
     display: flex;
@@ -179,7 +222,7 @@ body {
     position: absolute;
     bottom: 0;
     background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0.5); /* Black see-through */
+    background: rgba(0, 0, 0, 0.5); 
     color: #f1f1f1;
     width: 4vw;
     transition: .5s ease;
@@ -263,7 +306,7 @@ body {
 	margin: auto;
 	
 	
-}
+} */
 
 
 
@@ -303,6 +346,8 @@ body {
 .about-text-container {
     position: relative;
     margin: 3rem auto 3rem auto;
+    
+    /* border: 1px solid red; */
 }
 
 .headshot {
@@ -379,6 +424,10 @@ footer {
 	text-decoration: none;
 }
 
+.links-box p {
+    font-size: x-large;
+}
+
 
 
 
@@ -397,6 +446,7 @@ nav {
     padding: 0;
     overflow: hidden;
     background-color: #76549A;
+    font-size: x-large;
 }
 
 .center {
@@ -405,6 +455,7 @@ nav {
 
 .right {
     margin-right: 2rem;
+    margin-left: 1rem;
 }
 
 .left {
