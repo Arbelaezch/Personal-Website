@@ -18,6 +18,7 @@ if path not in sys.path:
 from my_secrets import *
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -83,12 +84,53 @@ WSGI_APPLICATION = 'website.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
-    }
-}
+# TESTING DB
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'mydatabase',
+#     }
+# }
+
+
+# Loading from local_settings.py file
+try:
+    from django_shop.local_settings import *
+except ImportError:
+    pass
+
+
+# # read the supabase config file
+# url: str = SUPABASE_URL
+# key: str = os.environ.get("SUPABASE_KEY")
+# supabase: Client = create_client(url, key)
+
+# supabase_client = supabase.Client()
+
+# # add the supabase postgresql url to the Django DATABASES setting
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': supabase_client.database,
+#         'USER': supabase_client.user,
+#         'PASSWORD': supabase_client.password,
+#         'HOST': supabase_client.host,
+#         'PORT': supabase_client.port,
+#     }
+# }
+
+# PRODUCTION DB
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#          'OPTIONS': {
+#             'read_default_file': os.path.join(BASE_DIR, '..', 'conf', 'db_config.cnf'),
+#          },
+#     }
+# }
+
+
+
 
 
 # Password validation
