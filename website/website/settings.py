@@ -43,9 +43,6 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
 
     # Local Apps
-    'base',
-    'movies',
-    'food',
     'portfolio',
     'blog',
 ]
