@@ -85,19 +85,19 @@ WSGI_APPLICATION = 'website.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 # TESTING DB
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': 'mydatabase',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
+    }
+}
 
 
 # Loading from local_settings.py file
-try:
-    from django_shop.local_settings import *
-except ImportError:
-    pass
+# try:
+#     from django_shop.local_settings import *
+# except ImportError:
+#     pass
 
 
 # # read the supabase config file
