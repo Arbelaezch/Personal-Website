@@ -18,3 +18,4 @@ website/node_modules
 !**/migrations
 !**/migrations/__init__.py
 website/mydatabase
+mydatabase
