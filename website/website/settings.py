@@ -1,29 +1,31 @@
 from pathlib import Path
 import os
 import secrets
+import sys
+from dotenv import load_dotenv
 
 # Generate new secret key, if needed.
 # print(secrets.token_urlsafe())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-# BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-import sys
-
-path = os.path.join(BASE_DIR,'..','conf')
-if path not in sys.path:
-    sys.path.append(path)
-from my_secrets import *
-
+# Loads key configs from .env
+load_dotenv()
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
+
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = False
+DEBUG = str(os.getenv('DEBUG')) == '1'
+
+ALLOWED_HOSTS = ["127.0.0.1", 'localhost']
+if not DEBUG:
+    ALLOWED_HOSTS += [str(os.getenv('ALLOWED_HOST'))]
+
 CHECK_AGAIN_MODE = False
 
 
@@ -78,53 +80,32 @@ TEMPLATES = [
 WSGI_APPLICATION = 'website.wsgi.application'
 
 
+
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 # TESTING DB
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'mydatabase',
+#     }
+# }
+
+SUPABASE_URL = str(os.getenv("SUPABASE_URL"))
+SUPABASE_KEY = str(os.getenv("SUPABASE_KEY"))
+
+# SUPABASE DB
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': 'db.ymgmpeyotidlxyhliirl.supabase.co',
+        'NAME': 'postgres',
+        'USER': "postgres",
+        'PORT': "5432",
+        'PASSWORD': str(os.getenv('SUPABASE_PASS'))
     }
 }
-
-
-# Loading from local_settings.py file
-# try:
-#     from django_shop.local_settings import *
-# except ImportError:
-#     pass
-
-
-# # read the supabase config file
-# url: str = SUPABASE_URL
-# key: str = os.environ.get("SUPABASE_KEY")
-# supabase: Client = create_client(url, key)
-
-# supabase_client = supabase.Client()
-
-# # add the supabase postgresql url to the Django DATABASES setting
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': supabase_client.database,
-#         'USER': supabase_client.user,
-#         'PASSWORD': supabase_client.password,
-#         'HOST': supabase_client.host,
-#         'PORT': supabase_client.port,
-#     }
-# }
-
-# PRODUCTION DB
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#          'OPTIONS': {
-#             'read_default_file': os.path.join(BASE_DIR, '..', 'conf', 'db_config.cnf'),
-#          },
-#     }
-# }
 
 
 
