@@ -1,0 +1,487 @@
+body, html {
+	background: rgb(201, 203, 204);
+	font-family: Arial, Helvetica, sans-serif;
+	height: 100%;
+	padding-top: 1rem;
+	
+}
+
+h1 {
+	font-size: xx-large;
+}
+
+h2 {
+	font-size: larger;
+}
+
+
+.headshot-box {
+	width: 100%;
+	height: auto;
+}
+
+#headshot {
+	width: 100%;
+	height: auto;
+	filter: brightness(60%);
+}
+
+.headshot-text {
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: white;
+	border: 2px solid red;
+}
+
+
+
+
+/* The hero image */
+.hero-image {
+	/* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read 
+	
+	background-image: url("./images/duo.jpg");
+	*/
+
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./images/hero-pic.jpg");
+	
+	
+	/* Set a specific height */
+	width: 100%;
+	height: 100vh;
+	
+  
+	/* Position and center the image to scale nicely on all screens */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+  }
+
+  
+  
+  /* Place text in the middle of the image */
+.hero-text {
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: white;
+}
+
+.btn {
+	background-color: DodgerBlue;
+	border: none;
+	color: white;
+	padding: 12px 30px;
+	cursor: pointer;
+	font-size: 20px;
+  }
+  
+  /* Darker background on mouse-over */
+  .btn:hover {
+	background-color: RoyalBlue;
+  }
+
+
+article {
+	width: 100%;
+	min-width: 450px;
+	margin: 0 auto 3.5rem auto;
+	background-color: white;
+	height: fit-content;
+	border: 2px solid black;
+
+}
+
+
+
+header {
+	
+	width: 100%;
+
+	
+ 
+}
+
+header img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	overflow: hidden;
+	
+}
+
+.title {
+	padding: 20px 0;
+	width: 99.5%;
+	margin: -5px auto 0 auto;
+	text-align: center;
+	background-color: rgb(255, 255, 255);
+	border: 3px solid black;
+	
+}
+
+
+.about {
+	background-color: rgb(29, 29, 31);
+	color: whitesmoke;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin: auto;
+	padding: 1rem 0 1rem 0;
+	
+
+
+}
+
+.about-title h2 {
+	text-align: center;
+}
+
+.about-content {
+	width: 75%;
+	margin: auto;
+	
+}
+
+.about-content p {
+	text-indent: 2rem;
+}
+
+
+.technologies {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	display: grid;
+	align-content: stretch;
+	justify-content: center;
+	width: 100%;
+	height: fit-content;
+	margin: 0 auto;
+	text-align: center;
+	background-color: rgb(238, 238, 238);
+	padding: 2rem 0rem;
+}
+
+.tech-container {
+	width: fit-content;
+	margin: 0 auto;
+	
+
+}
+
+.tech-container img {
+	width: 100%;
+	height: 100%;
+	max-width: 7rem;
+	max-height: 20rem;
+	object-fit: cover;
+	overflow: hidden;
+	margin: 1rem 2rem;
+
+
+	
+}
+
+#java {
+	max-height: 10rem;
+	max-width: 5rem;
+}
+
+#sql {
+	max-width: 17rem;
+	max-height: 20rem;
+	
+	
+}
+
+#python {
+	max-width: 17rem;
+	max-height: 20rem;
+}
+
+
+.education {
+	color: green;
+	background-color: gold;
+	text-align: center;
+	height: fit-content;
+	margin: 0 auto;
+	padding-bottom: 3rem;
+	border: 1px solid gold;
+
+}
+
+.education h2 {
+	padding: 2rem 0;
+	
+}
+
+#grid {
+	height: fit-content;
+	width: 100%;
+
+}
+
+
+.projects {
+	width: 100%;
+	margin: 0 auto;
+	background-color: rgb(29, 29, 31);
+	color: whitesmoke;
+	text-align: center;
+	padding: 2rem 0;
+}
+
+.major-projects-container {
+	width: 60%;
+	margin: 0 auto;
+	
+	font-weight: bold;
+	font-size: medium;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	
+}
+
+.prj-container {
+	position: relative;
+	width: fit-content;
+	border: 2px solid whitesmoke;
+	background-color: rgba(0, 0, 0, 0.5);
+	margin: auto;
+	
+  }
+  
+.image {
+	opacity: 1;
+	display: block;
+	width: 80%;
+	height: fit-content;
+	transition: .5s ease;
+	backface-visibility: hidden;
+	margin: auto;
+	max-height: 50rem;
+}
+
+
+  
+.middle {
+	transition: .5s ease;
+	opacity: 0;
+	position: absolute;
+	top: 20%;
+	
+	
+	
+}
+  
+.prj-container:hover .image {
+	opacity: 0.2;
+}
+  
+.prj-container:hover .middle {
+	opacity: 1;
+}
+
+.text {
+	width: 80%;
+	color: white;
+	font-size: 16px;
+	border: 2px solid white;
+	padding: 0 1rem 2rem 1rem;
+	position: relative;
+	margin: auto;
+	
+	
+}
+
+
+.minor-projects-container {
+	width: fit-content;
+	margin: 2rem auto 0 auto;
+	padding: 1rem;
+
+}
+
+.projects a:link, .projects a:visited {
+	color: whitesmoke;
+	text-decoration: none;
+
+}
+
+.projects a:hover, .projects a:active{
+	text-decoration: underline;
+	color: grey;
+}
+
+
+
+
+/* Add a background color and some padding around the form */
+#container {
+	border-radius: 5px;
+	background-color: slateblue;
+	color: snow;
+	width: 100%;
+	border: 1px solid slateblue;
+	
+}
+
+.fcf-input-group {
+	width: 75%;
+	margin: auto;
+
+}
+
+/* Submit button */
+#fcf-button {
+	border: 1px solid black;
+	color: gray;
+	font-size: large;
+	border-radius: 25px;
+	height: 3.5rem;
+	width: 100%;
+	background-color: white;
+	
+		
+}
+
+#submit-container {
+	width: 15%;
+	min-width: 8rem;
+	margin: auto;
+	padding-bottom: 2rem;
+}
+
+#fcf-button:hover {
+	border: 2px solid rgb(31, 30, 30);
+	color: rgb(153, 145, 145);
+	background-color: rgb(233, 229, 229);
+}
+
+/* Style inputs with type="text", select elements and textareas */
+input[type=text], select, textarea {
+	width: 100%; /* Full width */
+	padding: 12px; /* Some padding */ 
+	border: 1px solid #ccc; /* Gray border */
+	border-radius: 4px; /* Rounded borders */
+	box-sizing: border-box; /* Make sure that padding and width stays in place */
+	margin-top: 6px; /* Add a top margin */
+	margin-bottom: 16px; /* Bottom margin */
+	resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+label {
+	margin-left: 12.5%;
+
+}
+
+#Email {
+	width: 100%; /* Full width */
+	padding: 12px; /* Some padding */ 
+	border: 1px solid #ccc; /* Gray border */
+	border-radius: 4px; /* Rounded borders */
+	box-sizing: border-box; /* Make sure that padding and width stays in place */
+	margin-top: 6px; /* Add a top margin */
+	margin-bottom: 16px; /* Bottom margin */
+	resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+  
+
+
+
+
+
+
+
+
+
+
+footer {
+	background: #333;
+	color: white;
+	font-size: 1rem;
+	padding: 2rem 0 4rem 0;
+	margin: 0 auto;
+
+}
+
+footer a {
+	color: white;
+}
+
+footer a:hover {
+	color: grey;
+}
+
+.socials {
+	width: 4rem;
+	padding: 1rem;
+}
+
+.links-box {
+	margin: 0 auto 0 auto;
+	width: fit-content;
+	padding-bottom: 2rem;
+	border-bottom: 1px solid rgb(141, 141, 141);
+	background-color: #333;
+
+}
+
+.links-box a {
+	text-decoration: none;
+}
+
+.copyright {
+	margin: 2rem auto;
+	width: fit-content;
+	text-align: left;
+}
+
+
+
+
+
+
+
+
+/* The navigation bar */
+nav {
+	overflow: auto;
+	background-color: rgb(28, 32, 36);
+	/*background-color: #333; LIGHT MODE */
+	position: fixed; /* Set the navbar to fixed position */
+	top: 0; /* Position the navbar at the top of the page */
+	width: 100%; /* Full width */
+	max-height: 3.5rem;
+	z-index: 100;
+	margin:0px auto;
+    left:0px;
+    right:0px;
+ }
+ 
+ /* Links inside the navbar */
+nav a {
+	
+	float: left;
+	display: block;
+	color: #f2f2f2;
+	padding: 14px 30px;
+	text-decoration: none;
+
+ }
+ 
+ /* Change background on mouse-over */
+nav a:hover {
+	background: #ddd;
+	color: black;
+ }

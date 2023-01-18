@@ -6,12 +6,17 @@ from dotenv import load_dotenv
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import storage
+from google.oauth2 import service_account
+import json
 
 # Generate new secret key, if needed.
 # print(secrets.token_urlsafe())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+CONF_DIR = os.path.join(BASE_DIR,'..','conf')
 
 # Loads config secrets from .env
 # Use .env.example as template
@@ -150,9 +155,14 @@ USE_TZ = True
 if not DEBUG:
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/4.0/howto/static-files/
-    # TODO: Create a google service account. Follow the bookmark.
-    GS_CREDENTIALS = credentials.Certificate('path/to/serviceAccountKey.json')
-    firebase_admin.initialize_app(GS_CREDENTIALS, {
+    # GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+    #     os.path.join(CONF_DIR, 'personal-website-476d1-firebase-adminsdk-uukfp-7bf4bf4bb7.json')
+    # )
+
+    cred = credentials.Certificate(
+        os.path.join(CONF_DIR, 'personal-website-476d1-firebase-adminsdk-uukfp-7bf4bf4bb7.json')
+    )
+    firebase_admin.initialize_app(cred, {
         'storageBucket': str(os.getenv('FIREBASE_BUCKET'))
     })
     bucket = storage.bucket()
