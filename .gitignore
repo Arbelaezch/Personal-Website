@@ -8,6 +8,7 @@ __pycache__/
 .DS_Store
 website/node_modules
 # website/media/movie-posters/
+.env
 
 # We need the migration folder and init, but skip the rest.
 # They're just messy to debug and can collide a bunch if people are working
@@ -16,3 +17,4 @@ website/node_modules
 **/migrations/**
 !**/migrations
 !**/migrations/__init__.py
+website/mydatabase
