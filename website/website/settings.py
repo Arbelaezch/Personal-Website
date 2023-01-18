@@ -84,28 +84,29 @@ WSGI_APPLICATION = 'website.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# TESTING DB
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': 'mydatabase',
-#     }
-# }
-
-SUPABASE_URL = str(os.getenv("SUPABASE_URL"))
-SUPABASE_KEY = str(os.getenv("SUPABASE_KEY"))
-
-# SUPABASE DB
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'HOST': 'db.ymgmpeyotidlxyhliirl.supabase.co',
-        'NAME': 'postgres',
-        'USER': "postgres",
-        'PORT': "5432",
-        'PASSWORD': str(os.getenv('SUPABASE_PASS'))
+if DEBUG:
+    # TESTING DB
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'mydatabase',
+        }
     }
-}
+else:
+    SUPABASE_URL = str(os.getenv("SUPABASE_URL"))
+    SUPABASE_KEY = str(os.getenv("SUPABASE_KEY"))
+
+    # SUPABASE DB
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'HOST': 'db.ymgmpeyotidlxyhliirl.supabase.co',
+            'NAME': 'postgres',
+            'USER': "postgres",
+            'PORT': "5432",
+            'PASSWORD': str(os.getenv('SUPABASE_PASS'))
+        }
+    }
 
 
 
