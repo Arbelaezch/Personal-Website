@@ -1,27 +1,22 @@
-# arbelaezch.ca
-The code for my website, [Arbelaezch.ca](http://arbelaezch.ca/index.php)
+# Repo for my personal portfolio/blog website, [ChristianDonovan.ca](http://christiandonovan.ca/)
 
+My website is currently built on top of a Django back end, configured to use a Firebase storage bucket for static and media files and a Supabase database for relational data, and deployed as a Docker image on Google Cloud Run. Of course, none of this is immediately apparent because it still only uses basic HTML/CSS/JS for the front-end as though it's trapped in the early 2000s...
 
-The pages I've worked the most on are the Movie pages for sure. 
+I've spent more than a hundred hours of my life overengineering an app that gets maybe one visitor every twelve months because:
 
+1. It has been an invaluable teacher. When I started this website I had no design experience, I had only passing familiarity with HTML/CSS, and I still thought buying a domain name was all I needed to access my website online. So far, because of this website I have learned:
+    * HTML/CSS/JS (for real this time)
+    * Responsive Design
+    * Database Management
+    * Docker
+    * Serverless Functions
+    * Supplimental Python/Django skills I hadn't known previously.
+2. I'm a cheap bastard and I was tired of paying more than $100/year for web hosting. Firebase, Supabase, and Google Cloud all have generous free tiers that provide more than enough hosting power to handle my yearly visitor.
 
-Things I have learned with this Project:
+Anyway, thank you for checking out my code and (maybe) my website. Feel free to shoot me a message at arbelaezch@gmail.com if you wanna chat or provide constructive criticism. I always appreciate new opportunities to learn more about my craft.
 
-HTML5:
--Semantic HTML
--Elements and structure
+## Documentation
 
+All required keys can be found in website/website/.env.example. It's up to you to fill them in.
 
-CSS3:
--Flexbox
--The Box Model
--Display and positioning
--Responsive Design
-
-JS:
--Basic syntax (functions, conditionals, variables, etc)
--Integrating JS with HTML elements.
-
-PHP:
--Handles the Nav bar
-
+Generate new GoogleServiceAccount.json file from Firebase project settings.
