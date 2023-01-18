@@ -3,6 +3,9 @@ import os
 import secrets
 import sys
 from dotenv import load_dotenv
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import storage
 
 # Generate new secret key, if needed.
 # print(secrets.token_urlsafe())
@@ -10,17 +13,18 @@ from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Loads key configs from .env
+# Loads config secrets from .env
+# Use .env.example as template
 load_dotenv()
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
+
+# DJANGO SETTINGS
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = str(os.getenv('DEBUG')) == '1'
+DEBUG = int(os.getenv('DEBUG'))
 
 ALLOWED_HOSTS = ["127.0.0.1", 'localhost']
 if not DEBUG:
@@ -81,7 +85,7 @@ WSGI_APPLICATION = 'website.wsgi.application'
 
 
 
-# Database
+# DATABASE
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 if DEBUG:
@@ -92,11 +96,11 @@ if DEBUG:
             'NAME': 'mydatabase',
         }
     }
-else:
+elif not DEBUG:
+    # SUPABASE DB
     SUPABASE_URL = str(os.getenv("SUPABASE_URL"))
     SUPABASE_KEY = str(os.getenv("SUPABASE_KEY"))
 
-    # SUPABASE DB
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -143,22 +147,44 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
+if not DEBUG:
+    # Static files (CSS, JavaScript, Images)
+    # https://docs.djangoproject.com/en/4.0/howto/static-files/
+    # TODO: Create a google service account. Follow the bookmark.
+    GS_CREDENTIALS = credentials.Certificate('path/to/serviceAccountKey.json')
+    firebase_admin.initialize_app(GS_CREDENTIALS, {
+        'storageBucket': str(os.getenv('FIREBASE_BUCKET'))
+    })
+    bucket = storage.bucket()
 
-STATIC_URL = '/static/'
-STATIC_DIR = 'static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/root/')
+    DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
-# The URL that will serve the media files.
-MEDIA_URL = '/media/'
-# The directory that will hold the media files.
-MEDIA_DIR = 'media/'
-# The absolute path to the directory that will hold the media files.
-MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_DIR)
+    STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATIC_URL = '/static/'
+    
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
+    MEDIA_URL = '/media/'
+
+elif DEBUG:
+    STATIC_URL = '/static/'
+    STATIC_DIR = 'static/'
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static/root/')
+
+
+    # The URL that will serve the media files.
+    MEDIA_URL = '/media/'
+    # The directory that will hold the media files.
+    MEDIA_DIR = 'media/'
+    # The absolute path to the directory that will hold the media files.
+    MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_DIR)
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
