@@ -31,7 +31,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 DEBUG = int(os.getenv('DEBUG'))
 
-ALLOWED_HOSTS = ["127.0.0.1", 'localhost']
+ALLOWED_HOSTS = ["127.0.0.1", 'localhost', '198.53.116.240' ]
 if not DEBUG:
     ALLOWED_HOSTS += [str(os.getenv('ALLOWED_HOST'))]
 
@@ -108,12 +108,12 @@ elif not DEBUG:
 
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'HOST': 'db.ymgmpeyotidlxyhliirl.supabase.co',
-            'NAME': 'postgres',
-            'USER': "postgres",
-            'PORT': "5432",
-            'PASSWORD': str(os.getenv('SUPABASE_PASS'))
+            'ENGINE': str(os.getenv('DB_ENGINE')),
+            'HOST': str(os.getenv('DB_HOST')),
+            'NAME': str(os.getenv('DB_NAME')),
+            'USER': str(os.getenv('DB_USER')),
+            'PORT': str(os.getenv('DB_PORT')),
+            'PASSWORD': str(os.getenv('DB_PASSWORD'))
         }
     }
 
@@ -156,29 +156,22 @@ if not DEBUG:
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+    # Generate .json private key from Firebase project settings > Service Accounts
+    # Place it in the conf directory next to GoogleServiceAccount.json.example.
     GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-        os.path.join(CONF_DIR, 'personal-website-476d1-firebase-adminsdk-uukfp-7bf4bf4bb7.json')
+        os.path.join(CONF_DIR, 'GoogleServiceAccount.json')
     )
 
-    DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-    GS_BUCKET_NAME = 'personal-website-476d1.appspot.com'
+    DEFAULT_FILE_STORAGE = str(os.getenv("CLOUD_BACKEND"))
+    GS_BUCKET_NAME = str(os.getenv("FB_BUCKET_NAME"))
 
-    # cred = credentials.Certificate(
-    #     os.path.join(CONF_DIR, 'personal-website-476d1-firebase-adminsdk-uukfp-7bf4bf4bb7.json')
-    # )
-    # firebase_admin.initialize_app(cred, {
-    #     'storageBucket': str(os.getenv('FIREBASE_BUCKET'))
-    # })
-    # bucket = storage.bucket()
-
-    STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+    STATICFILES_STORAGE = str(os.getenv("CLOUD_BACKEND"))
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static'),
     )
     # STATIC_DIR = 'static/'
-    STATIC_ROOT = f'{str(os.getenv("FIREBASE_BUCKET"))}/static/root/'
+    STATIC_ROOT = f'{str(os.getenv("FB_BUCKET_URL"))}/static/root/'
     STATIC_URL = '/static/'
-
 
     # The URL that will serve the media files.
     MEDIA_URL = '/media/'
@@ -186,6 +179,7 @@ if not DEBUG:
     MEDIA_DIR = 'media/'
     # The absolute path to the directory that will hold the media files.
     MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_DIR)
+
 
 elif DEBUG:
     STATIC_URL = '/static/'
