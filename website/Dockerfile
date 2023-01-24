@@ -28,7 +28,7 @@ COPY ./requirements.txt .
 
 RUN pip install -r requirements.txt
 
-COPY ./website /app
+COPY . /app
 
 WORKDIR /app
 
