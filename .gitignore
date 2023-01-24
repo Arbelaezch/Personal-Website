@@ -1,7 +1,6 @@
 env
 venv
-conf/*
-!conf/my_secrets.py.example
+conf/GoogleServiceAccount.json
 logs/
 .vscode
 __pycache__/
