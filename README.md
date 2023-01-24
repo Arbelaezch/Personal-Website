@@ -1,4 +1,4 @@
-# Repo for my personal portfolio/blog website, [ChristianDonovan.ca](http://christiandonovan.ca/)
+# [ChristianDonovan.ca](http://christiandonovan.ca/) Repo
 
 *CHRISTIANDONOVAN.CA STILL UNDER DEVELOPMENT*
 
