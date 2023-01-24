@@ -1,16 +1,9 @@
-from pathlib import Path
 import os
-import secrets
 import sys
 from dotenv import load_dotenv
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import storage
 from google.oauth2 import service_account
-import json
 
-# Generate new secret key, if needed.
-# print(secrets.token_urlsafe())
+# COPY .ENV.EXAMPLE AS .ENV INTO CURRENT DIRECTORY. ADD VALUES.
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
