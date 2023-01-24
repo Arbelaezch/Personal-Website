@@ -3,11 +3,12 @@ import sys
 from dotenv import load_dotenv
 from google.oauth2 import service_account
 
+
 # COPY .ENV.EXAMPLE AS .ENV INTO CURRENT DIRECTORY. ADD VALUES.
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 CONF_DIR = os.path.join(BASE_DIR,'..','conf')
 
