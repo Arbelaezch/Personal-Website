@@ -10,4 +10,4 @@ WORKDIR /app
 
 ENV PORT 8080
 
-CMD gunicorn --bind :$PORT --workers 3 myproject.wsgi:application
+CMD gunicorn --bind :$PORT --workers 3 website.wsgi:application
