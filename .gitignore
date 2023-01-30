@@ -1,20 +1,50 @@
-env
-venv
-GoogleServiceAccount.json
-logs/
-.vscode
-__pycache__/
+# Personal additions.
 .DS_Store
-website/node_modules
-# website/media/movie-posters/
-.env
+GoogleServiceAccount.json
 
-# We need the migration folder and init, but skip the rest.
-# They're just messy to debug and can collide a bunch if people are working
-# around the same models.  If we need to migrate data, we'll deal with that
-# using an exclusion in the base list.
-**/migrations/**
-!**/migrations
-!**/migrations/__init__.py
-website/mydatabase
-mydatabase
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+.Python
+downloads/
+.eggs/
+wheels/
+MANIFEST
+
+# celery beat schedule file
+celerybeat-schedule
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Django stuff:
+*.log
+*.pot
+mydatabase.sqlite3
+
+# Environments
+.env
+env/
+venv/
+ENV/
