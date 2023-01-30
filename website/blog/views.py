@@ -3,8 +3,8 @@ from datetime import date
 
 
 
-def blog(request):
+def blogHome(request):
     context = {
-        
+        "year": date.today().year,
     }
     return render(request, 'blog/blog.html', context)
