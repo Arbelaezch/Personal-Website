@@ -25,7 +25,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 DEBUG = int(os.getenv('DEBUG'))
 
-ALLOWED_HOSTS = ["127.0.0.1", 'localhost', '198.53.116.240' ]
+ALLOWED_HOSTS = ["127.0.0.1", 'localhost', '198.53.116.240', '0.0.0.0', ]
 if not DEBUG:
     ALLOWED_HOSTS += [str(os.getenv('ALLOWED_HOST'))]
 
@@ -153,7 +153,8 @@ if not DEBUG:
     # Generate .json private key from Firebase project settings > Service Accounts
     # Place it in the conf directory next to GoogleServiceAccount.json.example.
     GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-        os.path.join(CONF_DIR, 'GoogleServiceAccount.json')
+        # os.path.join(CONF_DIR, 'GoogleServiceAccount.json')
+        os.path.join(f"{BASE_DIR}/../gcp", 'GoogleServiceAccount.json')
     )
 
     DEFAULT_FILE_STORAGE = str(os.getenv("CLOUD_BACKEND"))
