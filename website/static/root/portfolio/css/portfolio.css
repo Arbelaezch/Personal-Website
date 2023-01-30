@@ -95,15 +95,15 @@ body {
 }
 
 .quote-text {
-    font-size: clamp(1rem, 1.4vw, 1.4vw);
+    font-size: clamp(1.5rem, 1.6vw, 1.4vw);
     color: #76549A;
     margin: 1rem auto auto auto;
 }
 
 .quote-author {
-    font-size: clamp(0.8rem, 0.85vw, 0.85vw);
+    font-size: clamp(1rem, 0.85vw, 0.85vw);
     width: 80%;
-    margin: auto 0 1rem auto;
+    margin: auto auto 1rem auto;
     color: #76549A;
 }
 
