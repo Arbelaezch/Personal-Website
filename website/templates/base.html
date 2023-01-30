@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../static/css/base.css">
+    {% block css %}{% endblock %}
+    <title>{% block title %}Blog Home{% endblock %}</title>
+</head>
+
+<nav>
+    <li class="left"><a href="{% url 'portfolio' %}"><img src="{% static 'portfolio/favicon/favicon-32x32.png' %}"></a></li>
+    <li class="center"><a href="{% url 'blog' %}">Blog</a></li>
+    <li  class="center"><a href="#footer">Contact</a></li>
+</nav>
+
+<body>
+    <div id="sidebar">
+        {% block sidebar %}
+        {% endblock %}
+    </div>
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+
+
+<footer>     
+    <div class="links-box">
+        <a href="https://github.com/Arbelaezch">
+            <img src="{% static 'portfolio/images/github.png' %}" class="socials" alt="github">
+        </a>
+        <a href="https://www.facebook.com/christian.arbelaez.9">
+            <img src="{% static 'portfolio/images/facebook.png' %}" class="socials" alt="facebook">
+        </a>
+        <a href="https://www.linkedin.com/in/christian-arbelaez2021/">
+            <img src="{% static 'portfolio/images/linkedin-logo.png' %}" class="socials" alt="linkedin">
+        </a>
+    </div>
+    <p>Original design and build by Christian Arbelaez for his online portfolio. You are allowed to use this webpage for both personal or commercial use. </p>
+    <p>Copyright © {{year}} Christian Arbelaez</p>
+</footer>
+
+</html>
+
+
