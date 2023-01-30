@@ -85,14 +85,12 @@ WSGI_APPLICATION = 'website.wsgi.application'
 
 
 # DATABASE
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
 if DEBUG:
     # TESTING DB
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'mydatabase',
+            'NAME': 'db.sqlite3',
         }
     }
 elif not DEBUG:
