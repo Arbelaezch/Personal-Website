@@ -1,6 +1,6 @@
 env
 venv
-conf/GoogleServiceAccount.json
+GoogleServiceAccount.json
 logs/
 .vscode
 __pycache__/
