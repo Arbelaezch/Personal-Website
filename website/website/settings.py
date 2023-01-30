@@ -134,63 +134,50 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
 
-if not DEBUG:
-    # Static files (CSS, JavaScript, Images)
-    # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-    # Generate .json private key from Firebase project settings > Service Accounts
-    # Place it in the conf directory next to GoogleServiceAccount.json.example.
+# STATIC FILES
+STATIC_URL = '/static/' # URL to use when referring to static files located in STATIC_ROOT.
+
+# The additional locations the staticfiles app will traverse.
+# should be set to a list of strings that contain full paths 
+# to your additional files directory(ies).
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static/'),
+]
+if not DEBUG:
+    # Google backend configuration
     GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-        # os.path.join(CONF_DIR, 'GoogleServiceAccount.json')
+        # Generate .json private key from Firebase project settings > Service Accounts
+        # Place it in the gcp directory next to GoogleServiceAccount.json.example.
         os.path.join(f"{BASE_DIR}/../gcp", 'GoogleServiceAccount.json')
     )
-
     DEFAULT_FILE_STORAGE = str(os.getenv("CLOUD_BACKEND"))
-    GS_BUCKET_NAME = str(os.getenv("FB_BUCKET_NAME"))
+    GS_BUCKET_NAME = str(os.getenv("FB_BUCKET_NAME")) # Must be named GS_BUCKET_NAME.
 
     STATICFILES_STORAGE = str(os.getenv("CLOUD_BACKEND"))
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static'),
-    )
-    # STATIC_DIR = 'static/'
-    STATIC_ROOT = f'{str(os.getenv("FB_BUCKET_URL"))}/static/root/'
-    STATIC_URL = '/static/'
 
-    # The URL that will serve the media files.
-    MEDIA_URL = '/media/'
-    # The directory that will hold the media files.
-    MEDIA_DIR = 'media/'
-    # The absolute path to the directory that will hold the media files.
-    MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_DIR)
+    # The absolute path to the directory where collectstatic will collect
+    # static files for deployment. Not a place to permanently store files.
+    # Not useful for development.
+    STATIC_ROOT = f'{str(os.getenv("FB_BUCKET_URL"))}/static/'
 
 
-elif DEBUG:
-    STATIC_URL = '/static/'
-    STATIC_DIR = 'static/'
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static'),
-    )
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static/root/')
 
-
-    # The URL that will serve the media files.
-    MEDIA_URL = '/media/'
-    # The directory that will hold the media files.
-    MEDIA_DIR = 'media/'
-    # The absolute path to the directory that will hold the media files.
-    MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_DIR)
+# The URL that will serve the media files.
+MEDIA_URL = '/media/'
+# The directory that will hold the media files.
+MEDIA_DIR = 'media/'
+# The absolute path to the directory that will hold the media files.
+MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_DIR)
 
 
 
