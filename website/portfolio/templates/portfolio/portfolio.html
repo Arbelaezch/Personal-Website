@@ -16,11 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Open+Sans:wght@300&family=Roboto+Slab&display=swap" rel="stylesheet">
 </head>
 
-<nav>
-    <li class="left"><a href="{% url 'portfolio' %}"><img src="{% static 'portfolio/favicon/favicon-32x32.png' %}"></a></li>
-    {% comment %} <li class="center"><a href="{% url 'blog' %}">Blog</a></li> {% endcomment %}
-    <li  class="center"><a href="#footer">Contact</a></li>
-</nav>
+{% include "navbar.html" %}
 
 <body>
     <div class="hero-container">
