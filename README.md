@@ -29,3 +29,6 @@ Anyway, thank you for checking out my code and (maybe) my website. Feel free to 
 All required keys can be found in website/website/.env.example. It's up to you to fill them in.
 
 Generate new GoogleServiceAccount.json file from Firebase project settings and place it in the conf directory.
+
+When building Docker image using an ARM Mac, include --platform linux/arm64 argument as per:
+https://stackoverflow.com/questions/66127933/cloud-run-failed-to-start-and-then-listen-on-the-port-defined-by-the-port-envi
