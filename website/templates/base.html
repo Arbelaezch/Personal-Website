@@ -5,7 +5,8 @@
 <head>
     <link rel="stylesheet" href="../static/css/base.css">
     {% block css %}{% endblock %}
-    <title>{% block title %}Blog Home{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" type="image/png" href="{% block favicon %}{% static 'favicon/favicon-32x32.png' %}{% endblock %}"/>
 </head>
 
 <nav>
