@@ -41,7 +41,7 @@ pip-delete-this-directory.txt
 # Django stuff:
 *.log
 *.pot
-mydatabase.sqlite3
+db.sqlite3
 
 # Environments
 .env

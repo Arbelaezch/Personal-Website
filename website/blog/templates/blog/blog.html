@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}Blog Home{% endblock title %}
+
 {% block css %}
 {{ block.super}}
-<link rel="stylesheet" href="static/blog/css/blog.css"/>
-
+<link rel="stylesheet" href="{% static 'blog/css/blog.css' %}"/>
 {% endblock css %}
 
-
-
 {% block content %}
-{{ block.super}}
+{{ block.super }}
 
 <p>This is some content</p>
 
