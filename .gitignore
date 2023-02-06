@@ -49,3 +49,6 @@ db.sqlite3
 env/
 venv/
 ENV/
+
+# Node / npm
+node_modules/
