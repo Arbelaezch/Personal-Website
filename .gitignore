@@ -42,6 +42,7 @@ pip-delete-this-directory.txt
 *.log
 *.pot
 db.sqlite3
+staticfiles/
 
 # Environments
 .env
