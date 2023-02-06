@@ -151,7 +151,9 @@ STATIC_URL = '/static/' # URL to use when referring to static files located in S
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static/'),
 ]
-if not DEBUG:
+if DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+elif not DEBUG:
     # Google backend configuration
     GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
         # Generate .json private key from Firebase project settings > Service Accounts
