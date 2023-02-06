@@ -11,6 +11,7 @@
 {% block content %}
 {{ block.super }}
 
-<p>This is some content</p>
+<div id="root" />
+<script src="{% static 'index-bundle.js' %}"></script>
 
 {% endblock content %}
