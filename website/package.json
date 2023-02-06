@@ -1,7 +1,10 @@
 {
   "dependencies": {
     "bootstrap": "^5.2.0",
-    "firebase": "^9.15.0"
+    "firebase": "^9.15.0",
+    "lodash": "^4.17.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "name": "website",
   "version": "1.0.0",
