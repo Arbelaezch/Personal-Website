@@ -32,3 +32,6 @@ Generate new GoogleServiceAccount.json file from Firebase project settings and p
 
 When building Docker image using an ARM Mac, include --platform linux/arm64 argument as per:
 https://stackoverflow.com/questions/66127933/cloud-run-failed-to-start-and-then-listen-on-the-port-defined-by-the-port-envi
+
+If there is a problem installing psycopg2 from requirements.txt, try running the following command:
+brew install postgresql
