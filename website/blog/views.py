@@ -7,7 +7,7 @@ from .models import Article
 def BlogView(request):
 
     context = {
-        "articles": Article.objects.all(),
+        "articles": Article.get_reverse_chronological_order(),
     }
 
     return render(request, 'blog/blog.html', context)

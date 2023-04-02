@@ -12,7 +12,17 @@
 {{ block.super }}
 
 {% for article in articles %}
-
+<div class="article">
+    <div class="article.created_at">
+        {{ article.get_formatted_date }} / {{ article.subject }}
+    </div>
+    <div class="article-title">
+        <a href="{% url 'ArticleView' article.id %}">{{ article.title }}</a>
+    </div>
+    <div class="article-subtitle">
+        {{ article.subtitle|safe }}
+    </div>
+</div>
 {% endfor %}
 
 
