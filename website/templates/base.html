@@ -10,38 +10,28 @@
 </head>
 
 <nav>
-    <li class="left"><a href="{% url 'portfolio' %}"><img src="{% static 'portfolio/favicon/favicon-32x32.png' %}"></a></li>
-    <li class="center"><a href="{% url 'blog' %}">Blog</a></li>
-    <li  class="center"><a href="#footer">Contact</a></li>
+  <div class="navbar-container">
+    <div class="navbar-left">
+      <a href="{% url 'portfolio' %}">Christian Arbelaez</a>
+    </div>
+    <div class="navbar-right">
+      <a href="#">About</a>
+      <a href="#">Personal</a>
+      <a href="#">Theme</a>
+    </div>
+  </div>
 </nav>
 
 <body>
-    <div id="sidebar">
-        {% block sidebar %}
-        {% endblock %}
-    </div>
-
-
+  <content>
     {% block content %}{% endblock %}
-    
+  </content>
 </body>
 
-
-<footer>     
-    <div class="links-box">
-        <a href="https://github.com/Arbelaezch">
-            <img src="{% static 'portfolio/images/github.png' %}" class="socials" alt="github">
-        </a>
-        <a href="https://www.facebook.com/christian.arbelaez.9">
-            <img src="{% static 'portfolio/images/facebook.png' %}" class="socials" alt="facebook">
-        </a>
-        <a href="https://www.linkedin.com/in/christian-arbelaez2021/">
-            <img src="{% static 'portfolio/images/linkedin-logo.png' %}" class="socials" alt="linkedin">
-        </a>
-    </div>
+{% comment %} <footer>     
     <p>Original design and build by Christian Arbelaez for his online portfolio. You are allowed to use this webpage for both personal or commercial use. </p>
     <p>Copyright © {{year}} Christian Arbelaez</p>
-</footer>
+</footer> {% endcomment %}
 
 </html>
 

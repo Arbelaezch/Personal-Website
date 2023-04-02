@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Blog Home{% endblock title %}
+{% block title %}Carb | Welcome!{% endblock title %}
 
 {% block css %}
 {{ block.super}}
@@ -11,7 +11,11 @@
 {% block content %}
 {{ block.super }}
 
-<div id="root" />
-<script src="{% static 'index-bundle.js' %}"></script>
+{% for article in articles %}
+
+{% endfor %}
+
+
+
 
 {% endblock content %}
