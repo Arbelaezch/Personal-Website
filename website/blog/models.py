@@ -3,7 +3,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 
-class Post(models.Model):
+class Article(models.Model):
     title = models.CharField(max_length=200)
     body = RichTextUploadingField(config_name='portal_config')
     subject = models.CharField(max_length=50)
@@ -12,3 +12,4 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
