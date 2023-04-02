@@ -1,17 +1,22 @@
 from django.shortcuts import render
 from datetime import date
+from .models import Article
 
 
 
 def blogHome(request):
+
     context = {
-        "year": date.today().year,
+        "articles": Article.objects.all(),
     }
+
     return render(request, 'blog/blog.html', context)
 
 
-def react(request):
+def blogArticle(request, article_id):
+
     context = {
-        "year": date.today().year,
+
     }
-    return render(request, 'blog/react.html', context)
+
+    return render(request, 'blog/article.html', context)

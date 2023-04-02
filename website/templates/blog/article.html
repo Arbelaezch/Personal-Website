@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{article.title}}{% endblock title %}
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'blog/css/article.css' %}"/>
+{% endblock css %}
+
+{% block content %}
+{{ block.super }}
+
+
+
+
+{% endblock content %}

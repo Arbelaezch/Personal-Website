@@ -6,7 +6,8 @@ from . import views
 
 urlpatterns = [
     path('', views.blogHome, name='blog'),
+    path('blog/<int:article_id>', views.blogArticle, name='blogArticle'),
     # path('post/<int:post_id>', views.blogPost, name='blogPost'),
-    path('react/', views.react, name='react'),
+    # path('react/', views.react, name='react'),
     
 ]
