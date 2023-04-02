@@ -4,7 +4,7 @@ from .models import Article
 
 
 
-def blogHome(request):
+def BlogView(request):
 
     context = {
         "articles": Article.objects.all(),
@@ -13,7 +13,7 @@ def blogHome(request):
     return render(request, 'blog/blog.html', context)
 
 
-def blogArticle(request, article_id):
+def ArticleView(request, article_id):
 
     context = {
 
