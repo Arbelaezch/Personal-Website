@@ -1,27 +1,18 @@
 import os
 import sys
+from pathlib import Path
 from dotenv import load_dotenv
-from google.oauth2 import service_account
-
-
-# COPY .ENV.EXAMPLE AS .ENV INTO CURRENT DIRECTORY. ADD VALUES.
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-CONF_DIR = os.path.join(BASE_DIR,'..','conf')
-
-# Loads config secrets from .env
-# Use .env.example as template
-load_dotenv()
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
+# CONF_DIR = os.path.join(BASE_DIR,'..','conf')
 
 
 # DJANGO SETTINGS
-SECRET_KEY = str(os.getenv('SECRET_KEY'))
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = int(os.getenv('DEBUG'))
 
@@ -67,7 +58,9 @@ ROOT_URLCONF = 'website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [
+            BASE_DIR / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,38 +76,25 @@ TEMPLATES = [
 WSGI_APPLICATION = 'website.wsgi.application'
 
 
-
 # DATABASE
-if DEBUG:
-    # TESTING DB
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'db.sqlite3',
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3',
     }
-elif not DEBUG:
-    # SUPABASE DB
-    SUPABASE_URL = str(os.getenv("SUPABASE_URL"))
-    SUPABASE_KEY = str(os.getenv("SUPABASE_KEY"))
+}
 
-    DATABASES = {
-        'default': {
-            'ENGINE': str(os.getenv('DB_ENGINE')),
-            'HOST': str(os.getenv('DB_HOST')),
-            'NAME': str(os.getenv('DB_NAME')),
-            'USER': str(os.getenv('DB_USER')),
-            'PORT': str(os.getenv('DB_PORT')),
-            'PASSWORD': str(os.getenv('DB_PASSWORD'))
-        }
-    }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': str(os.getenv('DB_ENGINE')),
+#         'HOST': str(os.getenv('DB_HOST')),
+#         'NAME': str(os.getenv('DB_NAME')),
+#         'USER': str(os.getenv('DB_USER')),
+#         'PORT': str(os.getenv('DB_PORT')),
+#         'PASSWORD': str(os.getenv('DB_PASSWORD'))
+#     }
+# }
 
-
-
-
-
-# Password validation
-# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -132,44 +112,36 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-
 # Internationalization
-# https://docs.djangoproject.com/en/4.0/topics/i18n/
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
 
-
 # STATIC FILES
 STATIC_URL = '/static/' # URL to use when referring to static files located in STATIC_ROOT.
 
-# The additional locations the staticfiles app will traverse.
-# should be set to a list of strings that contain full paths 
-# to your additional files directory(ies).
+# Where django looks for additional static files.
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static/'),
+    BASE_DIR / 'static',
 ]
-if DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
-elif not DEBUG:
-    # Google backend configuration
-    GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-        # Generate .json private key from Firebase project settings > Service Accounts
-        # Place it in the gcp directory next to GoogleServiceAccount.json.example.
-        os.path.join(f"{BASE_DIR}/../gcp", 'GoogleServiceAccount.json')
-    )
-    DEFAULT_FILE_STORAGE = str(os.getenv("CLOUD_BACKEND"))
-    GS_BUCKET_NAME = str(os.getenv("FB_BUCKET_NAME")) # Must be named GS_BUCKET_NAME.
 
-    STATICFILES_STORAGE = str(os.getenv("CLOUD_BACKEND"))
+# Where django collects static files.
+# Collects them locally; should collect to static bucket for production.
+STATIC_ROOT = BASE_DIR / 'staticfiles/'
 
-    # The absolute path to the directory where collectstatic will collect
-    # static files for deployment. Not a place to permanently store files.
-    # Not useful for development.
-    STATIC_ROOT = f'{str(os.getenv("FB_BUCKET_URL"))}/static/'
 
+# CLOUD STATIC SETUP
+# DEFAULT_FILE_STORAGE = str(os.getenv("CLOUD_BACKEND"))
+# GS_BUCKET_NAME = str(os.getenv("FB_BUCKET_NAME")) # Must be named GS_BUCKET_NAME.
+
+# STATICFILES_STORAGE = str(os.getenv("CLOUD_BACKEND"))
+
+# The absolute path to the directory where collectstatic will collect
+# static files for deployment. Not a place to permanently store files.
+# Not useful for development.
+# STATIC_ROOT = f'{str(os.getenv("FB_BUCKET_URL"))}/static/'
 
 
 # The URL that will serve the media files.
@@ -180,13 +152,10 @@ MEDIA_DIR = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_DIR)
 
 
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 CKEDITOR_CONFIGS = {
 'portal_config': {
