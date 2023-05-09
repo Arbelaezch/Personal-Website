@@ -17,7 +17,10 @@
     <div class="navbar-right">
       <a href="#">About</a>
       <a href="#">Personal</a>
-      <a href="#">Theme</a>
+      <button id="dark-mode-btn" class="dark-mode-btn">
+        <img src="{% static 'images/moon2.png' %}" alt="Moon" class="moon-icon">
+        <img src="{% static 'images/sun.png' %}" alt="Sun" class="sun-icon">
+      </button>
     </div>
   </div>
 </nav>
@@ -33,6 +36,21 @@
     <p>Copyright © {{year}} Christian Arbelaez</p>
 </footer> {% endcomment %}
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const darkModeBtn = document.querySelector('#dark-mode-btn');
+    const moonIcon = document.querySelector('.moon-icon');
+    const sunIcon = document.querySelector('.sun-icon');
+
+    darkModeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      moonIcon.classList.toggle('hidden');
+      sunIcon.classList.toggle('hidden');
+    });
+  });
+</script>
+
 </html>
+
 
 

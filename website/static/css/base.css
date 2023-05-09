@@ -1,6 +1,19 @@
+.light-mode {
+  background-color: #fff;
+  color: #000;
+
+}
+
+.dark-mode {
+  background-color: #16161a;
+  color: #fffffe;
+
+}
+
 nav {
   display: flex;
   justify-content: center;
+
 }
   
 .navbar-container {
@@ -12,6 +25,7 @@ nav {
   flex-wrap: wrap;
   position: relative;
   margin-top: 1rem;
+
 }
 
 .navbar-container a {
@@ -56,6 +70,10 @@ nav {
 .navbar-container a:hover {
     color: #F41d92;
 }
+
+.dark-mode .navbar-container a {
+  color: #fffffe;
+}
   
 @media (max-width: 768px) {
     .navbar-container {
@@ -89,5 +107,6 @@ content {
   width: 80%;
   height: fit-content;
   margin: 3rem auto;
-  
+  max-width: 875px;
+
 }
