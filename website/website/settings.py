@@ -14,11 +14,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # DJANGO SETTINGS
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = int(os.getenv('DEBUG'))
+DEBUG = int(os.getenv('DEBUG', default=0))
 
-ALLOWED_HOSTS = ["127.0.0.1", 'localhost', '198.53.116.240', '0.0.0.0', ]
-if not DEBUG:
-    ALLOWED_HOSTS += [str(os.getenv('ALLOWED_HOST'))]
+# 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
+# For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
+# ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS")
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 CHECK_AGAIN_MODE = False
 
@@ -77,23 +78,23 @@ WSGI_APPLICATION = 'website.wsgi.application'
 
 
 # DATABASE
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': str(os.getenv('DB_ENGINE')),
-#         'HOST': str(os.getenv('DB_HOST')),
-#         'NAME': str(os.getenv('DB_NAME')),
-#         'USER': str(os.getenv('DB_USER')),
-#         'PORT': str(os.getenv('DB_PORT')),
-#         'PASSWORD': str(os.getenv('DB_PASSWORD'))
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'db.sqlite3',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': str(os.getenv('DB_ENGINE', "django.db.backends.sqlite3")),
+        'HOST': str(os.getenv('DB_HOST', "localhost")),
+        'NAME': str(os.getenv('DB_NAME', BASE_DIR / "db.sqlite3")),
+        'USER': str(os.getenv('DB_USER', "user")),
+        'PORT': str(os.getenv('DB_PORT', "5432")),
+        'PASSWORD': str(os.getenv('DB_PASSWORD'))
+    }
+}
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -130,18 +131,6 @@ STATICFILES_DIRS = [
 # Where django collects static files.
 # Collects them locally; should collect to static bucket for production.
 STATIC_ROOT = BASE_DIR / 'staticfiles/'
-
-
-# CLOUD STATIC SETUP
-# DEFAULT_FILE_STORAGE = str(os.getenv("CLOUD_BACKEND"))
-# GS_BUCKET_NAME = str(os.getenv("FB_BUCKET_NAME")) # Must be named GS_BUCKET_NAME.
-
-# STATICFILES_STORAGE = str(os.getenv("CLOUD_BACKEND"))
-
-# The absolute path to the directory where collectstatic will collect
-# static files for deployment. Not a place to permanently store files.
-# Not useful for development.
-# STATIC_ROOT = f'{str(os.getenv("FB_BUCKET_URL"))}/static/'
 
 
 # The URL that will serve the media files.
