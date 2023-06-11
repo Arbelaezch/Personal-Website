@@ -46,7 +46,6 @@ staticfiles/
 # migrations/
 
 # Environments
-.env.*
 *.env
 env/
 venv/
