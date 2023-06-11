@@ -1,37 +1,25 @@
-# [ChristianDonovan.ca](http://christiandonovan.ca/) Repo
+# [ChristianDonovan.ca](http://christiandonovan.ca/)
 
-*CHRISTIANDONOVAN.CA STILL UNDER DEVELOPMENT*
+This current iteration of my website is built with a Django backend and hosted using a DigitalOcean Linux droplet. Gunicorn is the application server while Nginx handles web requests. Static files are served by WhiteNoise and Postgres is used for both my dev and prod databases as per [The Twelve-Factor App](https://12factor.net/dev-prod-parity).
 
-[Documentation](http://christiandonovan.ca/)
+Since 2020 I've spent more than a hundred hours of my life overengineering this website that gets maybe one visitor every twelve months and has very little dynamic content because it has been an invaluable teacher.
 
-[This Project's Story](http://christiandonovan.ca/)
-
-TLDR: I have been iterating on this website since 2020. Over that time it has gone through many redesigns and I have learned much about full-stack development.
-
-My website is currently built on top of a Django back end, configured to use a Firebase storage bucket for static and media files and a Supabase database (PostgreSQL)for relational data, and deployed as a Docker image on Google Cloud Run. Of course, none of this is immediately apparent because it still only uses basic HTML/CSS/JS for the front-end as though it's trapped in the early 2000s...
-
-I've spent more than a hundred hours of my life overengineering an app that gets maybe one visitor every twelve months because:
-
-1. It has been an invaluable teacher. When I started this website I had no design experience, I had only passing familiarity with HTML/CSS, and I still thought buying a domain name was all I needed to access my website online. Some of the things I have learned iterating on this website:
-    * HTML/CSS/JS (for real this time)
+Because of the time I've invested, I have learned countless lessons in both full-stack and general software development. When I started this website I had no design experience, I had only passing familiarity with HTML/CSS, and I still thought buying a domain was all I needed in order to access my website online. Some of the things I have learned from this project include:
+    * HTML/CSS/JS (for real)
     * Responsive Design
-    * Database Management (SQLite -> MySQL -> PostgreSQL)
-    * Using environment variables for config
-    * Connecting DB and storage bucket backing services
+    * Database Management (SQLite, MySQL, and PostgreSQL)
+    * Environment variables and secrets
+    * Web servers, specifically Nginx
+    * Application servers, specifically Gunicorn
+    * Linux server management
+    * SSL certificates
+    * DNS management
+    * CI/CD pipelines (GitHub Actions)
+
+Other technologies I worked with over the many iterations of this project include:
     * Docker
-    * Serverless Functions
-2. I'm a cheap bastard and I was tired of paying more than $100/year for web hosting. Firebase, Supabase, and Google Cloud all have generous free tiers that provide more than enough hosting power to handle my yearly visitor.
+    * Serverless Functions (Google Cloud Run, AWS Lambda)
+    * Cloud Hosting (Azure App Service, AWS EC2, Digital Ocean droplets)
+    * Static file hosting (Firebase Storage, AWS S3, WhiteNoise)
 
 Anyway, thank you for checking out my code and (maybe) my website. Feel free to shoot me a message at arbelaezch@gmail.com if you wanna chat or provide constructive criticism. I always appreciate new opportunities to learn more about my craft.
-
-## Documentation
-
-All required keys can be found in website/website/.env.example. It's up to you to fill them in.
-
-Generate new GoogleServiceAccount.json file from Firebase project settings and place it in the conf directory.
-
-When building Docker image using an ARM Mac, include --platform linux/arm64 argument as per:
-https://stackoverflow.com/questions/66127933/cloud-run-failed-to-start-and-then-listen-on-the-port-defined-by-the-port-envi
-
-If there is a problem installing psycopg2 from requirements.txt, try running the following command:
-brew install postgresql
