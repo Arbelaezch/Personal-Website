@@ -246,3 +246,20 @@ CKEDITOR_CONFIGS = {
 }
 
 CKEDITOR_UPLOAD_PATH = 'editor_uploads/'
+
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': '/home/arbelaezch/Personal-Website/website/website/logfile.log',
+#         },
+#     },
+#     'root': {
+#         'handlers': ['file'],
+#         'level': 'DEBUG',
+#     }
+# }
