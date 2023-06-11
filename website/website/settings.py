@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # DJANGO SETTINGS
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = int(os.getenv('DEBUG', default=0))
+DEBUG = int(os.getenv('DEBUG', default=1))
 
 # 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
 # For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
@@ -85,16 +85,28 @@ WSGI_APPLICATION = 'website.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': str(os.getenv('DB_ENGINE', "django.db.backends.sqlite3")),
-        'HOST': str(os.getenv('DB_HOST', "localhost")),
-        'NAME': str(os.getenv('DB_NAME', BASE_DIR / "db.sqlite3")),
-        'USER': str(os.getenv('DB_USER', "user")),
-        'PORT': str(os.getenv('DB_PORT', "5432")),
-        'PASSWORD': str(os.getenv('DB_PASSWORD'))
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': str(os.getenv('DEV_DB_ENGINE')),
+            'HOST': str(os.getenv('DEV_DB_HOST')),
+            'NAME': str(os.getenv('DEV_DB_NAME')),
+            'USER': str(os.getenv('DEV_DB_USER')),
+            'PORT': str(os.getenv('DEV_DB_PORT')),
+            'PASSWORD': str(os.getenv('DEV_DB_PASSWORD'))
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': str(os.getenv('PROD_DB_ENGINE')),
+            'HOST': str(os.getenv('PROD_DB_HOST')),
+            'NAME': str(os.getenv('PROD_DB_NAME')),
+            'USER': str(os.getenv('PROD_DB_USER')),
+            'PORT': str(os.getenv('PROD_DB_PORT')),
+            'PASSWORD': str(os.getenv('PROD_DB_PASSWORD'))
+        }
+    }
 
 
 AUTH_PASSWORD_VALIDATORS = [
