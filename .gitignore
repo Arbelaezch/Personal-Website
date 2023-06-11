@@ -43,7 +43,7 @@ pip-delete-this-directory.txt
 *.pot
 # db.sqlite3
 staticfiles/
-migrations/
+# migrations/
 
 # Environments
 .env.*
