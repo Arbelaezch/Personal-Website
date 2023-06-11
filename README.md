@@ -1,6 +1,6 @@
 # [ChristianDonovan.ca](http://christiandonovan.ca/)
 
-This current iteration of my website is built with a Django backend and hosted using a DigitalOcean Linux droplet. Gunicorn is the application server while Nginx handles web requests. Static files are served by WhiteNoise and Postgres is used for both my dev and prod databases as per [The Twelve-Factor App](https://12factor.net/dev-prod-parity).
+This current iteration of my website is built with a Django backend and hosted using a DigitalOcean Linux droplet. Gunicorn is the application server while Nginx handles web requests. Static files are compressed and served by WhiteNoise. Postgres is used for both my dev and production databases, as per [The Twelve-Factor App](https://12factor.net/dev-prod-parity).
 
 Since 2020 I've spent more than a hundred hours of my life overengineering this website that gets maybe one visitor every twelve months and has very little dynamic content because it has been an invaluable teacher.
 
