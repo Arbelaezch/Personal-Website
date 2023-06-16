@@ -1,0 +1,46 @@
+footer {
+    bottom: 0;
+    width: 100%;
+    background-color: #76549A;
+    color: #FCF8E8;
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 0.9em;
+}
+
+.links-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgb(141, 141, 141);
+}
+
+.links-box h1, .links-box p {
+    margin-bottom: 0.5rem;
+}
+
+.links-box a {
+    display: inline-block;
+    margin: 0 1rem;
+    text-decoration: none;
+}
+
+.socials {
+    width: 2.5rem;
+    transition: 0.3s;
+}
+
+.socials:hover {
+    transform: scale(1.2);
+}
+
+footer p {
+    margin: 0.5rem 0;
+}
+
+footer p:last-child {
+    margin-top: 1rem;
+}

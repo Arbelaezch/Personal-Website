@@ -10,6 +10,7 @@
     <link rel="shortcut icon" type="image/png" href="{% static 'portfolio/favicon/favicon-32x32.png' %}"/>
     <link rel="stylesheet" href="{% static 'portfolio/css/portfolio.css' %}"/>
     <link rel="stylesheet" href="{% static 'portfolio/css/navbar.css' %}"/>
+    <link rel="stylesheet" href="{% static 'portfolio/css/footer.css' %}"/>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -95,29 +96,7 @@
         </div>
     </div>
 
-
-    <footer id="footer">
-        
-        <div class="links-box">
-            <div>
-                <h1>Work with Me</h1>
-                <p>arbelaezch@gmail.com</p>
-            </div>
-			<a href="https://github.com/Arbelaezch">
-				<img src="{% static 'portfolio/images/github.png' %}" class="socials" alt="github">
-			</a>
-			<a href="https://www.facebook.com/christian.arbelaez.9">
-				<img src="{% static 'portfolio/images/facebook.png' %}" class="socials" alt="facebook">
-			</a>
-            <a href="https://www.linkedin.com/in/christian-arbelaez2021/">
-				<img src="{% static 'portfolio/images/linkedin-logo.png' %}" class="socials" alt="linkedin">
-			</a>
-		</div>
-        <p>Original design and build by Christian Arbelaez.</p>
-        <p>Copyright © {{year}} Christian Arbelaez</p>
-
-    </footer>
-    
+    {% include "portfolio/footer.html" %}
     
 </body>
 </html>
