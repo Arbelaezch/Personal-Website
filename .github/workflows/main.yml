@@ -70,6 +70,14 @@ jobs:
         key: ${{ secrets.SERVER_SSH_KEY }}
         passphrase: ${{ secrets.SERVER_SSH_KEY_PASSPHRASE }}
         script: |
+            cd /var/www/portfolio
+            git pull
+            source env/bin/activate
+            pip install -r requirements.txt
+            cd website
+            python manage.py collectstatic --noinput
+            python manage.py makemigrations
+            python manage.py migrate
             sudo /home/carb/scripts/restart_gunicorn.sh
 
 
