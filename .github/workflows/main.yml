@@ -19,12 +19,12 @@ jobs:
     - name: Deploy code
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.DROPLET_IP }}
-        username: ${{ secrets.DROPLET_USER }}
-        key: ${{ secrets.DROPLET_SSH_KEY }}
-        passphrase: ${{ secrets.DROPLET_SSH_KEY_PASSPHRASE }}
+        host: ${{ secrets.SERVER_IP }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        passphrase: ${{ secrets.SERVER_SSH_KEY_PASSPHRASE }}
         script: |
-          cd /home/arbelaezch/Personal-Website
+          cd /var/www/portfolio
           git pull
           source env/bin/activate
           pip install -r requirements.txt
