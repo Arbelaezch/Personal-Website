@@ -70,7 +70,7 @@ jobs:
         key: ${{ secrets.SERVER_SSH_KEY }}
         passphrase: ${{ secrets.SERVER_SSH_KEY_PASSPHRASE }}
         script: |
-            /home/carb/restart_gunicorn.sh
+            /home/carb/scripts/restart_gunicorn.sh
 
 
 
