@@ -65,16 +65,14 @@ jobs:
     - name: Setup SSH Agent
       uses: webfactory/ssh-agent@v0.5.3
       with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_GITHUB }}
+        ssh-private-key: ${{ secrets.MEDITATIONS_PRIVATE_KEY }}
         
     - name: Restart Gunicorn
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.SERVER_IP }}
         username: ${{ secrets.SERVER_USER }}
-        # key: ${{ secrets.SERVER_SSH_KEY }}
-        # passphrase: ${{ secrets.SERVER_SSH_KEY_PASSPHRASE }}
-        key: ${{ secrets.SERVER_SSH_KEY_GITHUB }}
+        key: ${{ secrets.MEDITATIONS_PUBLIC_KEY }}
         script: |
             cd /var/www/portfolio
             git pull
