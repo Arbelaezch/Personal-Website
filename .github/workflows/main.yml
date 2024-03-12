@@ -62,6 +62,9 @@ jobs:
     # needs: run_tests  # Ensures tests run first
     # if: success()  # Only runs if tests pass
     steps:
+    - name: Check loaded SSH keys
+      run: ssh-add -l
+
     - name: Setup SSH Agent
       uses: webfactory/ssh-agent@v0.5.3
       with:
