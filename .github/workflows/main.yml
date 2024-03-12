@@ -75,7 +75,8 @@ jobs:
       with:
         host: ${{ secrets.SERVER_IP }}
         username: ${{ secrets.SERVER_USER }}
-        key: ${{ secrets.MEDITATIONS_PUBLIC_KEY }}
+        # key: ${{ secrets.MEDITATIONS_PUBLIC_KEY }}
+        key: ${{ secrets.MEDITATIONS_PRIVATE_KEY }}
         script: |
             cd /var/www/portfolio
             git pull
