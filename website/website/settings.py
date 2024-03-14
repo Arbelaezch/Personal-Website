@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # Local Apps
     'portfolio',
     'blog',
+    'api',
 ]
 
 MIDDLEWARE = [
