@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     # Third-party Libraries
     'ckeditor',
     'ckeditor_uploader',
+    'rest_framework',
 
     # Local Apps
     'portfolio',
