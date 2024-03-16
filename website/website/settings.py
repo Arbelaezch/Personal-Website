@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'rest_framework',
+    'corsheaders',
 
     # Local Apps
     'portfolio',
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -265,3 +267,10 @@ CKEDITOR_UPLOAD_PATH = 'editor_uploads/'
 #         'level': 'DEBUG',
 #     }
 # }
+
+CORS_ALLOW_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "https://christiandonovan.ca",
+    "https://www.christiandonovan.ca",
+]
