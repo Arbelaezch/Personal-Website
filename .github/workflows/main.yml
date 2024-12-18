@@ -107,6 +107,12 @@ jobs:
           cd website
           echo "Current migrations status:"
           python manage.py showmigrations
+
+          echo "Making new migrations..."
+          python manage.py makemigrations
+
+          echo "New migrations status:"
+          python manage.py showmigrations
           
           echo "Running migrations..."
           python manage.py migrate --verbosity 2
