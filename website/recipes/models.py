@@ -32,17 +32,14 @@ class Recipe(models.Model):
     directions = RichTextField(help_text="Enter each step on a new line. They will be automatically numbered.")
 
     # Optional fields
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True, blank=True, help_text="The URL for this recipe")
     rating = models.IntegerField(choices=RATING_CHOICES, default=3, blank=True, null=True)
     description = RichTextField(blank=True, help_text="Brief introduction to the recipe")
-    
     servings = models.PositiveIntegerField(blank=True, null=True, help_text="Number of servings this recipe makes")
     prep_time = models.PositiveIntegerField(blank=True, null=True, help_text="Preparation time in minutes")
     cook_time = models.PositiveIntegerField(blank=True, null=True, help_text="Cooking time in minutes")
     difficulty = models.CharField(max_length=10, choices=DIFFICULTY, default='medium', blank=True)
     
-    notes = RichTextField(blank=True, help_text="Additional tips, variations, or storage instructions")
-    nutrition_info = models.TextField(blank=True, help_text="Nutritional information per serving")
     category = models.CharField(max_length=100, choices=CATEGORIES, blank=True)
     image = models.ImageField(
         upload_to='recipe_images',
@@ -52,7 +49,7 @@ class Recipe(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    is_published = models.BooleanField(default=False)
+    is_published = models.BooleanField(default=True)
 
     class Meta:
         ordering = ['-created_at']
