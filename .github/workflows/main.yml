@@ -35,6 +35,12 @@ jobs:
         DJANGO_ALLOWED_HOSTS: "www.christiandonovan.ca christiandonovan.ca localhost 127.0.0.1 [::1]"
         DEBUG: "1"
         SECRET_KEY: "dummy_key_for_tests"
+        DEV_DB_ENGINE: "django.db.backends.sqlite3"
+        DEV_DB_NAME: ":memory:"
+        DEV_DB_HOST: ""
+        DEV_DB_USER: ""
+        DEV_DB_PASSWORD: ""
+        DEV_DB_PORT: ""
       run: |
         cd website
         python manage.py test
