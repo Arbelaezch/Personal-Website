@@ -31,6 +31,10 @@ jobs:
         pip install -r requirements.txt
     
     - name: Run tests
+      env:
+        DJANGO_ALLOWED_HOSTS: "www.christiandonovan.ca christiandonovan.ca localhost 127.0.0.1 [::1]"
+        DEBUG: "1"
+        SECRET_KEY: "dummy_key_for_tests"
       run: |
         cd website
         python manage.py test
@@ -58,17 +62,3 @@ jobs:
           python manage.py collectstatic --noinput
           python manage.py migrate
           sudo systemctl restart ${{ github.ref == 'refs/heads/main' && 'gunicorn' || 'gunicorn-dev' }}
-
-  notify:
-    needs: deploy
-    runs-on: ubuntu-latest
-    if: always()
-    
-    steps:
-    - name: Deployment Status Notification
-      run: |
-        if [ "${{ github.ref }}" = "refs/heads/main" ]; then
-          echo "Production deployment completed"
-        else
-          echo "Development deployment completed"
-        fi
