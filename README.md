@@ -18,7 +18,10 @@ Through the development and continuous improvement of this portfolio since 2020,
 - Linux server administration
 - SSL certificate management
 - DNS configuration
-- CI/CD implementation (GitHub Actions)
+- Automated CI/CD pipeline with GitHub Actions
+  - Automated testing
+  - Separate development (`:8080`) and production environments
+  - Branch-based deployments
 - Environment management
 - Security best practices
 
@@ -70,14 +73,21 @@ python manage.py runserver
 ```
 The site will be available at `http://localhost:8000`
 
-### Deployment
-The project uses GitHub Actions for CI/CD. Pushing to the main branch automatically triggers deployment to production.
+### Development Workflow
+The project follows a structured development workflow:
+
+1. Create feature branches from development
+2. Push changes to trigger automated tests
+3. Changes to development branch deploy to development environment (:8080)
+4. Create PR from development to main for production deployment
+5. Merged changes automatically deploy to production
 
 ## Future Considerations
 While the current implementation effectively serves its purpose, there are several potential areas for enhancement:
 - Integration of modern CSS frameworks (Sass/Tailwind)
 - Migration to a React/Vite frontend
 - Additional interactive features
+- Enhanced monitoring and logging
 
 However, the focus remains on maintaining a stable, performant platform while directing development efforts toward new projects and learning opportunities.
 
