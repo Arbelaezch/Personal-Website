@@ -62,15 +62,16 @@ jobs:
           # Deploy to appropriate directory based on branch
           set -e  # Exit on any error
           echo "Starting deployment..."
-
-          sudo -E bash -c 'echo "Installing system dependencies..."'
-          sudo -E apt-get update
-          sudo -E apt-get install -y pkg-config python3-dev default-libmysqlclient-dev build-essential
           
-          # Install system dependencies without password prompt
-          echo "Installing system dependencies..."
-          DEBIAN_FRONTEND=noninteractive sudo -n /usr/bin/apt-get update
-          DEBIAN_FRONTEND=noninteractive sudo -n /usr/bin/apt-get install -y pkg-config python3-dev default-libmysqlclient-dev build-essential
+          # Create a temporary deployment script
+          cat << 'EOF' > /tmp/deploy.sh
+          #!/bin/bash
+          set -e
+          
+          # Install system dependencies
+          export DEBIAN_FRONTEND=noninteractive
+          sudo apt-get update
+          sudo apt-get install -y pkg-config python3-dev default-libmysqlclient-dev build-essential
           
           # Setup SSH for GitHub
           mkdir -p ~/.ssh
@@ -82,42 +83,30 @@ jobs:
           # Trust GitHub's public key
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
           
-          # Set deployment directory
+          # Set deployment directory and pull changes
           DEPLOY_DIR=${{ github.ref == 'refs/heads/main' && '/var/www/portfolio' || '/var/www/portfolio-dev' }}
-          echo "Deploying to: $DEPLOY_DIR"
-          
-          # Pull latest changes
           cd $DEPLOY_DIR
-          echo "Current branch:"
-          git branch
-          echo "Pulling latest changes..."
           git pull origin ${{ github.ref_name }}
           
-          # Update dependencies
-          echo "Activating virtual environment..."
+          # Update dependencies and run Django commands
           source env/bin/activate
-          echo "Installing dependencies..."
-          pip install --upgrade pip
-          pip install wheel  # Install wheel first
           pip install -r requirements.txt
-          
-          # Django commands
           cd website
-          echo "Collecting static files..."
           python manage.py collectstatic --noinput
-          echo "Current migrations status:"
-          python manage.py showmigrations
-          echo "Running migrations..."
           python manage.py migrate
           
-          # Restart server (using -n to avoid password prompt)
-          echo "Restarting server..."
+          # Restart appropriate service
           if [ "${{ github.ref }}" = "refs/heads/main" ]; then
-            sudo -n /bin/systemctl restart gunicorn
-            echo "Checking gunicorn status..."
-            sudo -n /bin/systemctl status gunicorn
+            sudo systemctl restart gunicorn
+            sudo systemctl status gunicorn
           else
-            sudo -n /bin/systemctl restart gunicorn-dev
-            echo "Checking gunicorn-dev status..."
-            sudo -n /bin/systemctl status gunicorn-dev
+            sudo systemctl restart gunicorn-dev
+            sudo systemctl status gunicorn-dev
           fi
+        EOF
+          
+          # Make the script executable
+          chmod +x /tmp/deploy.sh
+          
+          # Run the deployment script
+          bash -l /tmp/deploy.sh
