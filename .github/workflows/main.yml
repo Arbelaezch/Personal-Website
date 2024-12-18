@@ -59,54 +59,50 @@ jobs:
         key: ${{ secrets.MEDITATIONS_PRIVATE_KEY }}
         envs: GITHUB_REF
         script: |
-          # Deploy to appropriate directory based on branch
           set -e  # Exit on any error
           echo "Starting deployment..."
           
-          # Create a temporary deployment script
+          # Debug information
+          echo "Current user and environment:"
+          whoami
+          pwd
+          echo "Current groups:"
+          groups
+          echo "Sudo permissions:"
+          sudo -l || echo "Failed to list sudo permissions"
+          
+          echo "Testing sudo without password..."
+          sudo -n true || echo "Failed to run sudo without password"
+          
+          # Try sudo with explicit non-interactive flag
+          echo "Attempting apt-get update..."
+          sudo --non-interactive apt-get update || echo "Failed to run apt-get update"
+          
+          # Create a temporary deployment script with verbose output
           cat << 'EOF' > /tmp/deploy.sh
           #!/bin/bash
-          set -e
+          set -x  # Enable command tracing
           
-          # Install system dependencies
+          echo "Starting system updates..."
           export DEBIAN_FRONTEND=noninteractive
-          sudo apt-get update
-          sudo apt-get install -y pkg-config python3-dev default-libmysqlclient-dev build-essential
-          
-          # Setup SSH for GitHub
-          mkdir -p ~/.ssh
-          echo "${{ secrets.MEDITATIONS_GITHUB_DEPLOY_KEY }}" > ~/.ssh/github_deploy_key
-          chmod 600 ~/.ssh/github_deploy_key
-          eval $(ssh-agent -s)
-          ssh-add ~/.ssh/github_deploy_key
-          
-          # Trust GitHub's public key
-          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-          
-          # Set deployment directory and pull changes
-          DEPLOY_DIR=${{ github.ref == 'refs/heads/main' && '/var/www/portfolio' || '/var/www/portfolio-dev' }}
-          cd $DEPLOY_DIR
-          git pull origin ${{ github.ref_name }}
-          
-          # Update dependencies and run Django commands
-          source env/bin/activate
-          pip install -r requirements.txt
-          cd website
-          python manage.py collectstatic --noinput
-          python manage.py migrate
-          
-          # Restart appropriate service
-          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
-            sudo systemctl restart gunicorn
-            sudo systemctl status gunicorn
-          else
-            sudo systemctl restart gunicorn-dev
-            sudo systemctl status gunicorn-dev
+          sudo -n apt-get update
+          if [ $? -ne 0 ]; then
+            echo "Failed to run apt-get update"
+            exit 1
           fi
+          
+          echo "Installing dependencies..."
+          sudo -n apt-get install -y pkg-config python3-dev default-libmysqlclient-dev build-essential
+          if [ $? -ne 0 ]; then
+            echo "Failed to install packages"
+            exit 1
+          fi
+          
+          # Rest of your deployment script...
           EOF
-            
-            # Make the script executable
+
+            echo "Making script executable..."
             chmod +x /tmp/deploy.sh
             
-            # Run the deployment script
+            echo "Running deployment script..."
             bash -l /tmp/deploy.sh
