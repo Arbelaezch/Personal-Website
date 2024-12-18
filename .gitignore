@@ -43,7 +43,8 @@ pip-delete-this-directory.txt
 *.pot
 # db.sqlite3
 staticfiles/
-# migrations/
+# Include migration files in version control? Make me.
+migrations/
 
 # Environments
 *.env
