@@ -103,10 +103,10 @@ jobs:
             sudo systemctl restart gunicorn-dev
             sudo systemctl status gunicorn-dev
           fi
-        EOF
-          
-          # Make the script executable
-          chmod +x /tmp/deploy.sh
-          
-          # Run the deployment script
-          bash -l /tmp/deploy.sh
+          EOF
+            
+            # Make the script executable
+            chmod +x /tmp/deploy.sh
+            
+            # Run the deployment script
+            bash -l /tmp/deploy.sh
