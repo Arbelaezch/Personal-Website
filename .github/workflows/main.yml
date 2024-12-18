@@ -62,48 +62,66 @@ jobs:
           set -e  # Exit on any error
           echo "Starting deployment..."
           
-          # Debug information
-          echo "Current user and environment:"
-          whoami
-          pwd
-          echo "Current groups:"
-          groups
-          echo "Sudo permissions:"
-          sudo -l || echo "Failed to list sudo permissions"
-          
-          echo "Testing sudo without password..."
-          sudo -n true || echo "Failed to run sudo without password"
-          
-          # Try sudo with explicit non-interactive flag
-          echo "Attempting apt-get update..."
-          sudo --non-interactive apt-get update || echo "Failed to run apt-get update"
-          
-          # Create a temporary deployment script with verbose output
-          cat << 'EOF' > /tmp/deploy.sh
-          #!/bin/bash
-          set -x  # Enable command tracing
-          
-          echo "Starting system updates..."
-          export DEBIAN_FRONTEND=noninteractive
-          sudo -n apt-get update
-          if [ $? -ne 0 ]; then
-            echo "Failed to run apt-get update"
-            exit 1
-          fi
-          
-          # Install packages one at a time to maintain NOPASSWD compatibility
+          # Install dependencies
           echo "Installing system dependencies..."
+          export DEBIAN_FRONTEND=noninteractive
           sudo -n /usr/bin/apt-get update
-          sudo -n /usr/bin/apt-get install -y pkg-config
-          sudo -n /usr/bin/apt-get install -y python3-dev
-          sudo -n /usr/bin/apt-get install -y default-libmysqlclient-dev
-          sudo -n /usr/bin/apt-get install -y build-essential
+          sudo -n /usr/bin/apt-get install -y pkg-config python3-dev default-libmysqlclient-dev build-essential
           
-          # Rest of your deployment script...
-          EOF
-
-            echo "Making script executable..."
-            chmod +x /tmp/deploy.sh
-            
-            echo "Running deployment script..."
-            bash -l /tmp/deploy.sh
+          # Setup SSH for GitHub
+          mkdir -p ~/.ssh
+          echo "${{ secrets.MEDITATIONS_GITHUB_DEPLOY_KEY }}" > ~/.ssh/github_deploy_key
+          chmod 600 ~/.ssh/github_deploy_key
+          eval $(ssh-agent -s)
+          ssh-add ~/.ssh/github_deploy_key
+          
+          # Trust GitHub's public key
+          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+          
+          # Set deployment directory and pull changes
+          DEPLOY_DIR=${{ github.ref == 'refs/heads/main' && '/var/www/portfolio' || '/var/www/portfolio-dev' }}
+          echo "Deploying to: $DEPLOY_DIR"
+          cd $DEPLOY_DIR
+          
+          # Show current git status
+          echo "Current git status:"
+          git status
+          
+          echo "Current branch:"
+          git branch
+          
+          echo "Pulling latest changes..."
+          git pull origin ${{ github.ref_name }}
+          
+          echo "Git status after pull:"
+          git status
+          
+          # Virtual environment and dependencies
+          echo "Activating virtual environment..."
+          source env/bin/activate
+          
+          echo "Installing Python dependencies..."
+          pip install -r requirements.txt
+          
+          # Django commands with verbose output
+          cd website
+          echo "Current migrations status:"
+          python manage.py showmigrations
+          
+          echo "Running migrations..."
+          python manage.py migrate --verbosity 2
+          
+          echo "Collecting static files..."
+          python manage.py collectstatic --noinput
+          
+          # Restart server
+          echo "Restarting server..."
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            sudo -n systemctl restart gunicorn
+            echo "Checking gunicorn status..."
+            sudo -n systemctl status gunicorn
+          else
+            sudo -n systemctl restart gunicorn-dev
+            echo "Checking gunicorn-dev status..."
+            sudo -n systemctl status gunicorn-dev
+          fi
