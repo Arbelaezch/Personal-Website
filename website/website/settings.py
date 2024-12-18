@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'portfolio',
     'blog',
     'api',
+    'recipes',
 ]
 
 MIDDLEWARE = [
@@ -169,6 +170,39 @@ MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_DIR)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': '/home/arbelaezch/Personal-Website/website/website/logfile.log',
+#         },
+#     },
+#     'root': {
+#         'handlers': ['file'],
+#         'level': 'DEBUG',
+#     }
+# }
+
+CORS_ALLOW_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "https://christiandonovan.ca",
+    "https://www.christiandonovan.ca",
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20,
+}
+
+
+
+
+# Ckeditor
 CKEDITOR_CONFIGS = {
 'portal_config': {
     # 'skin': 'moono',
@@ -249,28 +283,17 @@ CKEDITOR_CONFIGS = {
     }
 }
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList'],
+            ['RemoveFormat']
+        ],
+        'height': 200,
+        'width': '100%',
+    }
+}
+
 CKEDITOR_UPLOAD_PATH = 'editor_uploads/'
-
-
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'handlers': {
-#         'file': {
-#             'level': 'DEBUG',
-#             'class': 'logging.FileHandler',
-#             'filename': '/home/arbelaezch/Personal-Website/website/website/logfile.log',
-#         },
-#     },
-#     'root': {
-#         'handlers': ['file'],
-#         'level': 'DEBUG',
-#     }
-# }
-
-CORS_ALLOW_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "https://christiandonovan.ca",
-    "https://www.christiandonovan.ca",
-]
