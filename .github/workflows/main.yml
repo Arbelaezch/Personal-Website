@@ -64,8 +64,8 @@ jobs:
           
           # Install system dependencies without password prompt
           echo "Installing system dependencies..."
-          sudo -n apt-get update
-          sudo -n apt-get install -y pkg-config python3-dev default-libmysqlclient-dev build-essential
+          DEBIAN_FRONTEND=noninteractive sudo -n /usr/bin/apt-get update
+          DEBIAN_FRONTEND=noninteractive sudo -n /usr/bin/apt-get install -y pkg-config python3-dev default-libmysqlclient-dev build-essential
           
           # Setup SSH for GitHub
           mkdir -p ~/.ssh
@@ -105,14 +105,14 @@ jobs:
           echo "Running migrations..."
           python manage.py migrate
           
-          # Restart server (using -n flag for sudo)
+          # Restart server (using -n to avoid password prompt)
           echo "Restarting server..."
           if [ "${{ github.ref }}" = "refs/heads/main" ]; then
-            sudo -n systemctl restart gunicorn
+            sudo -n /bin/systemctl restart gunicorn
             echo "Checking gunicorn status..."
-            sudo -n systemctl status gunicorn
+            sudo -n /bin/systemctl status gunicorn
           else
-            sudo -n systemctl restart gunicorn-dev
+            sudo -n /bin/systemctl restart gunicorn-dev
             echo "Checking gunicorn-dev status..."
-            sudo -n systemctl status gunicorn-dev
+            sudo -n /bin/systemctl status gunicorn-dev
           fi
