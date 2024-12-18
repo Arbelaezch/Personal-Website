@@ -6,8 +6,10 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', include('portfolio.urls')),
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
     re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
     path('blog/', include('blog.urls')),
+    path('api/', include('api.urls')),
 ]
 
 if settings.DEBUG:

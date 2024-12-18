@@ -4,7 +4,8 @@ from recipes.models import Recipe
 from .serializers import RecipeSerializer
 
 class RecipeListCreateView(generics.ListCreateAPIView):
-    queryset = Recipe.objects.filter(is_published=True)
+    # queryset = Recipe.objects.filter(is_published=True)
+    queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['category', 'difficulty', 'rating']
@@ -14,11 +15,6 @@ class RecipeListCreateView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        tags = self.request.query_params.get('tags', None)
-        if tags:
-            tag_list = [tag.strip() for tag in tags.split(',')]
-            for tag in tag_list:
-                queryset = queryset.filter(tags__icontains=tag)
         return queryset
 
 class RecipeDetailView(generics.RetrieveUpdateDestroyAPIView):
