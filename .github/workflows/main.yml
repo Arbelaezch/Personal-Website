@@ -37,10 +37,10 @@ jobs:
         SECRET_KEY: "dummy_key_for_tests"
         DEV_DB_ENGINE: "django.db.backends.sqlite3"
         DEV_DB_NAME: ":memory:"
-        DEV_DB_HOST: ""
-        DEV_DB_USER: ""
-        DEV_DB_PASSWORD: ""
-        DEV_DB_PORT: ""
+        DEV_DB_HOST: ""  # Leave blank for sqlite
+        DEV_DB_USER: ""  # Leave blank for sqlite
+        DEV_DB_PASSWORD: ""  # Leave blank for sqlite
+        DEV_DB_PORT: ""  #  Leave blank for sqlite
       run: |
         cd website
         python manage.py test
@@ -59,16 +59,53 @@ jobs:
         key: ${{ secrets.MEDITATIONS_PRIVATE_KEY }}
         script: |
           # Deploy to appropriate directory based on branch
+          set -e  # Exit on any error
+          echo "Starting deployment..."
+          
+          # Setup SSH for GitHub
+          mkdir -p ~/.ssh
+          echo "${{ secrets.MEDITATIONS_GITHUB_DEPLOY_KEY }}" > ~/.ssh/github_deploy_key
+          chmod 600 ~/.ssh/github_deploy_key
+          eval $(ssh-agent -s)
+          ssh-add ~/.ssh/github_deploy_key
+          
+          # Trust GitHub's public key
+          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+          
+          # Set deployment directory
           DEPLOY_DIR=${{ github.ref == 'refs/heads/main' && '/var/www/portfolio' || '/var/www/portfolio-dev' }}
+          echo "Deploying to: $DEPLOY_DIR"
+          
+          # Pull latest changes
           cd $DEPLOY_DIR
+          echo "Current branch:"
+          git branch
+          echo "Pulling latest changes..."
           git pull origin ${{ github.ref_name }}
+          
+          # Update dependencies
+          echo "Activating virtual environment..."
           source env/bin/activate
+          echo "Installing dependencies..."
           pip install -r requirements.txt
+          
+          # Django commands
           cd website
+          echo "Collecting static files..."
           python manage.py collectstatic --noinput
+          echo "Current migrations status:"
+          python manage.py showmigrations
+          echo "Running migrations..."
           python manage.py migrate
+          
+          # Restart server
+          echo "Restarting server..."
           if [ "${{ github.ref }}" = "refs/heads/main" ]; then
-            sudo /bin/systemctl restart gunicorn
+            sudo systemctl restart gunicorn
+            echo "Checking gunicorn status..."
+            sudo systemctl status gunicorn
           else
-            sudo /bin/systemctl restart gunicorn-dev
+            sudo systemctl restart gunicorn-dev
+            echo "Checking gunicorn-dev status..."
+            sudo systemctl status gunicorn-dev
           fi
