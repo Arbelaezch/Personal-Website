@@ -1,92 +1,74 @@
-# name: Test Workflow
-
-# on:
-#   push:
-#     branches: [ main ]
-
-# jobs:
-#   test:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v2
-#     - name: Echo a message
-#       run: echo "GitHub Actions is working!"
-  
-#   test_ssh:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Deploy code
-#       uses: appleboy/ssh-action@master
-#       with:
-#         host: ${{ secrets.SERVER_IP }}
-#         username: ${{ secrets.SERVER_USER }}
-#         key: ${{ secrets.SERVER_SSH_KEY }}
-#         passphrase: ${{ secrets.SERVER_SSH_KEY_PASSPHRASE }}
-#         script: |
-#           cd /var/www/portfolio
-#           git pull
-#           source env/bin/activate
-#           pip install -r requirements.txt
-#           cd website
-#           python manage.py collectstatic --noinput
-#           python manage.py migrate
-#           sudo systemctl restart gunicorn
-
 name: Portfolio CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [ development, main ]
+  pull_request:
+    branches: [ development, main ]
 
 jobs:
-  # run_tests:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Checkout code
-  #     uses: actions/checkout@v2
-  #   - name: Set up Python
-  #     uses: actions/setup-python@v2
-  #     with:
-  #       python-version: '3.10'
-  #   - name: Install dependencies
-  #     run: |
-  #       pip install -r requirements.txt
-  #   - name: Run Django tests
-  #     run: |
-  #       cd path/to/your/django/project  # Adjust path
-  #       python manage.py test
-
-  restart_gunicorn:
+  test:
     runs-on: ubuntu-latest
-    # needs: run_tests  # Ensures tests run first
-    # if: success()  # Only runs if tests pass
     steps:
-    - name: Setup SSH Agent
-      uses: webfactory/ssh-agent@v0.5.3
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v3
       with:
-        ssh-private-key: ${{ secrets.MEDITATIONS_PRIVATE_KEY }}
+        python-version: '3.10'
+    
+    - name: Cache pip packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Run tests
+      run: |
+        cd website
+        python manage.py test
 
-    - name: Check loaded SSH keys
-      run: ssh-add -l
-      
-    - name: Restart Gunicorn
+  deploy:
+    needs: test
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/development')
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Deploy
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.SERVER_IP }}
+        host: ${{ github.ref == 'refs/heads/main' && secrets.PROD_SERVER_IP || secrets.DEV_SERVER_IP }}
         username: ${{ secrets.SERVER_USER }}
-        # key: ${{ secrets.MEDITATIONS_PUBLIC_KEY }}
         key: ${{ secrets.MEDITATIONS_PRIVATE_KEY }}
         script: |
-            cd /var/www/portfolio
-            git pull
-            source env/bin/activate
-            pip install -r requirements.txt
-            cd website
-            python manage.py collectstatic --noinput
-            python manage.py makemigrations
-            python manage.py migrate
-            sudo /home/carb/scripts/restart_gunicorn.sh
+          # Deploy to appropriate directory based on branch
+          DEPLOY_DIR=${{ github.ref == 'refs/heads/main' && '/var/www/portfolio' || '/var/www/portfolio-dev' }}
+          cd $DEPLOY_DIR
+          git pull origin ${{ github.ref_name }}
+          source env/bin/activate
+          pip install -r requirements.txt
+          cd website
+          python manage.py collectstatic --noinput
+          python manage.py migrate
+          sudo systemctl restart ${{ github.ref == 'refs/heads/main' && 'gunicorn' || 'gunicorn-dev' }}
 
-
-
+  notify:
+    needs: deploy
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+    - name: Deployment Status Notification
+      run: |
+        if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+          echo "Production deployment completed"
+        else
+          echo "Development deployment completed"
+        fi
