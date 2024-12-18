@@ -62,10 +62,10 @@ jobs:
           set -e  # Exit on any error
           echo "Starting deployment..."
           
-          # Install required system packages
+          # Install system dependencies without password prompt
           echo "Installing system dependencies..."
-          sudo apt-get update
-          sudo apt-get install -y pkg-config python3-dev default-libmysqlclient-dev build-essential
+          sudo -n apt-get update
+          sudo -n apt-get install -y pkg-config python3-dev default-libmysqlclient-dev build-essential
           
           # Setup SSH for GitHub
           mkdir -p ~/.ssh
@@ -105,14 +105,14 @@ jobs:
           echo "Running migrations..."
           python manage.py migrate
           
-          # Restart server
+          # Restart server (using -n flag for sudo)
           echo "Restarting server..."
           if [ "${{ github.ref }}" = "refs/heads/main" ]; then
-            sudo systemctl restart gunicorn
+            sudo -n systemctl restart gunicorn
             echo "Checking gunicorn status..."
-            sudo systemctl status gunicorn
+            sudo -n systemctl status gunicorn
           else
-            sudo systemctl restart gunicorn-dev
+            sudo -n systemctl restart gunicorn-dev
             echo "Checking gunicorn-dev status..."
-            sudo systemctl status gunicorn-dev
+            sudo -n systemctl status gunicorn-dev
           fi
