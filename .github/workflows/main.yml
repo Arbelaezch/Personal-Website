@@ -67,4 +67,8 @@ jobs:
           cd website
           python manage.py collectstatic --noinput
           python manage.py migrate
-          sudo systemctl restart ${{ github.ref == 'refs/heads/main' && 'gunicorn' || 'gunicorn-dev' }}
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            sudo /bin/systemctl restart gunicorn
+          else
+            sudo /bin/systemctl restart gunicorn-dev
+          fi
