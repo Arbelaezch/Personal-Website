@@ -57,10 +57,15 @@ jobs:
         host: ${{ github.ref == 'refs/heads/main' && secrets.PROD_SERVER_IP || secrets.DEV_SERVER_IP }}
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.MEDITATIONS_PRIVATE_KEY }}
+        envs: GITHUB_REF
         script: |
           # Deploy to appropriate directory based on branch
           set -e  # Exit on any error
           echo "Starting deployment..."
+
+          sudo -E bash -c 'echo "Installing system dependencies..."'
+          sudo -E apt-get update
+          sudo -E apt-get install -y pkg-config python3-dev default-libmysqlclient-dev build-essential
           
           # Install system dependencies without password prompt
           echo "Installing system dependencies..."
