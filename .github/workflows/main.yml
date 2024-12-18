@@ -91,12 +91,13 @@ jobs:
             exit 1
           fi
           
-          echo "Installing dependencies..."
-          sudo -n apt-get install -y pkg-config python3-dev default-libmysqlclient-dev build-essential
-          if [ $? -ne 0 ]; then
-            echo "Failed to install packages"
-            exit 1
-          fi
+          # Install packages one at a time to maintain NOPASSWD compatibility
+          echo "Installing system dependencies..."
+          sudo -n /usr/bin/apt-get update
+          sudo -n /usr/bin/apt-get install -y pkg-config
+          sudo -n /usr/bin/apt-get install -y python3-dev
+          sudo -n /usr/bin/apt-get install -y default-libmysqlclient-dev
+          sudo -n /usr/bin/apt-get install -y build-essential
           
           # Rest of your deployment script...
           EOF
