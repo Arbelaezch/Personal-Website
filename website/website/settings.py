@@ -163,9 +163,8 @@ STORAGES = {
 # The URL that will serve the media files.
 MEDIA_URL = '/media/'
 # The directory that will hold the media files.
-MEDIA_DIR = 'media/'
 # The absolute path to the directory that will hold the media files.
-MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_DIR)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Default primary key field type
@@ -181,13 +180,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #         'file': {
 #             'level': 'DEBUG',
 #             'class': 'logging.FileHandler',
-#             'filename': '/home/arbelaezch/Personal-Website/website/website/logfile.log',
+#             'filename': '/var/www/portfolio/website/django-debug.log',
 #         },
 #     },
-#     'root': {
-#         'handlers': ['file'],
-#         'level': 'DEBUG',
-#     }
+#     'loggers': {
+#         'django': {
+#             'handlers': ['file'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#     },
 # }
 
 
