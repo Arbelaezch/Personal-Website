@@ -54,3 +54,6 @@ ENV/
 
 # Node / npm
 node_modules/
+
+# Media
+media/
