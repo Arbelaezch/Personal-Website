@@ -35,40 +35,29 @@
         <p class="quote-author">Benjamin Franklin</p>
     </div>
 
+
+        <!-- projects.html -->
     <div class="project-section">
         <div class="project-text-container">
             <p class="section-header">Projects</p>
             <p>I am most experienced working with Python and Django, but I have also developed projects 
                 (like this website) using HTML/CSS, SQL, C/C++ and Java. I have also recently taken an interest in data 
-                science and machine learning. Follow my development journey in my <a href="{% url 'BlogView' %}">blog</a>.
-            </p>
+                science and machine learning.</p>
         </div>
 
-        <div class="project-item-container">
-        
-            <div class="hover-img">
-                <a href="https://supersonic-productions.github.io/">
-                    <img src="{% static 'portfolio/images/shipwrecked.png' %}" alt="">
-            
-                    <figcaption>
-                        <p class="figcation-caption">Side scrolling video game</p>
-                    </figcaption>
-                </a>
-            </div>
-            
-            
-            <div class="hover-img">
-                <a href="">
-                    <img src="{% static 'portfolio/images/TeamIlluminator.png' %}" alt="">
-                    <figcaption>
-                        Full-Stack Website
-                        <p class="figcation-caption"></p>
-                    </figcaption>
-                </a>
-            </div>
-            
+        <div class="project-grid">
+            {% for project in projects %}
+            <a href="{% url 'project_detail' project.id %}" class="project-link">
+                <div class="project-card">
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">{{ project.title }}</h3>
+                        <p class="project-subtitle">{{ project.subtitle }}</p>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
         </div>
-
     </div>
 
 

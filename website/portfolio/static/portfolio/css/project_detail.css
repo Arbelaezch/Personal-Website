@@ -1,0 +1,164 @@
+.project-detail {
+    max-width: 1200px;
+    margin: 6rem auto 4rem auto;
+    padding: 0 2rem;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.project-detail-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.project-detail-header h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    color: #333;
+    margin: 0 0 1rem 0;
+}
+
+.project-detail-subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.project-detail-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.project-detail-meta {
+    background: #94B49F;
+    color: #FCF8E8;
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 3rem 0;
+}
+
+.meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.meta-item {
+    text-align: center;
+}
+
+.meta-item h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-detail-content {
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+    line-height: 1.8;
+    color: #444;
+}
+
+.project-detail-content section {
+    margin-bottom: 3rem;
+}
+
+.project-detail-content h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    font-size: 1.8rem;
+    margin: 2rem 0 1.5rem 0;
+}
+
+.project-detail-content p {
+    margin-bottom: 1.5rem;
+}
+
+/* Styling for the RichTextField content */
+.project-description ul,
+.project-lessons ul {
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.project-description ul li,
+.project-lessons ul li {
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.project-lessons ul li::marker {
+    color: #94B49F;
+}
+
+.project-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.project-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: #DF7861;
+    color: #FCF8E8;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.project-button:hover {
+    background: #c66752;
+    transform: translateY(-2px);
+}
+
+.project-button.secondary {
+    background: transparent;
+    border: 2px solid #DF7861;
+    color: #DF7861;
+}
+
+.project-button.secondary:hover {
+    background: #DF7861;
+    color: #FCF8E8;
+}
+
+@media (max-width: 768px) {
+    .project-detail {
+        margin-top: 4rem;
+        padding: 0 1rem;
+    }
+
+    .project-detail-header h1 {
+        font-size: 2rem;
+    }
+
+    .project-detail-subtitle {
+        font-size: 1rem;
+    }
+
+    .meta-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .project-links {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .project-button {
+        text-align: center;
+    }
+
+    .project-detail-content h2 {
+        font-size: 1.5rem;
+    }
+}

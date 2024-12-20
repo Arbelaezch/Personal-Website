@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ project.title }}</title>
+    <link rel="stylesheet" href="{% static 'portfolio/css/project_detail.css' %}"/>
+    <link rel="stylesheet" href="{% static 'portfolio/css/navbar.css' %}"/>
+    <link rel="stylesheet" href="{% static 'portfolio/css/footer.css' %}"/>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Open+Sans:wght@300&family=Roboto+Slab&display=swap" rel="stylesheet">
+</head>
+
+{% include "portfolio/navbar.html" %}
+
+
+{% block content %}
+<div class="project-detail">
+    <div class="project-detail-header">
+        <h1>{{ project.title }}</h1>
+        <p class="project-detail-subtitle">{{ project.subtitle }}</p>
+    </div>
+    
+    <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-detail-image">
+    
+    <div class="project-detail-meta">
+        <div class="meta-grid">
+            {% if project.timeline %}
+            <div class="meta-item">
+                <h3>Timeline</h3>
+                <p>{{ project.timeline }}</p>
+            </div>
+            {% endif %}
+            {% if project.date_completed %}
+            <div class="meta-item">
+                <h3>Completed</h3>
+                <p>{{ project.date_completed|date:"F Y" }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="project-detail-content">
+        <section class="project-description">
+            <h2>About the Project</h2>
+            {{ project.description|safe }}
+        </section>
+
+        {% if project.lessons_learned %}
+        <section class="project-lessons">
+            <h2>What I Learned</h2>
+            {{ project.lessons_learned|safe }}
+        </section>
+        {% endif %}
+    </div>
+    
+    <div class="project-links">
+        {% if project.project_url %}
+        <a href="{{ project.project_url }}" class="project-button" target="_blank" rel="noopener noreferrer">
+            View Live Project
+        </a>
+        {% endif %}
+        {% if project.github_url %}
+        <a href="{{ project.github_url }}" class="project-button secondary" target="_blank" rel="noopener noreferrer">
+            View on GitHub
+        </a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
