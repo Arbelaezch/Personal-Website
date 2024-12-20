@@ -16,35 +16,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Open+Sans:wght@300&family=Roboto+Slab&display=swap" rel="stylesheet">
 </head>
-
 {% include "portfolio/navbar.html" %}
-
 
 {% block content %}
 <div class="project-detail">
     <div class="project-detail-header">
         <h1>{{ project.title }}</h1>
+        {% if project.timeline %}
+        <p class="project-timeline">{{ project.timeline }}</p>
+        {% endif %}
         <p class="project-detail-subtitle">{{ project.subtitle }}</p>
     </div>
     
     <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-detail-image">
-    
-    <div class="project-detail-meta">
-        <div class="meta-grid">
-            {% if project.timeline %}
-            <div class="meta-item">
-                <h3>Timeline</h3>
-                <p>{{ project.timeline }}</p>
-            </div>
-            {% endif %}
-            {% if project.date_completed %}
-            <div class="meta-item">
-                <h3>Completed</h3>
-                <p>{{ project.date_completed|date:"F Y" }}</p>
-            </div>
-            {% endif %}
-        </div>
-    </div>
     
     <div class="project-detail-content">
         <section class="project-description">
@@ -55,7 +39,9 @@
         {% if project.lessons_learned %}
         <section class="project-lessons">
             <h2>What I Learned</h2>
-            {{ project.lessons_learned|safe }}
+            <div class="lessons-list">
+                {{ project.lessons_learned|safe }}
+            </div>
         </section>
         {% endif %}
     </div>

@@ -10,6 +10,14 @@
     margin-bottom: 3rem;
 }
 
+.project-timeline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: #94B49F;
+    margin: 0.5rem 0;
+    font-weight: 500;
+}
+
 .project-detail-header h1 {
     font-family: 'Montserrat', sans-serif;
     font-size: 2.5rem;
@@ -57,15 +65,32 @@
     margin-bottom: 0.5rem;
 }
 
-.project-detail-content {
-    max-width: 800px;
-    margin: 0 auto 3rem auto;
-    line-height: 1.8;
-    color: #444;
-}
-
 .project-detail-content section {
     margin-bottom: 3rem;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #94B49F;
+}
+
+.lessons-list ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.lessons-list ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.lessons-list ul li::before {
+    content: "•";
+    color: #94B49F;
+    font-size: 1.5em;
+    position: absolute;
+    left: 0;
+    top: -0.2rem;
 }
 
 .project-detail-content h2 {
