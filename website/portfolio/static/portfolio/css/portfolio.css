@@ -54,7 +54,8 @@ body {
 .quote-container {
     text-align: center;
     padding: 4rem 2rem;
-    background-color: #f8f9fa;
+    background-color: #e8f5e9;
+    /* background-color: #f8f9fa; */
 }
 
 .quote-text {
@@ -73,7 +74,7 @@ body {
 .section-header {
     font-family: 'Montserrat', sans-serif;
     font-size: 2rem;
-    color: #333;
+    color: #7A9884;
     margin-bottom: 1.5rem;
     text-align: center;
 }
