@@ -18,16 +18,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Open+Sans:wght@300&family=Roboto+Slab&display=swap" rel="stylesheet">
 </head>
 
-{% include "portfolio/navbar.html" %}
-
 <body>
+    {% include "portfolio/navbar.html" %}
+
     <div class="hero-container">
         <img src="{% static 'portfolio/images/ravine_ps.jpg' %}" class="hero-pic" alt="Hiking">
         <div class="hero-text-container">
             <p class="hero-title">Christian Arbelaez</p>
-            <p class="hero-description">Full Stack Developer</p>
+            <p class="hero-description">Full-Stack Developer</p>
         </div>
-        
     </div>
 
     <div class="quote-container">
@@ -35,14 +34,12 @@
         <p class="quote-author">Benjamin Franklin</p>
     </div>
 
-
-        <!-- projects.html -->
     <div class="project-section">
         <div class="project-text-container">
             <p class="section-header">Projects</p>
-            <p>I am most experienced working with Python and Django, but I have also developed projects 
-                (like this website) using HTML/CSS, SQL, C/C++ and Java. I have also recently taken an interest in data 
-                science and machine learning.</p>
+            <p>
+                My technical expertise spans both frontend and backend development, with professional experience in Python, JavaScript, React, and Django. I've successfully deployed and maintained applications across various platforms, from cloud services (Google Cloud Platform, Digital Ocean) to on-premises solutions using nginx and gunicorn. My background includes working with C/C++, Java, and SQL, complemented by modern web technologies like Next.js and comprehensive database management with MySQL. Recently, I've been exploring data science and machine learning, expanding my skillset to embrace emerging technologies in the field.
+            </p>
         </div>
 
         <div class="project-grid">
@@ -60,32 +57,24 @@
         </div>
     </div>
 
-
-
     <div class="about-container">
         <div class="about-text-container">
             <p class="section-header">About Me</p>
             <div class="about-contents">
                 <p>
-                    Hi, my name is Christian Arbelaez and I work as a <b>Python software developer</b>. I hold a Bachelor's degree in Computer Science from the University of Alberta.
+                    Hi, I'm Christian Arbelaez, a Full-stack Software Developer at the University of Alberta Students' Union with a Bachelor's degree in Computer Science and a minor in Business from the University of Alberta.
                     <br><br>
-                    Besides data science and software development, I also enjoy classic films, hiking, and ancient history.
+                    My journey in technology began early, from building custom PCs in high school to developing enterprise-level web applications today. I combine my technical expertise with a strong business acumen, which I developed through both my academic background and years of personal investment experience.
                     <br><br>
-                    In development, as in life, I approach each new challenge as a chance to learn and grow.
-                    I find nothing more satisfying than adding a new skill to my mental tool-box.
+                    As a developer, I thrive on continuous learning and problem-solving. Whether it's mastering a new technology stack or optimizing existing systems, I approach each challenge methodically - first through thorough research and understanding, then through practical application and refinement.
                     <br><br>
-                    I consider this website a hub for both my professional projects and hobbies. Feel free to explore some of the topics I have spent my time learning and you may get to know me even more.
-
-
-
-                
+                    Beyond coding, I'm passionate about classical films, ancient history, and practical philosophy. I maintain this website as a platform to showcase both my professional work and personal interests, offering a comprehensive view of my technical capabilities and creative pursuits.
                 </p>
-                <img class='headshot' src="{% static 'portfolio/images/headshot.png' %}">
+                <img class='headshot' src="{% static 'portfolio/images/headshot.png' %}" alt="Christian Arbelaez">
             </div>
         </div>
     </div>
 
     {% include "portfolio/footer.html" %}
-    
 </body>
 </html>
