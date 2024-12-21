@@ -77,6 +77,8 @@ body {
     color: #7A9884;
     margin-bottom: 1.5rem;
     text-align: center;
+    text-decoration: underline;
+    text-underline-offset: 0.75rem;
 }
 
 /* Projects section */
