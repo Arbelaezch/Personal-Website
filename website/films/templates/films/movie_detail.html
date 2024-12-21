@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+{% url 'films:movie_detail' year=year slug=movie.slug %}
+
+{% block content %}
+<div id="page">
+    <!-- MAIN CONTENT-->
+    <div id="content" class="side">
+        <div class="header">
+            <div class="top">
+                <div id="title" class="title">
+                    <h1>{{ movie.title }} ({{ movie.release_year }})</h1>
+                </div>
+                <div id="rating" class="title">
+                    <h2 class="single">{{ movie.rating }}</h2>
+                    {% if movie.top250_rank %}
+                    <h3 class="double">#{{ movie.top250_rank }} on Top 250</h3>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="mid">
+                <div id="picture" class="info">
+                    {% if movie.image %}
+                    <img src="{{ movie.image.url }}" alt="{{ movie.title }}">
+                    {% else %}
+                    <img src="{% static 'images/no-poster.jpg' %}" alt="No poster available">
+                    {% endif %}
+                </div>
+                <div id="synopsis" class="info">
+                    <p class="synopsis">
+                        <br>
+                        {{ movie.synopsis|safe }}
+                        <br><br>
+                        {% if movie.director %}Director: {{ movie.director }}<br><br>{% endif %}
+                        {% if movie.writer %}Writer: {{ movie.writer }}<br><br>{% endif %}
+                        {% if movie.actors %}Stars: {{ movie.actors }}<br><br>{% endif %}
+                        {% if movie.country %}Country: {{ movie.country }}<br><br>{% endif %}
+                        {% if movie.language %}Language: {{ movie.language }}<br><br>{% endif %}
+                        {% if movie.studio %}Studio: {{ movie.studio }}<br><br>{% endif %}
+                        {% if movie.runtime %}Runtime: {{ movie.runtime }} minutes<br><br>{% endif %}
+                        Genre: {{ movie.get_genre_display }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="review">
+            <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"></p>
+            <p>{{ movie.review|safe }}</p>
+        </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="side">
+        <div id="sideHeader">
+            <a href="{% url 'films:top_250' %}" id="250">
+                <img src="{% static 'images/Nav/top250.jpg' %}" style="width: 250px; height: 200px;" alt="Top 250">
+            </a>
+            {% for decade in decades %}
+            <a href="{% url 'decade_detail' decade.slug %}" class="dec">
+                <img src="{% static 'images/Nav/'|add:decade.slug|add:'.jpg' %}" 
+                     style="width: 250px; height: 65px;" 
+                     alt="{{ decade.name }}">
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

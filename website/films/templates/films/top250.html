@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="top250-container">
+    <h1>My Top 250 Movies</h1>
+    
+    <div class="movies-list">
+        {% for entry in entries %}
+            <div class="movie-entry">
+                <span class="rank">#{{ entry.rank }}</span>
+                <a href="{% url 'films:movie_detail' year=entry.movie.get_decade slug=entry.movie.slug %}" class="movie-link">
+                    <div class="movie-card">
+                        <img src="{{ entry.movie.image.url }}" alt="{{ entry.movie.title }}">
+                        <div class="movie-info">
+                            <h2>{{ entry.movie.title }}</h2>
+                            <p>{{ entry.movie.release_year }}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
