@@ -99,6 +99,8 @@ class Movie(models.Model):
         return self.title
     
     def get_decade(self):
+        if 1900 <= self.release_year <= 1929:
+            return 1900
         return (self.release_year // 10) * 10
 
     def save(self, *args, **kwargs):
