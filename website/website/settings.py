@@ -40,12 +40,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'django_filters',
+    'adminsortable2',
 
     # Local Apps
     'portfolio',
     'blog',
     'api',
     'recipes',
+    'films',
 ]
 
 MIDDLEWARE = [

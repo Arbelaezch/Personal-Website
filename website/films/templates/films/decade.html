@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<article class="center">
+    <!-- MAIN CONTENT-->
+    <div class="content">
+        <header>
+            <h1 class="title">{{ decade.title }}</h1>
+            {% if decade.subtitle %}
+                <h2>{{ decade.subtitle }}</h2>
+            {% endif %}
+        </header>
+        <div id="description" class="mid">
+            <p>
+                {{ decade.description|safe }}
+                
+                {% if decade.fun_fact %}
+                    <br><br>
+                    Fun Fact: {{ decade.fun_fact }}
+                {% endif %}
+                
+                {% if favorite_movies %}
+                    <br><br>
+                    Favorites of the Decade: 
+                    {% for movie in favorite_movies %}
+                        <a href="{% url 'movie_detail' movie.id %}">{{ movie.title }} ({{ movie.release_year }})</a>{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </p>
+        </div>
+        <div id="grid">
+            <div class="wrapper">
+                {% for movie in movies %}
+                <div class="item">
+                    <a href="{% url 'films:movie_detail' year=movie.get_decade slug=movie.slug %}">
+                        <img src="{{ movie.image.url }}" alt="{{ movie.title }}">
+                        <p>{{ movie.title }} ({{ movie.release_year }})</p>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>  
+        </div>
+    </div>
+      
+    <!-- SIDEBAR -->
+    <div id="sidebar">
+        <div id="sideHeader">
+            <a href="{% url 'films:top_250' %}">
+                <img style="width: 250px; height: 200px;" src="{% static 'images/Nav/top250.jpg' %}" alt="top 250 movies">
+            </a>
+            {% for decade_item in all_decades %}
+            <a href="{% url 'films:decade_view' decade_item.year %}">
+                <img 
+                    style="width: 250px; height: 65px;" 
+                    src="{% static 'images/Nav/'|add:decade_item.year|add:'s.jpg' %}" 
+                    alt="{{ decade_item.year }}s"
+                >
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</article>
+
+<footer>
+    <p>Build by Christian Arbelaez for his online portfolio. Copyright © by Christian Arbelaez.</p>
+</footer>
+{% endblock %}
