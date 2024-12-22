@@ -1,0 +1,311 @@
+/* Base styles remain the same until the media queries */
+body {
+    background-color: rgb(201, 203, 204);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#page {
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    margin: 60px auto;
+    padding: 0 20px; /* Add padding for smaller screens */
+}
+
+#content {
+    border: 3px solid grey;
+    width: 100%;
+    min-width: 320px;
+    height: fit-content;
+    min-height: 1000px;
+    padding-bottom: 20px;
+    background-color: white;
+}
+
+.header {
+    margin-bottom: 30px;
+}
+
+.top {
+    height: fit-content;
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 5.5rem;
+    align-items: center;
+}
+
+.title {
+    margin: 0;
+}
+
+.title h1, .title h2, .title h3 {
+    margin: 0;
+}
+
+.single {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.double {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.mid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 30px;
+    min-height: 430px;
+    border: 1px solid rgb(161, 161, 161);
+}
+
+#picture {
+    justify-self: end;
+    max-width: 300px;
+    height: fit-content;
+}
+
+#picture img {
+    width: 300px;
+    height: 400px;
+    border: 3px solid black;
+    display: block;
+}
+
+#synopsis {
+    justify-self: start;
+    width: 100%;
+    max-width: 400px;
+    text-align: left;
+}
+
+.synopsis {
+    margin: 0;
+}
+
+.top250-rank {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#review {
+    padding: 30px 50px;
+    text-align: left;
+    border-top: 1px solid rgb(161, 161, 161);
+    margin-top: 20px;
+}
+
+#review p {
+    text-indent: 2em;
+    line-height: 1.6;
+    margin: 0;
+}
+
+nav {
+    overflow: auto;
+    background-color: rgb(28, 32, 36);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    max-height: 3.5rem;
+    z-index: 100;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+
+nav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    padding: 14px 30px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background: #ddd;
+    color: black;
+}
+
+
+/* Media Queries for Responsive Design */
+
+/* Large tablets and desktop (1024px and up) */
+@media screen and (min-width: 1024px) {
+    #content {
+        width: 100%;
+    }
+
+    .mid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        padding: 30px;
+    }
+
+    .top {
+        padding: 20px 40px;
+    }
+}
+
+/* Small tablets and large phones (768px to 1023px) */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    #content {
+        width: 90%;
+    }
+
+    .mid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    #synopsis {
+        padding-right: 20px;
+    }
+
+    .top {
+        padding: 15px 30px;
+    }
+
+    .title h1 {
+        font-size: 1.8rem;
+    }
+
+    .single {
+        font-size: 2rem;
+    }
+}
+
+/* Mobile phones (up to 767px) */
+@media screen and (max-width: 767px) {
+    #page {
+        margin: 6rem auto 40px auto;
+    }
+
+    #content {
+        width: 95%;
+        min-height: auto;
+    }
+
+    .top {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .title h1 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .single {
+        font-size: 1.8rem;
+        margin: 10px 0;
+    }
+
+    .double {
+        font-size: 1rem;
+    }
+
+    .mid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 15px;
+    }
+
+    #picture {
+        justify-self: center;
+    }
+
+    #picture img {
+        width: 100%;
+        height: auto;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    #synopsis {
+        justify-self: center;
+        padding: 0 15px;
+    }
+
+    #review {
+        padding: 20px;
+    }
+
+    /* Responsive navigation */
+    nav {
+        max-height: none;
+        overflow-x: auto;
+    }
+
+    nav a {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Very small devices (320px and below) */
+@media screen and (max-width: 320px) {
+    .top {
+        padding: 10px;
+        margin-top: 8rem;
+    }
+
+    .title h1 {
+        font-size: 1.3rem;
+    }
+
+    .single {
+        font-size: 1.5rem;
+    }
+
+    .double {
+        font-size: 0.9rem;
+    }
+
+    #review {
+        padding: 15px;
+    }
+
+    nav a {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Fix for medium-sized screens */
+@media screen and (min-width: 768px) {
+    #synopsis {
+        max-width: none;
+    }
+}
+
+/* Print styles */
+@media print {
+    body {
+        background-color: white;
+    }
+
+    #content {
+        width: 100%;
+        border: none;
+        min-height: 0;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .top {
+        background-color: white;
+        color: black;
+    }
+}

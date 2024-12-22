@@ -2,9 +2,13 @@
 {% load static %}
 {% url 'films:movie_detail' year=year slug=movie.slug %}
 
+{% block css %}
+<link rel="stylesheet" href="{% static 'films/css/movie_detail.css' %}"/>
+{% endblock %}
+
+
 {% block content %}
 <div id="page">
-    <!-- MAIN CONTENT-->
     <div id="content" class="side">
         <div class="header">
             <div class="top">
@@ -13,9 +17,6 @@
                 </div>
                 <div id="rating" class="title">
                     <h2 class="single">{{ movie.rating }}</h2>
-                    {% if movie.top250_rank %}
-                    <h3 class="double">#{{ movie.top250_rank }} on Top 250</h3>
-                    {% endif %}
                 </div>
             </div>
             <div class="mid">
@@ -25,18 +26,20 @@
                     {% endif %}
                 </div>
                 <div id="synopsis" class="info">
+                    {% if movie.top250_rank %}
+                    <p class="top250-rank">#{{ movie.top250_rank }} on IMDb Top 250</p>
+                    {% endif %}
                     <p class="synopsis">
-                        <br>
                         {{ movie.synopsis|safe }}
-                        <br><br>
-                        {% if movie.director %}Director: {{ movie.director }}<br><br>{% endif %}
-                        {% if movie.writer %}Writer: {{ movie.writer }}<br><br>{% endif %}
-                        {% if movie.actors %}Stars: {{ movie.actors }}<br><br>{% endif %}
-                        {% if movie.country %}Country: {{ movie.country }}<br><br>{% endif %}
-                        {% if movie.language %}Language: {{ movie.language }}<br><br>{% endif %}
-                        {% if movie.studio %}Studio: {{ movie.studio }}<br><br>{% endif %}
-                        {% if movie.runtime %}Runtime: {{ movie.runtime }} minutes<br><br>{% endif %}
-                        Genre: {{ movie.get_genre_display }}
+                        
+                        {% if movie.director %}<br><br>Director: {{ movie.director }}{% endif %}
+                        {% if movie.writer %}<br><br>Writer: {{ movie.writer }}{% endif %}
+                        {% if movie.actors %}<br><br>Stars: {{ movie.actors }}{% endif %}
+                        {% if movie.country %}<br><br>Country: {{ movie.country }}{% endif %}
+                        {% if movie.language %}<br><br>Language: {{ movie.language }}{% endif %}
+                        {% if movie.studio %}<br><br>Studio: {{ movie.studio }}{% endif %}
+                        {% if movie.runtime %}<br><br>Runtime: {{ movie.runtime }} minutes{% endif %}
+                        <br><br>Genre: {{ movie.get_genre_display }}
                     </p>
                 </div>
             </div>
