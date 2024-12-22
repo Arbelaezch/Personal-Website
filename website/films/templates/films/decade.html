@@ -42,24 +42,6 @@
             </div>  
         </div>
     </div>
-      
-    <!-- SIDEBAR -->
-    <div id="sidebar">
-        <div id="sideHeader">
-            <a href="{% url 'films:top_250' %}">
-                <img style="width: 250px; height: 200px;" src="{% static 'images/Nav/top250.jpg' %}" alt="top 250 movies">
-            </a>
-            {% for decade_item in all_decades %}
-            <a href="{% url 'films:decade_view' decade_item.year %}">
-                <img 
-                    style="width: 250px; height: 65px;" 
-                    src="{% static 'images/Nav/'|add:decade_item.year|add:'s.jpg' %}" 
-                    alt="{{ decade_item.year }}s"
-                >
-            </a>
-            {% endfor %}
-        </div>
-    </div>
 </article>
 
 <footer>
