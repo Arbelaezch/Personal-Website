@@ -1,4 +1,3 @@
-/* Base styles remain the same until the media queries */
 body {
     background-color: rgb(201, 203, 204);
     font-family: Arial, Helvetica, sans-serif;
@@ -8,8 +7,8 @@ body {
     height: fit-content;
     display: flex;
     justify-content: center;
-    margin: 60px auto;
-    padding: 0 20px; /* Add padding for smaller screens */
+    margin: auto;
+    padding: 0 20px;
 }
 
 #content {
@@ -108,34 +107,8 @@ body {
     margin: 0;
 }
 
-nav {
-    overflow: auto;
-    background-color: rgb(28, 32, 36);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    max-height: 3.5rem;
-    z-index: 100;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-}
 
-nav a {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    padding: 14px 30px;
-    text-decoration: none;
-}
-
-nav a:hover {
-    background: #ddd;
-    color: black;
-}
-
-
-/* Media Queries for Responsive Design */
+/* Media Queries */
 
 /* Large tablets and desktop (1024px and up) */
 @media screen and (min-width: 1024px) {
@@ -150,7 +123,7 @@ nav a:hover {
     }
 
     .top {
-        padding: 20px 40px;
+        padding: 20px 5.5rem;
     }
 }
 
@@ -186,7 +159,7 @@ nav a:hover {
 /* Mobile phones (up to 767px) */
 @media screen and (max-width: 767px) {
     #page {
-        margin: 6rem auto 40px auto;
+        margin: 0 auto 40px auto;
     }
 
     #content {
@@ -239,24 +212,12 @@ nav a:hover {
     #review {
         padding: 20px;
     }
-
-    /* Responsive navigation */
-    nav {
-        max-height: none;
-        overflow-x: auto;
-    }
-
-    nav a {
-        padding: 10px 15px;
-        font-size: 0.9rem;
-    }
 }
 
 /* Very small devices (320px and below) */
 @media screen and (max-width: 320px) {
     .top {
         padding: 10px;
-        margin-top: 8rem;
     }
 
     .title h1 {
@@ -275,13 +236,8 @@ nav a:hover {
         padding: 15px;
     }
 
-    nav a {
-        padding: 8px 12px;
-        font-size: 0.8rem;
-    }
 }
 
-/* Fix for medium-sized screens */
 @media screen and (min-width: 768px) {
     #synopsis {
         max-width: none;
@@ -300,9 +256,6 @@ nav a:hover {
         min-height: 0;
     }
 
-    nav {
-        display: none;
-    }
 
     .top {
         background-color: white;
