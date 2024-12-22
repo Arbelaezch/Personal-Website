@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block css %}
+<link rel="stylesheet" href="{% static 'films/css/decade.css' %}"/>
+{% endblock %}
+
 {% block content %}
 <article class="center">
     <!-- MAIN CONTENT-->
-    <div class="content">
+    <div id="decade-content">
         <header>
             <h1 class="title">{{ decade.title }}</h1>
             {% if decade.subtitle %}

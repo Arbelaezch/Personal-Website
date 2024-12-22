@@ -1,0 +1,191 @@
+/* 
+   If you are reading this, I need you to know that this css was written with blood, sweat, and mostly tears. I wrote the bones of this css as my very first web development project ever. 
+   Now, retrofitting it for a django project has been an enormously painful task.
+   I'm doing this because I want to keep the spirit of my original design, rather than make something that looks like every other website today.
+   I have updated my original code as much as I can, but many poor implementations of css still remain. Please do not judge me.
+*/
+
+body {
+	background-color: rgb(201, 203, 204);
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.center {
+	display: flex;
+	justify-content: center;
+	justify-self: center;
+	flex-wrap: wrap;
+    margin: 2rem auto;
+	height: fit-content;
+    width: 90%;
+}
+
+
+#decade-content {
+	border: 3px solid grey;
+	width: 90%;
+    max-width: 1200px;
+	background-color: white;
+    margin: 0 auto;
+}
+
+
+header {
+	background-color: #333;
+	color: #fff;
+	text-align: center;
+}
+
+.title {
+	margin: 0 auto;
+	padding: 2rem;
+    font-size: 2rem;
+}
+
+
+.mid {
+	border: 1px solid rgb(161, 161, 161);
+	height: fit-content;
+	margin-bottom: 15px;
+    padding: 2rem;
+}
+
+.mid p {
+    text-align: left;
+    text-indent: .25in;
+    padding: 0 2rem;
+    max-width: 1200px;
+    margin: 1rem auto;
+}
+
+
+footer {
+	text-align: center;
+		
+}
+
+.horse{
+	margin: 2rem auto;
+	width: fit-content;
+	border: 2px solid black;
+}
+
+
+
+#grid {
+    margin: 2rem 0;
+    /* border: 1px solid #ddd; */
+    padding: 2rem;
+    /* border-radius: 8px; */
+    background-color: #fff;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.item {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.item a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.item img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    display: block;
+}
+
+.item p {
+    padding: 1rem;
+    margin: 0;
+    font-size: 1rem;
+    text-align: center;
+}
+
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .center {
+        width: 95%;
+    }
+    
+    .title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    header,
+    #description,
+    #grid {
+        padding: 1.5rem;
+    }
+
+    .wrapper {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #decade-content {
+        width: 100%;
+        margin: 0rem !important;
+        margin-left: 0rem !important;
+        margin-right: 0rem !important;
+        padding: 0;
+    }
+
+    .center {
+        width: 100%;
+        margin: 0 !important;
+        padding: 0;
+    }
+    
+    header,
+    #grid {
+        padding: 1rem 0.5rem;
+    }
+
+    #description {
+        font-size: 1.2rem;
+        padding: 1rem 0.1rem;
+    }
+
+    .wrapper {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    
+    .title {
+        font-size: 1.8rem;
+    }
+    
+    .item p {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+}
+
