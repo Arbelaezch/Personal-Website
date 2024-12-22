@@ -50,9 +50,9 @@ def decade_view(request, year):
     
     context = {
         'decade': decade,
-        'movies': movies,
-        'favorite_movies': favorite_movies,
-        'all_decades': all_decades,
+        'movies': movies or [],  # Provide empty list as fallback
+        'favorite_movies': favorite_movies or [],
+        'all_decades': all_decades or [],
         'year': year,
     }
     
