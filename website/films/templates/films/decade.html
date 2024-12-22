@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}{{ decade.year }}s{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'films/css/decade.css' %}"/>
 {% endblock %}

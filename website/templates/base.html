@@ -11,12 +11,23 @@
 </head>
 
 <nav class="nav-header">
-  <div class="nav-container">
-      <div class="nav-links">
-          <a href="{% url 'portfolio' %}" class="nav-link">Portfolio</a>
-          <a href="{% url 'films:top_250' %}" class="nav-link">Top 250</a>
-      </div>
-  </div>
+    <div class="nav-container">
+        <div class="nav-links">
+            <a href="{% url 'portfolio' %}" class="nav-link">Portfolio</a>
+            <a href="{% url 'films:top_250' %}" class="nav-link">Top 250</a>
+            <div class="dropdown">
+                <button class="nav-link dropdown-toggle">
+                    Decade
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="dropdown-content">
+                    {% for decade in decades %}
+                        <a href="{% url 'films:decade_view' decade.year %}" class="dropdown-item">{{ decade.year }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 </nav>
 
 <body>

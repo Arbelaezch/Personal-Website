@@ -2,6 +2,8 @@
 {% load static %}
 {% url 'films:movie_detail' year=year slug=movie.slug %}
 
+{% block title %}{{ movie.title }}{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'films/css/movie_detail.css' %}"/>
 {% endblock %}
