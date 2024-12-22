@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Prefetch
 from django.urls import reverse
 from django.http import Http404
+import logging
+logger = logging.getLogger(__name__)
 
 from .models import Movie, Decade, Top250Entry
 
@@ -25,16 +27,22 @@ def top250_view(request):
 
 def decade_view(request, year):
     # Validate year is reasonable
-    if not (1900 <= year <= 2030):  # Adjust range as needed
+    if not (1800 <= year <= 2100):  # Adjust range as needed
         raise Http404("Invalid decade")
     
     # Get the specific decade
     decade = get_object_or_404(Decade, year=year)
+
+    # Special case for 1900s
+    if year == 1900:
+        end_year = 1929  # Include all films from 1900-1929
+    else:
+        end_year = year + 9
     
     # Get all movies from this decade
     movies = Movie.objects.filter(
         release_year__gte=year,
-        release_year__lte=year + 9,
+        release_year__lte=end_year,
         is_published=True
     ).select_related(
         'decade'
@@ -79,16 +87,16 @@ def movie_detail_view(request, year, slug):
         )
     
     # Get related movies (same genre and decade)
-    related_movies = Movie.objects.filter(
-        genre=movie.genre,
-        release_year__gte=year,
-        release_year__lte=year + 9,
-        is_published=True
-    ).exclude(
-        id=movie.id
-    ).select_related(
-        'decade'
-    )[:4]
+    # related_movies = Movie.objects.filter(
+    #     genre=movie.genre,
+    #     release_year__gte=year,
+    #     release_year__lte=year + 9,
+    #     is_published=True
+    # ).exclude(
+    #     id=movie.id
+    # ).select_related(
+    #     'decade'
+    # )[:4]
     
     # Check if movie is in Top 250
     try:
@@ -98,10 +106,11 @@ def movie_detail_view(request, year, slug):
     
     # Get decade object for additional context
     decade = get_object_or_404(Decade, year=year)
-    
+    # Add to context data when working properly.
+    # 'related_movies': related_movies,
+
     context = {
         'movie': movie,
-        'related_movies': related_movies,
         'decade': decade,
         'top250_rank': top250_rank,
         'year': year,
