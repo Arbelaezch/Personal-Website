@@ -10,31 +10,16 @@
     {% block css %}{% endblock %}
 </head>
 
-<nav>
-  <div class="navbar-container">
-    <div class="navbar-left">
-      <a href="{% url 'portfolio' %}">Christian Arbelaez</a>
-    </div>
-    <div class="navbar-right">
-      <a href="#">About</a>
-      <a href="#">Personal</a>
-    </div>
+<nav class="nav-header">
+  <div class="nav-container">
+      <div class="nav-links">
+          <a href="{% url 'portfolio' %}" class="nav-link">Portfolio</a>
+          <a href="{% url 'films:top_250' %}" class="nav-link">Top 250</a>
+      </div>
   </div>
 </nav>
 
 <body>
-  <content>
     {% block content %}{% endblock %}
-  </content>
 </body>
-
-{% comment %} <footer>     
-    <p>Original design and build by Christian Arbelaez for his online portfolio. You are allowed to use this webpage for both personal or commercial use. </p>
-    <p>Copyright © {{year}} Christian Arbelaez</p>
-</footer> {% endcomment %}
-
-
 </html>
-
-
-
