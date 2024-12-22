@@ -58,6 +58,7 @@ def decade_view(request, year):
     
     context = {
         'decade': decade,
+        'decades': all_decades,
         'movies': movies or [],  # Provide empty list as fallback
         'favorite_movies': favorite_movies or [],
         'all_decades': all_decades or [],
@@ -105,6 +106,7 @@ def movie_detail_view(request, year, slug):
         top250_rank = None
     
     # Get decade object for additional context
+    all_decades = Decade.objects.all()
     decade = get_object_or_404(Decade, year=year)
     # Add to context data when working properly.
     # 'related_movies': related_movies,
@@ -112,6 +114,7 @@ def movie_detail_view(request, year, slug):
     context = {
         'movie': movie,
         'decade': decade,
+        'decades': all_decades,
         'top250_rank': top250_rank,
         'year': year,
     }
