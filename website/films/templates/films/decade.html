@@ -30,7 +30,7 @@
                     <br><br>
                     Favorites of the Decade: 
                     {% for movie in favorite_movies %}
-                        <a href="{% url 'movie_detail' movie.id %}">{{ movie.title }} ({{ movie.release_year }})</a>{% if not forloop.last %}, {% endif %}
+                        <a href="{% url 'films:movie_detail' year=movie.get_decade slug=movie.slug %}">{{ movie.title }} ({{ movie.release_year }})</a>{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                 {% endif %}
             </p>
