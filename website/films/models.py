@@ -29,7 +29,7 @@ class Top250Entry(models.Model):
 class Decade(models.Model):
     title = models.CharField(max_length=100)
     subtitle = models.CharField(max_length=100, blank=True, null=True)
-    description = RichTextField()
+    description = RichTextField(config_name='films')
     year = models.IntegerField()
     image = models.ImageField(upload_to='decade_images', blank=True, null=True)
     favorite_movies = models.ManyToManyField('Movie', related_name='favorites_in_decades', blank=True)
@@ -53,6 +53,7 @@ class Movie(models.Model):
         ('drama', 'Drama'),
         ('horror', 'Horror'),
         ('romance', 'Romance'),
+        ('romantic-comedy', 'Romantic Comedy'),
         ('sci-fi', 'Sci-Fi'),
         ('thriller', 'Thriller'),
         ('war', 'War'),
@@ -69,7 +70,7 @@ class Movie(models.Model):
     synopsis = RichTextField()
     rating = models.IntegerField(blank=True, null=True)
     release_year = models.IntegerField()
-    review = RichTextField()
+    review = RichTextField(config_name='films')
     genre = models.CharField(max_length=100, choices=GENRES)
     director = models.CharField(max_length=100, blank=True, null=True)
     writer = models.CharField(max_length=100, blank=True, null=True)
