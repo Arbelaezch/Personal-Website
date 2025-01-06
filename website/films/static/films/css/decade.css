@@ -34,6 +34,7 @@ header {
 	background-color: #333;
 	color: #fff;
 	text-align: center;
+    padding-bottom: 1.5rem;
 }
 
 .title {
@@ -42,6 +43,10 @@ header {
     font-size: 2rem;
 }
 
+.subtitle {
+    background-color: #333;
+    margin: 0;
+}
 
 .mid {
 	border: 1px solid rgb(161, 161, 161);
@@ -52,7 +57,7 @@ header {
 
 .mid p {
     text-align: left;
-    text-indent: .25in;
+    /* text-indent: .25in; */
     padding: 0 2rem;
     max-width: 1200px;
     margin: 1rem auto;

@@ -16,6 +16,19 @@ class DecadeAdmin(admin.ModelAdmin):
         return obj.favorite_movies.count()
     get_favorite_count.short_description = 'Number of Favorites'
 
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == "favorite_movies":
+            # Get the current decade instance
+            if request.resolver_match.kwargs.get('object_id'):
+                decade = self.get_object(request, request.resolver_match.kwargs['object_id'])
+                if decade:
+                    # Filter movies to only show those from this decade
+                    kwargs["queryset"] = Movie.objects.filter(
+                        release_year__gte=decade.year,
+                        release_year__lte=decade.year + 9
+                    )
+        return super().formfield_for_manytomany(db_field, request, **kwargs)
+
 
 class Top250EntryAdmin(SortableAdminMixin, admin.ModelAdmin):
     list_display = ('rank', 'movie', 'last_modified')

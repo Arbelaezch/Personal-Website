@@ -14,7 +14,7 @@
         <header>
             <h1 class="title">{{ decade.title }}</h1>
             {% if decade.subtitle %}
-                <h2>{{ decade.subtitle }}</h2>
+                <h2 class="subtitle">{{ decade.subtitle }}</h2>
             {% endif %}
         </header>
         <div id="description" class="mid">
@@ -23,15 +23,19 @@
                 
                 {% if decade.fun_fact %}
                     <br><br>
-                    Fun Fact: {{ decade.fun_fact }}
+                    <p>
+                        Fun Fact: {{ decade.fun_fact }}
+                    </p>
                 {% endif %}
                 
                 {% if favorite_movies %}
                     <br><br>
-                    Favorites of the Decade: 
-                    {% for movie in favorite_movies %}
-                        <a href="{% url 'movie_detail' movie.id %}">{{ movie.title }} ({{ movie.release_year }})</a>{% if not forloop.last %}, {% endif %}
-                    {% endfor %}
+                    <p>
+                        Favorites of the Decade: 
+                        {% for movie in favorite_movies %}
+                            <a href="{% url 'films:movie_detail' year=movie.get_decade slug=movie.slug %}">{{ movie.title }} ({{ movie.release_year }})</a>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
                 {% endif %}
             </p>
         </div>
