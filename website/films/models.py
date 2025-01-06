@@ -9,7 +9,12 @@ class Top250Entry(models.Model):
         on_delete=models.CASCADE,
         related_name='top250_entry'
     )
-    rank = models.PositiveIntegerField(unique=True)
+    rank = models.PositiveIntegerField(
+        default=0,
+        blank=False,
+        null=False,
+        db_index=True
+    )
     date_added = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     
@@ -69,6 +74,7 @@ class Movie(models.Model):
     director = models.CharField(max_length=100, blank=True, null=True)
     writer = models.CharField(max_length=100, blank=True, null=True)
     actors = models.CharField(max_length=100, blank=True, null=True)
+    producer = models.CharField(max_length=100, blank=True, null=True)
     country = models.CharField(max_length=100, blank=True, null=True)
     language = models.CharField(max_length=100, blank=True, null=True)
     studio = models.CharField(max_length=100, blank=True, null=True)
