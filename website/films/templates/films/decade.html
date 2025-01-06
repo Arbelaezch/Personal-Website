@@ -30,14 +30,14 @@
                 {% if decade.fun_fact %}
                     <br><br>
                     <p>
-                        Fun Fact: {{ decade.fun_fact }}
+                        <span class="section-label">Fun Fact:</span> {{ decade.fun_fact }}
                     </p>
                 {% endif %}
                 
                 {% if favorite_movies %}
-                    <br><br>
+                    <br>
                     <p>
-                        Favorites of the Decade: 
+                        <span class="section-label">Favorites of the Decade:</span>
                         {% for movie in favorite_movies %}
                             <a href="{% url 'films:movie_detail' year=movie.get_decade slug=movie.slug %}">{{ movie.title }} ({{ movie.release_year }})</a>{% if not forloop.last %}, {% endif %}
                         {% endfor %}
