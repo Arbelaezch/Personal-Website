@@ -337,8 +337,33 @@ CKEDITOR_CONFIGS = {
             ['NumberedList', 'BulletedList'],
             ['RemoveFormat']
         ],
-        'height': 200,
+        'height': 400,
         'width': '100%',
+    },
+    'films': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline', 'Superscript',],
+            ['NumberedList', 'BulletedList'],
+            ['RemoveFormat']
+        ],
+        'height': 400,
+        'width': '160%',
+        'tabSpaces': 4,
+        'extraPlugins': ','.join([
+            'uploadimage',
+            'div',
+            'autolink',
+            'autoembed',
+            'embedsemantic',
+            'autogrow',
+            'widget',
+            'lineutils',
+            'clipboard',
+            'dialog',
+            'dialogui',
+            'elementspath'
+        ]),
     }
 }
 

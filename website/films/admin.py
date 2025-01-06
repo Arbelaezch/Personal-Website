@@ -1,12 +1,12 @@
 from django.contrib import admin
-from .models import Movie, Decade, Top250Entry
 from adminsortable2.admin import SortableAdminMixin
+
+from .models import Movie, Decade, Top250Entry
 
 
 class MovieAdmin(admin.ModelAdmin):
     search_fields = ['title']
     list_display = ['title', 'decade', 'created_at']
-
 
 class DecadeAdmin(admin.ModelAdmin):
     filter_horizontal = ('favorite_movies',)  # Makes it easier to select favorite movies
@@ -22,10 +22,12 @@ class DecadeAdmin(admin.ModelAdmin):
             if request.resolver_match.kwargs.get('object_id'):
                 decade = self.get_object(request, request.resolver_match.kwargs['object_id'])
                 if decade:
-                    # Filter movies to only show those from this decade
+                    # Filter movies using get_decade()
                     kwargs["queryset"] = Movie.objects.filter(
-                        release_year__gte=decade.year,
-                        release_year__lte=decade.year + 9
+                        release_year__in=[
+                            year for year in range(decade.year, decade.year + 10)
+                            if Movie.get_decade(Movie(release_year=year)) == decade.year
+                        ]
                     )
         return super().formfield_for_manytomany(db_field, request, **kwargs)
 
