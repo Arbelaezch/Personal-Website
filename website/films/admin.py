@@ -3,6 +3,11 @@ from .models import Movie, Decade, Top250Entry
 from adminsortable2.admin import SortableAdminMixin
 
 
+class MovieAdmin(admin.ModelAdmin):
+    search_fields = ['title']
+    list_display = ['title', 'decade', 'created_at']
+
+
 class DecadeAdmin(admin.ModelAdmin):
     filter_horizontal = ('favorite_movies',)  # Makes it easier to select favorite movies
     list_display = ('year', 'title', 'get_favorite_count')
@@ -17,9 +22,10 @@ class Top250EntryAdmin(SortableAdminMixin, admin.ModelAdmin):
     search_fields = ('movie__title',)
     list_select_related = ('movie',)
     list_per_page = 250
+    autocomplete_fields = ['movie']
 
 
 
 admin.site.register(Top250Entry, Top250EntryAdmin)
 admin.site.register(Decade, DecadeAdmin)
-admin.site.register(Movie)
+admin.site.register(Movie, MovieAdmin)
