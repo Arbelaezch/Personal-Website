@@ -18,7 +18,11 @@
                     <h1>{{ movie.title }} ({{ movie.release_year }})</h1>
                 </div>
                 <div id="rating" class="title">
-                    <h2 class="single">{{ movie.rating }}</h2>
+                    {% if movie.rating %}
+                        <h2 class="single">{{ movie.rating }}</h2>
+                    {% else %}
+                        <h2></h2>
+                    {% endif %}
                 </div>
             </div>
             <div class="mid">
