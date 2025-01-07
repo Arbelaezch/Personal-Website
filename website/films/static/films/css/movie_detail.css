@@ -58,6 +58,11 @@ body {
     margin-top: 5px;
 }
 
+.section-label {
+    text-decoration: underline;
+    font-weight: 500;
+}
+
 .mid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -149,7 +154,7 @@ body {
     }
 
     .top {
-        padding: 15px 30px;
+        padding: 20px 50px;
     }
 
     .title h1 {
