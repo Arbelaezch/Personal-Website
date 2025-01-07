@@ -29,6 +29,10 @@ body {
     margin: 0 auto;
 }
 
+.center-content {
+    width: fit-content;
+}
+
 
 header {
 	background-color: #333;
