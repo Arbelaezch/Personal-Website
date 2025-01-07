@@ -29,10 +29,6 @@ body {
     background-color: white;
 }
 
-.header {
-    margin-bottom: 30px;
-}
-
 .top {
     height: fit-content;
     background-color: #333;
@@ -60,6 +56,11 @@ body {
     font-size: 1.2rem;
     text-align: center;
     margin-top: 5px;
+}
+
+.section-label {
+    text-decoration: underline;
+    font-weight: 500;
 }
 
 .mid {
@@ -103,10 +104,9 @@ body {
 }
 
 #review {
-    padding: 30px 50px;
+    padding: 50px 50px 30px 50px;
     text-align: left;
     border-top: 1px solid rgb(161, 161, 161);
-    margin-top: 20px;
 }
 
 #review p {
@@ -154,7 +154,7 @@ body {
     }
 
     .top {
-        padding: 15px 30px;
+        padding: 20px 50px;
     }
 
     .title h1 {

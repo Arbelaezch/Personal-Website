@@ -38,21 +38,20 @@
                     <p class="synopsis">
                         {{ movie.synopsis|safe }}
                         
-                        {% if movie.director %}<br><br>Director: {{ movie.director }}{% endif %}
-                        {% if movie.writer %}<br><br>Writer: {{ movie.writer }}{% endif %}
-                        {% if movie.actors %}<br><br>Stars: {{ movie.actors }}{% endif %}
-                        {% if movie.country %}<br><br>Country: {{ movie.country }}{% endif %}
-                        {% if movie.language %}<br><br>Language: {{ movie.language }}{% endif %}
-                        {% if movie.studio %}<br><br>Studio: {{ movie.studio }}{% endif %}
-                        {% if movie.runtime %}<br><br>Runtime: {{ movie.runtime }} minutes{% endif %}
-                        <br><br>Genre: {{ movie.get_genre_display }}
+                        {% if movie.director %}<br><br><span class="section-label">Director:</span> {{ movie.director }}{% endif %}
+                        {% if movie.writer %}<br><br><span class="section-label">Writer:</span> {{ movie.writer }}{% endif %}
+                        {% if movie.actors %}<br><br><span class="section-label">Stars:</span> {{ movie.actors }}{% endif %}
+                        {% if movie.country %}<br><br><span class="section-label">Country:</span> {{ movie.country }}{% endif %}
+                        {% if movie.language %}<br><br><span class="section-label">Language:</span> {{ movie.language }}{% endif %}
+                        {% if movie.studio %}<br><br><span class="section-label">Studio:</span> {{ movie.studio }}{% endif %}
+                        {% if movie.runtime %}<br><br><span class="section-label">Runtime:</span> {{ movie.runtime }} minutes{% endif %}
+                        <br><br><span class="section-label">Genre:</span> {{ movie.get_genre_display }}
                     </p>
                 </div>
             </div>
         </div>
 
         <div id="review">
-            <p style="text-align: center; text-indent: -.25in; margin: 30px 1in;"></p>
             <p>{{ movie.review|safe }}</p>
         </div>
     </div>
