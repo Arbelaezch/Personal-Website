@@ -29,10 +29,6 @@ body {
     background-color: white;
 }
 
-.header {
-    margin-bottom: 30px;
-}
-
 .top {
     height: fit-content;
     background-color: #333;
@@ -103,10 +99,9 @@ body {
 }
 
 #review {
-    padding: 30px 50px;
+    padding: 50px 50px 30px 50px;
     text-align: left;
     border-top: 1px solid rgb(161, 161, 161);
-    margin-top: 20px;
 }
 
 #review p {
