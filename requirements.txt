@@ -1,6 +1,6 @@
 asgiref==3.8.1
 Brotli==1.0.9
-Django==5.1.4
+Django==5.1.5
 django-admin-sortable2==2.2.4
 django-ckeditor==6.5.1
 django-cors-headers==4.3.1
