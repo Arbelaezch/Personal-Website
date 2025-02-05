@@ -38,6 +38,7 @@
                     <p class="synopsis">
                         {{ movie.synopsis|safe }}
                         
+                        {% if movie.producer %}<br><br><span class="section-label">Producer:</span> {{ movie.producer }}{% endif %}
                         {% if movie.director %}<br><br><span class="section-label">Director:</span> {{ movie.director }}{% endif %}
                         {% if movie.writer %}<br><br><span class="section-label">Writer:</span> {{ movie.writer }}{% endif %}
                         {% if movie.actors %}<br><br><span class="section-label">Stars:</span> {{ movie.actors }}{% endif %}

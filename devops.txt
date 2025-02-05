@@ -1,0 +1,26 @@
+Nginx
+/etc/nginx/sites-available/christiandonovan.ca 
+-> Main Nginx configuration file that defines how requests are handled 
+-> Linked to sites-enabled via: /etc/nginx/sites-enabled/christiandonovan.ca
+
+sudo nginx -t 
+sudo systemctl reload nginx
+
+sudo tail -f /var/log/nginx/error.log
+
+
+
+Gunicorn
+/etc/systemd/system/gunicorn.service # Production 
+service /etc/systemd/system/gunicorn-dev.service # Development service 
+-> Systemd service files that control how Gunicorn runs 
+-> Define user, working directory, and socket locations
+
+# Create/edit the service file 
+sudo nano /etc/systemd/system/gunicorn-dev.service 
+
+# After pasting and saving the above content: 
+sudo systemctl daemon-reload 
+sudo systemctl restart gunicorn-dev 
+sudo systemctl status gunicorn-dev
+
