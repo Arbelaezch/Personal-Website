@@ -54,7 +54,7 @@ jobs:
     - name: Deploy
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.PROD_SERVER_IP }}
+        host: christiandonovan.ca  # DNS is kept current by ddclient; a hard-coded IP secret went stale
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.MEDITATIONS_PRIVATE_KEY }}
         envs: GITHUB_REF
