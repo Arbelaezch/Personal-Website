@@ -30,6 +30,21 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     
+    - name: Check migrations are committed
+      env:
+        DJANGO_ALLOWED_HOSTS: "www.christiandonovan.ca christiandonovan.ca localhost 127.0.0.1 [::1]"
+        DEBUG: "1"
+        SECRET_KEY: "dummy_key_for_tests"
+        DEV_DB_ENGINE: "django.db.backends.sqlite3"
+        DEV_DB_NAME: ":memory:"
+        DEV_DB_HOST: ""  # Leave blank for sqlite
+        DEV_DB_USER: ""  # Leave blank for sqlite
+        DEV_DB_PASSWORD: ""  # Leave blank for sqlite
+        DEV_DB_PORT: ""  #  Leave blank for sqlite
+      run: |
+        cd website
+        python manage.py makemigrations --check --dry-run
+
     - name: Run tests
       env:
         DJANGO_ALLOWED_HOSTS: "www.christiandonovan.ca christiandonovan.ca localhost 127.0.0.1 [::1]"
@@ -108,12 +123,6 @@ jobs:
           echo "Current migrations status:"
           python manage.py showmigrations
 
-          echo "Making new migrations..."
-          python manage.py makemigrations
-
-          echo "New migrations status:"
-          python manage.py showmigrations
-          
           echo "Running migrations..."
           python manage.py migrate --verbosity 2
           
