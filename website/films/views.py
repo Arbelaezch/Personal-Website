@@ -81,7 +81,7 @@ def movie_detail_view(request, year, slug):
     if movie_decade != year:
         # Redirect to the correct decade URL
         return redirect(
-            reverse('movie_detail', kwargs={
+            reverse('films:movie_detail', kwargs={
                 'year': movie_decade,
                 'slug': slug
             })

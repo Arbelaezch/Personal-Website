@@ -12,7 +12,7 @@ class RecipeListView(generics.ListAPIView):
     serializer_class = RecipeSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['category', 'difficulty', 'rating']
-    search_fields = ['title', 'description', 'tags']
+    search_fields = ['title', 'description']  # (there is no 'tags' field on Recipe)
     ordering_fields = ['created_at', 'rating', 'title']
     ordering = ['-created_at']  # Default ordering
 
