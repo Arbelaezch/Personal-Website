@@ -33,3 +33,17 @@ Firewall (UFW) - intended open ports on meditations
 Everything else is closed. MySQL (3306) listens on 127.0.0.1 only.
 fail2ban watches sshd and nginx (jail config: /etc/fail2ban/jail.d/local.conf).
 SSH hardening: /etc/ssh/sshd_config.d/10-hardening.conf
+
+
+Deploys (GitHub Actions: .github/workflows/main.yml)
+-> Push to main -> tests -> SSH to christiandonovan.ca as the deploy user -> fast-forward pull,
+   pip install, migrate, collectstatic, restart gunicorn.
+-> Health check afterwards: / and /api/v1/recipes/ must answer through nginx + gunicorn + DB.
+   If anything fails the code is rolled back to the previous commit (migrations are NOT rolled
+   back, so keep them backwards compatible) and the job fails (GitHub emails the failure).
+-> The server pulls from GitHub with ~/.ssh/github_deploy_key (see ~/.ssh/config for carb).
+-> The deploy user may only run: sudo systemctl restart gunicorn. The deploy installs no
+   system packages. Needed once on a new server:
+   sudo apt-get install -y python3-venv python3-dev pkg-config default-libmysqlclient-dev build-essential
+-> Server Python venv: /var/www/portfolio/env (python3.12). To recreate:
+   python3 -m venv env && env/bin/pip install -r requirements.txt
