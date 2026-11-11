@@ -44,8 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third-party Libraries
-    'ckeditor',
-    'ckeditor_uploader',
+    'django_ckeditor_5',
     'rest_framework',
     'corsheaders',
     'django_filters',
@@ -199,9 +198,6 @@ SILENCED_SYSTEM_CHECKS = [
     # HSTS is sent by nginx (deploy/nginx/snippets/security-headers.conf); setting it here too
     # would send the header twice.
     'security.W004',
-    # django-ckeditor warns that CKEditor 4 is end-of-life; tracked in issue #63 (replace the
-    # editor). Remove this line when it is replaced.
-    'ckeditor.W001',
 ]
 
 
@@ -251,126 +247,27 @@ REST_FRAMEWORK = {
 
 
 # Ckeditor
-_PORTAL_CONFIG = {
-'portal_config': {
-    # 'skin': 'moono',
-    # 'skin': 'office2013',
-    'toolbar_Basic': [
-        ['Source', '-', 'Bold', 'Italic']
-    ],
-    'toolbar_YourCustomToolbarConfig': [
-        {'name': 'document', 'items': [
-            'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates'
-        ]},
-        {'name': 'clipboard', 'items': [
-            'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'
-        ]},
-        {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll']},
-        {'name': 'forms',
-         'items': [
-             'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea',
-             'Select', 'Button', 'ImageButton', 'HiddenField'
-         ]},
-        '/',
-        {'name': 'basicstyles',
-         'items': [
-             'Bold', 'Italic', 'Underline', 'Strike', 'Subscript',
-             'Superscript', '-', 'RemoveFormat'
-         ]},
-        {'name': 'paragraph',
-         'items': [
-             'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent',
-             '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft',
-             'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-',
-             'BidiLtr', 'BidiRtl', 'Language'
-         ]},
-        {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
-        {'name': 'insert',
-         'items': [
-             'Image', 'Table', 'HorizontalRule',
-             'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'
-         ]},
-        '/',
-        {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
-        {'name': 'colors', 'items': ['TextColor', 'BGColor']},
-        {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
-        {'name': 'about', 'items': ['About']},
-        '/',  # put this to force next toolbar on new line
-        {'name': 'yourcustomtools', 'items': [
-            # put the name of your editor.ui.addButton here
-            'Preview',
-            'Maximize',
+# RICH-TEXT EDITOR: CKEditor 5 via django-ckeditor-5 (bundled static files, open-source GPL mode).
+# The stored content only uses p, ul/ol/li (ol start, li value), br, em, u and sup, so the toolbar is
+# small. <li value="..."> is kept via htmlSupport; <ol start="..."> via the list properties.
+_LISTS = {'properties': {'startIndex': True, 'reversed': False, 'styles': False}}
+_KEEP_LI_VALUE = {'allow': [{'name': 'li', 'attributes': {'value': True}}]}
+_BASIC_TOOLBAR = [
+    'undo', 'redo', '|',
+    'bold', 'italic', 'underline', 'superscript', '|',
+    'bulletedList', 'numberedList', '|',
+    'removeFormat', 'sourceEditing',
+]
 
-        ]},
-    ],
-    'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
-    # 'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
-    # 'height': 291,
-    # 'width': '100%',
-    # 'filebrowserWindowHeight': 725,
-    # 'filebrowserWindowWidth': 940,
-    # 'toolbarCanCollapse': True,
-    # 'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
-    'tabSpaces': 4,
-    'extraPlugins': ','.join([
-        'uploadimage',  # the upload image feature
-        # your extra plugins here
-        'div',
-        'autolink',
-        'autoembed',
-        'embedsemantic',
-        'autogrow',
-        # 'devtools',
-        'widget',
-        'lineutils',
-        'clipboard',
-        'dialog',
-        'dialogui',
-        'elementspath'
-    ]),
-    }
-}
-
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'Custom',
-        'toolbar_Custom': [
-            ['Bold', 'Italic', 'Underline'],
-            ['NumberedList', 'BulletedList'],
-            ['RemoveFormat']
-        ],
-        'height': 400,
-        'width': '100%',
+CKEDITOR_5_CONFIGS = {
+    'default': {'toolbar': _BASIC_TOOLBAR, 'list': _LISTS, 'htmlSupport': _KEEP_LI_VALUE},
+    'films': {'toolbar': _BASIC_TOOLBAR, 'list': _LISTS, 'htmlSupport': _KEEP_LI_VALUE},
+    # blog.Article.body: headings, links, quotes and images (uploads are staff-only)
+    'blog': {
+        'toolbar': ['heading', '|'] + _BASIC_TOOLBAR[:-2] + ['|', 'link', 'blockQuote', 'insertImage', '|',
+                                                              'removeFormat', 'sourceEditing'],
+        'list': _LISTS,
+        'htmlSupport': _KEEP_LI_VALUE,
     },
-    'films': {
-        'toolbar': 'Custom',
-        'toolbar_Custom': [
-            ['Bold', 'Italic', 'Underline', 'Superscript',],
-            ['NumberedList', 'BulletedList'],
-            ['RemoveFormat']
-        ],
-        'height': 400,
-        'width': '160%',
-        'tabSpaces': 4,
-        'extraPlugins': ','.join([
-            'uploadimage',
-            'div',
-            'autolink',
-            'autoembed',
-            'embedsemantic',
-            'autogrow',
-            'widget',
-            'lineutils',
-            'clipboard',
-            'dialog',
-            'dialogui',
-            'elementspath'
-        ]),
-    }
 }
-
-# 'portal_config' (used by blog.Article.body) used to be defined in a CKEDITOR_CONFIGS that this
-# one replaced, so the blog admin crashed; merge it in.
-CKEDITOR_CONFIGS.update(_PORTAL_CONFIG)
-
-CKEDITOR_UPLOAD_PATH = 'editor_uploads/'
+CKEDITOR_5_FILE_UPLOAD_PERMISSION = 'staff'

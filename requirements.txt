@@ -1,11 +1,10 @@
 asgiref==3.13.0
 Brotli==1.2.1
-Django==5.2.18
 django-admin-sortable2==2.3.1
-django-ckeditor==6.7.4
+django-ckeditor-5==0.2.20
 django-cors-headers==4.9.0
 django-filter==26.2
-django-js-asset==5.0.0
+Django==5.2.18
 djangorestframework==3.18.3
 gunicorn==26.2.0
 Markdown==3.11.2
