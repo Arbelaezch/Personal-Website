@@ -59,3 +59,7 @@ media/
 # Test coverage
 .coverage
 htmlcov/
+
+# AI tooling: settings.json holds a machine-specific plugin switch; harness.toml and CLAUDE.md stay tracked
+.claude/settings.json
+.claude/settings.local.json
