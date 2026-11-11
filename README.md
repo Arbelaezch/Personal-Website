@@ -20,7 +20,6 @@ Through the development and continuous improvement of this portfolio since 2020,
 - DNS configuration
 - Automated CI/CD pipeline with GitHub Actions
   - Automated testing
-  - Separate development (`:8080`) and production environments
   - Branch-based deployments
 - Environment management
 - Security best practices
@@ -76,11 +75,12 @@ The site will be available at `http://localhost:8000`
 ### Development Workflow
 The project follows a structured development workflow:
 
-1. Create feature branches from development
+1. Create feature branches from main
 2. Push changes to trigger automated tests
-3. Changes to development branch deploy to development environment (:8080)
-4. Create PR from development to main for production deployment
-5. Merged changes automatically deploy to production
+3. Open a PR into main; CI runs the tests
+4. Merged changes automatically deploy to production
+
+There is no separate development server; run the site locally (see above) to try changes.
 
 ## Future Considerations
 While the current implementation effectively serves its purpose, there are several potential areas for enhancement:

@@ -11,16 +11,25 @@ sudo tail -f /var/log/nginx/error.log
 
 
 Gunicorn
-/etc/systemd/system/gunicorn.service # Production 
-service /etc/systemd/system/gunicorn-dev.service # Development service 
+/etc/systemd/system/gunicorn.service # Production service
 -> Systemd service files that control how Gunicorn runs 
 -> Define user, working directory, and socket locations
 
 # Create/edit the service file 
-sudo nano /etc/systemd/system/gunicorn-dev.service 
+sudo nano /etc/systemd/system/gunicorn.service 
 
 # After pasting and saving the above content: 
 sudo systemctl daemon-reload 
-sudo systemctl restart gunicorn-dev 
-sudo systemctl status gunicorn-dev
+sudo systemctl restart gunicorn 
+sudo systemctl status gunicorn
 
+
+
+Firewall (UFW) - intended open ports on meditations
+-> 22/tcp    OpenSSH   key login from anywhere; password login only from 192.168.1.0/24
+-> 80,443    Nginx Full  public web (christiandonovan.ca)
+-> 8096/tcp  Emby media server
+-> Samba     192.168.1.0/24 only (EmbyMovies share, login as carb)
+Everything else is closed. MySQL (3306) listens on 127.0.0.1 only.
+fail2ban watches sshd and nginx (jail config: /etc/fail2ban/jail.d/local.conf).
+SSH hardening: /etc/ssh/sshd_config.d/10-hardening.conf
