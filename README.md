@@ -34,53 +34,66 @@ Through the development and continuous improvement of this portfolio since 2020,
 
 ### Prerequisites
 - Python 3.12+ (matches the server and CI)
-- MySQL
+- MySQL (or SQLite for a quick local run, see below)
 - Git
 
 ### Initial Setup
-1. Clone the repository:
+1. Clone the repository and create a virtual environment (at the repository root):
    ```bash
-   git clone <repository-url>
-   cd website
-   ```
-
-2. Create and activate virtual environment:
-   ```bash
-   python -m venv env
+   git clone git@github.com:Arbelaezch/Personal-Website.git
+   cd Personal-Website
+   python3 -m venv env
    source env/bin/activate  # On Windows: .\env\Scripts\activate
    ```
 
-3. Install dependencies:
+2. Install dependencies (`requirements-dev.txt` adds `coverage` on top of `requirements.txt`):
    ```bash
-   pip install -r requirements.txt
+   pip install -r requirements-dev.txt
    ```
 
-4. Configure environment variables:
-   - Create `~/website/website/.env` file
-   - Copy contents from `.env.example` (set `DEBUG=1` for local development; production leaves it off)
-   - Update values for your local environment
-
-5. Database setup:
+3. Configure environment variables. Django lives in `website/`, and settings read `website/website/.env`:
    ```bash
+   cp website/website/.env.example website/website/.env
+   ```
+   Then edit it: set a `SECRET_KEY`, keep `DEBUG=1` for local development (production leaves it off, which turns on
+   the HTTPS redirect, secure cookies, etc.), and fill in the `DEV_DB_*` database values. For a quick run without MySQL use
+   `DEV_DB_ENGINE=django.db.backends.sqlite3` and `DEV_DB_NAME=db.sqlite3`, other `DEV_DB_*` values blank.
+
+4. Database setup (run from the `website/` folder):
+   ```bash
+   cd website
    python manage.py migrate
    python manage.py createsuperuser
    ```
 
 ### Running the Development Server
 ```bash
-python manage.py runserver
+python manage.py runserver      # from website/
 ```
-The site will be available at `http://localhost:8000`
+The site will be available at `http://localhost:8000` and the admin at `/admin/`.
+
+### Tests
+```bash
+cd website
+python manage.py test                         # the suite (SQLite, no MySQL needed when DEV_DB_* points at sqlite)
+coverage run manage.py test && coverage report
+python manage.py makemigrations --check --dry-run   # fails if a model change has no migration
+```
+CI runs these plus `check --deploy` (see `.github/workflows/main.yml`).
 
 ### Development Workflow
-The project follows a structured development workflow:
-
 1. Create feature branches from main
 2. Push changes to trigger automated tests
 3. Open a PR into main; CI runs the tests
-4. Merged changes automatically deploy to production
+4. Merged changes automatically deploy to production (with a health check and automatic rollback)
 
-There is no separate development server; run the site locally (see above) to try changes.
+There is no separate development server; run the site locally to try changes.
+
+### Project layout
+- `website/` - the Django project: `portfolio/` (home + projects), `films/`, `blog/`, `recipes/` (models and the read-only
+  public API at `/api/v1/recipes/`, used by the [family-food](https://github.com/Arbelaezch/family-food) frontend), `api/urls.py` (API routing), `website/` (settings, shared helpers)
+- `deploy/` - versioned server configuration (nginx, systemd units, Docker daemon settings); see `devops.txt`
+- `devops.txt` - the server runbook (layout, services, deploys, firewall, backups, troubleshooting)
 
 ## Future Considerations
 While the current implementation effectively serves its purpose, there are several potential areas for enhancement:

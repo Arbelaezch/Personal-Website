@@ -46,7 +46,7 @@ staticfiles/
 
 # Environments
 *.env
-env/
+env*/
 venv/
 ENV/
 

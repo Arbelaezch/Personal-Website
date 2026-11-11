@@ -1,63 +1,134 @@
-Nginx
-/etc/nginx/sites-available/christiandonovan.ca 
--> Main Nginx configuration file that defines how requests are handled 
--> Linked to sites-enabled via: /etc/nginx/sites-enabled/christiandonovan.ca
+SERVER RUNBOOK - meditations (hosts christiandonovan.ca)
+Last reviewed 2026/11/10. Config under deploy/ in this repo is the live config; change it here, then install it.
 
-sudo nginx -t 
-sudo systemctl reload nginx
+=====================================================================
+1. THE MACHINE
+=====================================================================
+Dell OptiPlex 7040, headless (SSH only), Ubuntu 24.04.5 LTS, kernel 6.x, 31 GB RAM, ~466 GB disk.
+LAN address 192.168.1.194. The public IP is dynamic: ddclient updates the DNS record (journalctl -u ddclient).
+Python 3.12.3, MySQL 8.0.x (Ubuntu package), nginx 1.24, Docker 29 + Compose v5.
 
-sudo tail -f /var/log/nginx/error.log
+Accounts
+  carb        admin + the CI deploy user (SSH key in GitHub secret MEDITATIONS_PRIVATE_KEY); in the sudo group
+  arbelaezch  admin
+  portfolio   system user the app runs as (no login, no home)
+  claude      limited account for AI-assisted work (read-only survey + nginx reload); full sudo was temporary
+SSH: key login from anywhere, password login only from 192.168.1.0/24, no root login
+     (/etc/ssh/sshd_config.d/10-hardening.conf). sshd is socket-activated on 24.04 (ssh.socket).
+fail2ban: sshd and nginx-botsearch jails, LAN ignored (/etc/fail2ban/jail.d/local.conf).
+     fail2ban-client status sshd
 
+Where things live
+  /var/www/portfolio                    git checkout of this repo (owner carb)
+  /var/www/portfolio/env                Python 3.12 virtualenv      (env.py310 = old venv, delete when sure)
+  /var/www/portfolio/website/website/.env   secrets (owner carb, group portfolio, mode 640)
+  /var/www/portfolio/website/media      uploads (owner portfolio, group www-data); NOT in git
+  /var/www/portfolio/website/staticfiles   collectstatic output (served by WhiteNoise)
+  /etc/nginx, /etc/systemd/system/gunicorn.*, /etc/docker/daemon.json   see deploy/ in this repo
+  /etc/ssh/sshd_config.d/10-hardening.conf, /etc/fail2ban/jail.d/local.conf, /etc/sudoers.d/
 
+=====================================================================
+2. SERVICES AND PORTS
+=====================================================================
+  nginx            80/443 public; the only public entry point for web apps
+  gunicorn         unix socket /run/gunicorn.sock (www-data only), 3 workers, runs as "portfolio"
+  mysql            127.0.0.1:3306 only; databases: portfolio_prod
+  emby-server      8096 (open to the internet today, see the Emby issue)
+  samba            LAN only: share [EmbyMovies] -> /var/emby, login as carb (/etc/samba/smb.conf)
+  docker           only dead containers from 2023-24 (Strapi, Minecraft); nothing published
+  pm2-carb         pm2 daemon for carb; its family-food-strapi process is dead (legacy)
+  unattended-upgrades  security updates automatically; automatic reboot is OFF
+Firewall (UFW): OpenSSH, Nginx Full, 8096/tcp, Samba from 192.168.1.0/24. Everything else closed.
+  sudo ufw status numbered
+Containers: Docker bypasses UFW for published ports. Bind to 127.0.0.1 only (deploy/docker/README.md);
+  check with:  sudo deploy/docker/check-ports.sh
 
-Gunicorn
-/etc/systemd/system/gunicorn.service # Production service
--> Systemd service files that control how Gunicorn runs 
--> Define user, working directory, and socket locations
+=====================================================================
+3. DEPLOYS (GitHub Actions: .github/workflows/main.yml)
+=====================================================================
+Push/merge to main -> tests (migrations check, check --deploy, test suite with coverage) -> deploy job:
+SSH to christiandonovan.ca as carb -> fast-forward pull -> pip install -r requirements.txt -> migrate ->
+collectstatic -> restart gunicorn -> health check of / and /api/v1/recipes/ through nginx.
+If anything fails the CODE is rolled back to the previous commit (migrations are NOT rolled back, so keep
+them backwards compatible) and the job fails (GitHub emails the failure).
+  * The server pulls from GitHub with ~/.ssh/github_deploy_key (carb's ~/.ssh/config, verified host keys).
+  * The deploy itself only needs "sudo systemctl restart gunicorn" and installs no system packages, but carb's
+    passwordless sudo rule is still broader than that (it includes apt-get install *; tracked in the sudoers
+    issue). Needed once on a new server:
+      sudo apt-get install -y python3-venv python3-dev pkg-config default-libmysqlclient-dev build-essential
+  * Recreate the venv:  cd /var/www/portfolio && python3 -m venv env && env/bin/pip install -r requirements.txt
+  * Static files: collectstatic never deletes files from removed packages. Remove stale directories by hand
+    from staticfiles/ and RESTART gunicorn afterwards (WhiteNoise indexes the folder at startup; until the
+    restart it answers 500 for the deleted files).
+Manual deploy / restart:
+  sudo systemctl restart gunicorn        # after daemon-reload if the unit changed
+  sudo systemctl status gunicorn ; journalctl -u gunicorn -n 50
 
-# Create/edit the service file 
-sudo nano /etc/systemd/system/gunicorn.service 
+=====================================================================
+4. NGINX  (deploy/nginx/, see its README)
+=====================================================================
+Edit the files in deploy/nginx, then on the server:  sudo deploy/nginx/install.sh
+(backs up /etc/nginx, tests, reloads, restores the backup if the test fails).
+Layout: one file per site in sites-available/, shared snippets (security headers, proxy settings that OVERWRITE
+X-Forwarded-For, Cloudflare real-IP), 000-catch-all (unknown Host -> 444, unknown TLS name -> refused),
+rate limits in conf.d/00-global.conf. New site: templates/app-site.conf.template.
+  sudo nginx -t ; sudo systemctl reload nginx ; sudo tail -f /var/log/nginx/error.log
 
-# After pasting and saving the above content: 
-sudo systemctl daemon-reload 
-sudo systemctl restart gunicorn 
-sudo systemctl status gunicorn
+=====================================================================
+5. SERVICE USER AND SANDBOX (copy for every new app)
+=====================================================================
+  * gunicorn runs as system user "portfolio", not an admin:
+      sudo useradd --system --user-group --no-create-home --home-dir /nonexistent --shell /usr/sbin/nologin <app>
+  * Code, venv and staticfiles belong to the deploy user and are only readable by the app; the app may write only
+    its media dir (owner = app user, group www-data so nginx can read).
+  * .env: owner carb, group <app>, mode 640 (it holds the DB password). Never world-readable.
+  * Socket: SocketUser/Group=www-data, mode 0660, so only nginx can reach gunicorn.
+  * systemd sandbox: NoNewPrivileges, PrivateTmp, PrivateDevices, ProtectSystem=strict with ReadWritePaths limited
+    to media, ProtectHome, kernel/cgroup/clock protections, empty capability set. gunicorn 26 also needs
+    --no-control-socket (it would otherwise try to create a socket in the non-existent home).
+  * Versioned units: deploy/systemd/gunicorn.service and gunicorn.socket. Install: copy to /etc/systemd/system/,
+    sudo systemctl daemon-reload, sudo systemctl restart gunicorn.socket gunicorn.
+  * Check:  ps -o user,cmd -C gunicorn ; systemd-analyze security gunicorn
 
+=====================================================================
+6. TLS, DNS AND CLOUDFLARE
+=====================================================================
+  * Certificates: certbot (nginx plugin), renewal runs from certbot.timer.   sudo certbot renew --dry-run
+    There are two overlapping certificates (christiandonovan.ca + www, and a separate www one); the separate one
+    is redundant and unused.
+  * DNS for christiandonovan.ca: A record updated by ddclient. The CI deploy connects by NAME, not by IP.
+  * Planned: callback.modularmonolith.ca behind Cloudflare (proxied DNS, Origin CA certificate, SSL mode Full
+    (strict), include snippets/cloudflare-real-ip.conf). See the callback repo issues.
 
+=====================================================================
+7. BACKUPS  -  NOT AUTOMATED YET (see the backups issue)
+=====================================================================
+The last full backup was taken by hand on 2026/11/10 before the Ubuntu upgrade and copied to the owner's Mac:
+  ~/server-backups/meditations/20261110/   (MySQL dump, /etc, /etc/letsencrypt, site files + media, pm2, inventory)
+How it was made (as root on the server, streamed over SSH to the Mac):
+  mysqldump --all-databases --routines --events --triggers --single-transaction | gzip -9 > mysql-all.sql.gz
+  tar czf - -C / etc ; tar czf - -C / etc/letsencrypt
+  tar czf - --exclude=env --exclude=staticfiles --exclude=.git -C /var/www portfolio
+Restore test used: load the portfolio_prod section of the dump into a throwaway database and compare row counts.
+Emby media is deliberately not backed up (only its config/data/plugins).
 
-Firewall (UFW) - intended open ports on meditations
--> 22/tcp    OpenSSH   key login from anywhere; password login only from 192.168.1.0/24
--> 80,443    Nginx Full  public web (christiandonovan.ca)
--> 8096/tcp  Emby media server
--> Samba     192.168.1.0/24 only (EmbyMovies share, login as carb)
-Everything else is closed. MySQL (3306) listens on 127.0.0.1 only.
-fail2ban watches sshd and nginx (jail config: /etc/fail2ban/jail.d/local.conf).
-SSH hardening: /etc/ssh/sshd_config.d/10-hardening.conf
+=====================================================================
+8. UPDATES
+=====================================================================
+  * Security updates are automatic; kernel updates need a reboot:  ls /var/run/reboot-required
+    (headless: check it periodically, reboot in a quiet moment, then verify the site and the services).
+  * OS upgrades go through do-release-upgrade inside tmux with fresh backups first. 22.04 -> 24.04 was done on
+    2026/11/10 (sshd was unreachable on :22 for about 20 minutes mid-upgrade, which is normal).
+    After an upgrade, diff /etc against the backup (the upgrade silently dropped the Samba share).
+  * Python packages: requirements.txt pins exact versions; use releases that are at least 14 days old and carry
+    the security fixes. Django stays on 5.2 LTS until MySQL is 8.4+ (see the Django 6 issue).
 
-
-Deploys (GitHub Actions: .github/workflows/main.yml)
--> Push to main -> tests -> SSH to christiandonovan.ca as the deploy user -> fast-forward pull,
-   pip install, migrate, collectstatic, restart gunicorn.
--> Health check afterwards: / and /api/v1/recipes/ must answer through nginx + gunicorn + DB.
-   If anything fails the code is rolled back to the previous commit (migrations are NOT rolled
-   back, so keep them backwards compatible) and the job fails (GitHub emails the failure).
--> The server pulls from GitHub with ~/.ssh/github_deploy_key (see ~/.ssh/config for carb).
--> The deploy user may only run: sudo systemctl restart gunicorn. The deploy installs no
-   system packages. Needed once on a new server:
-   sudo apt-get install -y python3-venv python3-dev pkg-config default-libmysqlclient-dev build-essential
--> Server Python venv: /var/www/portfolio/env (python3.12). To recreate:
-   python3 -m venv env && env/bin/pip install -r requirements.txt
-
-
-Service user and sandbox (issue #61) - copy this pattern for every new app
--> gunicorn runs as the system user "portfolio" (no login shell, no home), not the admin or deploy user.
-   Create one per app:  sudo useradd --system --user-group --no-create-home --home-dir /nonexistent --shell /usr/sbin/nologin <app>
--> Code, venv and staticfiles are owned by the deploy user (carb) and only readable by the app.
-   The app may write only to its media directory (owner: the app user, group www-data so nginx can read).
--> .env: owner carb, group <app>, mode 640 (it holds the DB password). Never world-readable.
--> Socket (/run/gunicorn.sock): SocketUser/Group=www-data, mode 0660, so only nginx can talk to gunicorn.
--> systemd sandbox in the unit: NoNewPrivileges, PrivateTmp, PrivateDevices, ProtectSystem=strict with
-   ReadWritePaths limited to the media dir, ProtectHome, kernel/cgroup/clock protections, empty capability set.
--> Versioned copies of the units: deploy/systemd/gunicorn.service and gunicorn.socket
-   (install: copy to /etc/systemd/system/, sudo systemctl daemon-reload, sudo systemctl restart gunicorn.socket gunicorn).
--> Check the result: ps -o user,cmd -C gunicorn ; systemd-analyze security gunicorn
+=====================================================================
+9. TROUBLESHOOTING QUICK REFERENCE
+=====================================================================
+  Site down?        systemctl status nginx gunicorn mysql ; journalctl -u gunicorn -n 100 ; sudo tail /var/log/nginx/error.log
+  Health URLs:      curl -I https://christiandonovan.ca/ ; curl -s https://christiandonovan.ca/api/v1/recipes/ | head -c 200
+  500 errors:       now logged: journalctl -u gunicorn | grep -A20 Traceback
+  Blocked yourself: sudo fail2ban-client set sshd unbanip <ip>
+  Disk:             df -h / ; docker system df
+  Who is connected: sudo ss -tnp | head ; last -n 10
