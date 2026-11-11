@@ -57,7 +57,7 @@ Through the development and continuous improvement of this portfolio since 2020,
 
 4. Configure environment variables:
    - Create `~/website/website/.env` file
-   - Copy contents from `.env.example`
+   - Copy contents from `.env.example` (set `DEBUG=1` for local development; production leaves it off)
    - Update values for your local environment
 
 5. Database setup:

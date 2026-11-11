@@ -41,13 +41,30 @@ class RecipeApiTests(TestCase):
             self.assertEqual(response.status_code, 404, slug)
 
     def test_anonymous_cannot_write(self):
+        # Refused (the default DRF permission denies anonymous writes before the view is reached,
+        # 401/403) and, even if it were reached, the views have no write methods (405).
         list_url = reverse("recipe-list")
         detail_url = reverse("recipe-detail", kwargs={"slug": "apple-pie"})
         payload = {"title": "Hacked", "ingredients": "x", "directions": "y"}
-        self.assertEqual(self.client.post(list_url, payload, content_type="application/json").status_code, 405)
+        refused = (401, 403, 405)
+        self.assertIn(self.client.post(list_url, payload, content_type="application/json").status_code, refused)
         for method in ("put", "patch"):
             response = getattr(self.client, method)(detail_url, payload, content_type="application/json")
-            self.assertEqual(response.status_code, 405, method)
-        self.assertEqual(self.client.delete(detail_url).status_code, 405)
+            self.assertIn(response.status_code, refused, method)
+        self.assertIn(self.client.delete(detail_url).status_code, refused)
         self.assertEqual(Recipe.objects.count(), 2)
         self.assertEqual(Recipe.objects.get(pk=self.published.pk).title, "Apple Pie")
+
+    def test_even_a_logged_in_admin_cannot_write_through_the_api(self):
+        # Recipes are edited in the Django admin; the API views have no write methods at all.
+        from django.contrib.auth import get_user_model
+        admin = get_user_model().objects.create_superuser("admin", "admin@example.com", "pw-for-tests")
+        self.client.force_login(admin)
+        payload = {"title": "Via API", "ingredients": "x", "directions": "y"}
+        self.assertEqual(
+            self.client.post(reverse("recipe-list"), payload, content_type="application/json").status_code, 405
+        )
+        self.assertEqual(
+            self.client.delete(reverse("recipe-detail", kwargs={"slug": "apple-pie"})).status_code, 405
+        )
+        self.assertEqual(Recipe.objects.count(), 2)
