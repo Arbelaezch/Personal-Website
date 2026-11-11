@@ -1,0 +1,38 @@
+# Harness config for Personal-Website. Plugin defaults (providers, pricing, loop limits) live in
+# <software-factory>/scripts/defaults.toml; anything set here overrides them for this project only.
+# The plugin is enabled per machine in .claude/settings.json (gitignored: it can hold machine-specific paths).
+
+[project]
+name = "Personal-Website"
+description = "christiandonovan.ca: a Django 5.2 LTS site (portfolio, films, blog, recipes) with a read-only public recipes API used by the family-food Next.js frontend. Runs on an on-prem Ubuntu server (nginx, gunicorn, MySQL); deploys from GitHub Actions on merge to main with a health check and automatic rollback."
+# Extra things the reviewers should check in this codebase (each comes from a real problem found in 2026/11):
+review_focus = [
+  "the public API stays read-only and only serves published recipes: views are List/Retrieve only, REST_FRAMEWORK default permission stays IsAuthenticatedOrReadOnly, and any new view declares its permission class explicitly (the recipes API once accepted anonymous writes)",
+  "model changes ship with their migration (migrations are tracked in git; CI runs makemigrations --check) and migrations stay backwards compatible with the previous release, because the deploy rolls the code back but never the database",
+  "settings keep production safe: DEBUG off by default, SECRET_KEY and DJANGO_ALLOWED_HOSTS required, the production security block intact, check --deploy --fail-level WARNING clean",
+  "templates print stored HTML with |safe only for admin-authored rich text (CKEditor 5 via website.fields.RichTextField); user-controlled input is escaped",
+  "dependency pins are exact and come from releases at least 14 days old that carry the security fixes; Django stays on 5.2 LTS until MySQL is 8.4+ (issue #80); requirements-dev.txt only adds test tooling",
+  "anything that connects to the server uses the DNS name, never a stored IP (the home IP is dynamic); no secrets, .env values, backups or real personal data in commits",
+  "static and media: removing a file from the source does not remove it from the server (collectstatic never deletes), new images are sized for display (no multi-MB images), no CSS/JS references to files that do not exist",
+  "changes under deploy/ (nginx, systemd, docker) are applied by hand on the server and must keep: the unknown-host catch-all, X-Forwarded-For overwritten by nginx, containers published on 127.0.0.1 only, the gunicorn sandbox and unprivileged user; they need nginx -t / systemd-analyze verify evidence",
+  "new behaviour has tests; tests use SQLite and no network or MySQL; no flaky or order-dependent tests",
+  "workflow files (.github/workflows) pin actions to commit SHAs, keep read-only token permissions and the deploy health check + rollback",
+]
+
+[accounts]
+claude = "personal"
+github = "Arbelaezch"
+git_email = "arbelaezch@gmail.com"  # doctor warns if a repo commits as someone else
+
+[git]
+mode = "commit"
+base_branch = "main"
+
+[repos.app]
+path = "."
+description = "Django (Python) in website/, deploy configuration in deploy/"
+gates = [
+  # Mirrors CI: migrations check, production-settings check, test suite (SQLite, no .env needed).
+  # Uses env/bin/python; refresh it with: python3 -m venv env && env/bin/pip install -r requirements-dev.txt
+  { name = "ci-checks", kind = "django", cwd = ".", cmd = "scripts/test.sh" },
+]
