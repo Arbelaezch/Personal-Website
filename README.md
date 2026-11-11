@@ -33,7 +33,7 @@ Through the development and continuous improvement of this portfolio since 2020,
 ## Local Development Setup
 
 ### Prerequisites
-- Python 3.8+
+- Python 3.12+ (matches the server and CI)
 - MySQL
 - Git
 

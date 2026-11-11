@@ -6,56 +6,49 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: read
+
+# Never cancel a deploy that is already running.
+concurrency:
+  group: portfolio-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  # Same values for the migrations check and the tests (SQLite, in memory).
+  DJANGO_ALLOWED_HOSTS: "www.christiandonovan.ca christiandonovan.ca localhost 127.0.0.1 [::1]"
+  DEBUG: "1"
+  SECRET_KEY: "dummy_key_for_tests"
+  DEV_DB_ENGINE: "django.db.backends.sqlite3"
+  DEV_DB_NAME: ":memory:"
+  DEV_DB_HOST: ""  # Leave blank for sqlite
+  DEV_DB_USER: ""  # Leave blank for sqlite
+  DEV_DB_PASSWORD: ""  # Leave blank for sqlite
+  DEV_DB_PORT: ""  #  Leave blank for sqlite
+
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-    - uses: actions/checkout@v3
-    
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+
     - name: Set up Python
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
       with:
-        python-version: '3.10'
-    
-    - name: Cache pip packages
-      uses: actions/cache@v3
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
-    
+        python-version: '3.12'  # same as the server
+        cache: pip
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    
+
     - name: Check migrations are committed
-      env:
-        DJANGO_ALLOWED_HOSTS: "www.christiandonovan.ca christiandonovan.ca localhost 127.0.0.1 [::1]"
-        DEBUG: "1"
-        SECRET_KEY: "dummy_key_for_tests"
-        DEV_DB_ENGINE: "django.db.backends.sqlite3"
-        DEV_DB_NAME: ":memory:"
-        DEV_DB_HOST: ""  # Leave blank for sqlite
-        DEV_DB_USER: ""  # Leave blank for sqlite
-        DEV_DB_PASSWORD: ""  # Leave blank for sqlite
-        DEV_DB_PORT: ""  #  Leave blank for sqlite
       run: |
         cd website
         python manage.py makemigrations --check --dry-run
 
     - name: Run tests
-      env:
-        DJANGO_ALLOWED_HOSTS: "www.christiandonovan.ca christiandonovan.ca localhost 127.0.0.1 [::1]"
-        DEBUG: "1"
-        SECRET_KEY: "dummy_key_for_tests"
-        DEV_DB_ENGINE: "django.db.backends.sqlite3"
-        DEV_DB_NAME: ":memory:"
-        DEV_DB_HOST: ""  # Leave blank for sqlite
-        DEV_DB_USER: ""  # Leave blank for sqlite
-        DEV_DB_PASSWORD: ""  # Leave blank for sqlite
-        DEV_DB_PORT: ""  #  Leave blank for sqlite
       run: |
         cd website
         python manage.py test
@@ -63,74 +56,66 @@ jobs:
   deploy:
     needs: test
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    
+    runs-on: ubuntu-24.04
+
     steps:
     - name: Deploy
-      uses: appleboy/ssh-action@master
+      uses: appleboy/ssh-action@0ff4204d59e8e51228ff73bce53f80d53301dee2  # v1.2.5
       with:
-        host: christiandonovan.ca  # DNS is kept current by ddclient; a hard-coded IP secret went stale
+        host: christiandonovan.ca  # DNS is kept current by ddclient (home IP is dynamic)
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.MEDITATIONS_PRIVATE_KEY }}
-        envs: GITHUB_REF
+        script_stop: true
         script: |
-          set -e  # Exit on any error
-          echo "Starting deployment..."
-          
-          # Install dependencies
-          echo "Installing system dependencies..."
-          export DEBIAN_FRONTEND=noninteractive
-          sudo -n /usr/bin/apt-get update
-          sudo -n /usr/bin/apt-get install -y pkg-config python3-dev default-libmysqlclient-dev build-essential
-          
-          # Setup SSH for GitHub
-          mkdir -p ~/.ssh
-          echo "${{ secrets.MEDITATIONS_GITHUB_DEPLOY_KEY }}" > ~/.ssh/github_deploy_key
-          chmod 600 ~/.ssh/github_deploy_key
-          eval $(ssh-agent -s)
-          ssh-add ~/.ssh/github_deploy_key
-          
-          # Trust GitHub's public key
-          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-          
-          # Set deployment directory and pull changes
-          DEPLOY_DIR=/var/www/portfolio
-          echo "Deploying to: $DEPLOY_DIR"
-          cd $DEPLOY_DIR
-          
-          # Show current git status
-          echo "Current git status:"
-          git status
-          
-          echo "Current branch:"
-          git branch
-          
-          echo "Pulling latest changes..."
-          git pull origin ${{ github.ref_name }}
-          
-          echo "Git status after pull:"
-          git status
-          
-          # Virtual environment and dependencies
-          echo "Activating virtual environment..."
-          source env/bin/activate
-          
-          echo "Installing Python dependencies..."
-          pip install -r requirements.txt
-          
-          # Django commands with verbose output
-          cd website
-          echo "Current migrations status:"
-          python manage.py showmigrations
+          set -eo pipefail
+          cd /var/www/portfolio
+          PY=/var/www/portfolio/env/bin/python
 
-          echo "Running migrations..."
-          python manage.py migrate --verbosity 2
-          
-          echo "Collecting static files..."
-          python manage.py collectstatic --noinput
-          
-          # Restart server
-          echo "Restarting server..."
-          sudo -n systemctl restart gunicorn
-          echo "Checking gunicorn status..."
-          sudo -n systemctl status gunicorn
+          # Both pages must answer through nginx + gunicorn + the database.
+          # --resolve keeps the request on this machine (no trip through the router).
+          HEALTH_PATHS="${HEALTH_PATHS:-/ /api/v1/recipes/}"
+          health_ok() {
+            for path in $HEALTH_PATHS; do
+              ok=0
+              for i in 1 2 3 4 5 6 7 8 9 10; do
+                if curl -fsS -o /dev/null --max-time 10 \
+                     --resolve christiandonovan.ca:443:127.0.0.1 \
+                     "https://christiandonovan.ca$path"; then ok=1; break; fi
+                sleep 3
+              done
+              [ "$ok" = 1 ] || { echo "Health check failed: $path"; return 1; }
+              echo "Health check ok: $path"
+            done
+          }
+
+          release() {
+            git fetch origin main &&
+            git merge --ff-only FETCH_HEAD &&
+            "$PY" -m pip install -q --disable-pip-version-check -r requirements.txt &&
+            ( cd website &&
+              "$PY" manage.py migrate --noinput &&
+              "$PY" manage.py collectstatic --noinput ) &&
+            sudo -n systemctl restart gunicorn
+          }
+
+          # Code is rolled back; database migrations are NOT (write migrations to be
+          # backwards compatible with the previous release).
+          rollback() {
+            echo "::error::Deploy failed, rolling back to $PREV"
+            git reset --hard "$PREV"
+            "$PY" -m pip install -q --disable-pip-version-check -r requirements.txt || true
+            ( cd website && "$PY" manage.py collectstatic --noinput ) || true
+            sudo -n systemctl restart gunicorn || true
+            if health_ok; then echo "Rolled back: previous release is serving."
+            else echo "::error::ROLLBACK ALSO FAILED - site needs manual attention"; fi
+            exit 1
+          }
+
+          PREV=$(git rev-parse HEAD)
+          echo "Previous release: $PREV"
+
+          if release && health_ok; then
+            echo "Deployed $(git rev-parse --short HEAD)"
+          else
+            rollback
+          fi
