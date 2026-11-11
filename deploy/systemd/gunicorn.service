@@ -1,0 +1,38 @@
+[Unit]
+Description=gunicorn daemon for christiandonovan.ca
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=portfolio
+Group=portfolio
+WorkingDirectory=/var/www/portfolio/website
+ExecStart=/var/www/portfolio/env/bin/gunicorn \
+	--access-logfile - \
+          --workers 3 \
+          --bind unix:/run/gunicorn.sock \
+          website.wsgi:application
+
+# Sandbox: the app can only write to media/ (uploads).
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/www/portfolio/website/media
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+ProtectClock=true
+ProtectHostname=true
+RestrictSUIDSGID=true
+RestrictRealtime=true
+RestrictNamespaces=true
+LockPersonality=true
+SystemCallArchitectures=native
+CapabilityBoundingSet=
+AmbientCapabilities=
+
+[Install]
+WantedBy=multi-user.target

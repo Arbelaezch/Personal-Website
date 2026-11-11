@@ -47,3 +47,17 @@ Deploys (GitHub Actions: .github/workflows/main.yml)
    sudo apt-get install -y python3-venv python3-dev pkg-config default-libmysqlclient-dev build-essential
 -> Server Python venv: /var/www/portfolio/env (python3.12). To recreate:
    python3 -m venv env && env/bin/pip install -r requirements.txt
+
+
+Service user and sandbox (issue #61) - copy this pattern for every new app
+-> gunicorn runs as the system user "portfolio" (no login shell, no home), not the admin or deploy user.
+   Create one per app:  sudo useradd --system --user-group --no-create-home --home-dir /nonexistent --shell /usr/sbin/nologin <app>
+-> Code, venv and staticfiles are owned by the deploy user (carb) and only readable by the app.
+   The app may write only to its media directory (owner: the app user, group www-data so nginx can read).
+-> .env: owner carb, group <app>, mode 640 (it holds the DB password). Never world-readable.
+-> Socket (/run/gunicorn.sock): SocketUser/Group=www-data, mode 0660, so only nginx can talk to gunicorn.
+-> systemd sandbox in the unit: NoNewPrivileges, PrivateTmp, PrivateDevices, ProtectSystem=strict with
+   ReadWritePaths limited to the media dir, ProtectHome, kernel/cgroup/clock protections, empty capability set.
+-> Versioned copies of the units: deploy/systemd/gunicorn.service and gunicorn.socket
+   (install: copy to /etc/systemd/system/, sudo systemctl daemon-reload, sudo systemctl restart gunicorn.socket gunicorn).
+-> Check the result: ps -o user,cmd -C gunicorn ; systemd-analyze security gunicorn
