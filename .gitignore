@@ -55,3 +55,7 @@ node_modules/
 
 # Media
 media/
+
+# Test coverage
+.coverage
+htmlcov/
