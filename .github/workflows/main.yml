@@ -2,9 +2,9 @@ name: Portfolio CI/CD Pipeline
 
 on:
   push:
-    branches: [ development, main ]
+    branches: [ main ]
   pull_request:
-    branches: [ development, main ]
+    branches: [ main ]
 
 jobs:
   test:
@@ -47,14 +47,14 @@ jobs:
 
   deploy:
     needs: test
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/development')
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     
     steps:
     - name: Deploy
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ github.ref == 'refs/heads/main' && secrets.PROD_SERVER_IP || secrets.DEV_SERVER_IP }}
+        host: ${{ secrets.PROD_SERVER_IP }}
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.MEDITATIONS_PRIVATE_KEY }}
         envs: GITHUB_REF
@@ -79,7 +79,7 @@ jobs:
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
           
           # Set deployment directory and pull changes
-          DEPLOY_DIR=${{ github.ref == 'refs/heads/main' && '/var/www/portfolio' || '/var/www/portfolio-dev' }}
+          DEPLOY_DIR=/var/www/portfolio
           echo "Deploying to: $DEPLOY_DIR"
           cd $DEPLOY_DIR
           
@@ -122,12 +122,6 @@ jobs:
           
           # Restart server
           echo "Restarting server..."
-          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
-            sudo -n systemctl restart gunicorn
-            echo "Checking gunicorn status..."
-            sudo -n systemctl status gunicorn
-          else
-            sudo -n systemctl restart gunicorn-dev
-            echo "Checking gunicorn-dev status..."
-            sudo -n systemctl status gunicorn-dev
-          fi
+          sudo -n systemctl restart gunicorn
+          echo "Checking gunicorn status..."
+          sudo -n systemctl status gunicorn
