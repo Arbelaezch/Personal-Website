@@ -10,6 +10,7 @@ WorkingDirectory=/var/www/portfolio/website
 ExecStart=/var/www/portfolio/env/bin/gunicorn \
 	--access-logfile - \
           --workers 3 \
+          --no-control-socket \
           --bind unix:/run/gunicorn.sock \
           website.wsgi:application
 

@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     # Local Apps
     'portfolio',
     'blog',
-    'api',
     'recipes',
     'films',
 ]

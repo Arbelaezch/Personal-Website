@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.db.models import Prefetch
 from django.urls import reverse
 from django.http import Http404
 import logging
@@ -87,18 +86,6 @@ def movie_detail_view(request, year, slug):
             })
         )
     
-    # Get related movies (same genre and decade)
-    # related_movies = Movie.objects.filter(
-    #     genre=movie.genre,
-    #     release_year__gte=year,
-    #     release_year__lte=year + 9,
-    #     is_published=True
-    # ).exclude(
-    #     id=movie.id
-    # ).select_related(
-    #     'decade'
-    # )[:4]
-    
     # Check if movie is in Top 250
     try:
         top250_rank = movie.top250_entry.rank
@@ -108,8 +95,6 @@ def movie_detail_view(request, year, slug):
     # Get decade object for additional context
     all_decades = Decade.objects.all()
     decade = get_object_or_404(Decade, year=year)
-    # Add to context data when working properly.
-    # 'related_movies': related_movies,
 
     context = {
         'movie': movie,
