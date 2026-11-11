@@ -48,6 +48,16 @@ jobs:
         cd website
         python manage.py makemigrations --check --dry-run
 
+    - name: Check deployment settings
+      env:
+        DEBUG: "0"
+        SECRET_KEY: "ci-only-dummy-secret-key-not-used-anywhere-else-0123456789-abcdefghij"
+        PROD_DB_ENGINE: "django.db.backends.sqlite3"
+        PROD_DB_NAME: ":memory:"
+      run: |
+        cd website
+        python manage.py check --deploy --fail-level WARNING
+
     - name: Run tests
       run: |
         cd website

@@ -1,6 +1,7 @@
 import os
-import sys
 from pathlib import Path
+
+from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -8,19 +9,27 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# CONF_DIR = os.path.join(BASE_DIR,'..','conf')
-
 
 # DJANGO SETTINGS
-SECRET_KEY = os.getenv('SECRET_KEY')
+def _env_bool(name, default=False):
+    return os.getenv(name, str(default)).strip().lower() in ('1', 'true', 'yes', 'on')
 
-DEBUG = int(os.getenv('DEBUG', default=1))
+
+# Off unless explicitly enabled: put DEBUG=1 in your local .env for development only.
+DEBUG = _env_bool('DEBUG', False)
+
+SECRET_KEY = os.getenv('SECRET_KEY')
+if not SECRET_KEY:
+    raise ImproperlyConfigured('SECRET_KEY is not set (add it to .env, see .env.example)')
 
 # 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
 # For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split()
-
-CHECK_AGAIN_MODE = False
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '').split()
+if not ALLOWED_HOSTS:
+    if DEBUG:
+        ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
+    else:
+        raise ImproperlyConfigured('DJANGO_ALLOWED_HOSTS is not set (see .env.example)')
 
 
 # Application definition
@@ -86,35 +95,22 @@ WSGI_APPLICATION = 'website.wsgi.application'
 
 
 # DATABASE
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': 'db.sqlite3',
-#     }
-# }
+# DEV_DB_* is used when DEBUG is on, PROD_DB_* otherwise (MySQL in both, for dev/prod parity).
+def _database(prefix):
+    engine = os.getenv(f'{prefix}_DB_ENGINE')
+    if not engine:
+        raise ImproperlyConfigured(f'{prefix}_DB_ENGINE is not set (see .env.example)')
+    return {
+        'ENGINE': engine,
+        'HOST': os.getenv(f'{prefix}_DB_HOST', ''),
+        'NAME': os.getenv(f'{prefix}_DB_NAME', ''),
+        'USER': os.getenv(f'{prefix}_DB_USER', ''),
+        'PORT': os.getenv(f'{prefix}_DB_PORT', ''),
+        'PASSWORD': os.getenv(f'{prefix}_DB_PASSWORD', ''),
+    }
 
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': str(os.getenv('DEV_DB_ENGINE')),
-            'HOST': str(os.getenv('DEV_DB_HOST')),
-            'NAME': str(os.getenv('DEV_DB_NAME')),
-            'USER': str(os.getenv('DEV_DB_USER')),
-            'PORT': str(os.getenv('DEV_DB_PORT')),
-            'PASSWORD': str(os.getenv('DEV_DB_PASSWORD'))
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': str(os.getenv('PROD_DB_ENGINE')),
-            'HOST': str(os.getenv('PROD_DB_HOST')),
-            'NAME': str(os.getenv('PROD_DB_NAME')),
-            'USER': str(os.getenv('PROD_DB_USER')),
-            'PORT': str(os.getenv('PROD_DB_PORT')),
-            'PASSWORD': str(os.getenv('PROD_DB_PASSWORD'))
-        }
-    }
+
+DATABASES = {'default': _database('DEV' if DEBUG else 'PROD')}
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -175,49 +171,59 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'handlers': {
-#         'file': {
-#             'level': 'DEBUG',
-#             'class': 'logging.FileHandler',
-#             'filename': '/var/www/portfolio/website/django-debug.log',
-#         },
-#     },
-#     'loggers': {
-#         'django': {
-#             'handlers': ['file'],
-#             'level': 'DEBUG',
-#             'propagate': True,
-#         },
-#     },
-# }
+# LOGGING
+# Without this, production 500 tracebacks are not logged anywhere (Django only mails admins).
+# stderr goes to the journal (journalctl -u gunicorn). django.request is limited to errors (5xx) so
+# the bot-scan 404s do not flood the log.
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {'console': {'class': 'logging.StreamHandler'}},
+    'root': {'handlers': ['console'], 'level': 'WARNING'},
+    'loggers': {
+        'django.request': {'handlers': ['console'], 'level': 'ERROR', 'propagate': False},
+    },
+}
 
+
+# PRODUCTION SECURITY (TLS is terminated by nginx; see deploy/nginx)
+if not DEBUG:
+    # nginx sets X-Forwarded-Proto (deploy/nginx/snippets/proxy-app.conf)
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    CSRF_TRUSTED_ORIGINS = ['https://christiandonovan.ca', 'https://www.christiandonovan.ca']
+
+SILENCED_SYSTEM_CHECKS = [
+    # HSTS is sent by nginx (deploy/nginx/snippets/security-headers.conf); setting it here too
+    # would send the header twice.
+    'security.W004',
+    # django-ckeditor warns that CKEditor 4 is end-of-life; tracked in issue #63 (replace the
+    # editor). Remove this line when it is replaced.
+    'ckeditor.W001',
+]
 
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "http://127.0.0.1:3000",
-    "http://127.0.0.1:8000",
     "https://christiandonovan.ca",
     "https://www.christiandonovan.ca",
-    "https://family-food.vercel.app",
+    "https://family-food.vercel.app",  # family-food frontend (Next.js on Vercel)
 ]
+if DEBUG:
+    CORS_ALLOWED_ORIGINS += [
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "http://127.0.0.1:3000",
+        "http://127.0.0.1:8000",
+    ]
 
-# CORS_ALLOW_ALL_HEADERS = True
-CORS_ALLOW_METHODS = [
-    "GET",
-    "POST",
-    "PUT",
-    "PATCH",
-    "DELETE",
-    "OPTIONS",
-]
+# The public API is read-only.
+CORS_ALLOW_METHODS = ["GET", "HEAD", "OPTIONS"]
 
-# Allow all cors origins
-# CORS_ALLOW_ALL_ORIGINS = True
+# The family-food frontend sends credentials: 'include' on its GET requests, and browsers reject the
+# response unless this is True. Turn it off once the frontend stops sending credentials (see the
+# family-food repo's cleanup issue).
 CORS_ALLOW_CREDENTIALS = True
 CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
 CORS_ALLOW_HEADERS = [
@@ -231,25 +237,21 @@ CORS_ALLOW_HEADERS = [
     'x-csrftoken',
     'x-requested-with',
 ]
-# CORS_ALLOW_METHODS = ['*']
-# CORS_ALLOW_HEADERS = ['*']
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
+    # Anonymous users can read; anything that writes needs a login. New views are safe by default.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ],
-    # 'DEFAULT_AUTHENTICATION_CLASSES': [
-    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
-    # ],
 }
 
 
 
 
 # Ckeditor
-CKEDITOR_CONFIGS = {
+_PORTAL_CONFIG = {
 'portal_config': {
     # 'skin': 'moono',
     # 'skin': 'office2013',
@@ -366,5 +368,9 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
+
+# 'portal_config' (used by blog.Article.body) used to be defined in a CKEDITOR_CONFIGS that this
+# one replaced, so the blog admin crashed; merge it in.
+CKEDITOR_CONFIGS.update(_PORTAL_CONFIG)
 
 CKEDITOR_UPLOAD_PATH = 'editor_uploads/'
