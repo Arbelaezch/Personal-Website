@@ -1,0 +1,53 @@
+# christiandonovan.ca (Django via gunicorn) - managed from deploy/nginx in the repo.
+
+# Redirect HTTP to HTTPS
+server {
+    listen 80;
+    listen [::]:80;
+    server_name christiandonovan.ca www.christiandonovan.ca;
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name christiandonovan.ca www.christiandonovan.ca;
+    client_max_body_size 10M;
+
+    # SSL configuration provided by Certbot
+    ssl_certificate /etc/letsencrypt/live/christiandonovan.ca/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/christiandonovan.ca/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    include /etc/nginx/snippets/security-headers.conf;
+
+    location /media/ {
+        alias /var/www/portfolio/website/media/;
+        expires 30d;
+        add_header Cache-Control "public, no-transform";
+        include /etc/nginx/snippets/security-headers.conf;   # add_header above resets inheritance
+        access_log off;
+    }
+
+    location = /favicon.ico {
+        access_log off;
+        log_not_found off;
+    }
+
+    # Brute-force protection for the admin login form
+    location = /admin/login/ {
+        limit_req zone=login burst=5 nodelay;
+        include /etc/nginx/snippets/proxy-app.conf;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
+
+    location / {
+        limit_req zone=perip burst=60 nodelay;
+        include /etc/nginx/snippets/proxy-app.conf;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
+}
