@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import include, path, re_path
+from django.urls import include, path
 from website import settings
 from django.conf.urls.static import static
 
@@ -7,7 +7,7 @@ urlpatterns = [
     path('', include('portfolio.urls')),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    path('ckeditor5/', include('django_ckeditor_5.urls')),
     path('api/', include('api.urls')),
 
     path('blog/', include('blog.urls')),

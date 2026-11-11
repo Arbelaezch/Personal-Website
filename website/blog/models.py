@@ -1,5 +1,5 @@
 from django.db import models
-from ckeditor_uploader.fields import RichTextUploadingField
+from website.fields import RichTextField
 
 # Create your models here.
 
@@ -14,7 +14,7 @@ class Article(models.Model):
     
     title = models.CharField(max_length=200)
     subtitle = models.CharField(max_length=200, default="")
-    body = RichTextUploadingField(config_name='portal_config')
+    body = RichTextField(config_name='blog')
     subject = models.CharField(choices=SUBJECT_CHOICES, max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
 

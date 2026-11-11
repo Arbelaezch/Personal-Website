@@ -7,7 +7,7 @@ A professional portfolio website built with Django, showcasing my projects and d
 Through the development and continuous improvement of this portfolio since 2020, I've gained extensive experience in:
 
 ### Core Technologies
-- Django (Python web framework)
+- Django (Python web framework), with CKEditor 5 for rich-text editing in the admin
 - MySQL database management
 - Nginx web server
 - Gunicorn application server
