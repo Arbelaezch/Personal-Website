@@ -1,0 +1,17 @@
+# Anything that does not match a real site (wrong Host header, requests by IP, scanners):
+# close the connection without answering. This is the default_server for ports 80 and 443,
+# so a new domain only works once it has its own server block.
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    server_name _;
+    return 444;
+}
+
+server {
+    listen 443 ssl default_server;
+    listen [::]:443 ssl default_server;
+    server_name _;
+    # Refuse the TLS handshake for unknown names: no certificate is ever shown.
+    ssl_reject_handshake on;
+}

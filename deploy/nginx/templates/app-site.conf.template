@@ -1,0 +1,42 @@
+# Template for a new site. Copy to sites-available/<domain>, replace the @@PLACEHOLDERS@@,
+# then run ./install.sh (it enables everything in this repo's sites-available/ and reloads nginx).
+#
+#   @@DOMAIN@@     e.g. callback.modularmonolith.ca
+#   @@UPSTREAM@@   e.g. http://127.0.0.1:3000   (a container published on loopback only)
+#                  or  http://unix:/run/<app>.sock   (gunicorn socket owned by www-data)
+#   @@CERT@@ / @@KEY@@
+#       Let's Encrypt (DNS-only domain): /etc/letsencrypt/live/@@DOMAIN@@/{fullchain,privkey}.pem
+#       Cloudflare-proxied domain:       /etc/ssl/cloudflare/@@DOMAIN@@.pem and .key (Origin CA cert,
+#                                        Cloudflare SSL mode "Full (strict)")
+#
+# Cloudflare-proxied sites also need the real client address:
+#   include /etc/nginx/snippets/cloudflare-real-ip.conf;     (see README.md)
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name @@DOMAIN@@;
+    location / { return 301 https://$host$request_uri; }
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name @@DOMAIN@@;
+    client_max_body_size 6m;
+
+    ssl_certificate @@CERT@@;
+    ssl_certificate_key @@KEY@@;
+    include /etc/letsencrypt/options-ssl-nginx.conf;       # TLS protocols/ciphers (from certbot)
+
+    include /etc/nginx/snippets/security-headers.conf;
+
+    location / {
+        limit_req zone=perip burst=60 nodelay;
+        include /etc/nginx/snippets/proxy-app.conf;
+        proxy_pass @@UPSTREAM@@;
+        # WebSocket/Next.js upgrades, if the app needs them:
+        # proxy_set_header Upgrade $http_upgrade;
+        # proxy_set_header Connection "upgrade";
+    }
+}
