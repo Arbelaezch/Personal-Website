@@ -90,12 +90,6 @@ def movie_detail_view(request, year, slug):
             })
         )
     
-    # Check if movie is in Top 250
-    try:
-        top250_rank = movie.top250_entry.rank
-    except Top250Entry.DoesNotExist:
-        top250_rank = None
-    
     # Get decade object for additional context
     all_decades = Decade.objects.all()
     decade = get_object_or_404(Decade, year=year)
@@ -104,7 +98,6 @@ def movie_detail_view(request, year, slug):
         'movie': movie,
         'decade': decade,
         'decades': all_decades,
-        'top250_rank': top250_rank,
         'year': year,
         'page_title': f'{movie.title} ({movie.release_year}) | Christian Arbelaez',
         'page_description': f'{movie.title} ({movie.release_year}): synopsis, credits and my review.',

@@ -65,6 +65,15 @@
     color: var(--accent);
 }
 
+.top250-rank a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.top250-rank a:hover {
+    text-decoration: underline;
+}
+
 .movie-credits {
     display: flex;
     flex-direction: column;

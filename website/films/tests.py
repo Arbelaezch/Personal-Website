@@ -68,7 +68,7 @@ class FilmBehaviourTests(SmokeTestCase):
     def test_movie_page_works_for_a_film_outside_the_top_250(self):
         page = self.client.get(reverse("films:movie_detail", kwargs={"year": 1990, "slug": "heat"}))
         self.assertEqual(page.status_code, 200)
-        self.assertIsNone(page.context["top250_rank"])
+        self.assertIsNone(page.context["movie"].top250_rank)
 
     def test_the_1900s_page_covers_1900_to_1929(self):
         page = self.client.get(reverse("films:decade_view", kwargs={"year": 1900}))
@@ -112,3 +112,43 @@ class FilmModelTests(SmokeTestCase):
         decade = Decade.objects.create(title="D", description="d", year=1980)
         self.assertEqual(str(decade), "1980s")
         self.assertEqual(decade.decade_range, "1980s - 1989")
+
+
+class FilmsFixesTests(SmokeTestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.early = Decade.objects.create(title="The Silent Era", description="<p>d</p>", year=1900)
+        cls.nineties = Decade.objects.create(title="The Nineties", description="<p>d</p>", year=1990)
+        cls.ranked = Movie.objects.create(title="Heat", synopsis="<p>s</p>", review="<p>r</p>", genre="thriller",
+                                          release_year=1995, decade=cls.nineties, image=tiny_image())
+        cls.unranked = Movie.objects.create(title="Fargo", synopsis="<p>s</p>", review="<p>r</p>", genre="thriller",
+                                            release_year=1996, decade=cls.nineties, image=tiny_image())
+        Top250Entry.objects.create(movie=cls.ranked, rank=7)
+
+    def test_the_1900s_page_uses_a_local_image_and_no_other_site(self):
+        # Issue #109: the hot-linked Wikimedia thumbnail answered 400. It would also break the Content-Security-Policy.
+        page = self.client.get(reverse("films:decade_view", kwargs={"year": 1900})).content.decode()
+        self.assertIn('src="/static/films/images/horse-in-motion.webp"', page)
+        self.assertNotIn("upload.wikimedia.org", page)
+        self.assertIn("commons.wikimedia.org/wiki/File:Horse_in_Motion", page)  # the credit link stays
+        self.assertNotIn("horse-in-motion", self.client.get(reverse("films:decade_view", kwargs={"year": 1990})).content.decode())
+
+    def test_the_image_is_a_static_file_of_a_sensible_size(self):
+        import os
+        from django.contrib.staticfiles import finders
+        path = finders.find("films/images/horse-in-motion.webp")
+        self.assertIsNotNone(path)
+        self.assertLess(os.path.getsize(path), 300_000)
+
+    def test_rank_is_labelled_as_the_sites_own_list(self):
+        # Issue #110: the page claimed an IMDb rank for the position in the owner's Top 250.
+        url = reverse("films:movie_detail", kwargs={"year": 1990, "slug": self.ranked.slug})
+        page = self.client.get(url).content.decode()
+        self.assertIn(f'<a href="{reverse("films:top_250")}">#7 in my Top 250</a>', page)
+        self.assertNotIn("IMDb", page)
+
+    def test_unranked_movie_has_no_rank_label(self):
+        url = reverse("films:movie_detail", kwargs={"year": 1990, "slug": self.unranked.slug})
+        page = self.client.get(url).content.decode()
+        self.assertNotIn("in my Top 250", page)
+        self.assertNotIn("IMDb", page)

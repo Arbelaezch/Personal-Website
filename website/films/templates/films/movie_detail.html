@@ -21,7 +21,7 @@
         {% endif %}
         <div class="movie-synopsis">
             {% if movie.top250_rank %}
-            <p class="top250-rank">#{{ movie.top250_rank }} on IMDb Top 250</p>
+            <p class="top250-rank"><a href="{% url 'films:top_250' %}">#{{ movie.top250_rank }} in my Top 250</a></p>
             {% endif %}
             <div class="rich">{{ movie.synopsis|safe }}</div>
             <dl class="movie-credits">
