@@ -326,6 +326,8 @@ class HomePageTests(SmokeTestCase):
         page = self.client.get(reverse("portfolio")).content.decode()
         self.assertIn("Christian<br>Arbelaez", page)
         self.assertIn("AI-enabled full-stack developer", page)
+        self.assertIn("I pair computer science fundamentals and a security-first mindset with AI-powered workflows. "
+                      "I design and maintain the pipelines that let AI agents ship software safely", page)
         for anchor in ['id="work"', 'id="factory"', 'id="about"', 'id="contact"']:
             self.assertEqual(page.count(anchor), 1, anchor)
         self.assertLess(page.index('id="work"'), page.index('id="factory"'))
