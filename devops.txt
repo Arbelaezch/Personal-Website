@@ -90,6 +90,21 @@ rate limits in conf.d/00-global.conf. New site: templates/app-site.conf.template
     sudo systemctl daemon-reload, sudo systemctl restart gunicorn.socket gunicorn.
   * Check:  ps -o user,cmd -C gunicorn ; systemd-analyze security gunicorn
 
+GitHub sync (deploy/systemd/portfolio-github-sync.service + .timer)
+  * Once a day (05:15 UTC, up to 30 min random delay) "manage.py sync_github" refreshes the portfolio projects and
+    the pipeline panel from the public GitHub API. Same user and sandbox as gunicorn, with nothing writable: it
+    only makes outbound HTTPS requests to api.github.com and writes to the database. No inbound endpoint.
+  * Install or update:
+      sudo cp deploy/systemd/portfolio-github-sync.service deploy/systemd/portfolio-github-sync.timer /etc/systemd/system/
+      sudo systemctl daemon-reload && sudo systemctl enable --now portfolio-github-sync.timer
+  * Check:  systemctl list-timers portfolio-github-sync.timer ; journalctl -u portfolio-github-sync -n 30
+    Run now:  sudo systemctl start portfolio-github-sync   (or the "Sync from GitHub now" button on the admin's
+    Projects page). Preview without writing:  manage.py sync_github --dry-run
+  * A failed run changes nothing on the site and leaves the unit in "failed" (systemctl --failed).
+  * No token is needed (unauthenticated limit: 60 requests an hour, a run makes about 5). If that ever bites, put a
+    fine-grained, public read-only GITHUB_TOKEN in .env.
+  * Remove:  sudo systemctl disable --now portfolio-github-sync.timer ; sudo rm /etc/systemd/system/portfolio-github-sync.*
+
 =====================================================================
 6. TLS, DNS AND CLOUDFLARE
 =====================================================================
