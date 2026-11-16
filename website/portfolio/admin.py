@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project
+from .models import Project, Resume
 
 
 @admin.register(Project)
@@ -18,3 +18,15 @@ class ProjectAdmin(admin.ModelAdmin):
         ('Links', {'fields': ['project_url', 'github_url']}),
         ('GitHub sync', {'fields': ['github_repo', 'github_description', 'github_pushed_at']}),
     ]
+
+
+@admin.register(Resume)
+class ResumeAdmin(admin.ModelAdmin):
+    list_display = ['__str__', 'is_current', 'file']
+    list_editable = ['is_current']
+    readonly_fields = ['uploaded_at']
+
+    def delete_queryset(self, request, queryset):
+        # The bulk "delete selected" action skips Model.delete(); go through it so the files are removed too.
+        for resume in queryset:
+            resume.delete()

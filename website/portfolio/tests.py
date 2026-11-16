@@ -208,3 +208,103 @@ class ProjectSlugMigrationTests(TransactionTestCase):
         NewProject = executor.loader.project_state(self.after).apps.get_model("portfolio", "Project")
         slugs = list(NewProject.objects.order_by("pk").values_list("slug", flat=True))
         self.assertEqual(slugs, ["family-food", "family-food-2", "project", "project-1984", "already-set"])
+
+
+FAKE_PDF = b"%PDF-1.4\n1 0 obj<<>>endobj\ntrailer<<>>\n%%EOF\n"
+
+
+def pdf_upload(name="my resume v3.pdf", content=FAKE_PDF):
+    from django.core.files.uploadedfile import SimpleUploadedFile
+    return SimpleUploadedFile(name, content, content_type="application/pdf")
+
+
+class ResumeDownloadTests(SmokeTestCase):
+    def test_no_resume_means_404_and_no_buttons(self):
+        self.assertEqual(self.client.get(reverse("resume")).status_code, 404)
+        self.assertNotContains(self.client.get(reverse("portfolio")), reverse("resume"))
+
+    def test_download_has_a_fixed_name_and_is_not_indexed(self):
+        from portfolio.models import Resume
+        Resume.objects.create(file=pdf_upload())
+        response = self.client.get(reverse("resume"))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response["Content-Type"], "application/pdf")
+        self.assertEqual(response["Content-Disposition"], 'attachment; filename="Christian-Arbelaez-Resume.pdf"')
+        self.assertEqual(response["X-Robots-Tag"], "noindex")
+        self.assertEqual(b"".join(response.streaming_content), FAKE_PDF)
+
+    def test_buttons_appear_on_every_page_once_a_resume_exists(self):
+        from portfolio.models import Resume
+        Resume.objects.create(file=pdf_upload())
+        for url in [reverse("portfolio"), reverse("films:top_250"), reverse("BlogView")]:
+            with self.subTest(url=url):
+                page = self.client.get(url).content.decode()
+                self.assertEqual(page.count('href="/resume/"'), 2)  # nav and footer
+
+    def test_the_newest_current_resume_is_served_and_replaces_the_old_one(self):
+        from portfolio.models import Resume
+        old = Resume.objects.create(file=pdf_upload(content=FAKE_PDF + b"old"))
+        new = Resume.objects.create(file=pdf_upload(content=FAKE_PDF + b"new"))
+        old.refresh_from_db()
+        self.assertFalse(old.is_current)
+        self.assertTrue(new.is_current)
+        self.assertTrue(b"".join(self.client.get(reverse("resume")).streaming_content).endswith(b"new"))
+        # switching back in the admin list works too
+        old.is_current = True
+        old.save()
+        self.assertEqual(Resume.current(), old)
+
+    def test_missing_file_is_a_404_not_a_500(self):
+        from portfolio.models import Resume
+        resume = Resume.objects.create(file=pdf_upload())
+        resume.file.storage.delete(resume.file.name)
+        self.assertEqual(self.client.get(reverse("resume")).status_code, 404)
+
+    def test_deleting_a_resume_removes_its_file(self):
+        from portfolio.models import Resume
+        resume = Resume.objects.create(file=pdf_upload())
+        storage, name = resume.file.storage, resume.file.name
+        self.assertTrue(storage.exists(name))
+        resume.delete()
+        self.assertFalse(storage.exists(name))
+        self.assertEqual(self.client.get(reverse("resume")).status_code, 404)
+
+
+class ResumeUploadTests(SmokeTestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.admin = get_user_model().objects.create_superuser("admin", "admin@example.com", "pw-for-tests")
+
+    def upload(self, file):
+        self.client.force_login(self.admin)
+        return self.client.post(reverse("admin:portfolio_resume_add"), {"file": file, "is_current": "on"})
+
+    def test_pdf_upload_through_the_admin(self):
+        from portfolio.models import Resume
+        self.assertRedirects(self.upload(pdf_upload()), reverse("admin:portfolio_resume_changelist"))
+        self.assertEqual(Resume.objects.count(), 1)
+        self.assertEqual(self.client.get(reverse("resume")).status_code, 200)
+
+    def test_a_file_that_is_not_a_pdf_is_rejected(self):
+        from portfolio.models import Resume
+        for file in [pdf_upload("resume.docx"), pdf_upload("resume.pdf", b"<html>not a pdf</html>")]:
+            with self.subTest(name=file.name):
+                response = self.upload(file)
+                self.assertEqual(response.status_code, 200)  # the form again, with an error
+                self.assertEqual(Resume.objects.count(), 0)
+
+    def test_an_oversize_file_is_rejected(self):
+        from portfolio.models import RESUME_MAX_BYTES, Resume
+        response = self.upload(pdf_upload(content=FAKE_PDF + b"0" * RESUME_MAX_BYTES))
+        self.assertContains(response, "smaller than 2 MB")
+        self.assertEqual(Resume.objects.count(), 0)
+
+    def test_deleting_from_the_admin_list_removes_the_file(self):
+        from portfolio.models import Resume
+        resume = Resume.objects.create(file=pdf_upload())
+        storage, name = resume.file.storage, resume.file.name
+        self.client.force_login(self.admin)
+        self.client.post(reverse("admin:portfolio_resume_changelist"),
+                         {"action": "delete_selected", "_selected_action": [resume.pk], "post": "yes"})
+        self.assertEqual(Resume.objects.count(), 0)
+        self.assertFalse(storage.exists(name))
