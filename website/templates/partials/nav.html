@@ -5,5 +5,11 @@
         <a href="{% url 'portfolio' %}#about">About</a>
         <a href="{% url 'films:top_250' %}">Films</a>
         <a href="#contact">Contact</a>
+        {% if has_resume %}
+        <a class="btn btn-outline btn-small" href="{% url 'resume' %}">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12"></path><path d="M7 11l5 5 5-5"></path><path d="M5 20h14"></path></svg>
+            Resume
+        </a>
+        {% endif %}
     </div>
 </nav>

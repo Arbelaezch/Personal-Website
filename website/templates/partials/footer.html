@@ -4,5 +4,8 @@
         <a href="https://github.com/Arbelaezch" rel="noopener">GitHub</a>
         <a href="https://www.linkedin.com/in/christian-arbelaez2021/" rel="noopener">LinkedIn</a>
     </div>
+    {% if has_resume %}
+    <a class="btn btn-primary" href="{% url 'resume' %}">Download resume</a>
+    {% endif %}
     <p class="site-footer-note">Original design and build by Christian Arbelaez. Copyright © {% now "Y" %}</p>
 </footer>

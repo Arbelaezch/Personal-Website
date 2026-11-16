@@ -1,3 +1,5 @@
+from django.core.exceptions import ValidationError
+from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.urls import reverse
 
@@ -58,3 +60,50 @@ class Project(models.Model):
     @property
     def display_summary(self):
         return self.summary or self.github_description or self.subtitle
+
+
+RESUME_MAX_BYTES = 2 * 1024 * 1024
+
+
+def validate_resume_file(upload):
+    """A real PDF of a sensible size: the extension alone can be faked."""
+    if upload.size > RESUME_MAX_BYTES:
+        raise ValidationError("The resume must be smaller than 2 MB.")
+    start = upload.read(5)
+    upload.seek(0)
+    if start != b"%PDF-":
+        raise ValidationError("This file is not a PDF.")
+
+
+class Resume(models.Model):
+    """The resume visitors download at /resume/. Uploaded in the admin and never committed:
+    the repository is public and the file holds personal data."""
+    file = models.FileField(
+        upload_to='resume/',
+        validators=[FileExtensionValidator(['pdf']), validate_resume_file],
+        help_text="PDF, under 2 MB. Visitors always receive it as Christian-Arbelaez-Resume.pdf.")
+    is_current = models.BooleanField(default=True, help_text="The one visitors download. Marking a resume current unmarks the others.")
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-uploaded_at']
+
+    def __str__(self):
+        return f"Resume uploaded {self.uploaded_at:%Y/%m/%d}" if self.uploaded_at else "Resume"
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if self.is_current:
+            Resume.objects.exclude(pk=self.pk).filter(is_current=True).update(is_current=False)
+
+    def delete(self, *args, **kwargs):
+        # Files under /media/ are served directly by nginx: an old resume must not stay downloadable.
+        stored = self.file
+        result = super().delete(*args, **kwargs)
+        if stored:
+            stored.delete(save=False)
+        return result
+
+    @classmethod
+    def current(cls):
+        return cls.objects.filter(is_current=True).first()

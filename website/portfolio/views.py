@@ -1,6 +1,7 @@
+from django.http import FileResponse, Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import DetailView
-from .models import Project
+from .models import Project, Resume
 
 def portfolio(request):
     context = {
@@ -24,3 +25,17 @@ def project_by_id(request, pk):
     if not project.slug:
         project.save()  # save() builds the missing slug
     return redirect(project, permanent=True)
+
+def resume(request):
+    current = Resume.current()
+    if current is None:
+        raise Http404("No resume has been uploaded")
+    try:
+        pdf = current.file.open('rb')
+    except FileNotFoundError:
+        raise Http404("The resume file is missing")
+    # Always the same download name, whatever the uploaded file was called.
+    response = FileResponse(pdf, as_attachment=True, filename='Christian-Arbelaez-Resume.pdf', content_type='application/pdf')
+    response['X-Robots-Tag'] = 'noindex'
+    response['Cache-Control'] = 'no-cache'  # a new upload must reach visitors straight away
+    return response

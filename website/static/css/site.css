@@ -155,6 +155,10 @@ button:focus-visible {
     color: var(--accent);
 }
 
+.site-nav-links a.btn {
+    padding: 11px 18px;
+}
+
 /* Second row of links for a section of the site (films) */
 .subnav {
     display: flex;
@@ -198,6 +202,7 @@ button:focus-visible {
 }
 
 .site-footer-note {
+    flex: 1 1 100%;
     color: var(--muted);
     font-family: var(--font-mono);
     font-size: 12px;
@@ -234,6 +239,11 @@ button:focus-visible {
 .btn-outline {
     border-color: var(--accent);
     color: var(--accent);
+}
+
+.btn-small {
+    gap: 8px;
+    padding: 11px 18px;
 }
 
 .mono-label {
