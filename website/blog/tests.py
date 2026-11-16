@@ -1,27 +1,21 @@
-from django.urls import reverse
-
 from blog.models import Article
 from website.testing import SmokeTestCase
 
 
-class BlogPagesTests(SmokeTestCase):
-    @classmethod
-    def setUpTestData(cls):
-        cls.article = Article.objects.create(
-            title="Hello", subtitle="First post", body="<p>Body text</p>", subject="META",
-        )
+class BlogRetiredTests(SmokeTestCase):
+    def test_blog_pages_are_gone(self):
+        Article.objects.create(title="Hello", subtitle="First post", body="<p>Body text</p>", subject="META")
+        for url in ["/blog/", "/blog/blog/1"]:
+            with self.subTest(url=url):
+                self.assertEqual(self.client.get(url).status_code, 404)
 
-    def test_blog_index_lists_articles(self):
-        response = self.client.get(reverse("BlogView"))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Hello")
-
-    def test_article_page_renders(self):
-        response = self.client.get(reverse("ArticleView", kwargs={"article_id": self.article.pk}))
-        self.assertEqual(response.status_code, 200)
+    def test_no_public_page_links_to_the_blog(self):
+        self.assertNotContains(self.client.get("/"), "/blog/")
 
 
 class ArticleModelTests(SmokeTestCase):
+    """The model stays for one release (see blog/admin.py)."""
+
     def test_newest_first_and_formatted_date(self):
         first = Article.objects.create(title="First", body="<p>1</p>", subject="Film")
         second = Article.objects.create(title="Second", body="<p>2</p>", subject="Music")

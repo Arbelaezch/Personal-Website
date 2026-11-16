@@ -15,40 +15,46 @@
         {% if project.display_summary %}
         <p class="project-detail-subtitle">{{ project.display_summary }}</p>
         {% endif %}
+        {% if project.project_url or project.github_url %}
+        <div class="project-links">
+            {% if project.project_url %}
+            <a href="{{ project.project_url }}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Open the live project</a>
+            {% endif %}
+            {% if project.github_url %}
+            <a href="{{ project.github_url }}" class="btn" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            {% endif %}
+        </div>
+        {% endif %}
     </header>
 
     {% if project.image %}
-    <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-detail-image">
+    <img src="{{ project.image.url }}" alt="Screenshot of {{ project.title }}" class="project-detail-image">
     {% endif %}
 
+    {% if sections %}
     <div class="project-detail-content">
-        {% if project.description %}
+        {# Admin-authored rich text (website.fields.RichTextField): the only content printed unescaped. #}
+        {% for section in sections %}
         <section class="panel">
-            <h2>About the Project</h2>
-            <div class="rich">{{ project.description|safe }}</div>
+            <h2>{{ section.heading }}</h2>
+            <div class="rich">{{ section.html|safe }}</div>
         </section>
-        {% endif %}
-
-        {% if project.lessons_learned %}
-        <section class="panel">
-            <h2>What I Learned / Technologies Used</h2>
-            <div class="rich">{{ project.lessons_learned|safe }}</div>
-        </section>
-        {% endif %}
+        {% endfor %}
     </div>
+    {% endif %}
 
-    <div class="project-links">
-        {% if project.project_url %}
-        <a href="{{ project.project_url }}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-            View Live Project
-        </a>
+    <nav class="project-nav" aria-label="More projects">
+        {% if previous_project %}
+        <a class="project-nav-link" href="{{ previous_project.get_absolute_url }}"><span class="mono-label">Previous</span>{{ previous_project.title }}</a>
+        {% else %}
+        <span></span>
         {% endif %}
-        {% if project.github_url %}
-        <a href="{{ project.github_url }}" class="btn" target="_blank" rel="noopener noreferrer">
-            View on GitHub
-        </a>
+        <a class="btn" href="{% url 'projects' %}">All projects</a>
+        {% if next_project %}
+        <a class="project-nav-link project-nav-next" href="{{ next_project.get_absolute_url }}"><span class="mono-label">Next</span>{{ next_project.title }}</a>
+        {% else %}
+        <span></span>
         {% endif %}
-        <a href="{% url 'projects' %}" class="btn">All projects</a>
-    </div>
+    </nav>
 </article>
 {% endblock %}

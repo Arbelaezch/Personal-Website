@@ -138,7 +138,8 @@ class ProjectContentTests(SmokeTestCase):
         page = self.client.get(project.get_absolute_url())
         self.assertEqual(page.status_code, 200)
         self.assertNotContains(page, "<img")
-        self.assertNotContains(page, "About the Project")
+        self.assertNotContains(page, 'class="panel"')  # no empty sections
+        self.assertContains(page, "From GitHub &lt;b&gt;escaped&lt;/b&gt;")
 
     def test_projects_without_a_repository_do_not_collide(self):
         first = make_project("One", github_repo="")
@@ -237,7 +238,7 @@ class ResumeDownloadTests(SmokeTestCase):
         from portfolio.models import Resume
         Resume.objects.create(file=pdf_upload())
         # the home page has a third one in its hero (HomePageTests)
-        for url in [reverse("projects"), reverse("films:top_250"), reverse("BlogView")]:
+        for url in [reverse("projects"), reverse("films:top_250")]:
             with self.subTest(url=url):
                 page = self.client.get(url).content.decode()
                 self.assertEqual(page.count('href="/resume/"'), 2)  # nav and footer
@@ -874,3 +875,126 @@ class PipelinePanelTests(SmokeTestCase):
         page = self.page()
         self.assertNotIn("<img src=x", page)
         self.assertIn("&lt;img src=x onerror=alert(1)&gt; &amp; &quot;quotes&quot;", page)
+
+
+class CaseStudyPageTests(SmokeTestCase):
+    def test_only_sections_with_content_are_shown_in_reading_order(self):
+        project = make_project(
+            "Full Study", problem="<p>The problem text</p>", description="<p>What was built</p>",
+            ai_usage="<p>AI text</p>", safety="<p>Safety text</p>", results="<p>Results text</p>",
+            lessons_learned="<ul><li>Lesson</li></ul>")
+        page = self.client.get(project.get_absolute_url()).content.decode()
+        headings = ["The problem", "What I built", "How AI was used", "What kept it safe", "Results", "Lessons and technologies"]
+        positions = [page.index(f"<h2>{heading}</h2>") for heading in headings]
+        self.assertEqual(positions, sorted(positions))
+        self.assertEqual(page.count('<section class="panel">'), 6)
+
+        partial = make_project("Partial Study", description="<p>Only this</p>", problem="   ")
+        page = self.client.get(partial.get_absolute_url()).content.decode()
+        self.assertEqual(page.count('<section class="panel">'), 1)
+        self.assertIn("<h2>What I built</h2>", page)
+        self.assertNotIn("The problem", page)
+
+    def test_rich_text_is_rendered_as_html_but_plain_fields_are_escaped(self):
+        project = make_project("Mixed", description="<p><strong>bold</strong></p>", summary="<b>not bold</b>",
+                               category="<i>cat</i>", timeline="<u>2026</u>")
+        page = self.client.get(project.get_absolute_url()).content.decode()
+        self.assertIn("<p><strong>bold</strong></p>", page)
+        self.assertIn("&lt;b&gt;not bold&lt;/b&gt;", page)
+        self.assertIn("&lt;i&gt;cat&lt;/i&gt;", page)
+        self.assertIn("&lt;u&gt;2026&lt;/u&gt;", page)
+
+    def test_links_are_in_the_header_only_when_set(self):
+        with_links = make_project("Linked", project_url="https://example.com/live", github_url="https://github.com/x/y")
+        page = self.client.get(with_links.get_absolute_url()).content.decode()
+        self.assertIn('href="https://example.com/live"', page)
+        self.assertIn('href="https://github.com/x/y"', page)
+        self.assertLess(page.index("https://example.com/live"), page.index("<h2>"))
+        bare = self.client.get(make_project("Unlinked").get_absolute_url()).content.decode()
+        self.assertNotIn('class="project-links"', bare)
+
+    def test_previous_and_next_follow_the_projects_page_and_skip_unpublished(self):
+        first = make_project("Alpha", order=3)
+        hidden = make_project("Hidden Middle", order=2, is_published=False)
+        last = make_project("Omega", order=1)
+        page = self.client.get(first.get_absolute_url()).content.decode()
+        self.assertNotIn("Previous", page)
+        self.assertIn(f'href="{last.get_absolute_url()}"', page)
+        self.assertNotIn("Hidden Middle", page)
+        page = self.client.get(last.get_absolute_url()).content.decode()
+        self.assertIn(f'href="{first.get_absolute_url()}"', page)
+        self.assertNotIn(">Next<", page)
+        self.assertIn(f'href="{reverse("projects")}"', page)
+
+    def test_admin_form_has_the_case_study_fields(self):
+        admin = get_user_model().objects.create_superuser("admin", "admin@example.com", "pw-for-tests")
+        self.client.force_login(admin)
+        form = self.client.get(reverse("admin:portfolio_project_add")).content.decode()
+        for field in ["problem", "description", "ai_usage", "safety", "results", "lessons_learned"]:
+            self.assertIn(f'name="{field}"', form)
+
+
+class CaseStudyContentTests(SmokeTestCase):
+    def run_command(self, *args):
+        from io import StringIO
+        from django.core.management import call_command
+        out = StringIO()
+        call_command("load_portfolio_content", *args, stdout=out)
+        return out.getvalue()
+
+    def test_drafts_fill_empty_sections_and_render(self):
+        self.run_command()
+        for slug in ["software-factory", "court-vision", "callback"]:
+            with self.subTest(slug=slug):
+                project = Project.objects.get(slug=slug)
+                for field in ["problem", "description", "ai_usage", "safety", "results", "lessons_learned"]:
+                    self.assertTrue(getattr(project, field).startswith("<"), field)
+                page = self.client.get(project.get_absolute_url()).content.decode()
+                self.assertEqual(page.count('<section class="panel">'), 6)
+
+    def test_court_vision_gets_its_screenshot_once(self):
+        self.run_command()
+        project = Project.objects.get(slug="court-vision")
+        self.assertTrue(project.image.name.startswith("projects/court-vision"))
+        self.assertGreater(project.image.size, 10_000)
+        self.assertContains(self.client.get(project.get_absolute_url()), "Screenshot of Court Vision")
+        first_name = project.image.name
+        self.assertNotIn("image", self.run_command())
+        project.refresh_from_db()
+        self.assertEqual(project.image.name, first_name)
+        # the two without a screenshot show no image element
+        self.assertNotContains(self.client.get("/project/software-factory/"), "<img")
+        self.assertNotContains(self.client.get("/project/callback/"), "<img")
+
+    def test_existing_write_up_and_image_are_never_replaced(self):
+        mine = make_project("Court Vision", github_repo="Arbelaezch/court-vision", description="<p>My own words</p>",
+                            image=tiny_image())
+        self.run_command()
+        mine.refresh_from_db()
+        self.assertEqual(mine.description, "<p>My own words</p>")
+        self.assertIn("test", mine.image.name)
+        self.assertTrue(mine.problem)  # empty sections were filled
+
+    def test_drafts_are_well_formed_and_carry_no_script(self):
+        from html.parser import HTMLParser
+        from portfolio.content import case_studies
+
+        class Checker(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.stack, self.bad = [], []
+
+            def handle_starttag(self, tag, attrs):
+                if tag in ("script", "style", "iframe", "img") or any(name.startswith("on") for name, value in attrs):
+                    self.bad.append(tag)
+                self.stack.append(tag)
+
+            def handle_endtag(self, tag):
+                if not self.stack or self.stack.pop() != tag:
+                    self.bad.append(f"/{tag}")
+
+        for study in [case_studies.SOFTWARE_FACTORY, case_studies.COURT_VISION, case_studies.CALLBACK]:
+            for field, html in study.items():
+                checker = Checker()
+                checker.feed(html)
+                self.assertEqual((checker.bad, checker.stack), ([], []), field)

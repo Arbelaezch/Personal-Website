@@ -1,6 +1,6 @@
 # Personal-Website: rules for AI sessions
 
-Django 5.2 LTS site for christiandonovan.ca (portfolio, films, blog, recipes) plus a read-only public recipes API used by
+Django 5.2 LTS site for christiandonovan.ca (portfolio with case studies, films, recipes) plus a read-only public recipes API used by
 the family-food Next.js app (separate repo). Runs on an on-prem Ubuntu server; **the server runbook is `devops.txt`**, the
 live server config is versioned in `deploy/`. The GitHub issues are the roadmap; issues labelled `todo` are next.
 

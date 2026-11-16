@@ -90,7 +90,7 @@ CI runs these plus `check --deploy` (see `.github/workflows/main.yml`).
 There is no separate development server; run the site locally to try changes.
 
 ### Project layout
-- `website/` - the Django project: `portfolio/` (home + projects), `films/`, `blog/`, `recipes/` (models and the read-only
+- `website/` - the Django project: `portfolio/` (home + projects), `films/`, `blog/` (retired: only the model remains until its table is dropped), `recipes/` (models and the read-only
   public API at `/api/v1/recipes/`, used by the [family-food](https://github.com/Arbelaezch/family-food) frontend), `api/urls.py` (API routing), `website/` (settings, shared helpers)
 - `deploy/` - versioned server configuration (nginx, systemd units, Docker daemon settings); see `devops.txt`
 - `devops.txt` - the server runbook (layout, services, deploys, firewall, backups, troubleshooting)

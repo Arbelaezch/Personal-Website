@@ -26,7 +26,6 @@ class AdminSmokeTests(SmokeTestCase):
             reverse("admin:index"),
             reverse("admin:portfolio_project_changelist"),
             reverse("admin:portfolio_project_add"),
-            reverse("admin:blog_article_changelist"),
             reverse("admin:films_movie_changelist"),
             reverse("admin:films_movie_add"),
             reverse("admin:films_decade_add"),
@@ -38,11 +37,10 @@ class AdminSmokeTests(SmokeTestCase):
             with self.subTest(url=url):
                 self.assertEqual(self.client.get(url).status_code, 200)
 
-    def test_blog_article_add_page_renders(self):
-        # Regression: settings.py used to define CKEDITOR_CONFIGS twice and drop "portal_config",
-        # which Article.body asks for, so this page returned 500.
-        self.client.force_login(self.admin)
-        self.assertEqual(self.client.get(reverse("admin:blog_article_add")).status_code, 200)
+    def test_retired_blog_has_no_admin_entry(self):
+        from django.urls import NoReverseMatch
+        with self.assertRaises(NoReverseMatch):
+            reverse("admin:blog_article_changelist")
 
 
 class CorsTests(SmokeTestCase):
@@ -105,7 +103,6 @@ class EditorTests(SmokeTestCase):
 
     @classmethod
     def setUpTestData(cls):
-        from blog.models import Article
         from films.models import Decade, Movie
         from portfolio.models import Project
         from recipes.models import Recipe
@@ -115,7 +112,6 @@ class EditorTests(SmokeTestCase):
         cls.objects = {
             "portfolio_project": Project.objects.create(
                 title="P", subtitle="s", description="<p>d</p>", image=tiny_image(), lessons_learned="<ul><li>x</li></ul>"),
-            "blog_article": Article.objects.create(title="A", body="<p>b</p>", subject="META"),
             "films_decade": Decade.objects.create(title="D", description="<p>d</p>", year=1990),
             "films_movie": Movie.objects.create(
                 title="M", synopsis="<p>s</p>", review="<p>r</p>", genre="drama", release_year=1995, image=tiny_image()),
@@ -200,7 +196,6 @@ class SharedBaseTemplateTests(SmokeTestCase):
 
     @classmethod
     def setUpTestData(cls):
-        from blog.models import Article
         from films.models import Decade, Movie, Top250Entry
         from portfolio.models import Project
         from website.testing import tiny_image
@@ -212,14 +207,13 @@ class SharedBaseTemplateTests(SmokeTestCase):
             title="Heat", synopsis="<p>Cops and robbers</p>", review="<p>Great</p>", genre="thriller",
             release_year=1995, decade=decade, image=tiny_image())
         Top250Entry.objects.create(movie=movie, rank=1)
-        Article.objects.create(title="Hello", subtitle="First post", body="<p>Body</p>", subject="META")
         cls.urls = [
             reverse("portfolio"),
             project.get_absolute_url(),
             reverse("films:top_250"),
             reverse("films:decade_view", kwargs={"year": 1990}),
             reverse("films:movie_detail", kwargs={"year": 1990, "slug": movie.slug}),
-            reverse("BlogView"),
+            reverse("projects"),
         ]
 
     def test_every_public_page_has_the_shared_nav_footer_and_metadata(self):

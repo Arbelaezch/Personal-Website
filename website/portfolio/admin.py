@@ -40,7 +40,10 @@ class ProjectAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['title', 'slug', 'subtitle', 'summary', 'category', 'primary_language', 'timeline']}),
         ('Visibility', {'fields': ['is_published', 'is_featured', 'order']}),
-        ('Content', {'fields': ['image', 'description', 'lessons_learned']}),
+        ('Case study', {
+            'description': "Leave a section empty to hide it on the project page.",
+            'fields': ['image', 'problem', 'description', 'ai_usage', 'safety', 'results', 'lessons_learned'],
+        }),
         ('Links', {'fields': ['project_url', 'github_url']}),
         ('GitHub sync', {'fields': ['github_repo', 'github_description', 'github_pushed_at']}),
     ]
