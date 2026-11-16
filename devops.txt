@@ -1,5 +1,5 @@
 SERVER RUNBOOK - meditations (hosts christiandonovan.ca)
-Last reviewed 2026/11/10. Config under deploy/ in this repo is the live config; change it here, then install it.
+Last reviewed 2026/11/16. Config under deploy/ in this repo is the live config; change it here, then install it.
 
 =====================================================================
 1. THE MACHINE
@@ -60,6 +60,19 @@ them backwards compatible) and the job fails (GitHub emails the failure).
   * Static files: collectstatic never deletes files from removed packages. Remove stale directories by hand
     from staticfiles/ and RESTART gunicorn afterwards (WhiteNoise indexes the folder at startup; until the
     restart it answers 500 for the deleted files).
+  * Known limit: between the pull and the restart (a few seconds) the old code runs against the new files, so a
+    template deleted by the release can answer 500 once (issue #122).
+Settings that live only in the server's .env (website/website/.env, owner carb, group portfolio, mode 640):
+  * The secrets and database settings described in .env.example.
+  * CSP_MODE=enforce   (set 2026/11/16). Public pages send an enforcing Content-Security-Policy
+    (website/website/middleware.py): scripts, styles, fonts and images from this site only, no inline scripts or
+    <style> blocks. The admin, the editor and the API are exempt. Without the line the default is report-only.
+    If a page breaks because of it (a pasted embed, an image from another site): fix the content, or set
+    CSP_MODE=report-only and restart gunicorn while you look. Check:
+      curl -sI https://christiandonovan.ca/ | grep -i content-security-policy
+Content that lives only in the database and media/ (not in the repository, so it needs the backups in section 7):
+  projects with their flags, summaries, case studies and screenshots; the resume (media/resume/); films and recipes.
+  First drafts can be reloaded into EMPTY fields with:  manage.py load_portfolio_content [--dry-run]
 Manual deploy / restart:
   sudo systemctl restart gunicorn        # after daemon-reload if the unit changed
   sudo systemctl status gunicorn ; journalctl -u gunicorn -n 50
