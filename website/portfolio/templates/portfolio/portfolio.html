@@ -23,11 +23,15 @@
 
     <div class="project-grid">
         {% for project in projects %}
-        <a href="{% url 'project_detail' project.id %}" class="project-card">
+        <a href="{{ project.get_absolute_url }}" class="project-card">
+            {% if project.image %}
             <img src="{{ project.image.url }}" alt="" class="project-image" loading="lazy">
+            {% else %}
+            <div class="project-image project-image-empty" aria-hidden="true"></div>
+            {% endif %}
             <div class="project-content">
                 <h3 class="project-title">{{ project.title }}</h3>
-                <p class="project-subtitle">{{ project.subtitle }}</p>
+                <p class="project-subtitle">{{ project.display_summary }}</p>
             </div>
         </a>
         {% endfor %}

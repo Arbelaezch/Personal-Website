@@ -215,7 +215,7 @@ class SharedBaseTemplateTests(SmokeTestCase):
         Article.objects.create(title="Hello", subtitle="First post", body="<p>Body</p>", subject="META")
         cls.urls = [
             reverse("portfolio"),
-            reverse("project_detail", kwargs={"pk": project.pk}),
+            project.get_absolute_url(),
             reverse("films:top_250"),
             reverse("films:decade_view", kwargs={"year": 1990}),
             reverse("films:movie_detail", kwargs={"year": 1990, "slug": movie.slug}),
@@ -267,7 +267,7 @@ class SharedBaseTemplateTests(SmokeTestCase):
         from website.testing import tiny_image
         project = Project.objects.create(
             title='A "quoted" <b>title</b>', subtitle='Sub "title"', description="<p>d</p>", image=tiny_image())
-        page = self.client.get(reverse("project_detail", kwargs={"pk": project.pk})).content.decode()
+        page = self.client.get(project.get_absolute_url()).content.decode()
         self.assertIn("<title>A &quot;quoted&quot; &lt;b&gt;title&lt;/b&gt; | Christian Arbelaez</title>", page)
         self.assertIn('content="Sub &quot;title&quot;"', page)
 

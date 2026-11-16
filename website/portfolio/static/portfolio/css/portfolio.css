@@ -80,6 +80,10 @@
     border-bottom: 1px solid var(--line);
 }
 
+.project-image-empty {
+    background: var(--stage);
+}
+
 .project-content {
     display: flex;
     flex-direction: column;

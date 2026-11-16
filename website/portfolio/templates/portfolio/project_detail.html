@@ -12,16 +12,22 @@
         <p class="mono-label">{{ project.timeline }}</p>
         {% endif %}
         <h1>{{ project.title }}</h1>
-        <p class="project-detail-subtitle">{{ project.subtitle }}</p>
+        {% if project.display_summary %}
+        <p class="project-detail-subtitle">{{ project.display_summary }}</p>
+        {% endif %}
     </header>
 
+    {% if project.image %}
     <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-detail-image">
+    {% endif %}
 
     <div class="project-detail-content">
+        {% if project.description %}
         <section class="panel">
             <h2>About the Project</h2>
             <div class="rich">{{ project.description|safe }}</div>
         </section>
+        {% endif %}
 
         {% if project.lessons_learned %}
         <section class="panel">
