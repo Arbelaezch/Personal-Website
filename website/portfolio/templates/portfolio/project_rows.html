@@ -1,0 +1,10 @@
+<div class="rows">
+    {% for project in projects %}
+    <a class="row" href="{{ project.get_absolute_url }}">
+        <span class="row-year">{{ project.display_year }}</span>
+        <span class="row-title">{{ project.title }}</span>
+        <span class="row-desc">{{ project.display_summary }}</span>
+        <span class="row-lang">{{ project.primary_language }}</span>
+    </a>
+    {% endfor %}
+</div>

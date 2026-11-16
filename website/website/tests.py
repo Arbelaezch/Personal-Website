@@ -251,7 +251,8 @@ class SharedBaseTemplateTests(SmokeTestCase):
                 page = self.client.get(url).content.decode()
                 self.assertNotIn("fonts.googleapis.com", page)
                 self.assertNotIn("fonts.gstatic.com", page)
-                self.assertNotIn("<script", page)
+                # scripts are allowed only as external files (keeps a Content-Security-Policy possible)
+                self.assertNotRegex(page, r"<script(?![^>]*\ssrc=)")
                 self.assertNotRegex(page, r'\son[a-z]+="')
 
     def test_page_titles_and_descriptions_come_from_the_content(self):

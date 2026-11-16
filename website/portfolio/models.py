@@ -1,3 +1,5 @@
+import re
+
 from django.core.exceptions import ValidationError
 from django.core.validators import FileExtensionValidator
 from django.db import models
@@ -60,6 +62,19 @@ class Project(models.Model):
     @property
     def display_summary(self):
         return self.summary or self.github_description or self.subtitle
+
+    @property
+    def display_year(self):
+        """The year shown in project lists: last GitHub activity, else the last year named in the timeline."""
+        if self.github_pushed_at:
+            return str(self.github_pushed_at.year)
+        years = re.findall(r'\b(?:19|20)\d{2}\b', self.timeline)
+        return years[-1] if years else ''
+
+    @property
+    def meta_label(self):
+        """"Agent pipeline · Python", or whichever of the two is set."""
+        return ' · '.join(part for part in [self.category, self.primary_language] if part)
 
 
 RESUME_MAX_BYTES = 2 * 1024 * 1024
