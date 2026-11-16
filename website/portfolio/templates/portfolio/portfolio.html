@@ -4,6 +4,7 @@
 {% block css %}
 <link rel="stylesheet" href="{% static 'portfolio/css/portfolio.css' %}">
 <script type="module" src="{% static 'portfolio/js/featured.js' %}"></script>
+<script type="module" src="{% static 'portfolio/js/orbit.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -27,14 +28,17 @@
 </header>
 
 {% if featured %}
-{# Works without JavaScript: each item links to its panel and CSS shows the targeted one. #101 replaces the list with the orbit. #}
+{% comment %}
+Works without JavaScript: each item links to its panel and CSS shows the targeted one.
+featured.js makes selecting smoother; orbit.js adds the interactive orbit above the list.
+{% endcomment %}
 <section class="featured" id="work" aria-label="Featured projects">
     <div class="featured-stage">
         <h2 class="mono-label">Featured projects</h2>
         <ol class="featured-list">
             {% for project in featured %}
             <li>
-                <a class="featured-item" href="#project-{{ project.slug }}" data-featured-link>
+                <a class="featured-item" href="#project-{{ project.slug }}" data-featured-link data-orbit-meta="{{ project.primary_language|default:project.category }}">
                     <span class="featured-number">{{ forloop.counter|stringformat:"02d" }}</span>
                     <span class="featured-title">{{ project.title }}</span>
                     <span class="featured-meta">{{ project.meta_label }}</span>
@@ -43,7 +47,7 @@
             {% endfor %}
         </ol>
     </div>
-    <div class="featured-panels">
+    <div class="featured-panels" aria-live="polite">
         {% for project in featured %}
         <article class="featured-panel panel" id="project-{{ project.slug }}">
             {% if project.meta_label %}<p class="featured-tag">{{ project.meta_label }}</p>{% endif %}

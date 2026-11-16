@@ -330,6 +330,9 @@ class HomePageTests(SmokeTestCase):
         self.assertLess(page.index('id="work"'), page.index('id="factory"'))
         self.assertLess(page.index('id="factory"'), page.index('id="about"'))
         self.assertNotIn("ravine_ps", page)
+        # template comments must not leak into the page
+        self.assertNotIn("{#", page)
+        self.assertNotIn("{%", page)
 
     def test_featured_projects_are_only_in_the_featured_area_highest_order_first(self):
         page = self.client.get(reverse("portfolio")).content.decode()
@@ -368,10 +371,30 @@ class HomePageTests(SmokeTestCase):
         Resume.objects.create(file=pdf_upload())
         self.assertEqual(self.client.get(reverse("portfolio")).content.decode().count('href="/resume/"'), 3)
 
-    def test_the_only_script_is_the_external_module(self):
+    def test_the_only_scripts_are_the_two_external_modules(self):
         page = self.client.get(reverse("portfolio")).content.decode()
-        self.assertEqual(page.count("<script"), 1)
+        self.assertEqual(page.count("<script"), 2)
         self.assertIn('<script type="module" src="/static/portfolio/js/featured.js"></script>', page)
+        self.assertIn('<script type="module" src="/static/portfolio/js/orbit.js"></script>', page)
+        # only the home page loads them
+        self.assertNotContains(self.client.get(reverse("projects")), "<script")
+
+    def test_featured_items_carry_what_the_orbit_needs(self):
+        page = self.client.get(reverse("portfolio")).content.decode()
+        self.assertIn('href="#project-star-project" data-featured-link data-orbit-meta="Python"', page)
+        # no language: the category is shown instead of nothing
+        self.assertIn('href="#project-second-star" data-featured-link data-orbit-meta=""', page)
+        self.assertIn('<div class="featured-panels" aria-live="polite">', page)
+
+    def test_orbit_scripts_are_static_files_without_third_party_code(self):
+        from django.contrib.staticfiles import finders
+        for name in ["portfolio/js/featured.js", "portfolio/js/orbit.js"]:
+            path = finders.find(name)
+            self.assertIsNotNone(path, name)
+            source = open(path).read()
+            self.assertNotIn("http://", source)
+            self.assertNotIn("https://", source)
+            self.assertNotRegex(source, r"\bimport\b|\beval\(|innerHTML")
 
 
 class HomePageEmptyStateTests(SmokeTestCase):
