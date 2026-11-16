@@ -71,6 +71,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'website.urls'
 
+# The one public address of the site, used for canonical and Open Graph URLs (no trailing slash).
+SITE_URL = os.getenv('SITE_URL', 'https://christiandonovan.ca').rstrip('/')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -84,6 +87,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'website.context_processors.site',
             ],
         },
     },

@@ -1,16 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{{article.title}}{% endblock title %}
-
 {% block css %}
-{{ block.super}}
-<link rel="stylesheet" href="{% static 'blog/css/article.css' %}"/>
+<link rel="stylesheet" href="{% static 'blog/css/article.css' %}">
 {% endblock css %}
 
 {% block content %}
-{{ block.super }}
-
 <div class="container">
     <div class="row">
         <div class="article">
@@ -29,8 +24,4 @@
         </div>
     </div>
 </div>
-
-
-
-
 {% endblock content %}

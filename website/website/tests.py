@@ -193,3 +193,109 @@ class CleanEditorHtmlTests(SmokeTestCase):
 
         html = '<p>x</p><img src="a.png"><iframe></iframe><ol start="3"><li value="3">y</li></ol><sup>2</sup><br>'
         self.assertEqual(clean_editor_html(html), html)
+
+
+class SharedBaseTemplateTests(SmokeTestCase):
+    """Every public page uses the one base template: same nav, footer, favicon and <head> metadata."""
+
+    @classmethod
+    def setUpTestData(cls):
+        from blog.models import Article
+        from films.models import Decade, Movie, Top250Entry
+        from portfolio.models import Project
+        from website.testing import tiny_image
+
+        project = Project.objects.create(
+            title="Callback", subtitle="Resume tailoring", description="<p>Writes resumes.</p>", image=tiny_image())
+        decade = Decade.objects.create(title="The Nineties", description="<p>Decade</p>", year=1990)
+        movie = Movie.objects.create(
+            title="Heat", synopsis="<p>Cops and robbers</p>", review="<p>Great</p>", genre="thriller",
+            release_year=1995, decade=decade, image=tiny_image())
+        Top250Entry.objects.create(movie=movie, rank=1)
+        Article.objects.create(title="Hello", subtitle="First post", body="<p>Body</p>", subject="META")
+        cls.urls = [
+            reverse("portfolio"),
+            reverse("project_detail", kwargs={"pk": project.pk}),
+            reverse("films:top_250"),
+            reverse("films:decade_view", kwargs={"year": 1990}),
+            reverse("films:movie_detail", kwargs={"year": 1990, "slug": movie.slug}),
+            reverse("BlogView"),
+        ]
+
+    def test_every_public_page_has_the_shared_nav_footer_and_metadata(self):
+        for url in self.urls:
+            with self.subTest(url=url):
+                page = self.client.get(url).content.decode()
+                self.assertEqual(page.count('class="site-nav"'), 1)
+                self.assertEqual(page.count('class="site-footer"'), 1)
+                self.assertIn('<meta charset="UTF-8">', page)
+                self.assertRegex(page, r'<meta name="description" content="[^"]{5,}">')
+                self.assertRegex(page, r'<meta property="og:title" content="[^"]+">')
+                self.assertIn('property="og:image" content="https://christiandonovan.ca/static/images/og-default.png"', page)
+                self.assertIn(f'<link rel="canonical" href="https://christiandonovan.ca{url}">', page)
+                self.assertIn('rel="icon"', page)
+                self.assertIn('css/site.css', page)
+
+    def test_pages_are_valid_documents_with_nothing_outside_the_body(self):
+        # Regression: base.html used to put <nav> between </head> and <body>.
+        for url in self.urls:
+            with self.subTest(url=url):
+                page = self.client.get(url).content.decode()
+                self.assertLess(page.index("<body>"), page.index("<nav"))
+                self.assertTrue(page.rstrip().endswith("</html>"))
+                self.assertEqual(page.count("<html"), 1)
+
+    def test_pages_load_no_third_party_fonts_and_no_inline_script(self):
+        for url in self.urls:
+            with self.subTest(url=url):
+                page = self.client.get(url).content.decode()
+                self.assertNotIn("fonts.googleapis.com", page)
+                self.assertNotIn("fonts.gstatic.com", page)
+                self.assertNotIn("<script", page)
+                self.assertNotRegex(page, r'\son[a-z]+="')
+
+    def test_page_titles_and_descriptions_come_from_the_content(self):
+        project_page = self.client.get(self.urls[1]).content.decode()
+        self.assertIn("<title>Callback | Christian Arbelaez</title>", project_page)
+        self.assertIn('<meta name="description" content="Resume tailoring">', project_page)
+        movie_page = self.client.get(self.urls[4]).content.decode()
+        self.assertIn("<title>Heat (1995) | Christian Arbelaez</title>", movie_page)
+        self.assertIn("<title>Christian Arbelaez</title>", self.client.get(self.urls[0]).content.decode())
+
+    def test_metadata_is_escaped(self):
+        from portfolio.models import Project
+        from website.testing import tiny_image
+        project = Project.objects.create(
+            title='A "quoted" <b>title</b>', subtitle='Sub "title"', description="<p>d</p>", image=tiny_image())
+        page = self.client.get(reverse("project_detail", kwargs={"pk": project.pk})).content.decode()
+        self.assertIn("<title>A &quot;quoted&quot; &lt;b&gt;title&lt;/b&gt; | Christian Arbelaez</title>", page)
+        self.assertIn('content="Sub &quot;title&quot;"', page)
+
+    def test_films_pages_link_to_every_decade(self):
+        page = self.client.get(reverse("films:top_250")).content.decode()
+        self.assertIn('class="subnav"', page)
+        self.assertIn(reverse("films:decade_view", kwargs={"year": 1990}), page)
+        self.assertNotIn('class="subnav"', self.client.get(reverse("portfolio")).content.decode())
+
+    def test_fonts_stylesheet_and_preview_image_are_static_files(self):
+        from django.contrib.staticfiles import finders
+        for path in [
+            "css/site.css",
+            "fonts/archivo-latin-wght.woff2",
+            "fonts/jetbrains-mono-latin-wght.woff2",
+            "fonts/OFL-Archivo.txt",
+            "fonts/OFL-JetBrainsMono.txt",
+            "images/og-default.png",
+            "portfolio/favicon/favicon-32x32.png",
+            "portfolio/favicon/favicon-16x16.png",
+            "portfolio/favicon/apple-touch-icon.png",
+        ]:
+            with self.subTest(path=path):
+                self.assertIsNotNone(finders.find(path))
+
+    def test_removed_templates_and_stylesheets_are_not_referenced(self):
+        for url in self.urls:
+            with self.subTest(url=url):
+                page = self.client.get(url).content.decode()
+                for gone in ["navbar.css", "footer.css", "css/base.css", "github.png", "facebook.png"]:
+                    self.assertNotIn(gone, page)

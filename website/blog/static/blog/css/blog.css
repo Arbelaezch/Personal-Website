@@ -1,36 +1,38 @@
-.center {
-    margin-left: auto;
+/* Blog index. Shared tokens and components come from css/site.css. */
+
+.articles {
+    display: flex;
+    flex-direction: column;
 }
 
 .article {
-    /* border: 1px solid red; */
-    padding: 1rem 0 1rem 0;
+    padding: 20px 0;
+    border-top: 1px solid var(--line);
 }
 
 .article_info {
-    font-weight: bold;
-    letter-spacing: 1px;
-    font-size: 0.7rem;
-    font-family: sans-serif;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
 }
 
 .article-title {
-    font-size: 1.777rem;
-    font-weight: bold;
-    margin: 0.2rem 0 0.3rem 0;
-
+    font-size: 28px;
+    font-weight: 800;
+    margin: 4px 0 6px;
 }
 
 .article-title a {
-    color: black;
     text-decoration: none;
 }
 
 .article-title a:hover {
-    color: #F41d92;
+    color: var(--accent);
 }
 
 .article-subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
+    font-size: 19px;
+    color: var(--text-soft);
 }

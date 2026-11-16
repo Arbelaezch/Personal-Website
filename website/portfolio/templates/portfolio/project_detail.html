@@ -1,62 +1,47 @@
+{% extends "base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ project.title }}</title>
-    <link rel="stylesheet" href="{% static 'portfolio/css/project_detail.css' %}"/>
-    <link rel="stylesheet" href="{% static 'portfolio/css/navbar.css' %}"/>
-    <link rel="stylesheet" href="{% static 'portfolio/css/footer.css' %}"/>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Open+Sans:wght@300&family=Roboto+Slab&display=swap" rel="stylesheet">
-</head>
-{% include "portfolio/navbar.html" %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'portfolio/css/project_detail.css' %}">
+{% endblock %}
 
 {% block content %}
-<div class="project-detail">
-    <div class="project-detail-header">
-        <h1>{{ project.title }}</h1>
+<article class="project-detail">
+    <header class="project-detail-header">
         {% if project.timeline %}
-        <p class="project-timeline">{{ project.timeline }}</p>
+        <p class="mono-label">{{ project.timeline }}</p>
         {% endif %}
+        <h1>{{ project.title }}</h1>
         <p class="project-detail-subtitle">{{ project.subtitle }}</p>
-    </div>
-    
+    </header>
+
     <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-detail-image">
-    
+
     <div class="project-detail-content">
-        <section class="project-description">
+        <section class="panel">
             <h2>About the Project</h2>
-            {{ project.description|safe }}
+            <div class="rich">{{ project.description|safe }}</div>
         </section>
 
         {% if project.lessons_learned %}
-        <section class="project-lessons">
+        <section class="panel">
             <h2>What I Learned / Technologies Used</h2>
-            <div class="lessons-list">
-                {{ project.lessons_learned|safe }}
-            </div>
+            <div class="rich">{{ project.lessons_learned|safe }}</div>
         </section>
         {% endif %}
     </div>
-    
+
     <div class="project-links">
         {% if project.project_url %}
-        <a href="{{ project.project_url }}" class="project-button" target="_blank" rel="noopener noreferrer">
+        <a href="{{ project.project_url }}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
             View Live Project
         </a>
         {% endif %}
         {% if project.github_url %}
-        <a href="{{ project.github_url }}" class="project-button secondary" target="_blank" rel="noopener noreferrer">
+        <a href="{{ project.github_url }}" class="btn" target="_blank" rel="noopener noreferrer">
             View on GitHub
         </a>
         {% endif %}
     </div>
-</div>
+</article>
 {% endblock %}

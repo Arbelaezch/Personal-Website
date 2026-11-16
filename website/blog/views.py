@@ -7,6 +7,7 @@ def BlogView(request):
 
     context = {
         "articles": Article.get_reverse_chronological_order(),
+        "page_title": "Blog | Christian Arbelaez",
     }
 
     return render(request, 'blog/blog.html', context)
