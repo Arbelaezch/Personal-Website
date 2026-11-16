@@ -37,6 +37,8 @@ class Project(models.Model):
         help_text='"owner/name" of the repository this project is synced from.')
     github_description = models.CharField(max_length=350, blank=True, default='', db_default='')
     github_pushed_at = models.DateTimeField(null=True, blank=True)
+    # Only projects the sync created are ever unpublished by it (when the repository loses its topic).
+    created_by_sync = models.BooleanField(default=False, db_default=False, editable=False)
 
     class Meta:
         ordering = ['order']
@@ -122,3 +124,43 @@ class Resume(models.Model):
     @classmethod
     def current(cls):
         return cls.objects.filter(is_current=True).first()
+
+
+class PipelineItem(models.Model):
+    """A pull request or issue shown in the "How I ship with AI" panel. Rewritten by every GitHub sync."""
+    PULL, ISSUE = 'pr', 'issue'
+    MERGED, OPEN = 'merged', 'open'
+
+    repo = models.CharField(max_length=140)
+    number = models.PositiveIntegerField()
+    kind = models.CharField(max_length=5, choices=[(PULL, 'Pull request'), (ISSUE, 'Issue')])
+    state = models.CharField(max_length=6, choices=[(MERGED, 'Merged'), (OPEN, 'Open')])
+    title = models.CharField(max_length=300)
+    url = models.URLField(max_length=300)
+    merged_at = models.DateTimeField(null=True, blank=True)
+    updated_at = models.DateTimeField()
+
+    class Meta:
+        ordering = ['-merged_at', '-updated_at']
+        constraints = [models.UniqueConstraint(fields=['repo', 'kind', 'number'], name='unique_pipeline_item')]
+
+    def __str__(self):
+        return f'{self.repo}#{self.number} {self.title}'
+
+
+class SyncState(models.Model):
+    """When each section of the GitHub sync last succeeded."""
+    key = models.CharField(max_length=20, unique=True)
+    succeeded_at = models.DateTimeField()
+
+    def __str__(self):
+        return f'{self.key}: {self.succeeded_at:%Y/%m/%d %H:%M}'
+
+    @classmethod
+    def mark(cls, key):
+        from django.utils import timezone
+        cls.objects.update_or_create(key=key, defaults={'succeeded_at': timezone.now()})
+
+    @classmethod
+    def last(cls, key):
+        return cls.objects.filter(key=key).values_list('succeeded_at', flat=True).first()

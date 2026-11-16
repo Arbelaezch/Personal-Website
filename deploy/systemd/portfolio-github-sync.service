@@ -1,0 +1,35 @@
+[Unit]
+Description=Sync portfolio projects and pipeline activity from GitHub (christiandonovan.ca)
+Wants=network-online.target
+After=network-online.target mysql.service
+
+[Service]
+Type=oneshot
+User=portfolio
+Group=portfolio
+WorkingDirectory=/var/www/portfolio/website
+Environment=PYTHONDONTWRITEBYTECODE=1
+# Outbound HTTPS to api.github.com and the local database only. A failed run changes nothing on the site
+# and leaves this unit "failed", which the monitoring picks up (issue #89).
+ExecStart=/var/www/portfolio/env/bin/python manage.py sync_github
+TimeoutStartSec=120
+
+# Sandbox: same as gunicorn.service, and with nothing writable at all (the sync writes to the database only).
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+ProtectClock=true
+ProtectHostname=true
+RestrictSUIDSGID=true
+RestrictRealtime=true
+RestrictNamespaces=true
+LockPersonality=true
+SystemCallArchitectures=native
+CapabilityBoundingSet=
+AmbientCapabilities=

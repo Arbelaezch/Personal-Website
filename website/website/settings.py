@@ -71,6 +71,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'website.urls'
 
+# GitHub sync (manage.py sync_github): whose "portfolio"-tagged repositories become projects, and which
+# repositories feed the pipeline panel. The token is optional: unauthenticated calls are enough
+# (60 an hour, a run makes about 5). If set, use a fine-grained token with public read-only access.
+GITHUB_USER = os.getenv('GITHUB_USER', 'Arbelaezch')
+PIPELINE_REPOS = os.getenv('PIPELINE_REPOS', 'Arbelaezch/Personal-Website').split()
+GITHUB_TOKEN = os.getenv('GITHUB_TOKEN', '')
+
 # The one public address of the site, used for canonical and Open Graph URLs (no trailing slash).
 SITE_URL = os.getenv('SITE_URL', 'https://christiandonovan.ca').rstrip('/')
 

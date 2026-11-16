@@ -478,3 +478,322 @@ class LoadPortfolioContentTests(SmokeTestCase):
         from portfolio.management.commands.load_portfolio_content import PROJECTS
         for entry in PROJECTS:
             self.assertLessEqual(len(entry.get("summary", "")), 200, entry["title"])
+
+
+def repo(name, topics=(), **fields):
+    data = {
+        "name": name, "full_name": f"Arbelaezch/{name}", "html_url": f"https://github.com/Arbelaezch/{name}",
+        "description": f"About {name}", "language": "Python", "pushed_at": "2026-11-15T10:00:00Z",
+        "topics": list(topics), "fork": False, "private": False, "archived": False,
+    }
+    data.update(fields)
+    return data
+
+
+def pull(number, title, merged_at=None):
+    return {"number": number, "title": title, "merged_at": merged_at, "updated_at": "2026-11-16T12:00:00Z",
+            "html_url": f"https://github.com/Arbelaezch/Personal-Website/pull/{number}"}
+
+
+def issue(number, title, is_pull=False):
+    data = {"number": number, "title": title, "updated_at": "2026-11-16T12:00:00Z",
+            "html_url": f"https://github.com/Arbelaezch/Personal-Website/issues/{number}"}
+    if is_pull:
+        data["pull_request"] = {}
+    return data
+
+
+class FakeGitHub:
+    """Stands in for portfolio.github.get: answers from canned data and never touches the network."""
+
+    def __init__(self, repos=(), closed=(), opened=(), issues=(), fail=()):
+        self.repos, self.closed, self.opened, self.issues, self.fail = list(repos), list(closed), list(opened), list(issues), fail
+        self.calls = []
+
+    def __call__(self, path, **params):
+        from portfolio.github import GitHubError
+        self.calls.append((path, params))
+        if any(part in path for part in self.fail):
+            raise GitHubError(f"GitHub answered 503 for {path}")
+        if path.startswith("/users/"):
+            start = (params["page"] - 1) * params["per_page"]
+            return self.repos[start:start + params["per_page"]]
+        if path.endswith("/pulls"):
+            return self.closed if params["state"] == "closed" else self.opened
+        if path.endswith("/issues"):
+            return self.issues
+        raise AssertionError(f"unexpected request {path}")
+
+
+class GitHubSyncTestCase(SmokeTestCase):
+    def sync(self, fake, *args):
+        from io import StringIO
+        from unittest import mock
+        from django.core.management import call_command
+        out = StringIO()
+        with mock.patch("portfolio.github.get", fake):
+            call_command("sync_github", *args, stdout=out)
+        return out.getvalue()
+
+
+class ProjectSyncTests(GitHubSyncTestCase):
+    def test_tagged_repository_becomes_a_published_project(self):
+        output = self.sync(FakeGitHub([repo("FHIR-patient-portal", ["portfolio"]), repo("advent-of-code")]))
+        project = Project.objects.get()
+        self.assertEqual(project.title, "FHIR Patient Portal")
+        self.assertEqual(project.slug, "fhir-patient-portal")
+        self.assertEqual(project.github_repo, "Arbelaezch/FHIR-patient-portal")
+        self.assertEqual(project.github_url, "https://github.com/Arbelaezch/FHIR-patient-portal")
+        self.assertEqual(project.github_description, "About FHIR-patient-portal")
+        self.assertEqual(project.primary_language, "Python")
+        self.assertEqual(project.display_year, "2026")
+        self.assertTrue(project.is_published)
+        self.assertFalse(project.is_featured)
+        self.assertTrue(project.created_by_sync)
+        self.assertIn("created FHIR Patient Portal", output)
+        self.assertEqual(self.client.get(reverse("portfolio")).status_code, 200)
+        self.assertContains(self.client.get(reverse("projects")), "About FHIR-patient-portal")
+
+    def test_forks_private_and_untagged_repositories_are_ignored(self):
+        self.sync(FakeGitHub([
+            repo("a-fork", ["portfolio"], fork=True), repo("secret", ["portfolio"], private=True), repo("plain"),
+        ]))
+        self.assertEqual(Project.objects.count(), 0)
+
+    def test_second_run_creates_no_duplicate_and_reports_no_change(self):
+        fake = FakeGitHub([repo("callback", ["portfolio"])])
+        self.sync(fake)
+        output = self.sync(fake)
+        self.assertEqual(Project.objects.count(), 1)
+        self.assertNotIn("created", output)
+        self.assertNotIn("updated", output)
+
+    def test_hand_written_fields_are_never_overwritten(self):
+        mine = make_project("My Title", summary="My summary", github_repo="Arbelaezch/nba-draft-simulator",
+                            primary_language="React Native", is_featured=True, order=7,
+                            github_url="https://example.com/mine")
+        self.sync(FakeGitHub([repo("nba-draft-simulator", ["portfolio"], language="JavaScript", description="From GitHub")]))
+        mine.refresh_from_db()
+        self.assertEqual(
+            (mine.title, mine.summary, mine.primary_language, mine.is_featured, mine.order, mine.github_url, mine.slug),
+            ("My Title", "My summary", "React Native", True, 7, "https://example.com/mine", "my-title"))
+        self.assertEqual(mine.github_description, "From GitHub")
+        self.assertIsNotNone(mine.github_pushed_at)
+        self.assertEqual(Project.objects.count(), 1)
+
+    def test_linked_project_is_refreshed_even_without_the_topic_and_matches_any_letter_case(self):
+        linked = make_project("Software Factory", github_repo="arbelaezch/SOFTWARE-factory")
+        self.sync(FakeGitHub([repo("software-factory", description=None, language=None)]))
+        linked.refresh_from_db()
+        self.assertEqual(linked.github_description, "")
+        self.assertEqual(linked.primary_language, "")
+        self.assertEqual(linked.display_year, "2026")
+        self.assertTrue(linked.is_published)
+        self.assertEqual(Project.objects.count(), 1)
+
+    def test_hand_made_project_is_never_unpublished(self):
+        # The featured projects were added by hand, without a write-up and without the topic.
+        by_hand = Project.objects.create(title="Court Vision", github_repo="Arbelaezch/court-vision", is_featured=True)
+        output = self.sync(FakeGitHub([]))
+        by_hand.refresh_from_db()
+        self.assertTrue(by_hand.is_published)
+        self.assertIn("warning: Arbelaezch/court-vision is not a public repository any more", output)
+
+    def test_synced_project_is_unpublished_when_the_topic_goes_unless_it_has_a_write_up(self):
+        self.sync(FakeGitHub([repo("one", ["portfolio"]), repo("two", ["portfolio"]), repo("three", ["portfolio"])]))
+        Project.objects.filter(slug="two").update(description="<p>My write-up</p>")
+        output = self.sync(FakeGitHub([repo("one"), repo("two")]))  # topics removed; "three" deleted
+        published = dict(Project.objects.values_list("slug", "is_published"))
+        self.assertEqual(published, {"one": False, "two": True, "three": False})
+        self.assertEqual(Project.objects.count(), 3)  # never deleted
+        self.assertIn('unpublished One (the "portfolio" topic was removed)', output)
+        self.assertIn("unpublished Three", output)
+
+    def test_text_from_github_is_escaped_and_clipped(self):
+        self.sync(FakeGitHub([repo("xss", ["portfolio"], description="<script>alert(1)</script>" + "x" * 400)]))
+        project = Project.objects.get()
+        self.assertEqual(len(project.github_description), 350)
+        page = self.client.get(project.get_absolute_url())
+        self.assertNotContains(page, "<script>alert(1)")
+        self.assertContains(page, "&lt;script&gt;alert(1)")
+
+    def test_pagination(self):
+        repos = [repo(f"filler-{number}") for number in range(100)] + [repo("on-page-two", ["portfolio"])]
+        fake = FakeGitHub(repos)
+        self.sync(fake)
+        self.assertEqual(Project.objects.get().slug, "on-page-two")
+        self.assertEqual([params["page"] for path, params in fake.calls if path.startswith("/users/")], [1, 2])
+
+    def test_api_error_changes_nothing_and_exits_non_zero(self):
+        from django.core.management.base import CommandError
+        self.sync(FakeGitHub([repo("keep-me", ["portfolio"])]))
+        before = list(Project.objects.values())
+        state = list(SyncStateModel().objects.values())
+        with self.assertRaisesMessage(CommandError, "projects"):
+            self.sync(FakeGitHub(fail=["/users/"]))
+        self.assertEqual(list(Project.objects.values()), before)
+        self.assertEqual(list(SyncStateModel().objects.filter(key="projects").values()), [s for s in state if s["key"] == "projects"])
+
+    def test_dry_run_writes_nothing(self):
+        output = self.sync(FakeGitHub([repo("callback", ["portfolio"])], closed=[pull(1, "Merged", "2026-11-01T00:00:00Z")]), "--dry-run")
+        self.assertIn("created Callback", output)
+        self.assertIn("Dry run", output)
+        self.assertEqual(Project.objects.count(), 0)
+        self.assertEqual(PipelineItemModel().objects.count(), 0)
+        self.assertEqual(SyncStateModel().objects.count(), 0)
+
+    def test_repository_titles(self):
+        from portfolio.github import title_from_repo
+        self.assertEqual(title_from_repo("nba-draft-simulator"), "Nba Draft Simulator")
+        self.assertEqual(title_from_repo("FHIR-patient-portal"), "FHIR Patient Portal")
+        self.assertEqual(title_from_repo("AlgoArena"), "AlgoArena")
+        self.assertEqual(title_from_repo("slow_scroll"), "Slow Scroll")
+
+
+def PipelineItemModel():
+    from portfolio.models import PipelineItem
+    return PipelineItem
+
+
+def SyncStateModel():
+    from portfolio.models import SyncState
+    return SyncState
+
+
+class PipelineSyncTests(GitHubSyncTestCase):
+    def fake(self, **overrides):
+        data = dict(
+            closed=[pull(108, "Foundation", "2026-11-16T10:00:00Z"), pull(90, "Closed unmerged"),
+                    pull(111, "Project model", "2026-11-16T11:00:00Z")],
+            opened=[pull(116, "New favicon")],
+            issues=[issue(102, "GitHub sync"), issue(116, "New favicon", is_pull=True)],
+        )
+        data.update(overrides)
+        return FakeGitHub(**data)
+
+    def test_merged_open_and_todo_items_are_stored(self):
+        output = self.sync(self.fake())
+        items = {(item.kind, item.number): item for item in PipelineItemModel().objects.all()}
+        self.assertEqual(sorted(items), [("issue", 102), ("pr", 108), ("pr", 111), ("pr", 116)])
+        self.assertEqual(items[("pr", 111)].state, "merged")
+        self.assertEqual(items[("pr", 116)].state, "open")
+        self.assertIsNone(items[("pr", 116)].merged_at)
+        self.assertEqual(items[("issue", 102)].url, "https://github.com/Arbelaezch/Personal-Website/issues/102")
+        self.assertEqual(items[("pr", 108)].repo, "Arbelaezch/Personal-Website")
+        newest = PipelineItemModel().objects.filter(state="merged").order_by("-merged_at").first()
+        self.assertEqual(newest.number, 111)
+        self.assertIn("pipeline: ok, 2 merged, 2 open", output)
+        self.assertIsNotNone(SyncStateModel().last("pipeline"))
+
+    def test_only_the_ten_most_recently_merged_are_kept_and_old_rows_go(self):
+        many = [pull(number, f"PR {number}", f"2026-10-{number:02d}T00:00:00Z") for number in range(1, 16)]
+        self.sync(self.fake(closed=many, opened=[], issues=[]))
+        self.assertEqual(sorted(PipelineItemModel().objects.values_list("number", flat=True)), list(range(6, 16)))
+        self.sync(self.fake(closed=many[:2], opened=[], issues=[]))
+        self.assertEqual(sorted(PipelineItemModel().objects.values_list("number", flat=True)), [1, 2])
+
+    def test_api_error_keeps_the_old_rows_and_does_not_stop_the_project_section(self):
+        from django.core.management.base import CommandError
+        self.sync(self.fake())
+        before = list(PipelineItemModel().objects.order_by("pk").values("number", "state"))
+        with self.assertRaisesMessage(CommandError, "pipeline"):
+            self.sync(self.fake(repos=[repo("callback", ["portfolio"])], fail=["/issues"]))
+        self.assertEqual(list(PipelineItemModel().objects.order_by("pk").values("number", "state")), before)
+        self.assertEqual(Project.objects.count(), 1)  # the project section still ran
+
+    def test_malformed_answer_is_a_failure_not_a_crash(self):
+        from django.core.management.base import CommandError
+        with self.assertRaises(CommandError):
+            self.sync(self.fake(closed=[{"number": 1, "merged_at": "2026-11-01T00:00:00Z"}]))  # no html_url
+        self.assertEqual(PipelineItemModel().objects.count(), 0)
+
+    def test_only_option_runs_one_section(self):
+        fake = self.fake(repos=[repo("callback", ["portfolio"])])
+        self.sync(fake, "--only", "pipeline")
+        self.assertEqual(Project.objects.count(), 0)
+        self.assertFalse(any(path.startswith("/users/") for path, params in fake.calls))
+
+
+class GitHubClientTests(SmokeTestCase):
+    """portfolio.github.get against a patched urlopen: headers, token handling and error mapping."""
+
+    def call(self, response=None, error=None, **settings_overrides):
+        import io
+        from unittest import mock
+        from django.test import override_settings
+        from portfolio import github
+        captured = {}
+
+        def fake_urlopen(request, timeout):
+            captured["request"], captured["timeout"] = request, timeout
+            if error:
+                raise error
+            return io.BytesIO(response)
+
+        with override_settings(**settings_overrides), mock.patch("urllib.request.urlopen", fake_urlopen):
+            return github.get("/users/Arbelaezch/repos", page=1), captured
+
+    def test_request_goes_to_the_api_with_a_timeout_and_no_token_by_default(self):
+        result, captured = self.call(b'[{"name": "x"}]', GITHUB_TOKEN="")
+        self.assertEqual(result, [{"name": "x"}])
+        self.assertEqual(captured["request"].full_url, "https://api.github.com/users/Arbelaezch/repos?page=1")
+        self.assertEqual(captured["request"].get_method(), "GET")
+        self.assertEqual(captured["timeout"], 10)
+        self.assertIsNone(captured["request"].get_header("Authorization"))
+        self.assertTrue(captured["request"].get_header("User-agent"))
+
+    def test_token_is_sent_when_configured(self):
+        result, captured = self.call(b"[]", GITHUB_TOKEN="test-token-value")
+        self.assertEqual(captured["request"].get_header("Authorization"), "Bearer test-token-value")
+
+    def test_failures_become_github_errors_without_the_token_in_the_message(self):
+        import urllib.error
+        from portfolio.github import GitHubError
+        cases = [
+            dict(error=urllib.error.HTTPError("u", 403, "rate limited", {}, None)),
+            dict(error=urllib.error.URLError("no route")),
+            dict(error=TimeoutError("timed out")),
+            dict(response=b"<html>not json"),
+        ]
+        for case in cases:
+            with self.subTest(case=str(case)[:40]):
+                with self.assertRaises(GitHubError) as caught:
+                    self.call(GITHUB_TOKEN="test-token-value", **case)
+                self.assertNotIn("test-token-value", str(caught.exception))
+
+
+class GitHubSyncAdminTests(SmokeTestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.admin = get_user_model().objects.create_superuser("admin", "admin@example.com", "pw-for-tests")
+
+    def test_button_is_on_the_project_list_and_runs_the_sync(self):
+        from unittest import mock
+        self.client.force_login(self.admin)
+        url = reverse("admin:portfolio_project_sync_github")
+        self.assertContains(self.client.get(reverse("admin:portfolio_project_changelist")), "Sync from GitHub now")
+        with mock.patch("portfolio.github.get", FakeGitHub([repo("callback", ["portfolio"])])):
+            response = self.client.post(url, follow=True)
+        self.assertRedirects(response, reverse("admin:portfolio_project_changelist"))
+        self.assertContains(response, "created Callback")
+        self.assertEqual(Project.objects.count(), 1)
+
+    def test_failure_is_shown_and_changes_nothing(self):
+        from unittest import mock
+        self.client.force_login(self.admin)
+        with mock.patch("portfolio.github.get", FakeGitHub(fail=["/users/", "/pulls"])):
+            response = self.client.post(reverse("admin:portfolio_project_sync_github"), follow=True)
+        self.assertContains(response, "FAILED, nothing changed")
+        self.assertEqual(Project.objects.count(), 0)
+
+    def test_sync_needs_a_logged_in_admin_and_a_post(self):
+        url = reverse("admin:portfolio_project_sync_github")
+        self.assertEqual(self.client.post(url).status_code, 302)  # to the login page
+        self.assertIn("/admin/login/", self.client.post(url)["Location"])
+        self.client.force_login(self.admin)
+        self.assertEqual(self.client.get(url).status_code, 405)
+
+    def test_pipeline_items_are_read_only_in_the_admin(self):
+        self.client.force_login(self.admin)
+        self.assertEqual(self.client.get(reverse("admin:portfolio_pipelineitem_changelist")).status_code, 200)
+        self.assertEqual(self.client.get(reverse("admin:portfolio_pipelineitem_add")).status_code, 403)
