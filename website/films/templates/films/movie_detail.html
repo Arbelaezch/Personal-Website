@@ -1,61 +1,45 @@
 {% extends "base.html" %}
 {% load static %}
-{% url 'films:movie_detail' year=year slug=movie.slug %}
-
-{% block title %}{{ movie.title }}{% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'films/css/movie_detail.css' %}"/>
+<link rel="stylesheet" href="{% static 'films/css/movie_detail.css' %}">
 {% endblock %}
 
+{% block subnav %}{% include "films/subnav.html" %}{% endblock %}
 
 {% block content %}
-<div id="page">
-    <div id="content" class="side">
-        <div class="header">
-            <div class="top">
-                <div id="title" class="title">
-                    <h1>{{ movie.title }} ({{ movie.release_year }})</h1>
-                </div>
-                <div id="rating" class="title">
-                    {% if movie.rating %}
-                        <h2 class="single">{{ movie.rating }}</h2>
-                    {% else %}
-                        <h2></h2>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="mid">
-                <div id="picture" class="info">
-                    {% if movie.image %}
-                    <img src="{{ movie.image.url }}" alt="{{ movie.title }}">
-                    {% endif %}
-                </div>
-                <div id="synopsis" class="info">
-                    {% if movie.top250_rank %}
-                    <p class="top250-rank">#{{ movie.top250_rank }} on IMDb Top 250</p>
-                    {% endif %}
-                    <p class="synopsis">
-                        {{ movie.synopsis|safe }}
-                        
-                        {% if movie.producer %}<br><br><span class="section-label">Producer:</span> {{ movie.producer }}{% endif %}
-                        {% if movie.director %}<br><br><span class="section-label">Director:</span> {{ movie.director }}{% endif %}
-                        {% if movie.writer %}<br><br><span class="section-label">Writer:</span> {{ movie.writer }}{% endif %}
-                        {% if movie.actors %}<br><br><span class="section-label">Stars:</span> {{ movie.actors }}{% endif %}
-                        {% if movie.country %}<br><br><span class="section-label">Country:</span> {{ movie.country }}{% endif %}
-                        {% if movie.language %}<br><br><span class="section-label">Language:</span> {{ movie.language }}{% endif %}
-                        {% if movie.studio %}<br><br><span class="section-label">Studio:</span> {{ movie.studio }}{% endif %}
-                        {% if movie.runtime %}<br><br><span class="section-label">Runtime:</span> {{ movie.runtime }} minutes{% endif %}
-                        <br><br><span class="section-label">Genre:</span> {{ movie.get_genre_display }}
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div id="review">
-            <p>{{ movie.review|safe }}</p>
+<article class="movie">
+    <header class="movie-header">
+        <h1>{{ movie.title }} ({{ movie.release_year }})</h1>
+        {% if movie.rating %}
+            <p class="movie-rating">{{ movie.rating }}</p>
+        {% endif %}
+    </header>
+    <div class="movie-facts">
+        {% if movie.image %}
+        <img class="movie-poster" src="{{ movie.image.url }}" alt="{{ movie.title }}">
+        {% endif %}
+        <div class="movie-synopsis">
+            {% if movie.top250_rank %}
+            <p class="top250-rank">#{{ movie.top250_rank }} on IMDb Top 250</p>
+            {% endif %}
+            <div class="rich">{{ movie.synopsis|safe }}</div>
+            <dl class="movie-credits">
+                {% if movie.producer %}<div><dt>Producer</dt><dd>{{ movie.producer }}</dd></div>{% endif %}
+                {% if movie.director %}<div><dt>Director</dt><dd>{{ movie.director }}</dd></div>{% endif %}
+                {% if movie.writer %}<div><dt>Writer</dt><dd>{{ movie.writer }}</dd></div>{% endif %}
+                {% if movie.actors %}<div><dt>Stars</dt><dd>{{ movie.actors }}</dd></div>{% endif %}
+                {% if movie.country %}<div><dt>Country</dt><dd>{{ movie.country }}</dd></div>{% endif %}
+                {% if movie.language %}<div><dt>Language</dt><dd>{{ movie.language }}</dd></div>{% endif %}
+                {% if movie.studio %}<div><dt>Studio</dt><dd>{{ movie.studio }}</dd></div>{% endif %}
+                {% if movie.runtime %}<div><dt>Runtime</dt><dd>{{ movie.runtime }} minutes</dd></div>{% endif %}
+                <div><dt>Genre</dt><dd>{{ movie.get_genre_display }}</dd></div>
+            </dl>
         </div>
     </div>
 
-</div>
+    <div class="movie-review rich">
+        {{ movie.review|safe }}
+    </div>
+</article>
 {% endblock %}

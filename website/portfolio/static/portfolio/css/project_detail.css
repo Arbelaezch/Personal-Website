@@ -1,189 +1,55 @@
+/* Project page. Shared tokens and components come from css/site.css. */
+
 .project-detail {
-    max-width: 1200px;
-    margin: 6rem auto 4rem auto;
-    padding: 0 2rem;
-    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
 .project-detail-header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.project-timeline {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    color: #94B49F;
-    margin: 0.5rem 0;
-    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
 .project-detail-header h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.5rem;
-    color: #333;
-    margin: 0 0 1rem 0;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
 }
 
 .project-detail-subtitle {
-    font-size: 1.2rem;
-    color: #666;
-    max-width: 800px;
-    margin: 0 auto;
+    font-size: 19px;
+    color: var(--text-soft);
+    max-width: 60ch;
 }
 
 .project-detail-image {
+    display: block;
     width: 100%;
     max-height: 500px;
     object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 3rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--line);
 }
 
-.project-detail-meta {
-    background: #94B49F;
-    color: #FCF8E8;
-    padding: 2rem;
-    border-radius: 8px;
-    margin: 3rem 0;
-}
-
-.meta-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-}
-
-.meta-item {
-    text-align: center;
-}
-
-.meta-item h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+.project-detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .project-detail-content section {
-    margin-bottom: 3rem;
-    padding: 2rem;
-    background: #f8f9fa;
-    border-radius: 8px;
-    border-left: 4px solid #94B49F;
-}
-
-.lessons-list ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.lessons-list ul li {
-    position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.lessons-list ul li::before {
-    content: "•";
-    color: #94B49F;
-    font-size: 1.5em;
-    position: absolute;
-    left: 0;
-    top: -0.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .project-detail-content h2 {
-    font-family: 'Montserrat', sans-serif;
-    color: #333;
-    font-size: 1.8rem;
-    margin: 2rem 0 1.5rem 0;
-}
-
-.project-detail-content p {
-    margin-bottom: 1.5rem;
-}
-
-/* Styling for the RichTextField content */
-.project-description ul,
-.project-lessons ul {
-    padding-left: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.project-description ul li,
-.project-lessons ul li {
-    margin-bottom: 0.5rem;
-    position: relative;
-}
-
-.project-lessons ul li::marker {
-    color: #94B49F;
+    font-size: 24px;
 }
 
 .project-links {
     display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 3rem;
-}
-
-.project-button {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background: #DF7861;
-    color: #FCF8E8;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.project-button:hover {
-    background: #c66752;
-    transform: translateY(-2px);
-}
-
-.project-button.secondary {
-    background: transparent;
-    border: 2px solid #DF7861;
-    color: #DF7861;
-}
-
-.project-button.secondary:hover {
-    background: #DF7861;
-    color: #FCF8E8;
-}
-
-@media (max-width: 768px) {
-    .project-detail {
-        margin-top: 4rem;
-        padding: 0 1rem;
-    }
-
-    .project-detail-header h1 {
-        font-size: 2rem;
-    }
-
-    .project-detail-subtitle {
-        font-size: 1rem;
-    }
-
-    .meta-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .project-links {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .project-button {
-        text-align: center;
-    }
-
-    .project-detail-content h2 {
-        font-size: 1.5rem;
-    }
+    flex-wrap: wrap;
+    gap: 12px;
 }

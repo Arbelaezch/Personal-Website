@@ -19,6 +19,8 @@ def top250_view(request):
     context = {
         'entries': entries,
         'decades': decades,
+        'page_title': 'Top 250 Movies | Christian Arbelaez',
+        'page_description': 'My 250 favourite films, ranked.',
     }
     
     return render(request, 'films/top250.html', context)
@@ -62,6 +64,8 @@ def decade_view(request, year):
         'favorite_movies': favorite_movies or [],
         'all_decades': all_decades or [],
         'year': year,
+        'page_title': f'{decade.year}s | Christian Arbelaez',
+        'page_description': f'{decade.title}: films of the {decade.year}s and my favourites of the decade.',
     }
     
     return render(request, 'films/decade.html', context)
@@ -102,6 +106,8 @@ def movie_detail_view(request, year, slug):
         'decades': all_decades,
         'top250_rank': top250_rank,
         'year': year,
+        'page_title': f'{movie.title} ({movie.release_year}) | Christian Arbelaez',
+        'page_description': f'{movie.title} ({movie.release_year}): synopsis, credits and my review.',
     }
     
     return render(request, 'films/movie_detail.html', context)

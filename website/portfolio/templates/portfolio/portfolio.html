@@ -1,79 +1,54 @@
+{% extends "base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christian Arbelaez</title>
-    <link rel="shortcut icon" type="image/png" href="{% static 'portfolio/favicon/favicon-32x32.png' %}"/>
-    <link rel="stylesheet" href="{% static 'portfolio/css/portfolio.css' %}"/>
-    <link rel="stylesheet" href="{% static 'portfolio/css/navbar.css' %}"/>
-    <link rel="stylesheet" href="{% static 'portfolio/css/footer.css' %}"/>
+{% block css %}
+<link rel="stylesheet" href="{% static 'portfolio/css/portfolio.css' %}">
+{% endblock %}
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Open+Sans:wght@300&family=Roboto+Slab&display=swap" rel="stylesheet">
-</head>
-
-<body>
-    {% include "portfolio/navbar.html" %}
-
-    <div class="hero-container">
-        <img src="{% static 'portfolio/images/ravine_ps.jpg' %}" class="hero-pic" alt="Hiking">
-        <div class="hero-text-container">
-            <p class="hero-title">Christian Arbelaez</p>
-            <p class="hero-description">Full-Stack Developer</p>
-        </div>
+{% block content %}
+<header class="hero">
+    <div class="hero-text">
+        <p class="mono-label">Full-Stack Developer</p>
+        <h1 class="hero-title">Christian Arbelaez</h1>
+        <p class="hero-quote">Building reliable web applications from backend to browser.</p>
     </div>
+    <img src="{% static 'portfolio/images/ravine_ps.jpg' %}" class="hero-pic" alt="Hiking" width="3022" height="1428">
+</header>
 
-    <div class="quote-container">
-        {% comment %} <p class="quote-text">"I didn't fail, I just found 100 ways that don't work."</p> {% endcomment %}
-        <p class="quote-text">"Building reliable web applications from backend to browser."</p>
-        {% comment %} <p class="quote-author">Benjamin Franklin</p> {% endcomment %}
+<section class="home-section" id="work">
+    <h2 class="section-title">Projects</h2>
+    <p class="home-intro">
+        I'm a full-stack developer with 4 years of experience building and shipping web applications. My work spans Python/Django backends, React frontends, and cloud deployments on GCP and DigitalOcean. I'm comfortable across the full stack, from database design and REST APIs to responsive UIs.
+    </p>
+
+    <div class="project-grid">
+        {% for project in projects %}
+        <a href="{% url 'project_detail' project.id %}" class="project-card">
+            <img src="{{ project.image.url }}" alt="" class="project-image" loading="lazy">
+            <div class="project-content">
+                <h3 class="project-title">{{ project.title }}</h3>
+                <p class="project-subtitle">{{ project.subtitle }}</p>
+            </div>
+        </a>
+        {% endfor %}
     </div>
+</section>
 
-    <div class="project-section">
-        <div class="project-text-container">
-            <p class="section-header">Projects</p>
+<section class="home-section" id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-contents">
+        <div class="about-text">
             <p>
-                I'm a full-stack developer with 4 years of experience building and shipping web applications. My work spans Python/Django backends, React frontends, and cloud deployments on GCP and DigitalOcean. I'm comfortable across the full stack, from database design and REST APIs to responsive UIs.
+                I'm Christian Arbelaez, a Full-Stack Software Developer at the University of Alberta Students' Union. I hold a BSc in Computer Science with a minor in Business from the University of Alberta.
+            </p>
+            <p>
+                I build and maintain production web applications, everything from architecting Django backends to deploying on cloud infrastructure. My business background helps me think about software not just technically, but in terms of real-world impact and tradeoffs.
+            </p>
+            <p>
+                Outside of work, I'm drawn to classical films, ancient history, and practical philosophy. This site is where I document my projects and keep my work visible.
             </p>
         </div>
-
-        <div class="project-grid">
-            {% for project in projects %}
-            <a href="{% url 'project_detail' project.id %}" class="project-link">
-                <div class="project-card">
-                    <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">{{ project.title }}</h3>
-                        <p class="project-subtitle">{{ project.subtitle }}</p>
-                    </div>
-                </div>
-            </a>
-            {% endfor %}
-        </div>
+        <img class="headshot" src="{% static 'portfolio/images/headshot.jpg' %}" alt="Christian Arbelaez" loading="lazy">
     </div>
-
-    <div class="about-container">
-        <div class="about-text-container">
-            <p class="section-header">About Me</p>
-            <div class="about-contents">
-                <p>
-                    I'm Christian Arbelaez, a Full-Stack Software Developer at the University of Alberta Students' Union. I hold a BSc in Computer Science with a minor in Business from the University of Alberta.
-                    <br><br>
-                    I build and maintain production web applications, everything from architecting Django backends to deploying on cloud infrastructure. My business background helps me think about software not just technically, but in terms of real-world impact and tradeoffs.
-                    <br><br>
-                    Outside of work, I'm drawn to classical films, ancient history, and practical philosophy. This site is where I document my projects and keep my work visible.
-                </p>
-                <img class='headshot' src="{% static 'portfolio/images/headshot.jpg' %}" alt="Christian Arbelaez">
-            </div>
-        </div>
-    </div>
-
-    {% include "portfolio/footer.html" %}
-</body>
-</html>
+</section>
+{% endblock %}
