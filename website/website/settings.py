@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'adminsortable2',
 
     # Local Apps
+    'website',  # template tags and management commands of the project package itself
     'portfolio',
     'blog',
     'recipes',

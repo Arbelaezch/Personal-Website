@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static images %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'portfolio/css/project_detail.css' %}">
@@ -28,7 +28,7 @@
     </header>
 
     {% if project.image %}
-    <img src="{{ project.image.url }}" alt="Screenshot of {{ project.title }}" class="project-detail-image">
+    <img src="{{ project.image|resized:1600 }}" alt="Screenshot of {{ project.title }}" class="project-detail-image">
     {% endif %}
 
     {% if sections %}

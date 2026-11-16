@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static images %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'films/css/decade.css' %}">
@@ -44,7 +44,7 @@
     <div class="poster-grid">
         {% for movie in movies %}
         <a class="poster" href="{% url 'films:movie_detail' year=movie.get_decade slug=movie.slug %}">
-            <img src="{{ movie.image.url }}" alt="" loading="lazy">
+            <img src="{{ movie.image|resized:500 }}" alt="" loading="lazy">
             <p>{{ movie.title }} ({{ movie.release_year }})</p>
         </a>
         {% endfor %}
