@@ -998,3 +998,60 @@ class CaseStudyContentTests(SmokeTestCase):
                 checker = Checker()
                 checker.feed(html)
                 self.assertEqual((checker.bad, checker.stack), ([], []), field)
+
+
+class PersonalSectionTests(SmokeTestCase):
+    @classmethod
+    def setUpTestData(cls):
+        from films.models import Decade, Movie, Top250Entry
+        decade = Decade.objects.create(title="The Nineties", description="<p>d</p>", year=1990)
+        movie = Movie.objects.create(title="Heat", synopsis="<p>s</p>", review="<p>r</p>", genre="thriller",
+                                     release_year=1995, decade=decade, image=tiny_image())
+        Top250Entry.objects.create(movie=movie, rank=1)
+
+    def test_personal_page_leads_to_the_films(self):
+        page = self.client.get(reverse("personal"))
+        self.assertEqual(page.status_code, 200)
+        self.assertContains(page, "<title>Personal | Christian Arbelaez</title>")
+        self.assertContains(page, f'href="{reverse("films:top_250")}"')
+        self.assertContains(page, f'href="{reverse("films:decade_view", kwargs={"year": 1990})}"')
+        self.assertContains(page, "1 film, ranked")
+
+    def test_nav_says_personal_and_films_pages_link_back(self):
+        home = self.client.get(reverse("portfolio")).content.decode()
+        nav = home.split('class="site-nav-links"')[1].split("</nav>")[0]
+        self.assertIn(f'<a href="{reverse("personal")}">Personal</a>', nav)
+        self.assertNotIn(">Films<", nav)
+        for url in [reverse("films:top_250"), reverse("films:decade_view", kwargs={"year": 1990})]:
+            with self.subTest(url=url):
+                subnav = self.client.get(url).content.decode().split('class="subnav"')[1].split("</nav>")[0]
+                self.assertIn(f'<a href="{reverse("personal")}">Personal</a>', subnav)
+                self.assertIn("Top 250", subnav)
+
+    def test_film_urls_did_not_move(self):
+        self.assertEqual(reverse("films:top_250"), "/films/")
+        self.assertEqual(self.client.get("/films/1990s/heat/").status_code, 200)
+
+    def test_personal_page_with_no_films_yet(self):
+        from films.models import Decade, Top250Entry
+        Top250Entry.objects.all().delete()
+        Decade.objects.all().delete()
+        page = self.client.get(reverse("personal"))
+        self.assertContains(page, "My favourite films")
+        self.assertNotContains(page, "personal-links")
+
+
+class ContentDryRunFilesTests(SmokeTestCase):
+    def test_dry_run_reports_the_screenshot_but_writes_no_file(self):
+        # Regression: the dry run on the server (2026/11/16) left court-vision.jpg in media/projects/.
+        import os
+        from io import StringIO
+        from django.conf import settings
+        from django.core.management import call_command
+        folder = os.path.join(settings.MEDIA_ROOT, "projects")
+        before = set(os.listdir(folder)) if os.path.isdir(folder) else set()
+        out = StringIO()
+        call_command("load_portfolio_content", "--dry-run", stdout=out)
+        self.assertIn("Court Vision", out.getvalue())
+        after = set(os.listdir(folder)) if os.path.isdir(folder) else set()
+        self.assertEqual(after, before)

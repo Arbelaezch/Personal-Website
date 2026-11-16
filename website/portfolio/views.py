@@ -116,3 +116,15 @@ def resume(request):
     response['X-Robots-Tag'] = 'noindex'
     response['Cache-Control'] = 'no-cache'  # a new upload must reach visitors straight away
     return response
+
+
+def personal(request):
+    """The non-work side of the site. Films is its first section; others can be added to the template."""
+    from films.models import Decade, Top250Entry
+    context = {
+        'decades': Decade.objects.all(),
+        'top250_count': Top250Entry.objects.count(),
+        'page_title': 'Personal | Christian Arbelaez',
+        'page_description': 'The non-work side of christiandonovan.ca: my favourite films, ranked and by decade.',
+    }
+    return render(request, 'portfolio/personal.html', context)

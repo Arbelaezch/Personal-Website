@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'portfolio/css/personal.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="section">
+    <h1 class="page-title">Personal</h1>
+    <p class="lede">The parts of this site that have nothing to do with work.</p>
+
+    <div class="personal-sections">
+        <article class="panel personal-section">
+            <p class="mono-label">Films</p>
+            <h2><a href="{% url 'films:top_250' %}">My Top 250</a></h2>
+            <p>{% if top250_count %}{{ top250_count }} film{{ top250_count|pluralize }}{% else %}My favourite films{% endif %}, ranked, each with a synopsis, credits and what I think of it. I also keep notes on every decade of cinema and my favourites from each.</p>
+            {% if decades %}
+            <div class="personal-links">
+                {% for decade in decades %}
+                <a href="{% url 'films:decade_view' decade.year %}">{{ decade.year }}s</a>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <a class="btn" href="{% url 'films:top_250' %}">Open the Top 250</a>
+        </article>
+    </div>
+</section>
+{% endblock %}

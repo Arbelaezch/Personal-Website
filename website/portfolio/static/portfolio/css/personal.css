@@ -1,0 +1,49 @@
+/* Personal section landing page. Shared tokens and components come from css/site.css. */
+
+.personal-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr));
+    gap: 16px;
+}
+
+.personal-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    max-width: 720px;
+}
+
+.personal-section h2 {
+    font-size: 30px;
+    line-height: 1.1;
+}
+
+.personal-section h2 a {
+    text-decoration: none;
+}
+
+.personal-section h2 a:hover {
+    color: var(--accent);
+}
+
+.personal-section > p:not(.mono-label) {
+    color: var(--text-soft);
+}
+
+.personal-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 18px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+}
+
+.personal-links a {
+    padding: 8px 0;
+    color: var(--node);
+}
+
+.personal-links a:hover {
+    color: var(--accent);
+}
