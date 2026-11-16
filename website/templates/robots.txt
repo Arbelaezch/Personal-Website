@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /api-auth/
+Disallow: /ckeditor5/
+Disallow: /resume/
+
+Sitemap: {{ site_url }}/sitemap.xml
