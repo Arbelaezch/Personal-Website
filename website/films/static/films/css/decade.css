@@ -37,6 +37,22 @@
     padding: 40px 32px;
 }
 
+.decade-figure {
+    margin: 0 0 1em;
+}
+
+.decade-figure img {
+    display: block;
+    height: auto;
+    border: 1px solid var(--line-strong);
+}
+
+.decade-figure figcaption {
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
 .section-label {
     font-family: var(--font-mono);
     font-size: 13px;
