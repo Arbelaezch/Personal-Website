@@ -10,7 +10,6 @@ urlpatterns = [
     path('ckeditor5/', include('django_ckeditor_5.urls')),
     path('api/', include('api.urls')),
 
-    path('blog/', include('blog.urls')),
     path('films/', include('films.urls')),
 ]
 

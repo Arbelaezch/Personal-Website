@@ -1,5 +1,5 @@
-"""First content for the redesigned home page (#100): which projects are featured, and a one-line
-summary, category and language for each known project.
+"""First content for the redesigned site: which projects are featured, a one-line summary, category
+and language for each known project (#100), and draft case studies and a screenshot (#104).
 
 Safe to run more than once. It only fills fields that are empty, creates the listed projects that do
 not exist yet, and sets the featured flags only while no project is featured. Text edited in the
@@ -8,10 +8,16 @@ admin is never overwritten.
     manage.py load_portfolio_content --dry-run
     manage.py load_portfolio_content
 """
+from pathlib import Path
+
+from django.core.files import File
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
+from portfolio.content import case_studies
 from portfolio.models import Project
+
+CONTENT_DIR = Path(__file__).resolve().parent.parent.parent / 'content'
 
 GITHUB = 'https://github.com/'
 
@@ -22,6 +28,7 @@ PROJECTS = [
         'category': 'Agent pipeline', 'primary_language': 'Python',
         'summary': 'A multi-agent delivery pipeline for Claude Code: scouts, a planner, engineers, a reviewer '
                    'from a different lab and a verifier, with human approval and git guardrails.',
+        **case_studies.SOFTWARE_FACTORY,
     },
     {
         'title': 'Court Vision', 'github_repo': 'Arbelaezch/court-vision', 'featured': True, 'order': 99,
@@ -29,12 +36,15 @@ PROJECTS = [
         'project_url': 'https://arbelaezch.github.io/court-vision/',
         'summary': 'A three.js basketball game that teaches newcomers to read the floor: run real plays as the '
                    'point guard, first against cones, then against defenders who react.',
+        'image': 'court-vision.jpg',
+        **case_studies.COURT_VISION,
     },
     {
         'title': 'Callback', 'github_repo': 'Arbelaezch/callback', 'featured': True, 'order': 98,
         'category': 'AI application', 'primary_language': 'Python',
         'summary': "Writes a tailored resume and cover letter for a job in the user's own voice, with Claude "
                    'doing narrow, testable tasks inside a Django, Celery and Next.js stack.',
+        **case_studies.CALLBACK,
     },
     {
         'match': 'fhir-patient-portal', 'title': 'FHIR Patient Portal',
@@ -58,7 +68,10 @@ PROJECTS = [
      'category': 'Web app', 'primary_language': 'JavaScript'},
 ]
 
-FILL_IF_EMPTY = ['summary', 'category', 'primary_language', 'github_repo', 'github_url', 'project_url']
+FILL_IF_EMPTY = [
+    'summary', 'category', 'primary_language', 'github_repo', 'github_url', 'project_url',
+    'problem', 'description', 'ai_usage', 'safety', 'results', 'lessons_learned',
+]
 
 
 class Command(BaseCommand):
@@ -89,7 +102,7 @@ class Command(BaseCommand):
         return None
 
     def apply(self, entry, set_flags):
-        values = {field: entry[field] for field in FILL_IF_EMPTY if entry.get(field)}
+        values = {field: entry[field].strip() for field in FILL_IF_EMPTY if entry.get(field)}
         if entry.get('github_repo'):
             values.setdefault('github_url', GITHUB + entry['github_repo'])
 
@@ -101,6 +114,7 @@ class Command(BaseCommand):
                 return
             project = Project(title=entry['title'], order=entry.get('order', 0), **values)
             project.is_featured = bool(entry.get('featured')) and set_flags
+            self.attach_image(project, entry)
             project.save()
             self.stdout.write(f"created  {project.title} (/project/{project.slug}/)" + (", featured" if project.is_featured else ""))
             return
@@ -113,8 +127,18 @@ class Command(BaseCommand):
         if set_flags and entry.get('featured') and not project.is_featured:
             project.is_featured = True
             changed.append('is_featured')
+        if self.attach_image(project, entry):
+            changed.append('image')
         if changed:
             project.save()
             self.stdout.write(f"updated  {project.title}: {', '.join(changed)}")
         else:
             self.stdout.write(f"unchanged {project.title}")
+
+    def attach_image(self, project, entry):
+        """Give the project the screenshot shipped in portfolio/content/, unless it already has an image."""
+        if not entry.get('image') or project.image:
+            return False
+        with open(CONTENT_DIR / entry['image'], 'rb') as source:
+            project.image.save(entry['image'], File(source), save=False)
+        return True

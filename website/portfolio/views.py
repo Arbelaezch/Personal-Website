@@ -69,10 +69,31 @@ class ProjectDetailView(DetailView):
     queryset = Project.objects.filter(is_published=True)
     template_name = 'portfolio/project_detail.html'
 
+    # Case-study sections in reading order. A section with no content is left out of the page.
+    SECTIONS = [
+        ('problem', 'The problem'),
+        ('description', 'What I built'),
+        ('ai_usage', 'How AI was used'),
+        ('safety', 'What kept it safe'),
+        ('results', 'Results'),
+        ('lessons_learned', 'Lessons and technologies'),
+    ]
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['page_title'] = f'{self.object.title} | Christian Arbelaez'
-        context['page_description'] = self.object.display_summary
+        project = self.object
+        context['page_title'] = f'{project.title} | Christian Arbelaez'
+        context['page_description'] = project.display_summary
+        context['sections'] = [
+            {'heading': heading, 'html': getattr(project, field)}
+            for field, heading in self.SECTIONS if getattr(project, field).strip()
+        ]
+        # Neighbours in the same order as the /projects/ page.
+        others = list(published_projects().only('slug', 'title'))
+        position = next((index for index, other in enumerate(others) if other.pk == project.pk), None)
+        if position is not None:
+            context['previous_project'] = others[position - 1] if position > 0 else None
+            context['next_project'] = others[position + 1] if position + 1 < len(others) else None
         return context
 
 def project_by_id(request, pk):

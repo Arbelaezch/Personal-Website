@@ -20,9 +20,15 @@ class Project(models.Model):
         help_text="One line shown in lists and on the home page. Falls back to the GitHub description, then the subtitle.")
     category = models.CharField(max_length=60, blank=True, default='', db_default='', help_text='Short label, for example "Agent pipeline".')
     primary_language = models.CharField(max_length=40, blank=True, default='', db_default='')
-    description = RichTextField(blank=True)
+    # Case-study sections. Each one is shown on the project page only when it has content.
+    # "description" is the "What I built" section.
+    problem = RichTextField(blank=True, default='', db_default='', help_text="The problem: what was wrong or missing, and for whom.")
+    description = RichTextField(blank=True, help_text="What I built.")
+    ai_usage = RichTextField(blank=True, default='', db_default='', help_text="How AI was used, in building it or inside it.")
+    safety = RichTextField(blank=True, default='', db_default='', help_text="What kept it safe: reviews, tests, limits, approvals.")
+    results = RichTextField(blank=True, default='', db_default='', help_text="Results: what it does today, with numbers only if they are real.")
     image = models.ImageField(upload_to='projects/', blank=True)
-    lessons_learned = RichTextField(blank=True, help_text="Enter each lesson on a new line.")
+    lessons_learned = RichTextField(blank=True, help_text="Lessons learned and technologies used.")
     project_url = models.URLField(blank=True)
     github_url = models.URLField(blank=True)
     order = models.IntegerField(default=0)
