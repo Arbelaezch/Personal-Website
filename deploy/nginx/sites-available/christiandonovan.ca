@@ -33,7 +33,11 @@ server {
         access_log off;
     }
 
+    # Browsers ask for /favicon.ico on pages that do not link an icon (the admin, the API). Serve the
+    # collected static file directly. collectstatic keeps this unhashed name up to date.
     location = /favicon.ico {
+        alias /var/www/portfolio/website/staticfiles/favicon/favicon.ico;
+        expires 7d;
         access_log off;
         log_not_found off;
     }
