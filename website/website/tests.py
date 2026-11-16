@@ -233,7 +233,9 @@ class SharedBaseTemplateTests(SmokeTestCase):
                 self.assertRegex(page, r'<meta property="og:title" content="[^"]+">')
                 self.assertIn('property="og:image" content="https://christiandonovan.ca/static/images/og-default.png"', page)
                 self.assertIn(f'<link rel="canonical" href="https://christiandonovan.ca{url}">', page)
-                self.assertIn('rel="icon"', page)
+                self.assertIn('rel="icon" type="image/svg+xml" href="/static/favicon/favicon.svg"', page)
+                self.assertIn('rel="apple-touch-icon" href="/static/favicon/apple-touch-icon.png"', page)
+                self.assertNotIn("portfolio/favicon", page)
                 self.assertIn('css/site.css', page)
 
     def test_pages_are_valid_documents_with_nothing_outside_the_body(self):
@@ -287,9 +289,11 @@ class SharedBaseTemplateTests(SmokeTestCase):
             "fonts/OFL-Archivo.txt",
             "fonts/OFL-JetBrainsMono.txt",
             "images/og-default.png",
-            "portfolio/favicon/favicon-32x32.png",
-            "portfolio/favicon/favicon-16x16.png",
-            "portfolio/favicon/apple-touch-icon.png",
+            "favicon/favicon.svg",
+            "favicon/favicon.ico",
+            "favicon/favicon-32x32.png",
+            "favicon/favicon-16x16.png",
+            "favicon/apple-touch-icon.png",
         ]:
             with self.subTest(path=path):
                 self.assertIsNotNone(finders.find(path))
