@@ -797,3 +797,80 @@ class GitHubSyncAdminTests(SmokeTestCase):
         self.client.force_login(self.admin)
         self.assertEqual(self.client.get(reverse("admin:portfolio_pipelineitem_changelist")).status_code, 200)
         self.assertEqual(self.client.get(reverse("admin:portfolio_pipelineitem_add")).status_code, 403)
+
+
+class PipelinePanelTests(SmokeTestCase):
+    REPO = "Arbelaezch/Personal-Website"
+
+    def item(self, number, title, kind="pr", state="merged", merged_day=None, repo=None, updated_day=1):
+        from datetime import datetime, timezone
+        from portfolio.models import PipelineItem
+        return PipelineItem.objects.create(
+            repo=repo or self.REPO, number=number, kind=kind, state=state, title=title,
+            url=f"https://github.com/{repo or self.REPO}/pull/{number}",
+            merged_at=datetime(2026, 11, merged_day, tzinfo=timezone.utc) if merged_day else None,
+            updated_at=datetime(2026, 11, updated_day, tzinfo=timezone.utc))
+
+    def page(self):
+        return self.client.get(reverse("portfolio")).content.decode()
+
+    def test_no_data_still_explains_the_six_stages_and_claims_nothing(self):
+        page = self.page()
+        self.assertIn("Factory idle", page)
+        self.assertEqual(page.count('class="factory-stage-name"'), 6)
+        for stage in ["Plan", "Build", "Review", "Verify", "CI", "Deploy"]:
+            self.assertIn(f'<span class="factory-stage-name">{stage}</span>', page)
+        self.assertIn("Replaying how a change moves through the stages", page)
+        self.assertNotIn("Last shipped", page)
+        self.assertNotIn("Up next", page)
+        self.assertNotIn("Working on", page)
+        self.assertNotIn("factory-updated", page)
+
+    def test_idle_with_history_replays_the_newest_merge_and_lists_three(self):
+        from portfolio.models import SyncState
+        SyncState.mark("pipeline")
+        for number, day in [(108, 10), (111, 12), (113, 11), (96, 2)]:
+            self.item(number, f"Change {number}", merged_day=day)
+        self.item(102, "GitHub sync", kind="issue", state="open")
+        page = self.page()
+        self.assertIn("Factory idle", page)
+        self.assertIn('Replaying the last shipped change: <a href="https://github.com/Arbelaezch/Personal-Website/pull/111" rel="noopener">#111</a>', page)
+        shipped = page.split("Last shipped")[1].split("Up next")[0]
+        self.assertLess(shipped.index("#111"), shipped.index("#113"))
+        self.assertLess(shipped.index("#113"), shipped.index("#108"))
+        self.assertNotIn("#96", shipped)  # only the newest three
+        self.assertEqual(shipped.count("Deployed"), 3)
+        self.assertIn("GitHub sync", page.split("Up next")[1])
+        self.assertIn("Queued", page)
+        self.assertRegex(page, r"Updated \d{4}/\d{2}/\d{2} from GitHub")
+
+    def test_an_open_pull_request_means_working_and_is_never_called_shipped(self):
+        self.item(111, "Done", merged_day=12)
+        self.item(120, "In flight older", state="open", updated_day=3)
+        self.item(121, "In flight newer", state="open", updated_day=9)
+        page = self.page()
+        self.assertNotIn("Factory idle", page)
+        self.assertIn('Working on <a href="https://github.com/Arbelaezch/Personal-Website/pull/121" rel="noopener">#121</a>', page)
+        self.assertNotIn("In flight", page.split("Last shipped")[1])
+        self.assertIn("Replaying the last shipped change", page)  # still labelled a replay
+
+    def test_up_next_is_hidden_when_nothing_is_queued(self):
+        self.item(111, "Done", merged_day=12)
+        page = self.page()
+        self.assertIn("Last shipped", page)
+        self.assertNotIn("Up next", page)
+
+    def test_only_deploying_repositories_say_deployed(self):
+        self.item(5, "Other repo change", merged_day=12, repo="Arbelaezch/software-factory")
+        self.item(111, "Site change", merged_day=11)
+        shipped = self.page().split("Last shipped")[1]
+        other, site = shipped.split("Site change")
+        self.assertIn("Merged", other)
+        self.assertNotIn("Deployed", other)
+        self.assertIn("Deployed", site)
+
+    def test_titles_from_github_are_escaped(self):
+        self.item(111, '<img src=x onerror=alert(1)> & "quotes"', merged_day=12)
+        page = self.page()
+        self.assertNotIn("<img src=x", page)
+        self.assertIn("&lt;img src=x onerror=alert(1)&gt; &amp; &quot;quotes&quot;", page)

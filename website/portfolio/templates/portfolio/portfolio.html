@@ -77,6 +77,54 @@ featured.js makes selecting smoother; orbit.js adds the interactive orbit above 
 <section class="section" id="factory" aria-labelledby="factory-title">
     <h2 class="section-title" id="factory-title">How I ship with AI</h2>
     <p class="lede">I built a pipeline of AI agents that takes a GitHub issue from plan to production. Each change passes six stages, and any stage can stop it.</p>
+
+    <div class="factory">
+        <div class="factory-head">
+            {% if pipeline.working_on %}
+            <span class="factory-status is-working"><i aria-hidden="true"></i>Working on <a href="{{ pipeline.working_on.url }}" rel="noopener">#{{ pipeline.working_on.number }}</a></span>
+            {% else %}
+            <span class="factory-status"><i aria-hidden="true"></i>Factory idle</span>
+            {% endif %}
+            {# The animation is always a replay of a finished change: GitHub does not expose live stages. #}
+            {% if pipeline.last_shipped %}
+            <span>Replaying the last shipped change: <a href="{{ pipeline.last_shipped.url }}" rel="noopener">#{{ pipeline.last_shipped.number }}</a></span>
+            {% else %}
+            <span>Replaying how a change moves through the stages</span>
+            {% endif %}
+        </div>
+        <div class="factory-stages-wrap">
+            <span class="factory-rail" aria-hidden="true"><span class="factory-rail-dot"></span></span>
+            <ol class="factory-stages">
+                <li><span class="factory-stage-number">01</span><span class="factory-stage-name">Plan</span><span class="factory-stage-what">A planner agent turns the issue into small tasks.</span></li>
+                <li><span class="factory-stage-number">02</span><span class="factory-stage-name">Build</span><span class="factory-stage-what">An engineer agent implements one task at a time.</span></li>
+                <li><span class="factory-stage-number">03</span><span class="factory-stage-name">Review</span><span class="factory-stage-what">A different model reviews the diff against the plan.</span></li>
+                <li><span class="factory-stage-number">04</span><span class="factory-stage-name">Verify</span><span class="factory-stage-what">A verifier checks every finding against the code.</span></li>
+                <li><span class="factory-stage-number">05</span><span class="factory-stage-name">CI</span><span class="factory-stage-what">Migration check, deploy check and the full test suite.</span></li>
+                <li><span class="factory-stage-number">06</span><span class="factory-stage-name">Deploy</span><span class="factory-stage-what">I merge it myself. A failed health check rolls back.</span></li>
+            </ol>
+        </div>
+        {% if pipeline.shipped %}
+        <div class="factory-queues">
+            <div class="factory-queue">
+                <h3>Last shipped</h3>
+                {% for item in pipeline.shipped %}
+                <a href="{{ item.url }}" rel="noopener"><span class="factory-item-title"><span class="factory-item-number">#{{ item.number }}</span> {{ item.title }}</span><span class="factory-item-done">{{ item.result }}</span></a>
+                {% endfor %}
+            </div>
+            {% if pipeline.queued %}
+            <div class="factory-queue">
+                <h3>Up next</h3>
+                {% for item in pipeline.queued %}
+                <a href="{{ item.url }}" rel="noopener"><span class="factory-item-title"><span class="factory-item-number">#{{ item.number }}</span> {{ item.title }}</span><span class="factory-item-wait">Queued</span></a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+        {% if pipeline.synced_at %}
+        <p class="factory-updated">Updated {{ pipeline.synced_at|date:"Y/m/d" }} from GitHub</p>
+        {% endif %}
+    </div>
 </section>
 
 <section class="about" id="about" aria-labelledby="about-title">
