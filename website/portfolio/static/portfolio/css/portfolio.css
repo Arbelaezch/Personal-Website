@@ -304,6 +304,193 @@
     }
 }
 
+/* How I ship with AI: the pipeline panel. Built to look right while nothing is running. */
+.factory {
+    background: var(--panel);
+    border: 1px solid var(--line);
+}
+
+.factory-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 24px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.factory-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.factory-status i {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--muted);
+}
+
+.factory-status.is-working i {
+    background: var(--accent);
+}
+
+.factory-stages-wrap {
+    position: relative;
+    padding: 24px 20px;
+}
+
+/* A dot travels the rail while each stage lights in turn: one 12 second loop. */
+.factory-rail {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    top: 12px;
+    height: 2px;
+    background: var(--line);
+}
+
+.factory-rail-dot {
+    position: absolute;
+    top: -3px;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: factory-travel 12s linear infinite;
+}
+
+.factory-stages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr));
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.factory-stages li {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    background-color: var(--ground);
+    animation: factory-lit 12s linear infinite;
+}
+
+.factory-stages li:nth-child(2) { animation-delay: 2s; }
+.factory-stages li:nth-child(3) { animation-delay: 4s; }
+.factory-stages li:nth-child(4) { animation-delay: 6s; }
+.factory-stages li:nth-child(5) { animation-delay: 8s; }
+.factory-stages li:nth-child(6) { animation-delay: 10s; }
+
+.factory-stage-number {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.factory-stage-name {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.factory-stage-what {
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.factory-queues {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+    gap: 1px;
+    background: var(--line);
+    border-top: 1px solid var(--line);
+    font-size: 15px;
+}
+
+.factory-queue {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 20px;
+    background: var(--panel);
+}
+
+.factory-queue h3 {
+    margin-bottom: 12px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.factory-queue a {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0;
+    border-top: 1px solid var(--line);
+    text-decoration: none;
+}
+
+.factory-item-title {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.factory-queue a:hover .factory-item-title {
+    color: var(--accent);
+}
+
+.factory-item-number,
+.factory-item-wait {
+    color: var(--muted);
+}
+
+.factory-item-done {
+    color: var(--node);
+}
+
+.factory-item-done,
+.factory-item-wait {
+    flex: none;
+}
+
+.factory-updated {
+    padding: 12px 20px;
+    border-top: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+}
+
+@keyframes factory-travel {
+    from { left: 0; opacity: 0; }
+    6% { opacity: 1; }
+    94% { opacity: 1; }
+    to { left: calc(100% - 8px); opacity: 0; }
+}
+
+@keyframes factory-lit {
+    0% { border-color: var(--line); background-color: var(--ground); }
+    2% { border-color: var(--accent); background-color: #1d1a12; }
+    15% { border-color: var(--accent); background-color: #1d1a12; }
+    18% { border-color: var(--line); background-color: var(--ground); }
+    100% { border-color: var(--line); background-color: var(--ground); }
+}
+
 /* About */
 .about {
     display: flex;

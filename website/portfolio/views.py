@@ -2,7 +2,9 @@ from django.db.models import F
 from django.http import FileResponse, Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import DetailView
-from .models import Project, Resume
+from django.conf import settings
+
+from .models import PipelineItem, Project, Resume, SyncState
 
 MORE_PROJECTS_ON_HOME = 6
 
@@ -17,9 +19,37 @@ def published_projects():
     return Project.objects.filter(is_published=True).order_by(F('github_pushed_at').desc(nulls_last=True), '-order')
 
 
+PIPELINE_ROWS = 3
+
+
+def pipeline_panel():
+    """What the "How I ship with AI" panel shows, from the rows the GitHub sync stored.
+
+    GitHub does not say which stage of the pipeline is running, so the panel only ever claims
+    two things: a pull request is open ("working"), or nothing is ("idle").
+    """
+    items = list(PipelineItem.objects.all())
+    merged = sorted((item for item in items if item.state == PipelineItem.MERGED),
+                    key=lambda item: item.merged_at, reverse=True)
+    for item in merged:
+        item.result = 'Deployed' if item.repo in settings.DEPLOYING_REPOS else 'Merged'
+    open_pulls = sorted((item for item in items if item.kind == PipelineItem.PULL and item.state == PipelineItem.OPEN),
+                        key=lambda item: item.updated_at, reverse=True)
+    queued = sorted((item for item in items if item.kind == PipelineItem.ISSUE),
+                    key=lambda item: item.updated_at, reverse=True)
+    return {
+        'working_on': open_pulls[0] if open_pulls else None,
+        'last_shipped': merged[0] if merged else None,
+        'shipped': merged[:PIPELINE_ROWS],
+        'queued': queued[:PIPELINE_ROWS],
+        'synced_at': SyncState.last('pipeline'),
+    }
+
+
 def portfolio(request):
     featured = list(Project.objects.filter(is_published=True, is_featured=True).order_by('-order'))
     context = {
+        'pipeline': pipeline_panel(),
         'featured': featured,
         'more_projects': published_projects().filter(is_featured=False)[:MORE_PROJECTS_ON_HOME],
         'page_description': HOME_DESCRIPTION,

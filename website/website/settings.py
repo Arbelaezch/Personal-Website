@@ -77,6 +77,9 @@ ROOT_URLCONF = 'website.urls'
 GITHUB_USER = os.getenv('GITHUB_USER', 'Arbelaezch')
 PIPELINE_REPOS = os.getenv('PIPELINE_REPOS', 'Arbelaezch/Personal-Website').split()
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN', '')
+# Repositories where merging a pull request deploys it. Their merged pull requests are shown as
+# "Deployed" on the home page; those of any other repository as "Merged".
+DEPLOYING_REPOS = os.getenv('DEPLOYING_REPOS', 'Arbelaezch/Personal-Website').split()
 
 # The one public address of the site, used for canonical and Open Graph URLs (no trailing slash).
 SITE_URL = os.getenv('SITE_URL', 'https://christiandonovan.ca').rstrip('/')
