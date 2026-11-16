@@ -22,6 +22,9 @@ live server config is versioned in `deploy/`. The GitHub issues are the roadmap;
 - Content that is not code: projects are featured, published and written up in the admin. `manage.py load_portfolio_content`
   holds the first drafts and only fills empty fields. `manage.py sync_github` (daily systemd timer) refreshes projects and
   the pipeline panel from GitHub and never overwrites hand-written fields.
+- Uploaded images are shown through the `resized` template filter (`{% load images %}`, `website/images.py`): WebP copies
+  under `media/resized/<width>/`, written when a project or movie is saved. Originals are never changed. A new page
+  that shows an upload at a new size adds its width to `WIDTHS` and runs `manage.py resize_images` on the server.
 - The resume is uploaded in the admin and served at `/resume/`. It is never committed (`docs/career/` is ignored).
 
 ## Rules

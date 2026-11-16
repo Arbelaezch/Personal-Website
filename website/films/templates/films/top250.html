@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static images %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'films/css/top250.css' %}">
@@ -15,7 +15,7 @@
         {% for entry in entries %}
             <a href="{% url 'films:movie_detail' year=entry.movie.get_decade slug=entry.movie.slug %}" class="movie-entry">
                 <span class="rank">#{{ entry.rank }}</span>
-                <img src="{{ entry.movie.image.url }}" alt="" loading="lazy">
+                <img src="{{ entry.movie.image|resized:200 }}" alt="" width="100" height="150" loading="lazy">
                 <div class="movie-info">
                     <h2>{{ entry.movie.title }}</h2>
                     <p>{{ entry.movie.release_year }}</p>

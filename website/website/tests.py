@@ -389,3 +389,122 @@ class ContentSecurityPolicyTests(SmokeTestCase):
                 self.assertNotRegex(page, r'\son[a-z]+="')
                 for source in re.findall(r'<(?:script|link)[^>]+(?:src|href)="([^"]+)"', page):
                     self.assertTrue(source.startswith("/") or source.startswith("https://christiandonovan.ca"), source)
+
+
+def picture_upload(name, size, mode="RGB", fmt="PNG", color=(200, 30, 30), frames=1):
+    from io import BytesIO
+    from django.core.files.uploadedfile import SimpleUploadedFile
+    from PIL import Image
+    image = Image.new(mode, size, color if mode != "RGBA" else (*color, 0))
+    out = BytesIO()
+    if frames > 1:
+        image.save(out, "GIF", save_all=True, append_images=[Image.new("RGB", size, (0, 0, 255))] * (frames - 1), duration=100)
+    else:
+        image.save(out, fmt)
+    return SimpleUploadedFile(name, out.getvalue())
+
+
+class ResizedImagesTests(SmokeTestCase):
+    def movie(self, upload, title="Heat"):
+        from films.models import Decade, Movie
+        decade, _ = Decade.objects.get_or_create(year=1990, defaults={"title": "The Nineties", "description": "<p>d</p>"})
+        return Movie.objects.create(title=title, synopsis="<p>s</p>", review="<p>r</p>", genre="thriller",
+                                    release_year=1995, decade=decade, image=upload)
+
+    def open_copy(self, image, width):
+        from django.core.files.storage import default_storage
+        from PIL import Image
+        from website.images import resized_name
+        with default_storage.open(resized_name(image.name, width), "rb") as handle:
+            picture = Image.open(handle)
+            picture.load()
+            return picture
+
+    def test_saving_a_movie_writes_webp_copies_at_each_width_and_keeps_the_upload(self):
+        from django.core.files.storage import default_storage
+        movie = self.movie(picture_upload("poster.png", (1200, 1800)))
+        original = default_storage.size(movie.image.name)
+        for width in [200, 500, 600]:
+            copy = self.open_copy(movie.image, width)
+            self.assertEqual((copy.format, copy.size), ("WEBP", (width, width * 3 // 2)))
+        self.assertEqual(default_storage.size(movie.image.name), original)
+        self.assertTrue(movie.image.name.endswith(".png"))
+
+    def test_small_images_are_never_enlarged(self):
+        movie = self.movie(picture_upload("small.png", (300, 450)))
+        self.assertEqual(self.open_copy(movie.image, 600).size, (300, 450))
+        self.assertEqual(self.open_copy(movie.image, 200).size, (200, 300))
+
+    def test_transparency_is_kept(self):
+        from portfolio.models import Project
+        project = Project.objects.create(title="Logo", image=picture_upload("logo.png", (2000, 1000), mode="RGBA"))
+        copy = self.open_copy(project.image, 1600)
+        self.assertEqual(copy.size, (1600, 800))
+        self.assertEqual(copy.convert("RGBA").getpixel((5, 5))[3], 0)
+
+    def test_pages_use_the_copies(self):
+        from films.models import Top250Entry
+        from portfolio.models import Project
+        movie = self.movie(picture_upload("poster.png", (1200, 1800)))
+        Top250Entry.objects.create(movie=movie, rank=1)
+        project = Project.objects.create(title="Shot", image=picture_upload("shot.png", (2400, 1500)))
+        stem = movie.image.name.rsplit(".", 1)[0]
+        self.assertContains(self.client.get("/films/"), f'src="/media/resized/200/{stem}.webp"')
+        self.assertContains(self.client.get("/films/1990s/"), f'src="/media/resized/500/{stem}.webp"')
+        self.assertContains(self.client.get(f"/films/1990s/{movie.slug}/"), f'src="/media/resized/600/{stem}.webp"')
+        self.assertContains(self.client.get(project.get_absolute_url()),
+                            f'src="/media/resized/1600/{project.image.name.rsplit(".", 1)[0]}.webp"')
+
+    def test_page_falls_back_to_the_upload_while_there_is_no_copy(self):
+        from django.core.files.storage import default_storage
+        from website import images
+        movie = self.movie(picture_upload("poster.png", (1200, 1800)))
+        name = images.resized_name(movie.image.name, 600)
+        default_storage.delete(name)
+        images._known.discard(name)
+        page = self.client.get(f"/films/1990s/{movie.slug}/")
+        self.assertContains(page, f'src="{movie.image.url}"')
+        self.assertNotContains(page, "/media/resized/600/")
+
+    def test_animations_and_unreadable_files_are_left_alone_without_breaking_the_save(self):
+        from django.core.files.uploadedfile import SimpleUploadedFile
+        from website import images
+        animated = self.movie(picture_upload("anim.gif", (400, 600), frames=3), title="Animated")
+        broken = self.movie(SimpleUploadedFile("broken.jpg", b"this is not an image"), title="Broken")
+        for movie in [animated, broken]:
+            with self.subTest(movie=movie.title):
+                self.assertEqual(images.resize_for(movie), [])
+                page = self.client.get(f"/films/1990s/{movie.slug}/")
+                self.assertContains(page, f'src="{movie.image.url}"')
+
+    def test_no_image_renders_nothing_and_the_filter_returns_an_empty_string(self):
+        from portfolio.models import Project
+        from website.images import resized_url
+        project = Project.objects.create(title="No Picture")
+        self.assertEqual(resized_url(project.image, 1600), "")
+        self.assertNotContains(self.client.get(project.get_absolute_url()), "<img")
+
+    def test_backfill_command_dry_run_then_write_then_nothing_left(self):
+        from io import StringIO
+        from django.core.files.storage import default_storage
+        from django.core.management import call_command
+        from website import images
+        movie = self.movie(picture_upload("poster.png", (1200, 1800)))
+        for width in [200, 500, 600]:  # as if uploaded before this release
+            default_storage.delete(images.resized_name(movie.image.name, width))
+        images._known.clear()
+
+        def run(*args):
+            out = StringIO()
+            call_command("resize_images", *args, stdout=out)
+            return out.getvalue()
+
+        self.assertIn("would write 3 files", run("--dry-run"))
+        self.assertFalse(default_storage.exists(images.resized_name(movie.image.name, 200)))
+        self.assertIn("wrote 3 files", run())
+        self.assertTrue(default_storage.exists(images.resized_name(movie.image.name, 200)))
+        self.assertIn("wrote 0 files", run())
+        self.assertIn("wrote 3 files", run("--force"))
+        # --force replaces in place: no "_abc123" duplicates
+        folder = images.resized_name(movie.image.name, 200).rsplit("/", 1)[0]
+        self.assertEqual(len(default_storage.listdir(folder)[1]), 1)

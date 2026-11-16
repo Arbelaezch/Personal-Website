@@ -73,6 +73,9 @@ Settings that live only in the server's .env (website/website/.env, owner carb, 
 Content that lives only in the database and media/ (not in the repository, so it needs the backups in section 7):
   projects with their flags, summaries, case studies and screenshots; the resume (media/resume/); films and recipes.
   First drafts can be reloaded into EMPTY fields with:  manage.py load_portfolio_content [--dry-run]
+Resized images: pages show WebP copies of uploads from media/resized/<width>/ (written on save; originals untouched).
+  Fill in or rebuild them (as the portfolio user):  manage.py resize_images [--dry-run] [--force]
+  The folder can be deleted at any time: pages fall back to the originals until the command is run again.
 Manual deploy / restart:
   sudo systemctl restart gunicorn        # after daemon-reload if the unit changed
   sudo systemctl status gunicorn ; journalctl -u gunicorn -n 50

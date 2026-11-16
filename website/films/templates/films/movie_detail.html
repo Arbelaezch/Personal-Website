@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static images %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'films/css/movie_detail.css' %}">
@@ -17,7 +17,7 @@
     </header>
     <div class="movie-facts">
         {% if movie.image %}
-        <img class="movie-poster" src="{{ movie.image.url }}" alt="{{ movie.title }}">
+        <img class="movie-poster" src="{{ movie.image|resized:600 }}" alt="{{ movie.title }}">
         {% endif %}
         <div class="movie-synopsis">
             {% if movie.top250_rank %}
