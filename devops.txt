@@ -81,6 +81,8 @@ Manual deploy / restart:
 4. NGINX  (deploy/nginx/, see its README)
 =====================================================================
 Edit the files in deploy/nginx, then on the server:  sudo deploy/nginx/install.sh
+/favicon.ico is served by nginx straight from staticfiles/favicon/favicon.ico (pages link their own icons; this
+covers the admin and the API). Check:  curl -sI https://christiandonovan.ca/favicon.ico
 (backs up /etc/nginx, tests, reloads, restores the backup if the test fails).
 Layout: one file per site in sites-available/, shared snippets (security headers, proxy settings that OVERWRITE
 X-Forwarded-For, Cloudflare real-IP), 000-catch-all (unknown Host -> 444, unknown TLS name -> refused),
