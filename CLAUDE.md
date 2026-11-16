@@ -11,6 +11,19 @@ live server config is versioned in `deploy/`. The GitHub issues are the roadmap;
 - Tests with coverage: `cd website && coverage run manage.py test && coverage report`
 - Django lives in `website/`: run `manage.py` from there
 
+## Frontend (redesigned 2026/11, tracking issue #106)
+- Every public page extends `website/templates/base.html` (one nav, one footer). Design tokens and shared components are
+  in `website/static/css/site.css`; each app's CSS holds only page-specific rules. Dark theme only. Fonts are self-hosted.
+- No frontend framework and no build step: plain CSS and ES modules served by WhiteNoise. No inline `<script>`, inline
+  `<style>` or event-handler attributes on public pages (a Content-Security-Policy is sent; `CSP_MODE` in settings).
+- Home page: `portfolio/js/featured.js` owns which featured project is selected; `portfolio/js/orbit.js` is the tethered
+  orbit, ported from `docs/design/orbit-prototype.html`. Keep its physics constants unless the owner asks. The page must
+  keep working without JavaScript.
+- Content that is not code: projects are featured, published and written up in the admin. `manage.py load_portfolio_content`
+  holds the first drafts and only fills empty fields. `manage.py sync_github` (daily systemd timer) refreshes projects and
+  the pipeline panel from GitHub and never overwrites hand-written fields.
+- The resume is uploaded in the admin and served at `/resume/`. It is never committed (`docs/career/` is ignored).
+
 ## Rules
 - Branch from `main`, open a PR, never push to `main`. Merging deploys production (health check + automatic code rollback).
   The owner merges PRs in the browser; workflow-file PRs cannot be merged by an agent token.

@@ -18,5 +18,10 @@ echo "== deployment settings (production-like, must be warning-free)"
 DEBUG=0 PROD_DB_ENGINE=django.db.backends.sqlite3 PROD_DB_NAME=:memory: \
   "$PY" manage.py check --deploy --fail-level WARNING
 
+echo "== static files collect with the production storage (a reference to a missing file fails here)"
+STATIC_CHECK_DIR="$(mktemp -d)"
+trap 'rm -rf "$STATIC_CHECK_DIR"' EXIT
+STATIC_ROOT_OVERRIDE="$STATIC_CHECK_DIR" "$PY" manage.py collectstatic --noinput -v0
+
 echo "== tests"
 "$PY" manage.py test --noinput

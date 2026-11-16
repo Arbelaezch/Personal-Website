@@ -58,6 +58,12 @@ jobs:
         cd website
         python manage.py check --deploy --fail-level WARNING
 
+    - name: Collect static files with the production storage
+      # A template or stylesheet that points at a missing static file fails here, before the deploy.
+      run: |
+        cd website
+        STATIC_ROOT_OVERRIDE="$RUNNER_TEMP/staticfiles" python manage.py collectstatic --noinput -v0
+
     - name: Run tests with coverage
       run: |
         cd website

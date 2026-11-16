@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
 
     # Third-party Libraries
     'django_ckeditor_5',
@@ -67,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'website.middleware.ContentSecurityPolicyMiddleware',
 ]
 
 ROOT_URLCONF = 'website.urls'
@@ -80,6 +82,10 @@ GITHUB_TOKEN = os.getenv('GITHUB_TOKEN', '')
 # Repositories where merging a pull request deploys it. Their merged pull requests are shown as
 # "Deployed" on the home page; those of any other repository as "Merged".
 DEPLOYING_REPOS = os.getenv('DEPLOYING_REPOS', 'Arbelaezch/Personal-Website').split()
+
+# Content-Security-Policy on the public pages (website/middleware.py): "report-only", "enforce" or "off".
+# Report-only blocks nothing; switch to "enforce" once the browser consoles stay clean (issue #105).
+CSP_MODE = os.getenv('CSP_MODE', 'report-only')
 
 # The one public address of the site, used for canonical and Open Graph URLs (no trailing slash).
 SITE_URL = os.getenv('SITE_URL', 'https://christiandonovan.ca').rstrip('/')
@@ -158,7 +164,8 @@ STATICFILES_DIRS = [
 
 # Where django collects static files.
 # Collects them locally; should collect to static bucket for production.
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+# STATIC_ROOT_OVERRIDE lets the checks (scripts/test.sh, CI) collect into a throw-away folder.
+STATIC_ROOT = os.getenv('STATIC_ROOT_OVERRIDE') or BASE_DIR / 'staticfiles'
 
 
 STORAGES = {

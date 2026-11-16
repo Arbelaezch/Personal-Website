@@ -298,3 +298,94 @@ class SharedBaseTemplateTests(SmokeTestCase):
                 page = self.client.get(url).content.decode()
                 for gone in ["navbar.css", "footer.css", "css/base.css", "github.png", "facebook.png"]:
                     self.assertNotIn(gone, page)
+
+
+class SitemapAndRobotsTests(SmokeTestCase):
+    @classmethod
+    def setUpTestData(cls):
+        from films.models import Decade, Movie
+        from portfolio.models import Project
+        from website.testing import tiny_image
+
+        Project.objects.create(title="Shown Project")
+        Project.objects.create(title="Hidden Project", is_published=False)
+        decade = Decade.objects.create(title="The Nineties", description="<p>d</p>", year=1990)
+        Movie.objects.create(title="Heat", synopsis="<p>s</p>", review="<p>r</p>", genre="thriller",
+                             release_year=1995, decade=decade, image=tiny_image())
+        Movie.objects.create(title="Draft Film", synopsis="<p>s</p>", review="<p>r</p>", genre="drama",
+                             release_year=1996, decade=decade, image=tiny_image(), is_published=False)
+
+    def test_sitemap_lists_public_pages_only(self):
+        response = self.client.get("/sitemap.xml")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("xml", response["Content-Type"])
+        body = response.content.decode()
+        for path in ["/", "/projects/", "/personal/", "/films/", "/project/shown-project/", "/films/1990s/", "/films/1990s/heat/"]:
+            self.assertIn(f"<loc>https://testserver{path}</loc>", body)
+        for hidden in ["hidden-project", "draft-film", "/admin/", "/resume/", "/api/"]:
+            self.assertNotIn(hidden, body)
+
+    def test_every_sitemap_url_answers_200(self):
+        import re
+        body = self.client.get("/sitemap.xml").content.decode()
+        urls = re.findall(r"<loc>https://testserver([^<]+)</loc>", body)
+        self.assertGreaterEqual(len(urls), 7)
+        for url in urls:
+            with self.subTest(url=url):
+                self.assertEqual(self.client.get(url).status_code, 200)
+
+    def test_robots_txt(self):
+        response = self.client.get("/robots.txt")
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response["Content-Type"].startswith("text/plain"))
+        body = response.content.decode()
+        self.assertIn("User-agent: *", body)
+        self.assertIn("Disallow: /admin/", body)
+        self.assertIn("Disallow: /resume/", body)
+        self.assertIn("Sitemap: https://christiandonovan.ca/sitemap.xml", body)
+
+
+class ContentSecurityPolicyTests(SmokeTestCase):
+    REPORT, ENFORCE = "Content-Security-Policy-Report-Only", "Content-Security-Policy"
+
+    def test_public_pages_send_the_policy_in_report_only_mode_by_default(self):
+        for url in ["/", "/projects/", "/personal/", "/films/", "/robots.txt"]:
+            with self.subTest(url=url):
+                response = self.client.get(url)
+                policy = response[self.REPORT]
+                self.assertNotIn(self.ENFORCE, response)
+                self.assertIn("default-src 'self'", policy)
+                self.assertIn("script-src 'self'", policy)
+                self.assertIn("frame-ancestors 'none'", policy)
+                self.assertNotIn("unsafe-eval", policy)
+                self.assertNotIn("script-src 'self' 'unsafe-inline'", policy)
+
+    def test_admin_editor_and_api_are_exempt(self):
+        for url in ["/admin/login/", "/api/v1/recipes/"]:
+            with self.subTest(url=url):
+                response = self.client.get(url)
+                self.assertNotIn(self.REPORT, response)
+                self.assertNotIn(self.ENFORCE, response)
+
+    def test_enforce_and_off_modes(self):
+        from django.test import override_settings
+        with override_settings(CSP_MODE="enforce"):
+            response = self.client.get("/")
+            self.assertIn(self.ENFORCE, response)
+            self.assertNotIn(self.REPORT, response)
+        with override_settings(CSP_MODE="off"):
+            response = self.client.get("/")
+            self.assertNotIn(self.ENFORCE, response)
+            self.assertNotIn(self.REPORT, response)
+
+    def test_templates_have_nothing_the_policy_would_block(self):
+        # No inline <style>, no inline script, no event handlers, no third-party hosts for scripts or styles.
+        import re
+        for url in ["/", "/projects/", "/personal/", "/films/"]:
+            with self.subTest(url=url):
+                page = self.client.get(url).content.decode()
+                self.assertNotIn("<style", page)
+                self.assertNotRegex(page, r"<script(?![^>]*\ssrc=)")
+                self.assertNotRegex(page, r'\son[a-z]+="')
+                for source in re.findall(r'<(?:script|link)[^>]+(?:src|href)="([^"]+)"', page):
+                    self.assertTrue(source.startswith("/") or source.startswith("https://christiandonovan.ca"), source)
