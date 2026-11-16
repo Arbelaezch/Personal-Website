@@ -3,56 +3,83 @@
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'portfolio/css/portfolio.css' %}">
+<script type="module" src="{% static 'portfolio/js/featured.js' %}"></script>
 {% endblock %}
 
 {% block content %}
 <header class="hero">
-    <div class="hero-text">
-        <p class="mono-label">Full-Stack Developer</p>
-        <h1 class="hero-title">Christian Arbelaez</h1>
-        <p class="hero-quote">Building reliable web applications from backend to browser.</p>
+    <div class="hero-name">
+        <p class="mono-label">AI-enabled full-stack developer</p>
+        <h1 class="hero-title">Christian<br>Arbelaez</h1>
     </div>
-    <img src="{% static 'portfolio/images/ravine_ps.jpg' %}" class="hero-pic" alt="Hiking" width="3022" height="1428">
+    <div class="hero-side">
+        <p class="hero-tagline">I design and maintain the pipelines that let AI agents ship software safely, then I use them to build production software across web, mobile and developer tooling.</p>
+        <div class="hero-actions">
+            {% if has_resume %}
+            <a class="btn btn-primary" href="{% url 'resume' %}">
+                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12"></path><path d="M7 11l5 5 5-5"></path><path d="M5 20h14"></path></svg>
+                Download resume
+            </a>
+            {% endif %}
+            <a class="btn" href="#contact">Get in touch</a>
+        </div>
+    </div>
 </header>
 
-<section class="home-section" id="work">
-    <h2 class="section-title">Projects</h2>
-    <p class="home-intro">
-        I'm a full-stack developer with 4 years of experience building and shipping web applications. My work spans Python/Django backends, React frontends, and cloud deployments on GCP and DigitalOcean. I'm comfortable across the full stack, from database design and REST APIs to responsive UIs.
-    </p>
-
-    <div class="project-grid">
-        {% for project in projects %}
-        <a href="{{ project.get_absolute_url }}" class="project-card">
-            {% if project.image %}
-            <img src="{{ project.image.url }}" alt="" class="project-image" loading="lazy">
-            {% else %}
-            <div class="project-image project-image-empty" aria-hidden="true"></div>
-            {% endif %}
-            <div class="project-content">
-                <h3 class="project-title">{{ project.title }}</h3>
-                <p class="project-subtitle">{{ project.display_summary }}</p>
+{% if featured %}
+{# Works without JavaScript: each item links to its panel and CSS shows the targeted one. #101 replaces the list with the orbit. #}
+<section class="featured" id="work" aria-label="Featured projects">
+    <div class="featured-stage">
+        <h2 class="mono-label">Featured projects</h2>
+        <ol class="featured-list">
+            {% for project in featured %}
+            <li>
+                <a class="featured-item" href="#project-{{ project.slug }}" data-featured-link>
+                    <span class="featured-number">{{ forloop.counter|stringformat:"02d" }}</span>
+                    <span class="featured-title">{{ project.title }}</span>
+                    <span class="featured-meta">{{ project.meta_label }}</span>
+                </a>
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+    <div class="featured-panels">
+        {% for project in featured %}
+        <article class="featured-panel panel" id="project-{{ project.slug }}">
+            {% if project.meta_label %}<p class="featured-tag">{{ project.meta_label }}</p>{% endif %}
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.display_summary }}</p>
+            <div class="featured-links">
+                <a class="featured-primary" href="{{ project.get_absolute_url }}">Read more</a>
+                {% if project.project_url %}<a href="{{ project.project_url }}" rel="noopener">Open it</a>{% endif %}
+                {% if project.github_url %}<a href="{{ project.github_url }}" rel="noopener">View on GitHub</a>{% endif %}
             </div>
-        </a>
+        </article>
         {% endfor %}
     </div>
 </section>
+{% endif %}
 
-<section class="home-section" id="about">
-    <h2 class="section-title">About Me</h2>
-    <div class="about-contents">
-        <div class="about-text">
-            <p>
-                I'm Christian Arbelaez, a Full-Stack Software Developer at the University of Alberta Students' Union. I hold a BSc in Computer Science with a minor in Business from the University of Alberta.
-            </p>
-            <p>
-                I build and maintain production web applications, everything from architecting Django backends to deploying on cloud infrastructure. My business background helps me think about software not just technically, but in terms of real-world impact and tradeoffs.
-            </p>
-            <p>
-                Outside of work, I'm drawn to classical films, ancient history, and practical philosophy. This site is where I document my projects and keep my work visible.
-            </p>
-        </div>
-        <img class="headshot" src="{% static 'portfolio/images/headshot.jpg' %}" alt="Christian Arbelaez" loading="lazy">
+{% if more_projects %}
+<section class="section" {% if not featured %}id="work" {% endif %}aria-labelledby="more-projects">
+    <div class="section-head">
+        <h2 class="section-title" id="more-projects">{% if featured %}More projects{% else %}Projects{% endif %}</h2>
+        <a class="section-more" href="{% url 'projects' %}">See all projects</a>
+    </div>
+    {% include "portfolio/project_rows.html" with projects=more_projects %}
+</section>
+{% endif %}
+
+<section class="section" id="factory" aria-labelledby="factory-title">
+    <h2 class="section-title" id="factory-title">How I ship with AI</h2>
+    <p class="lede">I built a pipeline of AI agents that takes a GitHub issue from plan to production. Each change passes six stages, and any stage can stop it.</p>
+</section>
+
+<section class="about" id="about" aria-labelledby="about-title">
+    <h2 class="section-title" id="about-title">About</h2>
+    <div class="about-body">
+        <p>I'm a Full-Stack Software Developer at the University of Alberta Students' Union, with four years of building and shipping web applications. I hold a BSc in Computer Science with a minor in Business from the University of Alberta.</p>
+        <p>Outside of work I'm drawn to classical films, ancient history and practical philosophy.</p>
     </div>
 </section>
 {% endblock %}

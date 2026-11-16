@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section">
+    <h1 class="page-title">Projects</h1>
+    {% if projects %}
+    {% include "portfolio/project_rows.html" %}
+    {% else %}
+    <p class="lede">Nothing is published yet.</p>
+    {% endif %}
+</section>
+{% endblock %}

@@ -8,8 +8,8 @@
 {% block content %}
 <article class="project-detail">
     <header class="project-detail-header">
-        {% if project.timeline %}
-        <p class="mono-label">{{ project.timeline }}</p>
+        {% if project.meta_label or project.timeline %}
+        <p class="mono-label">{{ project.meta_label }}{% if project.meta_label and project.timeline %} · {% endif %}{{ project.timeline }}</p>
         {% endif %}
         <h1>{{ project.title }}</h1>
         {% if project.display_summary %}
@@ -48,6 +48,7 @@
             View on GitHub
         </a>
         {% endif %}
+        <a href="{% url 'projects' %}" class="btn">All projects</a>
     </div>
 </article>
 {% endblock %}

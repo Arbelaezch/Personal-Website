@@ -236,7 +236,8 @@ class ResumeDownloadTests(SmokeTestCase):
     def test_buttons_appear_on_every_page_once_a_resume_exists(self):
         from portfolio.models import Resume
         Resume.objects.create(file=pdf_upload())
-        for url in [reverse("portfolio"), reverse("films:top_250"), reverse("BlogView")]:
+        # the home page has a third one in its hero (HomePageTests)
+        for url in [reverse("projects"), reverse("films:top_250"), reverse("BlogView")]:
             with self.subTest(url=url):
                 page = self.client.get(url).content.decode()
                 self.assertEqual(page.count('href="/resume/"'), 2)  # nav and footer
@@ -308,3 +309,149 @@ class ResumeUploadTests(SmokeTestCase):
                          {"action": "delete_selected", "_selected_action": [resume.pk], "post": "yes"})
         self.assertEqual(Resume.objects.count(), 0)
         self.assertFalse(storage.exists(name))
+
+
+class HomePageTests(SmokeTestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.star = make_project("Star Project", is_featured=True, order=5, summary="The featured one",
+                                category="Agent pipeline", primary_language="Python",
+                                github_url="https://github.com/Arbelaezch/star")
+        cls.second = make_project("Second Star", is_featured=True, order=9)
+        cls.plain = make_project("Plain Project", timeline="Jan 2024 - Mar 2025", primary_language="C++")
+        cls.hidden = make_project("Hidden Star", is_featured=True, is_published=False)
+
+    def test_structure_and_hero(self):
+        page = self.client.get(reverse("portfolio")).content.decode()
+        self.assertIn("Christian<br>Arbelaez", page)
+        self.assertIn("AI-enabled full-stack developer", page)
+        for anchor in ['id="work"', 'id="factory"', 'id="about"', 'id="contact"']:
+            self.assertEqual(page.count(anchor), 1, anchor)
+        self.assertLess(page.index('id="work"'), page.index('id="factory"'))
+        self.assertLess(page.index('id="factory"'), page.index('id="about"'))
+        self.assertNotIn("ravine_ps", page)
+
+    def test_featured_projects_are_only_in_the_featured_area_highest_order_first(self):
+        page = self.client.get(reverse("portfolio")).content.decode()
+        featured, rest = page.split('id="more-projects"')
+        self.assertIn("Star Project", featured)
+        self.assertLess(featured.index("Second Star"), featured.index("Star Project"))
+        self.assertIn("Agent pipeline · Python", featured)
+        self.assertIn('href="#project-star-project"', featured)
+        self.assertIn('id="project-star-project"', featured)
+        self.assertNotIn("Star Project", rest.split('id="factory"')[0])
+        self.assertIn("Plain Project", rest)
+        self.assertNotIn("Plain Project", featured)
+
+    def test_unpublished_projects_appear_nowhere(self):
+        for url in [reverse("portfolio"), reverse("projects")]:
+            self.assertNotContains(self.client.get(url), "Hidden Star")
+
+    def test_rows_show_year_summary_and_language(self):
+        page = self.client.get(reverse("portfolio")).content.decode()
+        self.assertIn('<span class="row-year">2025</span>', page)
+        self.assertIn('<span class="row-lang">C++</span>', page)
+        self.assertIn('href="/project/plain-project/"', page)
+
+    def test_more_projects_is_capped_and_links_to_the_archive(self):
+        for number in range(8):
+            make_project(f"Filler {number}")
+        page = self.client.get(reverse("portfolio")).content.decode()
+        self.assertEqual(page.count('class="row"'), 6)
+        self.assertIn(f'href="{reverse("projects")}"', page)
+        archive = self.client.get(reverse("projects")).content.decode()
+        self.assertEqual(archive.count('class="row"'), 11)  # 8 fillers + plain + the two published featured
+
+    def test_resume_button_in_the_hero_only_when_a_resume_exists(self):
+        from portfolio.models import Resume
+        self.assertEqual(self.client.get(reverse("portfolio")).content.decode().count('href="/resume/"'), 0)
+        Resume.objects.create(file=pdf_upload())
+        self.assertEqual(self.client.get(reverse("portfolio")).content.decode().count('href="/resume/"'), 3)
+
+    def test_the_only_script_is_the_external_module(self):
+        page = self.client.get(reverse("portfolio")).content.decode()
+        self.assertEqual(page.count("<script"), 1)
+        self.assertIn('<script type="module" src="/static/portfolio/js/featured.js"></script>', page)
+
+
+class HomePageEmptyStateTests(SmokeTestCase):
+    def test_no_projects_at_all(self):
+        page = self.client.get(reverse("portfolio")).content.decode()
+        self.assertNotIn('id="work"', page)
+        self.assertIn('id="factory"', page)
+        self.assertEqual(self.client.get(reverse("projects")).status_code, 200)
+
+    def test_nothing_featured_yet_lists_everything_as_projects(self):
+        # The state of production between this deploy and the first featured flag.
+        make_project("Only Project")
+        page = self.client.get(reverse("portfolio")).content.decode()
+        self.assertEqual(page.count('id="work"'), 1)
+        self.assertIn(">Projects</h2>", page)
+        self.assertNotIn("More projects", page)
+        self.assertIn("Only Project", page)
+
+
+class ProjectListOrderTests(SmokeTestCase):
+    def test_newest_github_activity_first_then_hand_set_order(self):
+        from datetime import datetime, timezone
+        make_project("Hand Low", order=1)
+        make_project("Hand High", order=5)
+        make_project("Synced Old", github_pushed_at=datetime(2025, 3, 1, tzinfo=timezone.utc))
+        make_project("Synced New", github_pushed_at=datetime(2026, 3, 1, tzinfo=timezone.utc))
+        page = self.client.get(reverse("projects")).content.decode()
+        positions = [page.index(name) for name in ["Synced New", "Synced Old", "Hand High", "Hand Low"]]
+        self.assertEqual(positions, sorted(positions))
+        self.assertIn('<span class="row-year">2026</span>', page)
+
+    def test_year_comes_from_the_timeline_when_there_is_no_github_date(self):
+        self.assertEqual(make_project("A", timeline="May 2026").display_year, "2026")
+        self.assertEqual(make_project("B", timeline="January 2021 - April 2021").display_year, "2021")
+        self.assertEqual(make_project("C", timeline="ongoing").display_year, "")
+
+
+class LoadPortfolioContentTests(SmokeTestCase):
+    def run_command(self, *args):
+        from io import StringIO
+        from django.core.management import call_command
+        out = StringIO()
+        call_command("load_portfolio_content", *args, stdout=out)
+        return out.getvalue()
+
+    def test_creates_missing_projects_and_fills_existing_ones(self):
+        existing = make_project("FHIR Patient Portal", subtitle="Old subtitle")
+        output = self.run_command()
+        self.assertIn("created  Software Factory", output)
+        existing.refresh_from_db()
+        self.assertTrue(existing.is_featured)
+        self.assertEqual(existing.github_repo, "Arbelaezch/FHIR-patient-portal")
+        self.assertEqual(existing.subtitle, "Old subtitle")
+        self.assertEqual(
+            sorted(Project.objects.filter(is_featured=True).values_list("slug", flat=True)),
+            ["callback", "court-vision", "fhir-patient-portal", "software-factory"])  # no NBA row here: skipped
+        self.assertIn("skipped  NBA Draft Simulator", output)
+        self.assertEqual(self.client.get(reverse("portfolio")).status_code, 200)
+        self.assertEqual(self.client.get("/project/software-factory/").status_code, 200)
+
+    def test_never_overwrites_text_or_flags_set_by_hand(self):
+        mine = make_project("FHIR Patient Portal", summary="My own words", category="Mine")
+        chosen = make_project("Something Else", is_featured=True)
+        self.run_command()
+        mine.refresh_from_db()
+        self.assertEqual((mine.summary, mine.category), ("My own words", "Mine"))
+        self.assertFalse(mine.is_featured)  # a featured project already existed, so flags were left alone
+        self.assertEqual(list(Project.objects.filter(is_featured=True)), [chosen])
+
+    def test_second_run_changes_nothing_and_dry_run_writes_nothing(self):
+        self.assertIn("Dry run", self.run_command("--dry-run"))
+        self.assertEqual(Project.objects.count(), 0)
+        self.run_command()
+        before = list(Project.objects.order_by("pk").values())
+        output = self.run_command()
+        self.assertNotIn("created", output)
+        self.assertNotIn("updated", output)
+        self.assertEqual(list(Project.objects.order_by("pk").values()), before)
+
+    def test_summaries_fit_the_field(self):
+        from portfolio.management.commands.load_portfolio_content import PROJECTS
+        for entry in PROJECTS:
+            self.assertLessEqual(len(entry.get("summary", "")), 200, entry["title"])
