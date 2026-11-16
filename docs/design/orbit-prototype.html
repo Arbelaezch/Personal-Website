@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbit Physics Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Single dark theme by choice: it matches homepage direction A. Layout: stage on the left, detail panel on the right, stacked on a phone. */
+:root {
+  color-scheme: dark;
+  --ground: #0e1318;
+  --stage: #10171d;
+  --panel: #151c23;
+  --line: #26313c;
+  --line-strong: #3a4856;
+  --text: #e8ecf0;
+  --text-soft: #c9d1d9;
+  --muted: #9aa7b4;
+  --node: #6cb6ff;
+  --accent: #f5a524;
+  --font-body: Archivo, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--ground);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+}
+main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 40px 24px 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+header { display: flex; flex-direction: column; gap: 10px; }
+h1 { margin: 0; font-size: 34px; line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; text-wrap: balance; }
+header p { margin: 0; color: var(--text-soft); max-width: 65ch; }
+section { display: flex; flex-direction: column; gap: 16px; }
+h2 { margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.01em; }
+.lede { margin: 0; color: var(--muted); max-width: 70ch; }
+.demo { display: flex; flex-wrap: wrap; gap: 16px; }
+.stage {
+  flex: 2 1 520px;
+  min-width: 0;
+  background: var(--stage);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+}
+canvas {
+  display: block;
+  width: 100%;
+  height: 520px;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+canvas.grabbing { cursor: grabbing; }
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+button {
+  font: inherit;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--line-strong);
+  padding: 8px 12px;
+  min-height: 36px;
+  cursor: pointer;
+}
+button:hover { border-color: var(--node); }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.panel {
+  flex: 1 1 280px;
+  min-width: 0;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 280px;
+}
+.tag { font-family: var(--font-mono); font-size: 12px; color: var(--node); }
+.panel h3 { margin: 0; font-size: 30px; line-height: 1.1; font-weight: 800; letter-spacing: -0.01em; }
+.panel p { margin: 0; color: var(--text-soft); }
+.panel a { color: var(--accent); font-weight: 600; margin-top: auto; padding: 12px 0; align-self: flex-start; }
+.hint { font-family: var(--font-mono); font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; }
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>Tethered orbit prototype</h1>
+<p>Each project hangs off the centre on an elastic string. Pull one and it snaps back. Keep it stretched tight for a couple of seconds and the string breaks. Drag the empty space to spin the orbit.</p>
+</header>
+
+<section>
+<div class="demo" id="demo-tethered"></div>
+</section>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  var PROJECTS = [
+    { title: 'Software Factory', meta: 'Python', tag: 'Agent pipeline · Python', ring: 0, a: 0,
+      desc: 'An agent pipeline that plans, builds, reviews and verifies GitHub issues, with gates a change has to pass before it reaches me.',
+      url: 'https://github.com/Arbelaezch/software-factory' },
+    { title: 'Bulb Agent', meta: 'TypeScript', tag: 'Developer tooling · TypeScript', ring: 0, a: Math.PI,
+      desc: 'Dormant caretaker agents for your repos.',
+      url: 'https://github.com/Arbelaezch/bulb-agent' },
+    { title: 'Court Vision', meta: 'TypeScript', tag: 'TypeScript', ring: 1, a: Math.PI / 2,
+      desc: '[ONE-LINE DESCRIPTION]',
+      url: 'https://github.com/Arbelaezch/court-vision' },
+    { title: 'FHIR Patient Portal', meta: 'Python', tag: 'Healthcare · Python', ring: 1, a: Math.PI * 7 / 6,
+      desc: 'A full-stack healthcare application implementing FHIR R4, with both server and client components.',
+      url: 'https://github.com/Arbelaezch/FHIR-patient-portal' },
+    { title: 'NBA Draft Simulator', meta: 'React Native', tag: 'Mobile game · React Native', ring: 1, a: Math.PI * 11 / 6,
+      desc: 'A React Native mobile game with 10,000+ downloads on the Google Play Store.',
+      url: 'https://github.com/Arbelaezch/nba-draft-simulator' }
+  ];
+
+  var C = {
+    stage: '#10171d', line: '#26313c', lineStrong: '#3a4856', text: '#e8ecf0',
+    muted: '#9aa7b4', node: '#6cb6ff', accent: '#f5a524', panel: '#151c23'
+  };
+
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var IDLE = reduced ? 0 : 0.12;   // resting spin, radians per second
+  var BREAK = 8;                   // spin speed at which projects let go
+  var MAX_SPIN = 16;
+  var FREE_TIME = 3;               // seconds before released projects return
+  var HIT = 26;                    // pointer radius around a project
+  var CLICK_SLOP = 6;              // movement under this counts as a click
+  var SLACK = 30;                  // pixels past the orbit before the string resists
+  var STRETCH = 110;               // the most a string can stretch past that
+  var STRAIN_AT = 0.6;             // share of full stretch that counts as straining
+  var SNAP_TIME = 1.8;             // seconds of strain before the string breaks
+  var REST_TIME = 3;               // seconds a dropped project lies on the floor
+  var STRAIN_COL = '#ff6b5e';
+
+  function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+
+  function Orbit(root, tethered) {
+    var self = this;
+    this.tethered = tethered;
+    this.theta = 0;
+    this.omega = IDLE;
+    this.sel = 0;
+    this.hover = -1;
+    this.drag = null;
+    this.spin = null;
+    this.W = 0; this.H = 0;
+
+    root.innerHTML =
+      '<div class="stage">' +
+        '<canvas aria-label="Interactive orbit of projects. The buttons below select the same projects."></canvas>' +
+        '<div class="bar"><div class="chips"></div><button type="button" class="reset">Reset</button></div>' +
+      '</div>' +
+      '<div class="panel" aria-live="polite">' +
+        '<span class="tag"></span><h3></h3><p></p>' +
+        '<a target="_blank" rel="noopener">View on GitHub</a>' +
+        '<span class="hint">' + 'Pull a project to stretch its string. Hold it tight to break it.' + '</span>' +
+      '</div>';
+
+    this.canvas = root.querySelector('canvas');
+    this.ctx = this.canvas.getContext('2d');
+    this.elTag = root.querySelector('.tag');
+    this.elTitle = root.querySelector('h3');
+    this.elDesc = root.querySelector('.panel p');
+    this.elLink = root.querySelector('.panel a');
+
+    this.nodes = PROJECTS.map(function (p, i) {
+      return { i: i, ring: p.ring, a: p.a, x: 0, y: 0, vx: 0, vy: 0, mode: 'attached', t: 0, strain: 0, alpha: 1, scale: 1, snapT: 1, stubX: 0, stubY: 0 };
+    });
+
+    var chips = root.querySelector('.chips');
+    this.chipEls = PROJECTS.map(function (p, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = p.title;
+      b.addEventListener('click', function () { self.select(i); });
+      chips.appendChild(b);
+      return b;
+    });
+    root.querySelector('.reset').addEventListener('click', function () { self.reset(); });
+
+    var cv = this.canvas;
+    cv.addEventListener('pointerdown', function (e) { self.onDown(e); });
+    cv.addEventListener('pointermove', function (e) { self.onMove(e); });
+    cv.addEventListener('pointerup', function (e) { self.onUp(e); });
+    cv.addEventListener('pointercancel', function (e) { self.onUp(e); });
+    cv.addEventListener('pointerleave', function () { if (!self.drag && !self.spin) self.hover = -1; });
+
+    this.resize(true);
+    this.select(0);
+  }
+
+  Orbit.prototype.resize = function (snap) {
+    var rect = this.canvas.getBoundingClientRect();
+    var w = Math.max(200, rect.width), h = Math.max(200, rect.height);
+    if (!snap && w === this.W && h === this.H) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    this.W = w; this.H = h;
+    this.canvas.width = Math.round(w * dpr);
+    this.canvas.height = Math.round(h * dpr);
+    this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    this.cx = w / 2;
+    this.cy = h / 2 - 10;
+    var base = Math.min(w * 0.82, h);
+    this.radii = [base * 0.25, base * 0.39];
+    for (var k = 0; k < this.nodes.length; k++) {
+      var n = this.nodes[k];
+      if (n.mode === 'attached' || snap) {
+        var hm = this.home(n);
+        n.x = hm.x; n.y = hm.y; n.vx = hm.vx; n.vy = hm.vy;
+      }
+    }
+  };
+
+  Orbit.prototype.home = function (n) {
+    var stretch = this.tethered ? 1 + Math.min(0.8, 0.012 * this.omega * this.omega) : 1;
+    var r = this.radii[n.ring] * stretch;
+    var ang = this.theta + n.a;
+    var cos = Math.cos(ang), sin = Math.sin(ang);
+    return { x: this.cx + r * cos, y: this.cy + r * sin, vx: -this.omega * r * sin, vy: this.omega * r * cos };
+  };
+
+  Orbit.prototype.select = function (i) {
+    this.sel = i;
+    var p = PROJECTS[i];
+    this.elTag.textContent = p.tag;
+    this.elTitle.textContent = p.title;
+    this.elDesc.textContent = p.desc;
+    this.elLink.href = p.url;
+    for (var k = 0; k < this.chipEls.length; k++) {
+      this.chipEls[k].setAttribute('aria-pressed', k === i ? 'true' : 'false');
+    }
+  };
+
+  Orbit.prototype.reset = function () {
+    this.omega = IDLE;
+    this.spin = null;
+    this.drag = null;
+    for (var k = 0; k < this.nodes.length; k++) {
+      var n = this.nodes[k];
+      if (n.mode !== 'attached') n.mode = 'returning';
+      n.alpha = 1; n.scale = 1; n.strain = 0;
+    }
+  };
+
+  Orbit.prototype.pos = function (e) {
+    var r = this.canvas.getBoundingClientRect();
+    return { x: e.clientX - r.left, y: e.clientY - r.top };
+  };
+
+  Orbit.prototype.nodeAt = function (p) {
+    var best = -1, bestD = HIT * HIT;
+    for (var k = 0; k < this.nodes.length; k++) {
+      var n = this.nodes[k];
+      if (n.mode === 'falling' || n.mode === 'resting' || n.mode === 'fading') continue;
+      var dx = n.x - p.x, dy = n.y - p.y, d = dx * dx + dy * dy;
+      if (d < bestD) { bestD = d; best = k; }
+    }
+    return best;
+  };
+
+  Orbit.prototype.onDown = function (e) {
+    if (e.button !== undefined && e.button !== 0) return;
+    var p = this.pos(e);
+    var hit = this.nodeAt(p);
+    try { this.canvas.setPointerCapture(e.pointerId); } catch (err) {}
+    if (hit >= 0) {
+      this.drag = { node: this.nodes[hit], sx: p.x, sy: p.y, tx: p.x, ty: p.y, moved: false, hold: 0 };
+    } else {
+      this.spin = { ang: Math.atan2(p.y - this.cy, p.x - this.cx), t: performance.now(), last: performance.now() };
+    }
+    this.canvas.classList.add('grabbing');
+  };
+
+  Orbit.prototype.onMove = function (e) {
+    var p = this.pos(e);
+    if (this.drag) {
+      var d = this.drag;
+      d.tx = p.x;
+      d.ty = p.y;
+      if (!d.moved && Math.hypot(p.x - d.sx, p.y - d.sy) > CLICK_SLOP) {
+        d.moved = true;
+        d.node.mode = 'dragged';
+        this.select(d.node.i);
+      }
+    } else if (this.spin) {
+      var s = this.spin;
+      var ang = Math.atan2(p.y - this.cy, p.x - this.cx);
+      var dA = ang - s.ang;
+      if (dA > Math.PI) dA -= 2 * Math.PI;
+      if (dA < -Math.PI) dA += 2 * Math.PI;
+      var now = performance.now();
+      var dt = Math.max(0.004, (now - s.t) / 1000);
+      this.theta += dA;
+      this.omega = clamp(this.omega * 0.7 + (dA / dt) * 0.3, -MAX_SPIN, MAX_SPIN);
+      s.ang = ang; s.t = now; s.last = now;
+    } else {
+      this.hover = this.nodeAt(p);
+    }
+  };
+
+  Orbit.prototype.onUp = function (e) {
+    try { this.canvas.releasePointerCapture(e.pointerId); } catch (err) {}
+    this.canvas.classList.remove('grabbing');
+    if (this.drag) {
+      var d = this.drag, n = d.node;
+      if (!d.moved) {
+        this.select(n.i);
+      } else {
+        var speed = Math.hypot(n.vx, n.vy);
+        if (speed > 2600) { n.vx *= 2600 / speed; n.vy *= 2600 / speed; speed = 2600; }
+        n.strain = 0;
+        if (n.mode === 'held') {
+          n.mode = 'falling'; n.t = 0;
+        } else if (this.tethered) {
+          n.mode = 'attached';
+        } else if (speed > 450) {
+          n.mode = 'free'; n.t = 0;
+        } else {
+          n.mode = 'returning';
+        }
+      }
+      this.drag = null;
+    }
+    this.spin = null;
+  };
+
+  Orbit.prototype.step = function (dt) {
+    var k, n, h;
+    if (this.spin) {
+      // The pointer drives the angle. Let the measured speed fall away if the pointer stops moving.
+      if (performance.now() - this.spin.last > 60) this.omega *= Math.exp(-dt / 0.1);
+    } else {
+      this.omega += (IDLE - this.omega) * (1 - Math.exp(-dt / 1.2));
+      this.theta += this.omega * dt;
+    }
+
+    if (Math.abs(this.omega) > BREAK) {
+      for (k = 0; k < this.nodes.length; k++) {
+        n = this.nodes[k];
+        if (n.mode !== 'attached') continue;
+        h = this.home(n);
+        var ox = n.x - this.cx, oy = n.y - this.cy, ol = Math.hypot(ox, oy) || 1;
+        n.vx = h.vx * 0.7 + (ox / ol) * 160;
+        n.vy = h.vy * 0.7 + (oy / ol) * 160;
+        var sp = Math.hypot(n.vx, n.vy);
+        if (sp > 1700) { n.vx *= 1700 / sp; n.vy *= 1700 / sp; }
+        n.mode = 'free'; n.t = 0;
+      }
+    }
+
+    for (k = 0; k < this.nodes.length; k++) {
+      n = this.nodes[k];
+      h = this.home(n);
+      if (n.snapT < 1) n.snapT += dt;
+      if ((n.mode === 'dragged' || n.mode === 'held') && this.drag) {
+        var dg = this.drag;
+        var tx = dg.tx, ty = dg.ty;
+        if (n.mode === 'dragged') {
+          // The string resists: past the slack, the project falls further behind the pointer.
+          var qx = tx - this.cx, qy = ty - this.cy, Lp = Math.hypot(qx, qy) || 1;
+          var Ls = this.radii[n.ring] + SLACK, L = Lp;
+          n.strain = 0;
+          if (Lp > Ls) {
+            L = Ls + STRETCH * (1 - Math.exp(-(Lp - Ls) / STRETCH));
+            n.strain = (L - Ls) / STRETCH;
+          }
+          tx = this.cx + qx / Lp * L;
+          ty = this.cy + qy / Lp * L;
+          if (n.strain > STRAIN_AT) dg.hold += dt; else dg.hold = Math.max(0, dg.hold - dt * 2);
+          if (dg.hold >= SNAP_TIME) {
+            n.mode = 'held'; n.strain = 0; n.snapT = 0; n.stubX = n.x; n.stubY = n.y;
+          }
+        }
+        tx = clamp(tx, 14, this.W - 14);
+        ty = clamp(ty, 14, this.H - 52);
+        if (n.mode === 'held') {
+          // Broken free: ease to the pointer, then the stub of string whips back to the centre.
+          tx = n.x + (tx - n.x) * Math.min(1, dt * 18);
+          ty = n.y + (ty - n.y) * Math.min(1, dt * 18);
+        }
+        n.vx = n.vx * 0.5 + ((tx - n.x) / dt) * 0.5;
+        n.vy = n.vy * 0.5 + ((ty - n.y) / dt) * 0.5;
+        n.x = tx; n.y = ty;
+      } else if (n.mode === 'falling') {
+        var floor = this.H - 52;
+        n.t += dt;
+        n.vy += 1900 * dt;
+        n.x += n.vx * dt; n.y += n.vy * dt;
+        if (n.x < 14) { n.x = 14; n.vx = Math.abs(n.vx) * 0.5; }
+        if (n.x > this.W - 14) { n.x = this.W - 14; n.vx = -Math.abs(n.vx) * 0.5; }
+        if (n.y < 14) { n.y = 14; n.vy = Math.abs(n.vy) * 0.5; }
+        if (n.y >= floor) {
+          n.y = floor;
+          n.vx *= 0.7;
+          if (Math.abs(n.vy) < 140 || n.t > 5) { n.vy = 0; n.mode = 'resting'; n.t = 0; }
+          else n.vy = -n.vy * 0.38;
+        }
+      } else if (n.mode === 'resting') {
+        n.t += dt;
+        n.vx *= Math.exp(-6 * dt);
+        n.x = clamp(n.x + n.vx * dt, 14, this.W - 14);
+        if (n.t > REST_TIME) { n.mode = 'fading'; n.t = 0; }
+      } else if (n.mode === 'fading') {
+        n.t += dt;
+        n.alpha = Math.max(0, 1 - n.t / 0.5);
+        if (n.t >= 0.5) {
+          // A replacement grows out of the centre on a new string.
+          n.x = this.cx; n.y = this.cy; n.vx = 0; n.vy = 0;
+          n.alpha = 1; n.scale = 0; n.mode = 'returning';
+        }
+      } else if (n.mode === 'attached') {
+        if (this.tethered) {
+          // Under-damped spring to the orbit position: this is the elastic snap.
+          n.vx += (140 * (h.x - n.x) - 6 * (n.vx - h.vx)) * dt;
+          n.vy += (140 * (h.y - n.y) - 6 * (n.vy - h.vy)) * dt;
+          n.x += n.vx * dt; n.y += n.vy * dt;
+        } else {
+          n.x = h.x; n.y = h.y; n.vx = h.vx; n.vy = h.vy;
+        }
+      } else if (n.mode === 'free') {
+        n.t += dt;
+        var drag = Math.exp(-0.5 * dt);
+        n.vx *= drag; n.vy *= drag;
+        n.x += n.vx * dt; n.y += n.vy * dt;
+        if (n.x < 14) { n.x = 14; n.vx = Math.abs(n.vx) * 0.82; }
+        if (n.x > this.W - 14) { n.x = this.W - 14; n.vx = -Math.abs(n.vx) * 0.82; }
+        if (n.y < 14) { n.y = 14; n.vy = Math.abs(n.vy) * 0.82; }
+        if (n.y > this.H - 44) { n.y = this.H - 44; n.vy = -Math.abs(n.vy) * 0.82; }
+        if (n.t > FREE_TIME) n.mode = 'returning';
+      } else {
+        // Returning: a critically damped spring, so it glides home without overshoot.
+        if (n.scale < 1) n.scale = Math.min(1, n.scale + dt / 0.45);
+        n.vx += (30 * (h.x - n.x) - 11 * (n.vx - h.vx)) * dt;
+        n.vy += (30 * (h.y - n.y) - 11 * (n.vy - h.vy)) * dt;
+        n.x += n.vx * dt; n.y += n.vy * dt;
+        if (Math.hypot(h.x - n.x, h.y - n.y) < 1.5 && Math.hypot(n.vx - h.vx, n.vy - h.vy) < 30) n.mode = 'attached';
+      }
+    }
+  };
+
+  Orbit.prototype.draw = function () {
+    var ctx = this.ctx, W = this.W, H = this.H, k, n;
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = C.stage;
+    ctx.fillRect(0, 0, W, H);
+
+    // Rings
+    ctx.lineWidth = 1;
+    for (k = 0; k < 2; k++) {
+      ctx.beginPath();
+      ctx.arc(this.cx, this.cy, this.radii[k], 0, Math.PI * 2);
+      ctx.strokeStyle = this.tethered ? C.line : C.lineStrong;
+      ctx.setLineDash(this.tethered ? [3, 7] : []);
+      ctx.stroke();
+    }
+    ctx.setLineDash([]);
+
+    // Strings
+    if (this.tethered) {
+      for (k = 0; k < this.nodes.length; k++) {
+        n = this.nodes[k];
+        if (n.snapT < 0.2) {
+          var back = 1 - n.snapT / 0.2;
+          ctx.beginPath();
+          ctx.moveTo(this.cx, this.cy);
+          ctx.lineTo(this.cx + (n.stubX - this.cx) * back, this.cy + (n.stubY - this.cy) * back);
+          ctx.lineWidth = 1; ctx.strokeStyle = STRAIN_COL; ctx.globalAlpha = 0.9; ctx.setLineDash([]);
+          ctx.stroke();
+        }
+        if (n.mode === 'held' || n.mode === 'falling' || n.mode === 'resting' || n.mode === 'fading') continue;
+        var dx = n.x - this.cx, dy = n.y - this.cy, len = Math.hypot(dx, dy) || 1;
+        var ext = len / this.radii[n.ring] - 1;
+        var loose = n.mode === 'free';
+        // Bow the string against the direction of travel so it reads as elastic.
+        var px = -dy / len, py = dx / len;
+        var hm = this.home(n);
+        var lag = n.mode === 'dragged' ? 0 : clamp(-((n.vx - hm.vx) * px + (n.vy - hm.vy) * py) * 0.035, -46, 46);
+        var tight = n.strain > STRAIN_AT;
+        if (tight && !reduced) lag += (Math.random() - 0.5) * 7 * n.strain;
+        ctx.beginPath();
+        ctx.moveTo(this.cx, this.cy);
+        ctx.quadraticCurveTo(this.cx + dx / 2 + px * lag, this.cy + dy / 2 + py * lag, n.x, n.y);
+        ctx.lineWidth = loose ? 1 : clamp(2.2 - ext * 1.1 - n.strain * 0.8, 0.6, 2.2);
+        ctx.strokeStyle = tight ? STRAIN_COL : (n.i === this.sel ? C.accent : C.node);
+        ctx.globalAlpha = loose ? 0.3 : (tight ? 1 : 0.75);
+        ctx.setLineDash(loose ? [4, 6] : []);
+        ctx.stroke();
+      }
+      ctx.setLineDash([]);
+      ctx.globalAlpha = 1;
+    }
+
+    // Centre
+    ctx.beginPath();
+    ctx.arc(this.cx, this.cy, 34, 0, Math.PI * 2);
+    ctx.fillStyle = C.panel;
+    ctx.fill();
+    ctx.strokeStyle = C.node;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.fillStyle = C.text;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.font = '800 18px Archivo, Arial, sans-serif';
+    ctx.fillText('CA', this.cx, this.cy + 1);
+
+    // Projects
+    for (k = 0; k < this.nodes.length; k++) {
+      n = this.nodes[k];
+      var p = PROJECTS[n.i];
+      var on = n.i === this.sel;
+      var col = on ? C.accent : C.node;
+      var big = this.hover === k || n.mode === 'dragged' || n.mode === 'held';
+      ctx.globalAlpha = n.alpha * Math.min(1, n.scale * 1.5);
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, (big ? 17 : 13) * n.scale, 0, Math.PI * 2);
+      ctx.fillStyle = C.stage;
+      ctx.fill();
+      ctx.strokeStyle = col;
+      ctx.lineWidth = on ? 2 : 1;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, 5 * n.scale, 0, Math.PI * 2);
+      ctx.fillStyle = col;
+      ctx.fill();
+      ctx.globalAlpha = n.alpha * n.scale;
+
+      ctx.textBaseline = 'alphabetic';
+      ctx.lineJoin = 'round';
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = C.stage;
+      ctx.font = '600 14px Archivo, Arial, sans-serif';
+      ctx.strokeText(p.title, n.x, n.y + 34);
+      ctx.fillStyle = on ? C.accent : C.text;
+      ctx.fillText(p.title, n.x, n.y + 34);
+      ctx.font = '400 11px "JetBrains Mono", Menlo, monospace';
+      ctx.strokeText(p.meta, n.x, n.y + 49);
+      ctx.fillStyle = C.muted;
+      ctx.fillText(p.meta, n.x, n.y + 49);
+      ctx.globalAlpha = 1;
+    }
+
+    // Spin meter and status
+    var freeLeft = 0;
+    for (k = 0; k < this.nodes.length; k++) {
+      if (this.nodes[k].mode === 'free') freeLeft = Math.max(freeLeft, FREE_TIME - this.nodes[k].t);
+    }
+    var restLeft = 0;
+    for (k = 0; k < this.nodes.length; k++) {
+      if (this.nodes[k].mode === 'resting') restLeft = Math.max(restLeft, REST_TIME - this.nodes[k].t);
+    }
+    var frac = clamp(Math.abs(this.omega) / BREAK, 0, 1);
+    var label = 'SPIN', barCol = frac > 0.7 ? C.accent : C.node;
+    if (this.drag && this.drag.node.mode === 'dragged' && this.drag.hold > 0) {
+      label = 'STRAIN'; frac = clamp(this.drag.hold / SNAP_TIME, 0, 1); barCol = STRAIN_COL;
+    } else if (restLeft > 0) {
+      label = 'REPLACING IN ' + Math.ceil(restLeft) + 'S';
+    } else if (freeLeft > 0) {
+      label = 'RETURNING IN ' + Math.ceil(freeLeft) + 'S';
+    }
+    ctx.textAlign = 'left';
+    ctx.font = '400 11px "JetBrains Mono", Menlo, monospace';
+    ctx.fillStyle = C.muted;
+    ctx.fillText(label, 16, 24);
+    ctx.fillStyle = C.line;
+    ctx.fillRect(16, 32, 120, 4);
+    ctx.fillStyle = barCol;
+    ctx.fillRect(16, 32, 120 * frac, 4);
+  };
+
+  var sims = [
+    new Orbit(document.getElementById('demo-tethered'), true)
+  ];
+
+  var last = performance.now();
+  function frame(now) {
+    var dt = Math.min(0.033, (now - last) / 1000);
+    last = now;
+    for (var i = 0; i < sims.length; i++) {
+      sims[i].resize(false);
+      if (dt > 0) {
+        sims[i].step(dt / 2);
+        sims[i].step(dt / 2);
+      }
+      sims[i].draw();
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

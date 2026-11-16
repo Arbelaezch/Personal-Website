@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homepage Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Single dark theme by choice (direction A). Layout: one 1180px column; hero, project orbit with a detail panel, a slim list of other work, then the pipeline. */
+:root {
+  color-scheme: dark;
+  --ground: #0e1318;
+  --stage: #10171d;
+  --panel: #151c23;
+  --line: #26313c;
+  --line-strong: #3a4856;
+  --text: #e8ecf0;
+  --text-soft: #c9d1d9;
+  --muted: #9aa7b4;
+  --node: #6cb6ff;
+  --accent: #f5a524;
+  --font-body: Archivo, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--ground);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+}
+a { color: var(--text); }
+a:hover { color: #ffffff; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.wrap {
+  max-width: 1228px;
+  margin: 0 auto;
+  padding: 0 24px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+}
+h1, h2, h3, p { margin: 0; }
+h2 { font-size: 30px; font-weight: 800; letter-spacing: -0.01em; text-wrap: balance; }
+.mono { font-family: var(--font-mono); }
+.section { display: flex; flex-direction: column; gap: 24px; }
+.section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; }
+.lede { color: var(--text-soft); max-width: 68ch; }
+
+/* Nav */
+nav {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 22px 0; border-bottom: 1px solid var(--line);
+}
+.brand { font-weight: 800; font-size: 18px; letter-spacing: 0.02em; text-decoration: none; }
+.nav-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; font-size: 15px; }
+.nav-links a { text-decoration: none; padding: 12px 0; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+  padding: 14px 22px; font-weight: 600; border: 1px solid var(--line-strong);
+}
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--ground); }
+.btn.primary:hover { color: var(--ground); filter: brightness(1.08); }
+.btn.outline { border-color: var(--accent); color: var(--accent); padding: 11px 18px !important; }
+
+/* Hero */
+.hero { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 40px; margin-top: -16px; }
+.hero-name { flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+.eyebrow { font-family: var(--font-mono); font-size: 13px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+h1 { font-size: clamp(48px, 7.6vw, 96px); line-height: 0.95; font-weight: 800; letter-spacing: -0.03em; }
+.hero-side { flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+.hero-side p { font-size: 19px; color: var(--text-soft); max-width: 46ch; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Orbit */
+.demo { display: flex; flex-wrap: wrap; gap: 16px; }
+.stage { flex: 2 1 520px; min-width: 0; background: var(--stage); border: 1px solid var(--line); display: flex; flex-direction: column; }
+canvas { display: block; width: 100%; height: 520px; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
+canvas.grabbing { cursor: grabbing; }
+.bar {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 12px 16px; border-top: 1px solid var(--line); font-family: var(--font-mono); font-size: 12px; color: var(--muted);
+}
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+button {
+  font: inherit; color: var(--text); background: var(--panel); border: 1px solid var(--line-strong);
+  padding: 8px 12px; min-height: 36px; cursor: pointer;
+}
+button:hover { border-color: var(--node); }
+button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.panel {
+  flex: 1 1 280px; min-width: 0; background: var(--panel); border: 1px solid var(--line);
+  padding: 28px; display: flex; flex-direction: column; gap: 14px; min-height: 280px;
+}
+.tag { font-family: var(--font-mono); font-size: 12px; color: var(--node); }
+.panel h3 { font-size: 30px; line-height: 1.1; font-weight: 800; letter-spacing: -0.01em; }
+.panel p { color: var(--text-soft); }
+.panel a { color: var(--accent); font-weight: 600; margin-top: auto; padding: 12px 0; align-self: flex-start; }
+.hint { font-family: var(--font-mono); font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; }
+
+/* More projects */
+.rows { display: flex; flex-direction: column; border-bottom: 1px solid var(--line); }
+.row {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 24px;
+  padding: 16px 0; border-top: 1px solid var(--line); text-decoration: none;
+}
+.row:hover .row-title { color: var(--accent); }
+.row-year { flex: 0 0 48px; font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.row-title { flex: 1 1 200px; font-weight: 600; font-size: 18px; }
+.row-desc { flex: 3 1 360px; color: var(--muted); }
+.row-lang { flex: 0 0 96px; font-family: var(--font-mono); font-size: 12px; color: var(--node); }
+.more { font-weight: 600; color: var(--accent); padding: 12px 0; }
+
+/* Factory */
+.factory { background: var(--panel); border: 1px solid var(--line); }
+.factory-head {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding: 16px 20px;
+  border-bottom: 1px solid var(--line); font-family: var(--font-mono); font-size: 13px; color: var(--muted);
+}
+.status { display: flex; align-items: center; gap: 10px; }
+.status i { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); display: block; }
+.stages-wrap { position: relative; padding: 24px 20px; }
+.rail { position: absolute; left: 20px; right: 20px; top: 12px; height: 2px; background: var(--line); }
+.rail-dot-track { position: absolute; left: 20px; right: 28px; top: 9px; height: 8px; }
+.rail-dot { position: absolute; top: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: travel 12s linear infinite; }
+.stages { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr)); gap: 12px; }
+.stage-box {
+  border: 1px solid var(--line); background-color: var(--ground); padding: 16px;
+  display: flex; flex-direction: column; gap: 8px; animation: lit 12s linear infinite;
+}
+.stage-box:nth-child(2) { animation-delay: 2s; }
+.stage-box:nth-child(3) { animation-delay: 4s; }
+.stage-box:nth-child(4) { animation-delay: 6s; }
+.stage-box:nth-child(5) { animation-delay: 8s; }
+.stage-box:nth-child(6) { animation-delay: 10s; }
+.stage-box .num { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.stage-box .name { font-weight: 600; font-size: 17px; }
+.stage-box .what { font-size: 14px; color: var(--muted); }
+.queues { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 1px; background: var(--line); border-top: 1px solid var(--line); font-size: 15px; }
+.queue { background: var(--panel); padding: 20px; display: flex; flex-direction: column; }
+.queue h3 { font-family: var(--font-mono); font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 12px; }
+.queue a { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; text-decoration: none; border-top: 1px solid var(--line); }
+.queue .n { color: var(--muted); }
+.queue .done { color: var(--node); white-space: nowrap; }
+.queue .wait { color: var(--muted); white-space: nowrap; }
+@keyframes travel { from { left: 0; opacity: 0; } 6% { opacity: 1; } 94% { opacity: 1; } to { left: 100%; opacity: 0; } }
+@keyframes lit {
+  0% { border-color: #26313c; background-color: #0e1318; }
+  2% { border-color: #f5a524; background-color: #1d1a12; }
+  15% { border-color: #f5a524; background-color: #1d1a12; }
+  18% { border-color: #26313c; background-color: #0e1318; }
+  100% { border-color: #26313c; background-color: #0e1318; }
+}
+
+/* About and footer */
+.about { display: flex; flex-wrap: wrap; gap: 24px 64px; }
+.about h2 { flex: 1 1 240px; }
+.about-body { flex: 3 1 420px; min-width: 0; max-width: 65ch; display: flex; flex-direction: column; gap: 16px; color: var(--text-soft); }
+footer {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px;
+  padding: 28px 0 0; border-top: 1px solid var(--line); font-size: 15px;
+}
+.foot-links { display: flex; flex-wrap: wrap; gap: 8px 28px; align-items: center; }
+.foot-links a { padding: 12px 0; }
+.foot-note { color: var(--muted); font-family: var(--font-mono); font-size: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rail-dot, .stage-box { animation: none; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav aria-label="Main">
+<a class="brand" href="#top">Christian Arbelaez</a>
+<div class="nav-links">
+<a href="#work">Work</a>
+<a href="#factory">How I build</a>
+<a href="#about">About</a>
+<a href="#top">Films</a>
+<a href="#contact">Contact</a>
+<a class="btn outline" href="#top">
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12"></path><path d="M7 11l5 5 5-5"></path><path d="M5 20h14"></path></svg>
+Resume
+</a>
+</div>
+</nav>
+
+<header class="hero" id="top">
+<div class="hero-name">
+<p class="eyebrow">AI-enabled full-stack developer</p>
+<h1>Christian<br>Arbelaez</h1>
+</div>
+<div class="hero-side">
+<p>I design and maintain the pipelines that let AI agents ship software safely, then I use them to build production software across web, mobile and developer tooling.</p>
+<div class="actions">
+<a class="btn primary" href="#top">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12"></path><path d="M7 11l5 5 5-5"></path><path d="M5 20h14"></path></svg>
+Download resume
+</a>
+<a class="btn" href="#contact">Get in touch</a>
+</div>
+</div>
+</header>
+
+<section class="section" id="work" aria-label="Featured projects">
+<div class="demo" id="demo-tethered"></div>
+</section>
+
+<section class="section" aria-labelledby="more-h">
+<div class="section-head">
+<h2 id="more-h">More projects</h2>
+<a class="more" href="#top">See all projects</a>
+</div>
+<div class="rows">
+<a class="row" href="https://github.com/Arbelaezch/AlgoArena" target="_blank" rel="noopener">
+<span class="row-year">2025</span><span class="row-title">AlgoArena</span>
+<span class="row-desc">A platform for creating, backtesting and paper trading algorithmic strategies.</span>
+<span class="row-lang">TypeScript</span>
+</a>
+<a class="row" href="https://github.com/Arbelaezch/imdb-sentiment-analysis" target="_blank" rel="noopener">
+<span class="row-year">2025</span><span class="row-title">IMDb Sentiment Analysis</span>
+<span class="row-desc">A machine learning web application that analyzes movie review sentiment in real time.</span>
+<span class="row-lang">Python</span>
+</a>
+<a class="row" href="https://github.com/Arbelaezch/hoopstradamus" target="_blank" rel="noopener">
+<span class="row-year">2025</span><span class="row-title">Hoopstradamus</span>
+<span class="row-desc">A machine learning model for predicting NCAA March Madness tournament outcomes.</span>
+<span class="row-lang">Python</span>
+</a>
+<a class="row" href="https://github.com/Arbelaezch/slow-scroll" target="_blank" rel="noopener">
+<span class="row-year">2025</span><span class="row-title">Slow Scroll</span>
+<span class="row-desc">A Chrome extension that increases load time when scrolling short-form content.</span>
+<span class="row-lang">JavaScript</span>
+</a>
+<a class="row" href="https://github.com/Arbelaezch/compilers" target="_blank" rel="noopener">
+<span class="row-year">2024</span><span class="row-title">Compilers</span>
+<span class="row-desc">Compilers I developed for learning purposes.</span>
+<span class="row-lang">C++</span>
+</a>
+</div>
+</section>
+
+<section class="section" id="factory" aria-labelledby="factory-h">
+<h2 id="factory-h">How I ship with AI</h2>
+<p class="lede">I built a pipeline of AI agents that takes a GitHub issue from plan to production. Each change passes six stages, and any stage can stop it.</p>
+<div class="factory">
+<div class="factory-head">
+<span class="status"><i></i>Factory idle</span>
+<span>Replaying the last shipped change: #96</span>
+</div>
+<div class="stages-wrap">
+<span class="rail"></span>
+<span class="rail-dot-track"><span class="rail-dot"></span></span>
+<div class="stages">
+<div class="stage-box"><span class="num">01</span><span class="name">Plan</span><span class="what">A planner agent turns the issue into small tasks.</span></div>
+<div class="stage-box"><span class="num">02</span><span class="name">Build</span><span class="what">An engineer agent implements one task at a time.</span></div>
+<div class="stage-box"><span class="num">03</span><span class="name">Review</span><span class="what">A different model reviews the diff against the plan.</span></div>
+<div class="stage-box"><span class="num">04</span><span class="name">Verify</span><span class="what">A verifier checks every finding against the code.</span></div>
+<div class="stage-box"><span class="num">05</span><span class="name">CI</span><span class="what">Migration check, deploy check and the full test suite.</span></div>
+<div class="stage-box"><span class="num">06</span><span class="name">Deploy</span><span class="what">I merge it myself. A failed health check rolls back.</span></div>
+</div>
+</div>
+<div class="queues">
+<div class="queue">
+<h3>Last shipped</h3>
+<a href="https://github.com/Arbelaezch/Personal-Website/pull/96" target="_blank" rel="noopener"><span><span class="n">#96</span> Harness config and CI script</span><span class="done">Deployed</span></a>
+<a href="https://github.com/Arbelaezch/Personal-Website/pull/84" target="_blank" rel="noopener"><span><span class="n">#84</span> Cleanup: dead code, images</span><span class="done">Deployed</span></a>
+<a href="https://github.com/Arbelaezch/Personal-Website/pull/83" target="_blank" rel="noopener"><span><span class="n">#83</span> Tests and coverage</span><span class="done">Deployed</span></a>
+</div>
+<div class="queue">
+<h3>Up next</h3>
+<a href="https://github.com/Arbelaezch/Personal-Website/issues/95" target="_blank" rel="noopener"><span><span class="n">#95</span> Favicons for every page</span><span class="wait">Queued</span></a>
+<a href="https://github.com/Arbelaezch/Personal-Website/issues/88" target="_blank" rel="noopener"><span><span class="n">#88</span> Unique slugs for titles</span><span class="wait">Queued</span></a>
+<a href="https://github.com/Arbelaezch/Personal-Website/issues/86" target="_blank" rel="noopener"><span><span class="n">#86</span> Smaller image downloads</span><span class="wait">Queued</span></a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="about" id="about" aria-labelledby="about-h">
+<h2 id="about-h">About</h2>
+<div class="about-body">
+<p>I'm a Full-Stack Software Developer at the University of Alberta Students' Union, with four years of building and shipping web applications. I hold a BSc in Computer Science with a minor in Business from the University of Alberta.</p>
+<p>Outside of work I'm drawn to classical films, ancient history and practical philosophy.</p>
+</div>
+</section>
+
+<footer id="contact">
+<div class="foot-links">
+<span>[YOUR EMAIL]</span>
+<a href="https://github.com/Arbelaezch" target="_blank" rel="noopener">GitHub</a>
+<a href="#top">LinkedIn [URL]</a>
+<a href="#top">Films</a>
+</div>
+<a class="btn primary" href="#top">Download resume</a>
+</footer>
+
+</div>
+<script>
+(function () {
+  'use strict';
+
+  var PROJECTS = [
+    { title: 'Software Factory', meta: 'Python', tag: 'Agent pipeline · Python', ring: 0, a: 0,
+      desc: 'An agent pipeline that plans, builds, reviews and verifies GitHub issues, with gates a change has to pass before it reaches me.',
+      url: 'https://github.com/Arbelaezch/software-factory' },
+    { title: 'Bulb Agent', meta: 'TypeScript', tag: 'Developer tooling · TypeScript', ring: 0, a: Math.PI,
+      desc: 'Dormant caretaker agents for your repos.',
+      url: 'https://github.com/Arbelaezch/bulb-agent' },
+    { title: 'Court Vision', meta: 'TypeScript', tag: 'TypeScript', ring: 1, a: Math.PI / 2,
+      desc: '[ONE-LINE DESCRIPTION]',
+      url: 'https://github.com/Arbelaezch/court-vision' },
+    { title: 'FHIR Patient Portal', meta: 'Python', tag: 'Healthcare · Python', ring: 1, a: Math.PI * 7 / 6,
+      desc: 'A full-stack healthcare application implementing FHIR R4, with both server and client components.',
+      url: 'https://github.com/Arbelaezch/FHIR-patient-portal' },
+    { title: 'NBA Draft Simulator', meta: 'React Native', tag: 'Mobile game · React Native', ring: 1, a: Math.PI * 11 / 6,
+      desc: 'A React Native mobile game with 10,000+ downloads on the Google Play Store.',
+      url: 'https://github.com/Arbelaezch/nba-draft-simulator' }
+  ];
+
+  var C = {
+    stage: '#10171d', line: '#26313c', lineStrong: '#3a4856', text: '#e8ecf0',
+    muted: '#9aa7b4', node: '#6cb6ff', accent: '#f5a524', panel: '#151c23'
+  };
+
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var IDLE = reduced ? 0 : 0.12;   // resting spin, radians per second
+  var BREAK = 8;                   // spin speed at which projects let go
+  var MAX_SPIN = 16;
+  var FREE_TIME = 3;               // seconds before released projects return
+  var HIT = 26;                    // pointer radius around a project
+  var CLICK_SLOP = 6;              // movement under this counts as a click
+  var SLACK = 30;                  // pixels past the orbit before the string resists
+  var STRETCH = 110;               // the most a string can stretch past that
+  var STRAIN_AT = 0.6;             // share of full stretch that counts as straining
+  var SNAP_TIME = 1.8;             // seconds of strain before the string breaks
+  var REST_TIME = 3;               // seconds a dropped project lies on the floor
+  var STRAIN_COL = '#ff6b5e';
+
+  function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+
+  function Orbit(root, tethered) {
+    var self = this;
+    this.tethered = tethered;
+    this.theta = 0;
+    this.omega = IDLE;
+    this.sel = 0;
+    this.hover = -1;
+    this.drag = null;
+    this.spin = null;
+    this.W = 0; this.H = 0;
+
+    root.innerHTML =
+      '<div class="stage">' +
+        '<canvas aria-label="Interactive orbit of projects. The buttons below select the same projects."></canvas>' +
+        '<div class="bar"><div class="chips"></div><button type="button" class="reset">Reset</button></div>' +
+      '</div>' +
+      '<div class="panel" aria-live="polite">' +
+        '<span class="tag"></span><h3></h3><p></p>' +
+        '<a target="_blank" rel="noopener">View on GitHub</a>' +
+        '<span class="hint">' + 'Pull a project to stretch its string. Hold it tight to break it.' + '</span>' +
+      '</div>';
+
+    this.canvas = root.querySelector('canvas');
+    this.ctx = this.canvas.getContext('2d');
+    this.elTag = root.querySelector('.tag');
+    this.elTitle = root.querySelector('h3');
+    this.elDesc = root.querySelector('.panel p');
+    this.elLink = root.querySelector('.panel a');
+
+    this.nodes = PROJECTS.map(function (p, i) {
+      return { i: i, ring: p.ring, a: p.a, x: 0, y: 0, vx: 0, vy: 0, mode: 'attached', t: 0, strain: 0, alpha: 1, scale: 1, snapT: 1, stubX: 0, stubY: 0 };
+    });
+
+    var chips = root.querySelector('.chips');
+    this.chipEls = PROJECTS.map(function (p, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = p.title;
+      b.addEventListener('click', function () { self.select(i); });
+      chips.appendChild(b);
+      return b;
+    });
+    root.querySelector('.reset').addEventListener('click', function () { self.reset(); });
+
+    var cv = this.canvas;
+    cv.addEventListener('pointerdown', function (e) { self.onDown(e); });
+    cv.addEventListener('pointermove', function (e) { self.onMove(e); });
+    cv.addEventListener('pointerup', function (e) { self.onUp(e); });
+    cv.addEventListener('pointercancel', function (e) { self.onUp(e); });
+    cv.addEventListener('pointerleave', function () { if (!self.drag && !self.spin) self.hover = -1; });
+
+    this.resize(true);
+    this.select(0);
+  }
+
+  Orbit.prototype.resize = function (snap) {
+    var rect = this.canvas.getBoundingClientRect();
+    var w = Math.max(200, rect.width), h = Math.max(200, rect.height);
+    if (!snap && w === this.W && h === this.H) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    this.W = w; this.H = h;
+    this.canvas.width = Math.round(w * dpr);
+    this.canvas.height = Math.round(h * dpr);
+    this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    this.cx = w / 2;
+    this.cy = h / 2 - 10;
+    var base = Math.min(w * 0.82, h);
+    this.radii = [base * 0.25, base * 0.39];
+    for (var k = 0; k < this.nodes.length; k++) {
+      var n = this.nodes[k];
+      if (n.mode === 'attached' || snap) {
+        var hm = this.home(n);
+        n.x = hm.x; n.y = hm.y; n.vx = hm.vx; n.vy = hm.vy;
+      }
+    }
+  };
+
+  Orbit.prototype.home = function (n) {
+    var stretch = this.tethered ? 1 + Math.min(0.8, 0.012 * this.omega * this.omega) : 1;
+    var r = this.radii[n.ring] * stretch;
+    var ang = this.theta + n.a;
+    var cos = Math.cos(ang), sin = Math.sin(ang);
+    return { x: this.cx + r * cos, y: this.cy + r * sin, vx: -this.omega * r * sin, vy: this.omega * r * cos };
+  };
+
+  Orbit.prototype.select = function (i) {
+    this.sel = i;
+    var p = PROJECTS[i];
+    this.elTag.textContent = p.tag;
+    this.elTitle.textContent = p.title;
+    this.elDesc.textContent = p.desc;
+    this.elLink.href = p.url;
+    for (var k = 0; k < this.chipEls.length; k++) {
+      this.chipEls[k].setAttribute('aria-pressed', k === i ? 'true' : 'false');
+    }
+  };
+
+  Orbit.prototype.reset = function () {
+    this.omega = IDLE;
+    this.spin = null;
+    this.drag = null;
+    for (var k = 0; k < this.nodes.length; k++) {
+      var n = this.nodes[k];
+      if (n.mode !== 'attached') n.mode = 'returning';
+      n.alpha = 1; n.scale = 1; n.strain = 0;
+    }
+  };
+
+  Orbit.prototype.pos = function (e) {
+    var r = this.canvas.getBoundingClientRect();
+    return { x: e.clientX - r.left, y: e.clientY - r.top };
+  };
+
+  Orbit.prototype.nodeAt = function (p) {
+    var best = -1, bestD = HIT * HIT;
+    for (var k = 0; k < this.nodes.length; k++) {
+      var n = this.nodes[k];
+      if (n.mode === 'falling' || n.mode === 'resting' || n.mode === 'fading') continue;
+      var dx = n.x - p.x, dy = n.y - p.y, d = dx * dx + dy * dy;
+      if (d < bestD) { bestD = d; best = k; }
+    }
+    return best;
+  };
+
+  Orbit.prototype.onDown = function (e) {
+    if (e.button !== undefined && e.button !== 0) return;
+    var p = this.pos(e);
+    var hit = this.nodeAt(p);
+    try { this.canvas.setPointerCapture(e.pointerId); } catch (err) {}
+    if (hit >= 0) {
+      this.drag = { node: this.nodes[hit], sx: p.x, sy: p.y, tx: p.x, ty: p.y, moved: false, hold: 0 };
+    } else {
+      this.spin = { ang: Math.atan2(p.y - this.cy, p.x - this.cx), t: performance.now(), last: performance.now() };
+    }
+    this.canvas.classList.add('grabbing');
+  };
+
+  Orbit.prototype.onMove = function (e) {
+    var p = this.pos(e);
+    if (this.drag) {
+      var d = this.drag;
+      d.tx = p.x;
+      d.ty = p.y;
+      if (!d.moved && Math.hypot(p.x - d.sx, p.y - d.sy) > CLICK_SLOP) {
+        d.moved = true;
+        d.node.mode = 'dragged';
+        this.select(d.node.i);
+      }
+    } else if (this.spin) {
+      var s = this.spin;
+      var ang = Math.atan2(p.y - this.cy, p.x - this.cx);
+      var dA = ang - s.ang;
+      if (dA > Math.PI) dA -= 2 * Math.PI;
+      if (dA < -Math.PI) dA += 2 * Math.PI;
+      var now = performance.now();
+      var dt = Math.max(0.004, (now - s.t) / 1000);
+      this.theta += dA;
+      this.omega = clamp(this.omega * 0.7 + (dA / dt) * 0.3, -MAX_SPIN, MAX_SPIN);
+      s.ang = ang; s.t = now; s.last = now;
+    } else {
+      this.hover = this.nodeAt(p);
+    }
+  };
+
+  Orbit.prototype.onUp = function (e) {
+    try { this.canvas.releasePointerCapture(e.pointerId); } catch (err) {}
+    this.canvas.classList.remove('grabbing');
+    if (this.drag) {
+      var d = this.drag, n = d.node;
+      if (!d.moved) {
+        this.select(n.i);
+      } else {
+        var speed = Math.hypot(n.vx, n.vy);
+        if (speed > 2600) { n.vx *= 2600 / speed; n.vy *= 2600 / speed; speed = 2600; }
+        n.strain = 0;
+        if (n.mode === 'held') {
+          n.mode = 'falling'; n.t = 0;
+        } else if (this.tethered) {
+          n.mode = 'attached';
+        } else if (speed > 450) {
+          n.mode = 'free'; n.t = 0;
+        } else {
+          n.mode = 'returning';
+        }
+      }
+      this.drag = null;
+    }
+    this.spin = null;
+  };
+
+  Orbit.prototype.step = function (dt) {
+    var k, n, h;
+    if (this.spin) {
+      // The pointer drives the angle. Let the measured speed fall away if the pointer stops moving.
+      if (performance.now() - this.spin.last > 60) this.omega *= Math.exp(-dt / 0.1);
+    } else {
+      this.omega += (IDLE - this.omega) * (1 - Math.exp(-dt / 1.2));
+      this.theta += this.omega * dt;
+    }
+
+    if (Math.abs(this.omega) > BREAK) {
+      for (k = 0; k < this.nodes.length; k++) {
+        n = this.nodes[k];
+        if (n.mode !== 'attached') continue;
+        h = this.home(n);
+        var ox = n.x - this.cx, oy = n.y - this.cy, ol = Math.hypot(ox, oy) || 1;
+        n.vx = h.vx * 0.7 + (ox / ol) * 160;
+        n.vy = h.vy * 0.7 + (oy / ol) * 160;
+        var sp = Math.hypot(n.vx, n.vy);
+        if (sp > 1700) { n.vx *= 1700 / sp; n.vy *= 1700 / sp; }
+        n.mode = 'free'; n.t = 0;
+      }
+    }
+
+    for (k = 0; k < this.nodes.length; k++) {
+      n = this.nodes[k];
+      h = this.home(n);
+      if (n.snapT < 1) n.snapT += dt;
+      if ((n.mode === 'dragged' || n.mode === 'held') && this.drag) {
+        var dg = this.drag;
+        var tx = dg.tx, ty = dg.ty;
+        if (n.mode === 'dragged') {
+          // The string resists: past the slack, the project falls further behind the pointer.
+          var qx = tx - this.cx, qy = ty - this.cy, Lp = Math.hypot(qx, qy) || 1;
+          var Ls = this.radii[n.ring] + SLACK, L = Lp;
+          n.strain = 0;
+          if (Lp > Ls) {
+            L = Ls + STRETCH * (1 - Math.exp(-(Lp - Ls) / STRETCH));
+            n.strain = (L - Ls) / STRETCH;
+          }
+          tx = this.cx + qx / Lp * L;
+          ty = this.cy + qy / Lp * L;
+          if (n.strain > STRAIN_AT) dg.hold += dt; else dg.hold = Math.max(0, dg.hold - dt * 2);
+          if (dg.hold >= SNAP_TIME) {
+            n.mode = 'held'; n.strain = 0; n.snapT = 0; n.stubX = n.x; n.stubY = n.y;
+          }
+        }
+        tx = clamp(tx, 14, this.W - 14);
+        ty = clamp(ty, 14, this.H - 52);
+        if (n.mode === 'held') {
+          // Broken free: ease to the pointer, then the stub of string whips back to the centre.
+          tx = n.x + (tx - n.x) * Math.min(1, dt * 18);
+          ty = n.y + (ty - n.y) * Math.min(1, dt * 18);
+        }
+        n.vx = n.vx * 0.5 + ((tx - n.x) / dt) * 0.5;
+        n.vy = n.vy * 0.5 + ((ty - n.y) / dt) * 0.5;
+        n.x = tx; n.y = ty;
+      } else if (n.mode === 'falling') {
+        var floor = this.H - 52;
+        n.t += dt;
+        n.vy += 1900 * dt;
+        n.x += n.vx * dt; n.y += n.vy * dt;
+        if (n.x < 14) { n.x = 14; n.vx = Math.abs(n.vx) * 0.5; }
+        if (n.x > this.W - 14) { n.x = this.W - 14; n.vx = -Math.abs(n.vx) * 0.5; }
+        if (n.y < 14) { n.y = 14; n.vy = Math.abs(n.vy) * 0.5; }
+        if (n.y >= floor) {
+          n.y = floor;
+          n.vx *= 0.7;
+          if (Math.abs(n.vy) < 140 || n.t > 5) { n.vy = 0; n.mode = 'resting'; n.t = 0; }
+          else n.vy = -n.vy * 0.38;
+        }
+      } else if (n.mode === 'resting') {
+        n.t += dt;
+        n.vx *= Math.exp(-6 * dt);
+        n.x = clamp(n.x + n.vx * dt, 14, this.W - 14);
+        if (n.t > REST_TIME) { n.mode = 'fading'; n.t = 0; }
+      } else if (n.mode === 'fading') {
+        n.t += dt;
+        n.alpha = Math.max(0, 1 - n.t / 0.5);
+        if (n.t >= 0.5) {
+          // A replacement grows out of the centre on a new string.
+          n.x = this.cx; n.y = this.cy; n.vx = 0; n.vy = 0;
+          n.alpha = 1; n.scale = 0; n.mode = 'returning';
+        }
+      } else if (n.mode === 'attached') {
+        if (this.tethered) {
+          // Under-damped spring to the orbit position: this is the elastic snap.
+          n.vx += (140 * (h.x - n.x) - 6 * (n.vx - h.vx)) * dt;
+          n.vy += (140 * (h.y - n.y) - 6 * (n.vy - h.vy)) * dt;
+          n.x += n.vx * dt; n.y += n.vy * dt;
+        } else {
+          n.x = h.x; n.y = h.y; n.vx = h.vx; n.vy = h.vy;
+        }
+      } else if (n.mode === 'free') {
+        n.t += dt;
+        var drag = Math.exp(-0.5 * dt);
+        n.vx *= drag; n.vy *= drag;
+        n.x += n.vx * dt; n.y += n.vy * dt;
+        if (n.x < 14) { n.x = 14; n.vx = Math.abs(n.vx) * 0.82; }
+        if (n.x > this.W - 14) { n.x = this.W - 14; n.vx = -Math.abs(n.vx) * 0.82; }
+        if (n.y < 14) { n.y = 14; n.vy = Math.abs(n.vy) * 0.82; }
+        if (n.y > this.H - 44) { n.y = this.H - 44; n.vy = -Math.abs(n.vy) * 0.82; }
+        if (n.t > FREE_TIME) n.mode = 'returning';
+      } else {
+        // Returning: a critically damped spring, so it glides home without overshoot.
+        if (n.scale < 1) n.scale = Math.min(1, n.scale + dt / 0.45);
+        n.vx += (30 * (h.x - n.x) - 11 * (n.vx - h.vx)) * dt;
+        n.vy += (30 * (h.y - n.y) - 11 * (n.vy - h.vy)) * dt;
+        n.x += n.vx * dt; n.y += n.vy * dt;
+        if (Math.hypot(h.x - n.x, h.y - n.y) < 1.5 && Math.hypot(n.vx - h.vx, n.vy - h.vy) < 30) n.mode = 'attached';
+      }
+    }
+  };
+
+  Orbit.prototype.draw = function () {
+    var ctx = this.ctx, W = this.W, H = this.H, k, n;
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = C.stage;
+    ctx.fillRect(0, 0, W, H);
+
+    // Rings
+    ctx.lineWidth = 1;
+    for (k = 0; k < 2; k++) {
+      ctx.beginPath();
+      ctx.arc(this.cx, this.cy, this.radii[k], 0, Math.PI * 2);
+      ctx.strokeStyle = this.tethered ? C.line : C.lineStrong;
+      ctx.setLineDash(this.tethered ? [3, 7] : []);
+      ctx.stroke();
+    }
+    ctx.setLineDash([]);
+
+    // Strings
+    if (this.tethered) {
+      for (k = 0; k < this.nodes.length; k++) {
+        n = this.nodes[k];
+        if (n.snapT < 0.2) {
+          var back = 1 - n.snapT / 0.2;
+          ctx.beginPath();
+          ctx.moveTo(this.cx, this.cy);
+          ctx.lineTo(this.cx + (n.stubX - this.cx) * back, this.cy + (n.stubY - this.cy) * back);
+          ctx.lineWidth = 1; ctx.strokeStyle = STRAIN_COL; ctx.globalAlpha = 0.9; ctx.setLineDash([]);
+          ctx.stroke();
+        }
+        if (n.mode === 'held' || n.mode === 'falling' || n.mode === 'resting' || n.mode === 'fading') continue;
+        var dx = n.x - this.cx, dy = n.y - this.cy, len = Math.hypot(dx, dy) || 1;
+        var ext = len / this.radii[n.ring] - 1;
+        var loose = n.mode === 'free';
+        // Bow the string against the direction of travel so it reads as elastic.
+        var px = -dy / len, py = dx / len;
+        var hm = this.home(n);
+        var lag = n.mode === 'dragged' ? 0 : clamp(-((n.vx - hm.vx) * px + (n.vy - hm.vy) * py) * 0.035, -46, 46);
+        var tight = n.strain > STRAIN_AT;
+        if (tight && !reduced) lag += (Math.random() - 0.5) * 7 * n.strain;
+        ctx.beginPath();
+        ctx.moveTo(this.cx, this.cy);
+        ctx.quadraticCurveTo(this.cx + dx / 2 + px * lag, this.cy + dy / 2 + py * lag, n.x, n.y);
+        ctx.lineWidth = loose ? 1 : clamp(2.2 - ext * 1.1 - n.strain * 0.8, 0.6, 2.2);
+        ctx.strokeStyle = tight ? STRAIN_COL : (n.i === this.sel ? C.accent : C.node);
+        ctx.globalAlpha = loose ? 0.3 : (tight ? 1 : 0.75);
+        ctx.setLineDash(loose ? [4, 6] : []);
+        ctx.stroke();
+      }
+      ctx.setLineDash([]);
+      ctx.globalAlpha = 1;
+    }
+
+    // Centre
+    ctx.beginPath();
+    ctx.arc(this.cx, this.cy, 34, 0, Math.PI * 2);
+    ctx.fillStyle = C.panel;
+    ctx.fill();
+    ctx.strokeStyle = C.node;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.fillStyle = C.text;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.font = '800 18px Archivo, Arial, sans-serif';
+    ctx.fillText('CA', this.cx, this.cy + 1);
+
+    // Projects
+    for (k = 0; k < this.nodes.length; k++) {
+      n = this.nodes[k];
+      var p = PROJECTS[n.i];
+      var on = n.i === this.sel;
+      var col = on ? C.accent : C.node;
+      var big = this.hover === k || n.mode === 'dragged' || n.mode === 'held';
+      ctx.globalAlpha = n.alpha * Math.min(1, n.scale * 1.5);
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, (big ? 17 : 13) * n.scale, 0, Math.PI * 2);
+      ctx.fillStyle = C.stage;
+      ctx.fill();
+      ctx.strokeStyle = col;
+      ctx.lineWidth = on ? 2 : 1;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, 5 * n.scale, 0, Math.PI * 2);
+      ctx.fillStyle = col;
+      ctx.fill();
+      ctx.globalAlpha = n.alpha * n.scale;
+
+      ctx.textBaseline = 'alphabetic';
+      ctx.lineJoin = 'round';
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = C.stage;
+      ctx.font = '600 14px Archivo, Arial, sans-serif';
+      ctx.strokeText(p.title, n.x, n.y + 34);
+      ctx.fillStyle = on ? C.accent : C.text;
+      ctx.fillText(p.title, n.x, n.y + 34);
+      ctx.font = '400 11px "JetBrains Mono", Menlo, monospace';
+      ctx.strokeText(p.meta, n.x, n.y + 49);
+      ctx.fillStyle = C.muted;
+      ctx.fillText(p.meta, n.x, n.y + 49);
+      ctx.globalAlpha = 1;
+    }
+
+    // Spin meter and status
+    var freeLeft = 0;
+    for (k = 0; k < this.nodes.length; k++) {
+      if (this.nodes[k].mode === 'free') freeLeft = Math.max(freeLeft, FREE_TIME - this.nodes[k].t);
+    }
+    var restLeft = 0;
+    for (k = 0; k < this.nodes.length; k++) {
+      if (this.nodes[k].mode === 'resting') restLeft = Math.max(restLeft, REST_TIME - this.nodes[k].t);
+    }
+    var frac = clamp(Math.abs(this.omega) / BREAK, 0, 1);
+    var label = 'SPIN', barCol = frac > 0.7 ? C.accent : C.node;
+    if (this.drag && this.drag.node.mode === 'dragged' && this.drag.hold > 0) {
+      label = 'STRAIN'; frac = clamp(this.drag.hold / SNAP_TIME, 0, 1); barCol = STRAIN_COL;
+    } else if (restLeft > 0) {
+      label = 'REPLACING IN ' + Math.ceil(restLeft) + 'S';
+    } else if (freeLeft > 0) {
+      label = 'RETURNING IN ' + Math.ceil(freeLeft) + 'S';
+    }
+    ctx.textAlign = 'left';
+    ctx.font = '400 11px "JetBrains Mono", Menlo, monospace';
+    ctx.fillStyle = C.muted;
+    ctx.fillText(label, 16, 24);
+    ctx.fillStyle = C.line;
+    ctx.fillRect(16, 32, 120, 4);
+    ctx.fillStyle = barCol;
+    ctx.fillRect(16, 32, 120 * frac, 4);
+  };
+
+  var sims = [
+    new Orbit(document.getElementById('demo-tethered'), true)
+  ];
+
+  var last = performance.now();
+  function frame(now) {
+    var dt = Math.min(0.033, (now - last) / 1000);
+    last = now;
+    for (var i = 0; i < sims.length; i++) {
+      sims[i].resize(false);
+      if (dt > 0) {
+        sims[i].step(dt / 2);
+        sims[i].step(dt / 2);
+      }
+      sims[i].draw();
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
