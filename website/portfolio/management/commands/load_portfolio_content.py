@@ -76,6 +76,7 @@ FILL_IF_EMPTY = [
 
 class Command(BaseCommand):
     help = "Load the first featured projects and one-line summaries. Fills empty fields only."
+    dry_run = False
 
     def add_arguments(self, parser):
         parser.add_argument('--dry-run', action='store_true', help="Print what would change and write nothing.")
@@ -85,6 +86,7 @@ class Command(BaseCommand):
         if not set_flags:
             self.stdout.write("Some projects are already featured: leaving every featured flag as it is.")
 
+        self.dry_run = dry_run
         with transaction.atomic():
             for entry in PROJECTS:
                 self.apply(entry, set_flags)
@@ -139,6 +141,8 @@ class Command(BaseCommand):
         """Give the project the screenshot shipped in portfolio/content/, unless it already has an image."""
         if not entry.get('image') or project.image:
             return False
+        if self.dry_run:
+            return True  # the database rolls back in a dry run, a file written to media would not
         with open(CONTENT_DIR / entry['image'], 'rb') as source:
             project.image.save(entry['image'], File(source), save=False)
         return True

@@ -1,4 +1,6 @@
 <nav class="subnav" aria-label="Films">
+    <a href="{% url 'personal' %}">Personal</a>
+    <span aria-hidden="true">/</span>
     <a href="{% url 'films:top_250' %}">Top 250</a>
     {% for decade in decades %}
     <a href="{% url 'films:decade_view' decade.year %}">{{ decade.year }}s</a>

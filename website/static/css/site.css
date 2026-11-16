@@ -191,6 +191,11 @@ button:focus-visible {
     color: var(--accent);
 }
 
+.subnav span {
+    padding: 10px 0;
+    color: var(--line-strong);
+}
+
 /* Footer */
 .site-footer {
     display: flex;
