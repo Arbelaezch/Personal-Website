@@ -63,6 +63,8 @@ htmlcov/
 # AI tooling: settings.json holds a machine-specific plugin switch; harness.toml and CLAUDE.md stay tracked
 .claude/settings.json
 .claude/settings.local.json
+# The harness's machine-local event log
+.harness/
 
 # Career documents (resume, cover letters) hold personal data and this repository is public.
 # The resume on the site is uploaded through the admin, never committed.
