@@ -80,6 +80,28 @@ class RecipeModelTests(TestCase):
         recipe = Recipe.objects.create(title="Pie", slug="custom-slug", ingredients="x", directions="y")
         self.assertEqual(recipe.slug, "custom-slug")
 
+    def test_duplicate_titles_get_numbered_slugs(self):
+        slugs = [Recipe.objects.create(title="Apple Pie", ingredients="x", directions="y").slug for _ in range(3)]
+        self.assertEqual(slugs, ["apple-pie", "apple-pie-2", "apple-pie-3"])
+
+    def test_title_with_nothing_sluggable_falls_back(self):
+        self.assertEqual(Recipe.objects.create(title="!!!", ingredients="x", directions="y").slug, "recipe")
+        self.assertEqual(Recipe.objects.create(title="日本語", ingredients="x", directions="y").slug, "recipe-2")
+
+    def test_long_titles_are_truncated_and_stay_unique(self):
+        title = "A very long recipe title that goes well past the fifty characters of a slug"
+        first, second = (Recipe.objects.create(title=title, ingredients="x", directions="y") for _ in range(2))
+        self.assertLessEqual(len(second.slug), 50)
+        self.assertNotEqual(first.slug, second.slug)
+        self.assertTrue(second.slug.endswith("-2"))
+
+    def test_editing_the_title_keeps_the_slug(self):
+        recipe = Recipe.objects.create(title="Apple Pie", ingredients="x", directions="y")
+        recipe.title = "Better Apple Pie"
+        recipe.save()
+        recipe.refresh_from_db()
+        self.assertEqual(recipe.slug, "apple-pie")
+
     def test_total_time_needs_both_prep_and_cook(self):
         self.assertEqual(Recipe(prep_time=10, cook_time=35).get_total_time(), 45)
         self.assertIsNone(Recipe(prep_time=10).get_total_time())
@@ -154,3 +176,16 @@ class RecipeSerializerTests(SmokeTestCase):
         item = self.client.get(reverse("recipe-detail", kwargs={"slug": recipe.slug})).json()
         self.assertEqual(item["total_time"], 45)
         self.assertTrue(item["image_url"].startswith("http://testserver/media/recipe_images/"), item["image_url"])
+
+
+class RecipeAdminTests(SmokeTestCase):
+    def test_adding_two_recipes_with_the_same_title_works(self):
+        # Issue #88: the second one answered 500 (IntegrityError on the unique slug).
+        from django.contrib.auth import get_user_model
+        self.client.force_login(get_user_model().objects.create_superuser("admin", "admin@example.com", "pw-for-tests"))
+        form = {"title": "Apple Pie", "slug": "", "ingredients": "<p>x</p>", "directions": "<p>y</p>", "rating": "3",
+                "description": "", "difficulty": "medium", "category": ""}
+        for _ in range(2):
+            self.assertRedirects(self.client.post(reverse("admin:recipes_recipe_add"), form),
+                                 reverse("admin:recipes_recipe_changelist"))
+        self.assertEqual(sorted(Recipe.objects.values_list("slug", flat=True)), ["apple-pie", "apple-pie-2"])

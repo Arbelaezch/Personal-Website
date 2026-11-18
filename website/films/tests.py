@@ -99,6 +99,25 @@ class FilmModelTests(SmokeTestCase):
                                      genre="drama", release_year=1939, image=tiny_image())
         self.assertEqual(movie.slug, "mr-smith-goes-to-washington")
 
+    def make_movie(self, title):
+        return Movie.objects.create(title=title, synopsis="s", review="r", genre="drama",
+                                    release_year=1990, image=tiny_image())
+
+    def test_duplicate_titles_get_numbered_slugs(self):
+        # Remakes share a title.
+        self.assertEqual([self.make_movie("Scarface").slug for _ in range(2)], ["scarface", "scarface-2"])
+
+    def test_title_with_nothing_sluggable_falls_back(self):
+        self.assertEqual(self.make_movie("!!!").slug, "movie")
+        self.assertEqual(self.make_movie("七人の侍").slug, "movie-2")
+
+    def test_editing_the_title_keeps_the_slug(self):
+        movie = self.make_movie("Heat")
+        movie.title = "Heat (1995)"
+        movie.save()
+        movie.refresh_from_db()
+        self.assertEqual(movie.slug, "heat")
+
     def test_top250_rank_is_none_without_an_entry(self):
         movie = Movie.objects.create(title="Solo", synopsis="s", review="r", genre="drama",
                                      release_year=2001, image=tiny_image())
@@ -112,6 +131,20 @@ class FilmModelTests(SmokeTestCase):
         decade = Decade.objects.create(title="D", description="d", year=1980)
         self.assertEqual(str(decade), "1980s")
         self.assertEqual(decade.decade_range, "1980s - 1989")
+
+
+class MovieAdminTests(SmokeTestCase):
+    def test_adding_two_movies_with_the_same_title_works(self):
+        # Issue #88: the second one answered 500 (IntegrityError on the unique slug).
+        from django.contrib.auth import get_user_model
+        self.client.force_login(get_user_model().objects.create_superuser("admin", "admin@example.com", "pw-for-tests"))
+        decade = Decade.objects.create(title="The Eighties", description="<p>d</p>", year=1980)
+        for _ in range(2):
+            form = {"title": "Scarface", "slug": "", "synopsis": "<p>s</p>", "review": "<p>r</p>", "genre": "drama",
+                    "release_year": "1983", "decade": str(decade.pk), "image": tiny_image(), "is_published": "on"}
+            self.assertRedirects(self.client.post(reverse("admin:films_movie_add"), form),
+                                 reverse("admin:films_movie_changelist"))
+        self.assertEqual(sorted(Movie.objects.values_list("slug", flat=True)), ["scarface", "scarface-2"])
 
 
 class FilmsFixesTests(SmokeTestCase):
