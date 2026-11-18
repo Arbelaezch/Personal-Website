@@ -1,6 +1,6 @@
 from django.db import models
 from website.fields import RichTextField
-from django.utils.text import slugify
+from website.slugs import unique_slug
 
 class Recipe(models.Model):
     CATEGORIES = (
@@ -64,6 +64,7 @@ class Recipe(models.Model):
         return None
     
     def save(self, *args, **kwargs):
-        if not self.slug:  # If no slug exists, create one from the title
-            self.slug = slugify(self.title)
+        # An existing slug is never rebuilt when the title changes: URLs must not move.
+        if not self.slug:
+            self.slug = unique_slug(self, self.title, fallback="recipe")
         super().save(*args, **kwargs)
